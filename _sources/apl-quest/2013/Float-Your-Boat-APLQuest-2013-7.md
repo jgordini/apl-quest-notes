@@ -148,7 +148,7 @@ L
 
 
 
-**Glyphs Used:**
+### **Glyphs Used:**
 
 [Floor](https://aplwiki.com/wiki/Floor) `⌊` - a [monadic](https://aplwiki.com/wiki/Monadic "Monadic") [scalar function](https://aplwiki.com/wiki/Scalar_function "Scalar function") that gives the [floor](https://en.wikipedia.org/wiki/floor_and_ceiling_functions "wikipedia:floor and ceiling functions") of a real number
 
@@ -184,7 +184,7 @@ L
 
 [Error Guard](http://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Error%20Guards.htm) `::` - vector of error numbers :: expression to be evaluated
 
-**Concepts Used:**
+### **Concepts Used:**
 
 [Dfn](https://aplwiki.com/wiki/Dfn)
 
@@ -220,7 +220,8 @@ Selfie- <mark style="background: #ADCCFFA6;"> f ⍨ ⍵</mark>  is  <mark style=
 
 
 
-**Transcript:**
+### **Transcript:**
+
 Hello and welcome to the APL quest. See APL wiki for details. Today's quest is called Float your Boat. We are to select the numbers from a vector of numbers that are floating point or non-integers, and this is problem seven from the 2013 APL problem-solving competition. It's a bit of an interesting thing that it's not well defined what exactly constitutes a floating point number or a non-integer number because in APL, a number is a number. There's not really any good distinction, but we'll do our best, and any of these solutions would be considered correct.
 
 Let's start off by creating some data for ourselves. What constitutes a number that isn't an integer? Well, there are various ways to approach this. A very simple one and probably the best method really is to compare the number to what would happen to it if we were to round it. So any number that's integer stays the same when rounded, and any number that isn't integer would change. The floor of this vector gives us these integers, and then we can compare, and these give us the integers, but we're actually interested in the non-integers, so let's go change that, and then we can use this to filter, and this gives us the non-integers.
