@@ -131,7 +131,7 @@ K
 
 
 
-## A Quirky Solution
+### A Quirky Solution
 
 For fun, here's an unconventional approach using replicate and error handling:
 
@@ -148,7 +148,7 @@ L
 
 
 
-### **Glyphs Used:**
+### Glyphs Used:
 
 [Floor](https://aplwiki.com/wiki/Floor) `⌊` - a [monadic](https://aplwiki.com/wiki/Monadic "Monadic") [scalar function](https://aplwiki.com/wiki/Scalar_function "Scalar function") that gives the [floor](https://en.wikipedia.org/wiki/floor_and_ceiling_functions "wikipedia:floor and ceiling functions") of a real number
 
@@ -184,7 +184,7 @@ L
 
 [Error Guard](http://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Error%20Guards.htm) `::` - vector of error numbers :: expression to be evaluated
 
-### **Concepts Used:**
+### Concepts Used:
 
 [Dfn](https://aplwiki.com/wiki/Dfn)
 

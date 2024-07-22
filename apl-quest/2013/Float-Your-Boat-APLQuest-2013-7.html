@@ -438,10 +438,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-tolerance">Comparison Tolerance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-representation">Data Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-point-detection">Decimal Point Detection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quirky-solution">A Quirky Solution</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used"><strong>Glyphs Used:</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used"><strong>Concepts Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quirky-solution">A Quirky Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript"><strong>Transcript:</strong></a></li>
 </ul>
 </li>
@@ -576,9 +576,8 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">0≠⍵-⌊⍵</span></code> Subtracting the argument from it’s <a class="reference external" href="https://aplwiki.com/wiki/Floor">Floor</a> <code class="docutils literal notranslate"><span class="pre">⌊</span></code>  and comparing the result against <a class="reference external" href="https://aplwiki.com/wiki/Not_Equal_to">Not Equal to</a> <code class="docutils literal notranslate"><span class="pre">≠</span></code> Zero.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> Use the result to filter the argument.</p></li>
 </ol>
-</section>
 <section id="a-quirky-solution">
-<h2>A Quirky Solution<a class="headerlink" href="#a-quirky-solution" title="Link to this heading">#</a></h2>
+<h3>A Quirky Solution<a class="headerlink" href="#a-quirky-solution" title="Link to this heading">#</a></h3>
 <p>For fun, here’s an unconventional approach using replicate and error handling:</p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">L</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">∊</span><span class="kt">{</span><span class="m">0</span><span class="bp">::⍵</span><span class="p">⋄</span><span class="bp">⍵</span><span class="na">/</span><span class="no">⍬</span><span class="kt">}</span><span class="na">¨</span><span class="w"> </span><span class="c1">⍝ If any error happens, that means that the test that the argument is non-integer, and we want it. Otherwise, we replicate the empty vector, which gives us the empty vector.</span>
 </pre></div>
@@ -590,8 +589,9 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">0::⍵</span></code> <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Error%20Guards.htm">Error Guard</a> <code class="docutils literal notranslate"><span class="pre">::</span></code> is a vector of error numbers :: expression to be evaluated</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">∊{}¨</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Membership">Membership</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> - tests if <a class="reference external" href="https://aplwiki.com/wiki/Each">Each</a> <code class="docutils literal notranslate"><span class="pre">¨</span></code> of the elements of the left <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> appears as an element of the right argument.</p></li>
 </ol>
+</section>
 <section id="glyphs-used">
-<h3><strong>Glyphs Used:</strong><a class="headerlink" href="#glyphs-used" title="Link to this heading">#</a></h3>
+<h3>Glyphs Used:<a class="headerlink" href="#glyphs-used" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://aplwiki.com/wiki/Floor">Floor</a> <code class="docutils literal notranslate"><span class="pre">⌊</span></code> - a <a class="reference external" href="https://aplwiki.com/wiki/Monadic" title="Monadic">monadic</a> <a class="reference external" href="https://aplwiki.com/wiki/Scalar_function" title="Scalar function">scalar function</a> that gives the <a class="reference external" href="https://en.wikipedia.org/wiki/floor_and_ceiling_functions" title="wikipedia:floor and ceiling functions">floor</a> of a real number</p>
 <p><a class="reference external" href="https://aplwiki.com/wiki/Equal_to">Equal to</a>  <code class="docutils literal notranslate"><span class="pre">=</span></code> - a <a class="reference external" href="https://aplwiki.com/wiki/Comparison_function" title="Comparison function">comparison function</a> which tests whether argument elements are equal to each other.</p>
 <p><a class="reference external" href="https://aplwiki.com/wiki/Not_Equal_to">Not Equal to</a> <code class="docutils literal notranslate"><span class="pre">≠</span></code> - a <a class="reference external" href="https://aplwiki.com/wiki/Comparison_function" title="Comparison function">comparison function</a> which tests whether argument elements are unequal.</p>
@@ -611,7 +611,7 @@ document.write(`
 <p><a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Error%20Guards.htm">Error Guard</a> <code class="docutils literal notranslate"><span class="pre">::</span></code> - vector of error numbers :: expression to be evaluated</p>
 </section>
 <section id="concepts-used">
-<h3><strong>Concepts Used:</strong><a class="headerlink" href="#concepts-used" title="Link to this heading">#</a></h3>
+<h3>Concepts Used:<a class="headerlink" href="#concepts-used" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a></p>
 <p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a></p>
 <p><a class="reference external" href="https://www.jsoftware.com/papers/satn23.htm">Comparison Tolerance</a></p>
@@ -749,10 +749,10 @@ Beginning with the first Parenthesis <code class="docutils literal notranslate">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-tolerance">Comparison Tolerance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-representation">Data Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-point-detection">Decimal Point Detection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quirky-solution">A Quirky Solution</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used"><strong>Glyphs Used:</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used"><strong>Concepts Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quirky-solution">A Quirky Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used:</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript"><strong>Transcript:</strong></a></li>
 </ul>
 </li>
