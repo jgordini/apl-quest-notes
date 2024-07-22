@@ -213,6 +213,8 @@ This function attempts to use each number as a replication factor on an empty ve
 
 [Error Guard](http://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Error%20Guards.htm) `::` - vector of error numbers :: expression to be evaluated
 
+
+
 ### Concepts Used:
 
 [Dfn](https://aplwiki.com/wiki/Dfn)
