@@ -234,7 +234,7 @@ This function attempts to use each number as a replication factor on an empty ve
 
 <a name="note">**Note:**</a>
 
-<mark style="background: #FAC898;">A</mark>  ← {⍵/⍨⍵≠⌊⍵}
+<mark style="background: #FAC898;">A</mark>  ← `{⍵/⍨⍵≠⌊⍵}`
 
 <mark style="background: #FFF3A3A;">B </mark> ← Tacit Derived Function - Composed of Operators
 Beginning with the first Parenthesis `(/⍨)∘(≠∘⌊⍨)⍨`
