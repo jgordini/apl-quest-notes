@@ -470,7 +470,7 @@ document.write(`
 <span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="bp">⍵</span><span class="o">≠⌊</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Compare the number against it&#39;s rounded version. Same is int. Different is Float.  </span>
 </pre></div>
 </div>
-<p>Here’s the tacit version:</p>
+<p>Here’s the <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">tacit</a> version:</p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="na">/⍨</span><span class="p">)</span><span class="na">∘</span><span class="p">(</span><span class="o">≠</span><span class="na">∘</span><span class="o">⌊</span><span class="na">⍨</span><span class="p">)</span><span class="na">⍨</span><span class="w"> </span><span class="c1">⍝ Tacit {(⍵≠(⌊⍵))/⍵}</span>
 </pre></div>
 </div>

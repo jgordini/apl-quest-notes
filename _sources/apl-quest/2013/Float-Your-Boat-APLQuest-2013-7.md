@@ -20,7 +20,7 @@ v ← ¯3.1 4 1.5 92.6 ¯5 ⍝ Test Data
 A ← {⍵/⍨⍵≠⌊⍵} ⍝ Compare the number against it's rounded version. Same is int. Different is Float.  
 ```
 
-Here’s the tacit version:
+Here’s the [tacit](https://aplwiki.com/wiki/Tacit_programming) version:
 
 ```apl
 B ← (/⍨)∘(≠∘⌊⍨)⍨ ⍝ Tacit {(⍵≠(⌊⍵))/⍵}
