@@ -71,7 +71,7 @@ E
 1. `645 1287∊⍨⎕DR¨⍵` Swapping the arguments and checking if 645 or 1287 are [Members](https://aplwiki.com/wiki/Membership) `∊` of the Data Representiaton of Each element in omega. 
 2. `⍵/⍨` We then filter the result against the original.  First [Swapping](https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#commute-selfie-and-constant) `⍨`  the arguments. [Compress](https://mastering.dyalog.com/Some-Primitive-Functions.html?highlight=compress#replicate) `⍵/` filters the right argument using the boolean array (Result of Step 1) on the left. 
 
-## Decimal Point Detection
+### Decimal Point Detection
 
 A simple, human-readable approach is to check for a decimal point in the formatted number:
 
@@ -96,7 +96,7 @@ G
 1. `⎕PP←34` [Print Precision](https://help.dyalog.com/latest/Content/Language/System%20Functions/pp.htm) `⎕PP` - number of significant digits in the display of numeric output. Default is 10. Max is 34. 
 2. Apply the Function in F.
 
-## Mathematical Approaches
+### Mathematical Approaches
 
 We can use mathematical properties to identify non-integers:
 
