@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Computing Zodiac Signs from Dates &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2018/Whats-Your-Sign-Revisited-APLQuest-2018-5';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2018/Whats-Your-Sign-Revisited-APLQuest-2018-5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Computing Zodiac Signs from Dates</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-the-data">Cleaning the Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-permutation">Column Permutation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-transposition">Data Transposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-rotation">Table Rotation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-the-table">Splitting the Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-spaces">Removing Spaces</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#date-parsing">Date Parsing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-quad-vfi">Using Quad VFI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-cutoff-table">Creating a Cutoff Table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-zodiac-signs">Finding Zodiac Signs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interval-index">Interval Index</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-function">Final Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="computing-zodiac-signs-from-dates">
+<h1>Computing Zodiac Signs from Dates<a class="headerlink" href="#computing-zodiac-signs-from-dates" title="Link to this heading">#</a></h1>
+<p>In this article, we will describe how to approximate the computation of zodiac signs based on given numerical inputs representing a month and a day. The data for zodiac signs and their corresponding date ranges is typically presented in a tabular format, which can be a bit challenging for machine processing. Therefore, we will take steps to clean, organize, and utilize this data efficiently.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>The initial problem is to handle a table layout that is suitable for human consumption but is not optimal for computation. The table generally consists of four columns, but essentially it only represents two key columns: the zodiac sign and the date range. While the date ranges are formatted for readability, they can be cumbersome for computational needs.</p>
+<p>To start with, we can create a representation of zodiac signs and their date ranges in APL:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Zodiac signs and corresponding date ranges</span>
+<span class="nv">r</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">⍴</span><span class="w"> </span><span class="s1">&#39;Aries &#39;</span><span class="w"> </span><span class="s1">&#39;March 21–April 19 &#39;</span><span class="w"> </span><span class="s1">&#39;Libra &#39;</span><span class="w"> </span><span class="s1">&#39;September 23–October 22&#39;</span><span class="w"> </span>
+<span class="w">           </span><span class="s1">&#39;Taurus &#39;</span><span class="w"> </span><span class="s1">&#39;April 20–May 20 &#39;</span><span class="w"> </span><span class="s1">&#39;Scorpio &#39;</span><span class="w"> </span><span class="s1">&#39;October 23–November 21&#39;</span><span class="w"> </span>
+<span class="w">           </span><span class="s1">&#39;Gemini &#39;</span><span class="w"> </span><span class="s1">&#39;May 21–June 20 &#39;</span><span class="w"> </span><span class="s1">&#39;Sagittarius &#39;</span><span class="w"> </span><span class="s1">&#39;November 22–December 21&#39;</span><span class="w"> </span>
+<span class="w">           </span><span class="s1">&#39;Cancer &#39;</span><span class="w"> </span><span class="s1">&#39;June 21–July 22 &#39;</span><span class="w"> </span><span class="s1">&#39;Capricorn &#39;</span><span class="w"> </span><span class="s1">&#39;December 22–January 19&#39;</span><span class="w"> </span>
+<span class="w">           </span><span class="s1">&#39;Leo &#39;</span><span class="w"> </span><span class="s1">&#39;July 23–August 22 &#39;</span><span class="w"> </span><span class="s1">&#39;Aquarius &#39;</span><span class="w"> </span><span class="s1">&#39;January 20–February 18&#39;</span><span class="w"> </span>
+<span class="w">           </span><span class="s1">&#39;Virgo &#39;</span><span class="w"> </span><span class="s1">&#39;August 23–September 22 &#39;</span><span class="w"> </span><span class="s1">&#39;Pisces &#39;</span><span class="w"> </span><span class="s1">&#39;February 19–March 20&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="cleaning-the-data">
+<h2>Cleaning the Data<a class="headerlink" href="#cleaning-the-data" title="Link to this heading">#</a></h2>
+<section id="column-permutation">
+<h3>Column Permutation<a class="headerlink" href="#column-permutation" title="Link to this heading">#</a></h3>
+<p>To begin, we need to group the relevant columns properly. The first and third columns should be paired, and likewise for the second and fourth columns. Thus, we need to permute the columns to get a more manageable structure.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Permuting columns</span>
+<span class="nv">r</span><span class="sr">[;</span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">4</span><span class="sr">]</span>
+</pre></div>
+</div>
+<p>This expression rearranges the columns to better align the zodiac signs with their date ranges.</p>
+</section>
+<section id="data-transposition">
+<h3>Data Transposition<a class="headerlink" href="#data-transposition" title="Link to this heading">#</a></h3>
+<p>Next, we will transpose the table. This transposition will allow us to have all the zodiac signs in one row, followed by all the date ranges in another, simplifying our data.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Transposing the table</span>
+<span class="o">⍉</span><span class="nv">r</span><span class="sr">[;</span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">4</span><span class="sr">]</span>
+</pre></div>
+</div>
+</section>
+<section id="table-rotation">
+<h3>Table Rotation<a class="headerlink" href="#table-rotation" title="Link to this heading">#</a></h3>
+<p>Another challenge arises due to the fact that this table starts from March 21st, while the Gregorian calendar begins in January. To rectify this, we will perform a negative two-step horizontal rotation to start with January instead.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Rotating the table</span>
+<span class="m">¯2</span><span class="o">⌽</span><span class="m">2</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="o">⍴</span><span class="w"> </span><span class="o">⍉</span><span class="nv">r</span><span class="sr">[;</span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">4</span><span class="sr">]</span>
+</pre></div>
+</div>
+<p>This transformation allows us to present zodiac signs beginning with Capricorn.</p>
+</section>
+</section>
+<section id="splitting-the-table">
+<h2>Splitting the Table<a class="headerlink" href="#splitting-the-table" title="Link to this heading">#</a></h2>
+<p>After rotation, we can split the table into two vectors: one for the zodiac signs (<code class="docutils literal notranslate"><span class="pre">s</span></code>) and another for the date ranges (<code class="docutils literal notranslate"><span class="pre">d</span></code>). Upon inspection, we realize that the zodiac signs contain unwanted trailing spaces, which we need to remove.</p>
+<section id="removing-spaces">
+<h3>Removing Spaces<a class="headerlink" href="#removing-spaces" title="Link to this heading">#</a></h3>
+<p>We can utilize a set difference approach to eliminate spaces from our zodiac signs vector. A modified assignment can be employed here, allowing us to directly update the vector without creating a new variable.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Removing spaces from zodiac signs</span>
+<span class="nv">s</span><span class="w"> </span><span class="o">~</span><span class="na">¨</span><span class="w"> </span><span class="s1">&#39; &#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="date-parsing">
+<h2>Date Parsing<a class="headerlink" href="#date-parsing" title="Link to this heading">#</a></h2>
+<p>Next, we will parse the dates. Knowing that there is a unique month for each zodiac sign, we will focus on extracting the day of the month. We will take the first number in each date range, as the last day of one sign is the day before the first day of the next sign.</p>
+<section id="using-quad-vfi">
+<h3>Using Quad VFI<a class="headerlink" href="#using-quad-vfi" title="Link to this heading">#</a></h3>
+<p>To simplify the parsing, we leverage the <code class="docutils literal notranslate"><span class="pre">quad</span> <span class="pre">vfi</span></code> function to verify that tokens are proper numbers and convert them accordingly. By specifying suitable field separators, we can accurately extract the day information.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Using quad VFI to parse dates</span>
+<span class="o">⍳</span><span class="m">12</span>
+<span class="c1">⍝ Structure for days of the month for each zodiac sign</span>
+<span class="nv">c</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⍳</span><span class="m">12</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="o">⍪</span><span class="w"> </span><span class="kt">{</span><span class="m">2</span><span class="w"> </span><span class="m">2</span><span class="o">⊃</span><span class="w"> </span><span class="s1">&#39; –&#39;</span><span class="w"> </span><span class="nf">⎕VFI</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="nv">d</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="creating-a-cutoff-table">
+<h2>Creating a Cutoff Table<a class="headerlink" href="#creating-a-cutoff-table" title="Link to this heading">#</a></h2>
+<p>Using the parsed day values, we can create a lookup table for cutoff dates, associating each zodiac sign with its corresponding starting date.</p>
+</section>
+<section id="finding-zodiac-signs">
+<h2>Finding Zodiac Signs<a class="headerlink" href="#finding-zodiac-signs" title="Link to this heading">#</a></h2>
+<p>Next, we need to determine the zodiac sign associated with a given date. It is important to note that certain dates at the beginning of the year (before January 20) also correspond to Capricorn.</p>
+<p>One way to represent this cyclic nature is by using a modular approach. We can rotate the list of zodiac signs, ensuring Capricorn is first and adjusting our indices to reflect the cutoff dates accurately.</p>
+<section id="interval-index">
+<h3>Interval Index<a class="headerlink" href="#interval-index" title="Link to this heading">#</a></h3>
+<p>To facilitate lookup operations, we implement an interval index that relates specific date ranges to their corresponding zodiac signs. This index will help us determine which zodiac sign matches any given date.</p>
+</section>
+</section>
+<section id="final-function">
+<h2>Final Function<a class="headerlink" href="#final-function" title="Link to this heading">#</a></h2>
+<p>Finally, we will encapsulate all of the above logic into a standalone function. This function can accept a date as an argument and return the corresponding zodiac sign based on its computations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example function (pseudo-code)</span>
+<span class="k">def</span> <span class="nf">get_zodiac_sign</span><span class="p">(</span><span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">):</span>
+    <span class="c1"># Implement the logic as described above</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>We have developed a structured approach to compute zodiac signs from given dates. By cleaning and organizing the data, implementing proper transformation and parsing techniques, we can achieve efficient computation.</p>
+<p>Thank you for following along and happy coding!</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2018"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cleaning-the-data">Cleaning the Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-permutation">Column Permutation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-transposition">Data Transposition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-rotation">Table Rotation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-the-table">Splitting the Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-spaces">Removing Spaces</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#date-parsing">Date Parsing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-quad-vfi">Using Quad VFI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-cutoff-table">Creating a Cutoff Table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-zodiac-signs">Finding Zodiac Signs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interval-index">Interval Index</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-function">Final Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

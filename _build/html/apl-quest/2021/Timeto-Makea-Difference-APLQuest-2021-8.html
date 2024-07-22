@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Calculating Absolute Time Difference in Minutes &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2021/Timeto-Makea-Difference-APLQuest-2021-8';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2021/Timeto-Makea-Difference-APLQuest-2021-8.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Calculating Absolute Time Difference in Minutes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-problem">Example Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-of-time-specifications">Normalization of Time Specifications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-to-minutes">Converting to Minutes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-absolute-difference">Calculating the Absolute Difference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="calculating-absolute-time-difference-in-minutes">
+<h1>Calculating Absolute Time Difference in Minutes<a class="headerlink" href="#calculating-absolute-time-difference-in-minutes" title="Link to this heading">#</a></h1>
+<p>In this article, we will explore how to find the absolute difference between two specifications of time. The interesting twist here is that these specifications may not be consistent; they can represent various formats such as minutes, hours and minutes, or even days, hours, and minutes. Therefore, we must normalize these specifications in order to determine the total difference in minutes.</p>
+<section id="example-problem">
+<h2>Example Problem<a class="headerlink" href="#example-problem" title="Link to this heading">#</a></h2>
+<p>Let’s take an example where we have two times:</p>
+<ul class="simple">
+<li><p><strong>Time 1</strong>: 2:30 (which translates to 2 hours and 30 minutes)</p></li>
+<li><p><strong>Time 2</strong>: 5:15 (which translates to 5 hours and 15 minutes)</p></li>
+</ul>
+<p>Our objective is to find the absolute difference in minutes between these two times. Before calculating the difference, we need to convert both time specifications into a uniform format (minutes).</p>
+</section>
+<section id="normalization-of-time-specifications">
+<h2>Normalization of Time Specifications<a class="headerlink" href="#normalization-of-time-specifications" title="Link to this heading">#</a></h2>
+<p>The first step is to preprocess the time specifications. We will refer to these arguments as “Omega” during our calculations. The key aspects of preprocessing include:</p>
+<ol class="arabic">
+<li><p><strong>Padding the Time</strong>: Ensure that each time has three components: days, hours, and minutes. If any component is missing, we will pad it with zeros on the left.</p>
+<p>For instance, the time “2:30” would be padded to “0:2:30” (0 days, 2 hours, and 30 minutes).</p>
+</li>
+<li><p><strong>Concatenating the Values</strong>: After padding, we can concatenate the elements together for better visualization.</p>
+<p>For the example above, the padded values for Time 1 (2:30) and Time 2 (5:15) could look like this:</p>
+<ul class="simple">
+<li><p>Time 1: <code class="docutils literal notranslate"><span class="pre">0:2:30</span></code></p></li>
+<li><p>Time 2: <code class="docutils literal notranslate"><span class="pre">0:5:15</span></code></p></li>
+</ul>
+<p>In APL, the concatenation of these values can be represented as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="w"> </span><span class="m">30</span><span class="w">  </span><span class="o">,</span><span class="na">⍥</span><span class="kt">{</span><span class="m">¯3</span><span class="o">↑</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="m">5</span><span class="w"> </span><span class="m">15</span>
+</pre></div>
+</div>
+<p>This translates to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="mi">2</span> <span class="mi">30</span> <span class="mi">0</span> <span class="mi">5</span> <span class="mi">15</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="converting-to-minutes">
+<h2>Converting to Minutes<a class="headerlink" href="#converting-to-minutes" title="Link to this heading">#</a></h2>
+<p>Next, we need to convert both time specifications to total minutes. In APL, we can use mixed radix number systems for this conversion:</p>
+<ul class="simple">
+<li><p><strong>Minutes in an Hour</strong>: 60</p></li>
+<li><p><strong>Hours in a Day</strong>: 24</p></li>
+</ul>
+<p>Using these bases, we can represent the total minutes as:</p>
+<ul class="simple">
+<li><p><strong>Total minutes from Time 1</strong> = <code class="docutils literal notranslate"><span class="pre">0*24*60</span> <span class="pre">+</span> <span class="pre">2*60</span> <span class="pre">+</span> <span class="pre">30</span></code></p></li>
+<li><p><strong>Total minutes from Time 2</strong> = <code class="docutils literal notranslate"><span class="pre">0*24*60</span> <span class="pre">+</span> <span class="pre">5*60</span> <span class="pre">+</span> <span class="pre">15</span></code></p></li>
+</ul>
+<p>In APL, we can perform this conversion as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="w"> </span><span class="m">30</span><span class="w">  </span><span class="o">,</span><span class="na">⍥</span><span class="kt">{</span><span class="m">0</span><span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">60</span><span class="o">⊥</span><span class="m">¯3</span><span class="o">↑</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="m">5</span><span class="w"> </span><span class="m">15</span>
+</pre></div>
+</div>
+<p>This would yield:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">150</span> <span class="mi">315</span>
+</pre></div>
+</div>
+</section>
+<section id="calculating-the-absolute-difference">
+<h2>Calculating the Absolute Difference<a class="headerlink" href="#calculating-the-absolute-difference" title="Link to this heading">#</a></h2>
+<p>Once we have the total minutes calculated for both times, we can find the absolute difference. If the subtraction yields a negative result, we take the absolute value:</p>
+<ol class="arabic">
+<li><p><strong>Calculate Difference</strong>:</p>
+<ul class="simple">
+<li><p>Difference = Total Minutes (Time 2) - Total Minutes (Time 1)</p></li>
+</ul>
+<p>We can perform the calculation as follows in APL:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="w"> </span><span class="m">30</span><span class="w">  </span><span class="o">-</span><span class="na">⍥</span><span class="kt">{</span><span class="m">0</span><span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">60</span><span class="o">⊥</span><span class="m">¯3</span><span class="o">↑</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="m">5</span><span class="w"> </span><span class="m">15</span>
+</pre></div>
+</div>
+<p>This operation results in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>¯165
+</pre></div>
+</div>
+</li>
+<li><p><strong>Take Absolute Value</strong>:
+To obtain the absolute value, we can use the absolute value operator <code class="docutils literal notranslate"><span class="pre">|</span></code> in APL:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="w"> </span><span class="m">30</span><span class="w">  </span><span class="o">|</span><span class="na">⍤</span><span class="o">-</span><span class="na">⍥</span><span class="kt">{</span><span class="m">0</span><span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">60</span><span class="o">⊥</span><span class="m">¯3</span><span class="o">↑</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="m">5</span><span class="w"> </span><span class="m">15</span>
+</pre></div>
+</div>
+<p>The result will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">165</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Thus, the absolute difference in minutes between the two times is 165 minutes.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>By following this method, we can effectively find the absolute difference between two time specifications, regardless of their initial formats. We hope this article has provided clarity on how to approach such problems. Thank you for reading!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2021"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-problem">Example Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-of-time-specifications">Normalization of Time Specifications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-to-minutes">Converting to Minutes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-the-absolute-difference">Calculating the Absolute Difference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

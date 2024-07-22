@@ -1,0 +1,573 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Shifting Boolean Data: An Introduction &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2018/Unconditionally-Shifty-APLQuest-2018-7';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2018/Unconditionally-Shifty-APLQuest-2018-7.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Shifting Boolean Data: An Introduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-boolean-data-shifting">Overview of Boolean Data Shifting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-data-and-shifting-amounts">Sample Data and Shifting Amounts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-over-the-shifting-amounts">Mapping Over the Shifting Amounts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-implementation">Step-by-step Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-identifying-data-to-keep">Step 1: Identifying Data to Keep</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-identifying-placement-for-data">Step 2: Identifying Placement for Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-creating-a-canvas">Step 3: Creating a Canvas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-scalar-inputs">Handling Scalar Inputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-all-parts">Combining All Parts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="shifting-boolean-data-an-introduction">
+<h1>Shifting Boolean Data: An Introduction<a class="headerlink" href="#shifting-boolean-data-an-introduction" title="Link to this heading">#</a></h1>
+<p>Today, we will explore the process of shifting Boolean data. Our task involves modifying a given amount of Boolean data, shifting it in different directions based on specified amounts.</p>
+<section id="overview-of-boolean-data-shifting">
+<h2>Overview of Boolean Data Shifting<a class="headerlink" href="#overview-of-boolean-data-shifting" title="Link to this heading">#</a></h2>
+<p>The shifting process is dictated by a specified amount. If the amount is negative, it implies a shift from the right; if positive, the shift occurs from the left. The data can be provided as a vector or a scalar, and our goal is to seamlessly integrate this into our solution.</p>
+<p>Although there are many methods to achieve this, we will focus on just one approach. For a broader understanding, I recommend reviewing the transcript from the chat event that preceded this presentation.</p>
+</section>
+<section id="sample-data-and-shifting-amounts">
+<h2>Sample Data and Shifting Amounts<a class="headerlink" href="#sample-data-and-shifting-amounts" title="Link to this heading">#</a></h2>
+<p>We begin with a sample dataset outlined in the problem description. Our objective is to apply shifts of three different amounts:</p>
+<ol class="arabic simple">
+<li><p>Shift by 3 steps</p></li>
+<li><p>Shift by 0 steps</p></li>
+<li><p>Shift by -3 steps (i.e., shift in the opposite direction)</p></li>
+</ol>
+<p>To implement this, we will employ a Lambda function, defining it inline anonymously. This function will be applied across our specified shifting amounts.</p>
+<section id="mapping-over-the-shifting-amounts">
+<h3>Mapping Over the Shifting Amounts<a class="headerlink" href="#mapping-over-the-shifting-amounts" title="Link to this heading">#</a></h3>
+<p>We desire to map over these three amounts without applying them to separate elements of our Boolean data. Instead, we will enclose the operation, allowing it to apply fully to all elements. The scalar extension takes a single scalar from one side and pairs it with multiple elements on the left, ensuring the correct pairing of elements.</p>
+<p>The function we create will yield a two-element vector or list, where the left element is denoted as <code class="docutils literal notranslate"><span class="pre">Alpha</span></code> and the right as <code class="docutils literal notranslate"><span class="pre">Omega</span></code>. This will enable proper alignment of the left argument elements with the corresponding right elements.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">3</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">¯3</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍺⍵</span><span class="kt">}</span><span class="na">¨</span><span class="o">⊂</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1">⍝ pairing up arguments</span>
+</pre></div>
+</div>
+<p>The output for this will show how the arguments are paired:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ ┌───────────────────┬───────────────────┬────────────────────┐
+⍝ │┌─┬───────────────┐│┌─┬───────────────┐│┌──┬───────────────┐│
+⍝ ││3│1 0 1 1 1 0 1 1│││0│1 0 1 1 1 0 1 1│││¯3│1 0 1 1 1 0 1 1││
+⍝ │└─┴───────────────┘│└─┴───────────────┘│└──┴───────────────┘│
+⍝ └───────────────────┴───────────────────┴────────────────────┘
+</pre></div>
+</div>
+</section>
+</section>
+<section id="step-by-step-implementation">
+<h2>Step-by-step Implementation<a class="headerlink" href="#step-by-step-implementation" title="Link to this heading">#</a></h2>
+<section id="step-1-identifying-data-to-keep">
+<h3>Step 1: Identifying Data to Keep<a class="headerlink" href="#step-1-identifying-data-to-keep" title="Link to this heading">#</a></h3>
+<p>Initially, we must determine which data should be retained during the shifting process. When shifting positively to the right, it effectively pushes data to the right and causes the last three elements to drop off. Thus, we aim to keep all but the last three elements.</p>
+<p>Using a drop function can give us what we need, but it removes elements from the wrong end. By negating the number, we can reverse this order to achieve the desired effect.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">3</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">¯3</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="o">↓</span><span class="na">⍨</span><span class="o">-</span><span class="bp">⍺</span><span class="kt">}</span><span class="na">¨</span><span class="o">⊂</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1">⍝ which ones we want to keep</span>
+</pre></div>
+</div>
+<p>For this operation, the output will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ ┌─────────┬───────────────┬─────────┐
+⍝ │1 0 1 1 1│1 0 1 1 1 0 1 1│1 1 0 1 1│
+⍝ └─────────┴───────────────┴─────────┘
+</pre></div>
+</div>
+</section>
+<section id="step-2-identifying-placement-for-data">
+<h3>Step 2: Identifying Placement for Data<a class="headerlink" href="#step-2-identifying-placement-for-data" title="Link to this heading">#</a></h3>
+<p>Next, we need to decide where the identified data should be placed in the final result. By obtaining the length of the right argument and enumerating its indices, we can ascertain where each element should end up:</p>
+<ul class="simple">
+<li><p>For a positive shift of three, the five elements should occupy the last three positions.</p></li>
+<li><p>For no shift, the arrangement remains consistent.</p></li>
+<li><p>For a negative shift, we push in from the right.</p></li>
+</ul>
+<p>Consequently, we can derive the subset of indices where our data will be positioned by using the amounts to drop from the right side.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">3</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">¯3</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍺</span><span class="o">↓⍳≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="o">⊂</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1">⍝ where we want them</span>
+</pre></div>
+</div>
+<p>The results for this will be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ ┌─────────┬───────────────┬─────────┐
+⍝ │4 5 6 7 8│1 2 3 4 5 6 7 8│1 2 3 4 5│
+⍝ └─────────┴───────────────┴─────────┘
+</pre></div>
+</div>
+</section>
+<section id="step-3-creating-a-canvas">
+<h3>Step 3: Creating a Canvas<a class="headerlink" href="#step-3-creating-a-canvas" title="Link to this heading">#</a></h3>
+<p>We require a canvas to draw our result. This canvas will be an array of the same shape filled with zeros. We can create this easily using a zero multiplication, as the Boolean values can be treated as numbers.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">3</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">¯3</span><span class="w"> </span><span class="kt">{</span><span class="o">,</span><span class="m">0</span><span class="o">∧</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="o">⊂</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w">   </span><span class="c1">⍝ what canvas we want to draw on</span>
+</pre></div>
+</div>
+<p>The output will show the canvas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ ┌───────────────┬───────────────┬───────────────┐
+⍝ │0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│0 0 0 0 0 0 0 0│
+⍝ └───────────────┴───────────────┴───────────────┘
+</pre></div>
+</div>
+</section>
+<section id="handling-scalar-inputs">
+<h3>Handling Scalar Inputs<a class="headerlink" href="#handling-scalar-inputs" title="Link to this heading">#</a></h3>
+<p>Moreover, we also have the scenario where the argument is a scalar. In this case, we can normalize it to a vector by using the <code class="docutils literal notranslate"><span class="pre">revel</span></code> function, which flattens the array into a simple list. If the argument is already a vector, it remains unchanged; if it’s a scalar, it transforms into a one-element vector.</p>
+</section>
+<section id="combining-all-parts">
+<h3>Combining All Parts<a class="headerlink" href="#combining-all-parts" title="Link to this heading">#</a></h3>
+<p>Now that we have identified the data and created the canvas, we can combine everything into one final procedure. We will place the data into the computed indices, thus completing the shifting process.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">3</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">¯3</span><span class="w"> </span><span class="kt">{</span><span class="p">(</span><span class="bp">⍵</span><span class="o">↓</span><span class="na">⍨</span><span class="o">-</span><span class="bp">⍺</span><span class="p">)</span><span class="na">@</span><span class="p">(</span><span class="bp">⍺</span><span class="o">↓⍳≢</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="m">0</span><span class="o">∧</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="o">⊂</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1">⍝ putting it all together</span>
+</pre></div>
+</div>
+<p>The culmination of this process is shown in the following output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ ┌───────────────┬───────────────┬───────────────┐
+⍝ │0 0 0 1 0 1 1 1│1 0 1 1 1 0 1 1│1 1 0 1 1 0 0 0│
+⍝ └───────────────┴───────────────┴───────────────┘
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>For a positive shift of three, three bits are added from the left and three bits drop off from the right.</p></li>
+<li><p>With a shift of zero, no changes occur.</p></li>
+<li><p>For a negative shift, we again shift from the right.</p></li>
+</ul>
+<p>If we test a scalar case, such as ‘1’, it normalizes to a vector. If we attempt to shift too much, leading to no remaining elements, we still hold a representation with a single zero. Conversely, if shifting by zero, we retain the original value.</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>This approach offers one of many possible solutions to shifting Boolean data. For more insights and alternatives, I encourage you to examine the transcript from our previous session or participate in our live events every Friday.</p>
+<p>Thank you for your attention!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2018"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-boolean-data-shifting">Overview of Boolean Data Shifting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-data-and-shifting-amounts">Sample Data and Shifting Amounts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-over-the-shifting-amounts">Mapping Over the Shifting Amounts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-implementation">Step-by-step Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-identifying-data-to-keep">Step 1: Identifying Data to Keep</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-identifying-placement-for-data">Step 2: Identifying Placement for Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-creating-a-canvas">Step 3: Creating a Canvas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-scalar-inputs">Handling Scalar Inputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-all-parts">Combining All Parts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

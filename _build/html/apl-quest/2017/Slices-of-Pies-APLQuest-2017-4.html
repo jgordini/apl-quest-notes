@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Computing Areas of Circle Sectors Using APL &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2017/Slices-of-Pies-APLQuest-2017-4';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2017/Slices-of-Pies-APLQuest-2017-4.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Computing Areas of Circle Sectors Using APL</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-area-of-a-circle">Understanding the Area of a Circle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apl-representation">APL Representation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-with-values">Testing with Values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-area-of-circle-sectors">Computing Area of Circle Sectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplifying-the-calculation">Simplifying the Calculation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-tacit-functions">Using Tacit Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="computing-areas-of-circle-sectors-using-apl">
+<h1>Computing Areas of Circle Sectors Using APL<a class="headerlink" href="#computing-areas-of-circle-sectors-using-apl" title="Link to this heading">#</a></h1>
+<p>In this article, we will compute the areas of circle sectors using APL as the mathematical notation. By reasoning about and simplifying the mathematical formula, we will find an efficient way to express these computations.</p>
+<section id="understanding-the-area-of-a-circle">
+<h2>Understanding the Area of a Circle<a class="headerlink" href="#understanding-the-area-of-a-circle" title="Link to this heading">#</a></h2>
+<p>One way to visualize the area of a circle is to think of it as being “unrolled” into its infinitely thin slices (or sectors). When placed side by side, they form a rectangle. The long sides of this rectangle are provided by the circumference of the circle, while the short side corresponds to the radius.</p>
+<p>To recall some basic formulas:</p>
+<ul>
+<li><p>The <strong>radius</strong> of a circle can be computed from the <strong>diameter</strong>:</p>
+<p>[<span class="math notranslate nohighlight">\(\text{radius} = \frac{\text{diameter}}{2}\)</span>]</p>
+<p>In APL, this is represented as:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">R</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="err">Ω</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+</li>
+<li><p>The <strong>circumference</strong> of a circle is given by:
+[<span class="math notranslate nohighlight">\(\text{circumference} = \pi \times \text{diameter}\)</span>]</p></li>
+</ul>
+<p>Knowing that there are two long sides formed by the circumference, the area (A) of the circle can be computed as:</p>
+<p>[<span class="math notranslate nohighlight">\(A = \text{short side} \times \text{long side} = r \times \left( \frac{\pi \times \text{diameter}}{2} \right)\)</span>]</p>
+<p>Substituting for (r) gives:</p>
+<p>[<span class="math notranslate nohighlight">\(A = \pi \times r^2\)</span>]</p>
+</section>
+<section id="apl-representation">
+<h2>APL Representation<a class="headerlink" href="#apl-representation" title="Link to this heading">#</a></h2>
+<p>In APL, we can express this calculation quite easily. Although APL does not directly represent (\pi), it uses a circle function ((○)) for multiplication by (\pi).</p>
+<p>To calculate the area of a circle, we establish:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">Circle</span><span class="w"> </span><span class="nv">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="nv">R</span>
+</pre></div>
+</div>
+<p>Thus, the area becomes:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">Area</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">Circle</span><span class="w"> </span><span class="nv">R</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="nv">R</span>
+</pre></div>
+</div>
+<section id="testing-with-values">
+<h3>Testing with Values<a class="headerlink" href="#testing-with-values" title="Link to this heading">#</a></h3>
+<p>Let’s apply this to calculate the areas of circles with diameters 9, 12, and 15. APL automatically maps arithmetic operations, so we calculate the results as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">Area</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="p">(</span><span class="m">9</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="p">(</span><span class="m">9</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will provide the corresponding areas for each diameter.</p>
+</section>
+</section>
+<section id="computing-area-of-circle-sectors">
+<h2>Computing Area of Circle Sectors<a class="headerlink" href="#computing-area-of-circle-sectors" title="Link to this heading">#</a></h2>
+<p>Now, if we want to compute the area of a sector of a circle, we must define what fraction of the full circle we are interested in. For example, for a 60-degree sector, we determine:</p>
+<p>[<span class="math notranslate nohighlight">\(\text{fraction} = \frac{60}{360} = \frac{1}{6}\)</span>]</p>
+<p>The area of this sector becomes:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">SectorArea</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="nv">Alpha</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">360</span><span class="p">)</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="nv">Area</span>
+</pre></div>
+</div>
+<p>Where (Alpha) is the angle in degrees.</p>
+<section id="simplifying-the-calculation">
+<h3>Simplifying the Calculation<a class="headerlink" href="#simplifying-the-calculation" title="Link to this heading">#</a></h3>
+<p>To simplify our approach, we might want to perform some algebraic manipulations. Here’s one way to consolidate our expressions by noting that the area can also be represented using (\Omega):</p>
+<p>Instead of (\Omega) divided by 2, consider:</p>
+<p>[
+<span class="math notranslate nohighlight">\(\text{Area} = \frac{\Omega^2}{4} \frac{60}{360} = \frac{\Omega^2}{24}\)</span>
+]</p>
+<p>This is equivalent to multiplying by (1440):</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">Area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">Ω^</span><span class="m">2</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">1440</span>
+</pre></div>
+</div>
+</section>
+<section id="using-tacit-functions">
+<h3>Using Tacit Functions<a class="headerlink" href="#using-tacit-functions" title="Link to this heading">#</a></h3>
+<p>In APL, we can also use tacit functions, which allow us to define operations without explicitly mentioning the arguments. We can create an efficient tacit expression for the area of the sector:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">SectorArea</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="p">(</span><span class="err">α</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="err">Ω</span><span class="p">)</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">360</span>
+</pre></div>
+</div>
+<p>This leverages the tacit style to express the area calculation yet succinctly.</p>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>By adequately leveraging APL’s constructs, we can achieve an efficient formulation for calculating areas of both circles and their sectors. Our final APL expression might look something like this:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">SectorArea</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="err">α</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="err">Ω</span><span class="p">)</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">360</span>
+</pre></div>
+</div>
+<p>This summarizes the necessary computations neatly.</p>
+<p>Thank you for your attention!</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2017"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-area-of-a-circle">Understanding the Area of a Circle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apl-representation">APL Representation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-with-values">Testing with Values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-area-of-circle-sectors">Computing Area of Circle Sectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplifying-the-calculation">Simplifying the Calculation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-tacit-functions">Using Tacit Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

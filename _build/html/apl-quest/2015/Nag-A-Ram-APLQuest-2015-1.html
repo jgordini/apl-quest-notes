@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>APL Quest: Anagrams Problem &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2015/Nag-A-Ram-APLQuest-2015-1';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2015/Nag-A-Ram-APLQuest-2015-1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>APL Quest: Anagrams Problem</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-anagrams">Understanding Anagrams</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-letters">Filtering Letters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-and-comparison">Normalization and Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efficiency-improvements">Efficiency Improvements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-function">Testing the Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-test-cases">Constructing Test Cases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-comparison">Performance Comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-understanding-anagrams">Conclusion: Understanding Anagrams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-thoughts">Final Thoughts</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apl-quest-anagrams-problem">
+<h1>APL Quest: Anagrams Problem<a class="headerlink" href="#apl-quest-anagrams-problem" title="Link to this heading">#</a></h1>
+<p>Welcome to the APL Quest! For more details, please see the APL Wiki.</p>
+<p>Today’s quest is the first from the 2015 round of the APL problem-solving competition. We are given two character vectors and need to check whether or not these are anagrams.</p>
+<section id="understanding-anagrams">
+<h2>Understanding Anagrams<a class="headerlink" href="#understanding-anagrams" title="Link to this heading">#</a></h2>
+<p>Here’s a simple test case: we need to compare two character vectors to see if they’re the same. However, we want to ignore various aspects such as capitalization, punctuation, and spacing. In other words, we want to focus solely on the actual letters present.</p>
+<section id="filtering-letters">
+<h3>Filtering Letters<a class="headerlink" href="#filtering-letters" title="Link to this heading">#</a></h3>
+<p>To achieve this, we can filter the letters such that they are members of the alphabet, either in uppercase or lowercase. We can use the following APL expression to check the membership of letters in a string:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">y</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;Nag A Ram!&#39;</span>
+<span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="bp">⍵</span><span class="o">∊</span><span class="na">⍥</span><span class="nf">⎕C⎕A</span><span class="kt">}</span><span class="w"> </span><span class="nv">y</span>
+</pre></div>
+</div>
+<p>Next, we need to paste fold these letters so that we can compare the ones from the two different character vectors. Filtering by membership is essentially the definition of intersection, so we can rephrase this as performing a case-insensitive intersection:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">∩</span><span class="na">⍥</span><span class="nf">⎕C⎕A</span><span class="kt">}</span><span class="w"> </span><span class="nv">y</span>
+</pre></div>
+</div>
+<p>After obtaining the letters, they need to be arranged in a universal order. If two sets of letters are anagrams of each other (i.e., they are scrambles or shuffles of each other), sorting them will yield the same order. Thus, by sorting the letters, we can define a function with this definition:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="nv">l</span><span class="sr">[</span><span class="o">⍋</span><span class="nv">l</span><span class="kd">←</span><span class="bp">⍵</span><span class="o">∩</span><span class="na">⍥</span><span class="nf">⎕C⎕A</span><span class="sr">]</span><span class="kt">}</span><span class="w"> </span><span class="nv">y</span>
+</pre></div>
+</div>
+</section>
+<section id="normalization-and-comparison">
+<h3>Normalization and Comparison<a class="headerlink" href="#normalization-and-comparison" title="Link to this heading">#</a></h3>
+<p>We preprocess the arguments <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> using this normalization, allowing us to determine if they are anagrams. We can compare the sorted versions of the filtered letters with:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">x</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;anagram&#39;</span>
+<span class="nv">x</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="na">⍥</span><span class="kt">{</span><span class="nv">l</span><span class="sr">[</span><span class="o">⍋</span><span class="nv">l</span><span class="kd">←</span><span class="bp">⍵</span><span class="o">∩</span><span class="na">⍥</span><span class="nf">⎕C⎕A</span><span class="sr">]</span><span class="kt">}</span><span class="w"> </span><span class="nv">y</span>
+</pre></div>
+</div>
+<p>This approach may be one of the shortest solutions available, but it does come with a few issues.</p>
+<p>For example, grading can be an expensive operation, while sorting can be accomplished more quickly. For the fastest sort, we should use an idiom optimized for this purpose. We can define a function <code class="docutils literal notranslate"><span class="pre">A</span></code> to represent this optimized sorting:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≡</span><span class="na">⍥</span><span class="kt">{</span><span class="nv">l</span><span class="sr">[</span><span class="o">⍋</span><span class="nv">l</span><span class="kd">←</span><span class="bp">⍵</span><span class="o">∩</span><span class="na">⍥</span><span class="nf">⎕C⎕A</span><span class="sr">]</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ shortest</span>
+</pre></div>
+</div>
+<p>Furthermore, if there is a lot of punctuation, we are inadvertently case-folding those characters unnecessarily. Instead, we could first find the intersection and only case-fold afterward. To facilitate this, we need to consider both uppercase and lowercase letters by first processing lowercase letters and then adding uppercase letters accordingly.</p>
+</section>
+<section id="efficiency-improvements">
+<h3>Efficiency Improvements<a class="headerlink" href="#efficiency-improvements" title="Link to this heading">#</a></h3>
+<p>It is also important to note that we are computing the total alphabet of letters every time we run the function. If we are executing this function multiple times, it may be wasteful. To address this, we could define a “tested” function that establishes this alphabet once instead of repeatedly during function calls.</p>
+<p>By using a slightly modified function, we can now apply this optimized approach for better performance:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≡</span><span class="na">⍥</span><span class="kt">{{</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="bp">⍵</span><span class="o">∩</span><span class="na">⍥</span><span class="nf">⎕C⎕A</span><span class="kt">}</span>
+<span class="nv">C</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≡</span><span class="na">⍥</span><span class="kt">{{</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="na">∘</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="o">∩</span><span class="nf">⎕A</span><span class="o">,</span><span class="nf">⎕C⎕A</span><span class="kt">}</span>
+<span class="nv">D</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≡</span><span class="na">⍥</span><span class="p">(</span><span class="kt">{</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="na">∘</span><span class="nf">⎕C</span><span class="o">∩</span><span class="na">∘</span><span class="p">(</span><span class="nf">⎕A</span><span class="o">,</span><span class="nf">⎕C⎕A</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing-the-function">
+<h2>Testing the Function<a class="headerlink" href="#testing-the-function" title="Link to this heading">#</a></h2>
+<p>Let’s test the function’s performance against various scenarios. We can start by constructing a large test case that consists of both uppercase and lowercase letters of the alphabet, along with some punctuation. We will generate this data structure to assess the function’s efficiency using a timing comparison.</p>
+<section id="constructing-test-cases">
+<h3>Constructing Test Cases<a class="headerlink" href="#constructing-test-cases" title="Link to this heading">#</a></h3>
+<p>To do this, we can construct a dataset with this APL snippet to create random test cases:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⊢↑</span><span class="na">⍨∘</span><span class="o">⌈</span><span class="m">1.2</span><span class="o">×≢</span><span class="p">)</span><span class="w"> </span><span class="m">1000</span><span class="o">⍴</span><span class="s1">&#39;,.;:!?&#39;</span><span class="o">,</span><span class="na">∘</span><span class="nf">⎕C</span><span class="na">⍨</span><span class="nf">⎕A</span>
+<span class="nv">ta</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">?</span><span class="na">⍨</span><span class="o">≢</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="w"> </span><span class="nv">t</span>
+<span class="nv">tb</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="na">@</span><span class="m">1</span><span class="o">⊢</span><span class="nv">t</span>
+</pre></div>
+</div>
+<p>To execute our comparisons efficiently, we can use a defined timing comparison such as:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;cmpx&#39;</span><span class="w"> </span><span class="nf">⎕CY</span><span class="w"> </span><span class="s1">&#39;dfns&#39;</span>
+<span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;t∘&#39;</span><span class="na">∘</span><span class="o">,</span><span class="na">¨</span><span class="w"> </span><span class="s1">&#39;ABCD&#39;</span><span class="o">,</span><span class="na">¨</span><span class="o">⊂</span><span class="w"> </span><span class="s1">&#39;¨1000⍴ta tb&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-comparison">
+<h3>Performance Comparison<a class="headerlink" href="#performance-comparison" title="Link to this heading">#</a></h3>
+<p>As we run the comparisons using the defined set of functions, we should observe progressive improvements in efficiency:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="na">∘</span><span class="nv">A</span><span class="na">¨</span><span class="m">1000</span><span class="o">⍴</span><span class="nv">ta</span><span class="w"> </span><span class="nv">tb</span><span class="w"> </span><span class="kd">→</span><span class="w"> </span><span class="m">2.7E¯2</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="m">0</span><span class="err">%</span><span class="w"> </span><span class="vg">⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕</span>
+<span class="nv">t</span><span class="na">∘</span><span class="nv">B</span><span class="na">¨</span><span class="m">1000</span><span class="o">⍴</span><span class="nv">ta</span><span class="w"> </span><span class="nv">tb</span><span class="w"> </span><span class="kd">→</span><span class="w"> </span><span class="m">1.8E¯2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="m">35</span><span class="err">%</span><span class="w"> </span><span class="vg">⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕</span><span class="w">              </span>
+<span class="nv">t</span><span class="na">∘</span><span class="nv">C</span><span class="na">¨</span><span class="m">1000</span><span class="o">⍴</span><span class="nv">ta</span><span class="w"> </span><span class="nv">tb</span><span class="w"> </span><span class="kd">→</span><span class="w"> </span><span class="m">1.3E¯2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="m">52</span><span class="err">%</span><span class="w"> </span><span class="vg">⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕</span>
+<span class="nv">t</span><span class="na">∘</span><span class="nv">D</span><span class="na">¨</span><span class="m">1000</span><span class="o">⍴</span><span class="nv">ta</span><span class="w"> </span><span class="nv">tb</span><span class="w"> </span><span class="kd">→</span><span class="w"> </span><span class="m">1.2E¯2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="m">55</span><span class="err">%</span><span class="w"> </span><span class="vg">⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕</span><span class="w">                      </span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion-understanding-anagrams">
+<h2>Conclusion: Understanding Anagrams<a class="headerlink" href="#conclusion-understanding-anagrams" title="Link to this heading">#</a></h2>
+<p>However, it’s essential to acknowledge that the definition of anagrams can be subjective based on the problem’s specifications. While the problem states to “use all the letters” and “ignore spacing, capitalization, and punctuation,” there is room for interpretation.</p>
+<p>To better understand the inclusion of various character types (like digits or special characters), we can leverage Unicode properties. We can apply a similar function to remove non-letter characters:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">u</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;Björn&#39;</span><span class="w"> </span><span class="s1">&#39;Ma/dá&#39;</span><span class="w"> </span><span class="s1">&#39;-123&#39;</span><span class="w"> </span><span class="s1">&#39;3.14&#39;</span>
+<span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;Bjørn&#39;</span><span class="w"> </span><span class="s1">&#39;Adám:&#39;</span><span class="w"> </span><span class="s1">&#39;321%&#39;</span><span class="w"> </span><span class="s1">&#39;2.71&#39;</span>
+
+<span class="nv">E</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≡</span><span class="na">⍥</span><span class="p">(</span><span class="kt">{</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="na">∘</span><span class="nf">⎕C</span><span class="s1">&#39;\PL&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ remove non-letters</span>
+<span class="nv">u</span><span class="w"> </span><span class="nv">E</span><span class="na">¨</span><span class="nv">v</span>
+</pre></div>
+</div>
+<p>Additionally, we may want to filter out spacing marks and punctuation:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≡</span><span class="na">⍥</span><span class="p">(</span><span class="kt">{</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="na">∘</span><span class="nf">⎕C</span><span class="s1">&#39;[\pM\pZ\pP]&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ remove spacing marks, spaces, punctuation</span>
+<span class="nv">u</span><span class="w"> </span><span class="nv">F</span><span class="na">¨</span><span class="nv">v</span>
+</pre></div>
+</div>
+</section>
+<section id="final-thoughts">
+<h2>Final Thoughts<a class="headerlink" href="#final-thoughts" title="Link to this heading">#</a></h2>
+<p>In conclusion, while there are various ways to implement an anagram comparison function, considerations of efficiency, character inclusion, and definition interpretations are critical in arriving at a robust solution.</p>
+<p>Thank you for joining us in this APL Quest!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2015"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-anagrams">Understanding Anagrams</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-letters">Filtering Letters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization-and-comparison">Normalization and Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efficiency-improvements">Efficiency Improvements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-function">Testing the Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-test-cases">Constructing Test Cases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-comparison">Performance Comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-understanding-anagrams">Conclusion: Understanding Anagrams</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-thoughts">Final Thoughts</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

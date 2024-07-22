@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>APL Quest: Standard Deviation Calculation &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>APL Quest: Standard Deviation Calculation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-overview">Problem Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-mean-and-deviation">Defining the Mean and Deviation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#helper-functions">Helper Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-arrays-of-any-rank">Handling Arrays of Any Rank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compact-style">Compact Style</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-recursion">Implementing Recursion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apl-quest-standard-deviation-calculation">
+<h1>APL Quest: Standard Deviation Calculation<a class="headerlink" href="#apl-quest-standard-deviation-calculation" title="Link to this heading">#</a></h1>
+<p>Welcome to the APL Quest, where we explore problems in APL with a focus on problem-solving compositions. Today’s quest is the fifth in the 2015 round of the APL Problem Solver composition.</p>
+<section id="problem-overview">
+<h2>Problem Overview<a class="headerlink" href="#problem-overview" title="Link to this heading">#</a></h2>
+<p>The task at hand is a straightforward computation of the standard deviation. The unique aspect of this problem is that it needs to work on an array of any rank, not just a simple vector.</p>
+<p>While I didn’t have the pleasure of working directly with Ken Iverson, I did have the opportunity to work with his close student, Roger Huey. Roger used to say, “What would Ken do?” In this spirit, I often think about how Roger would approach a problem. I’ve seen him write fantastic code, and I believe this is how he would tackle this task.</p>
+</section>
+<section id="defining-the-mean-and-deviation">
+<h2>Defining the Mean and Deviation<a class="headerlink" href="#defining-the-mean-and-deviation" title="Link to this heading">#</a></h2>
+<p>To begin, we define the mean as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">mean</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="o">⍴</span><span class="bp">⍵</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Next, we define the deviation from the mean:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">deviation</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">mean</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>This gives us the distance of each element from the mean.</p>
+</section>
+<section id="helper-functions">
+<h2>Helper Functions<a class="headerlink" href="#helper-functions" title="Link to this heading">#</a></h2>
+<p>We can also create some small utility functions such as <code class="docutils literal notranslate"><span class="pre">square</span></code> and <code class="docutils literal notranslate"><span class="pre">square</span> <span class="pre">root</span></code>:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">square</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="bp">⍵</span><span class="o">*</span><span class="m">2</span><span class="w"> </span><span class="kt">}</span>
+<span class="nv">squareRoot</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="bp">⍵</span><span class="o">*</span><span class="m">0.5</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>With these utilities, we can now write the formula for standard deviation. The standard deviation is defined as the square root of the mean of the squares of the deviations:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">stdDev</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="nv">squareRoot</span><span class="w"> </span><span class="nv">mean</span><span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="p">(</span><span class="nv">deviation</span><span class="w"> </span><span class="bp">⍵</span><span class="p">)</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>To test our implementation, we can use an example:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">stdDev</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span>
+<span class="c1">⍝ 1.6</span>
+</pre></div>
+</div>
+</section>
+<section id="handling-arrays-of-any-rank">
+<h2>Handling Arrays of Any Rank<a class="headerlink" href="#handling-arrays-of-any-rank" title="Link to this heading">#</a></h2>
+<p>Since we need our function to work on an array of any rank, we can define our function as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">stdDev</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="nv">squareRoot</span><span class="w"> </span><span class="nv">mean</span><span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="p">(</span><span class="nv">deviation</span><span class="w"> </span><span class="bp">⍵</span><span class="p">)</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>To ensure it works uniformly, we concatenate the array with its own flattened version:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">stdDev</span><span class="o">,</span>
+<span class="nv">F</span><span class="w"> </span><span class="o">,</span><span class="na">∘</span><span class="o">⍪</span><span class="na">⍨</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span>
+<span class="c1">⍝ 1.6</span>
+</pre></div>
+</div>
+</section>
+<section id="compact-style">
+<h2>Compact Style<a class="headerlink" href="#compact-style" title="Link to this heading">#</a></h2>
+<p>We can improve our implementation with a more compact style, integrating various parts. We will define a new function called <code class="docutils literal notranslate"><span class="pre">bracketDevs</span></code>:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">bracketDevs</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Using early binding, we integrate our earlier definitions into a single formula that calculates the standard deviation directly.</p>
+<p>To achieve a more organized solution, we can also make some arguments dyadic and rearrange elements for symmetry:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">stdDev</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="nv">squareRoot</span><span class="w"> </span><span class="nv">mean</span><span class="w"> </span><span class="p">(</span><span class="nv">power</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="p">(</span><span class="nv">deviation</span><span class="w"> </span><span class="bp">⍵</span><span class="p">))</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+</section>
+<section id="implementing-recursion">
+<h2>Implementing Recursion<a class="headerlink" href="#implementing-recursion" title="Link to this heading">#</a></h2>
+<p>Interestingly, when we ask an APL interpreter for the standard deviation, we find something almost identical to our implementation, with the added feature that it flattens the array before applying the function, making it compatible with high-rank arrays.</p>
+<p>To define a simple under operator (which isn’t provided out-of-the-box in APL), we can preprocess the argument using a right operand:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">under</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="bp">⍵⍵</span><span class="na">⍣</span><span class="m">¯1</span><span class="o">⊢</span><span class="w"> </span><span class="bp">⍺⍺</span><span class="w"> </span><span class="bp">⍵⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Using this, we can create another function for standard deviation:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">stddevU</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">mean</span><span class="w"> </span><span class="nv">under</span><span class="w"> </span><span class="nv">square</span><span class="na">∘</span><span class="nv">deviation</span>
+</pre></div>
+</div>
+<p>For verification, we can run:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">((</span><span class="o">+</span><span class="na">⌿</span><span class="o">÷≢</span><span class="p">)</span><span class="kt">{</span><span class="bp">⍵⍵</span><span class="na">⍣</span><span class="m">¯1</span><span class="o">⊢</span><span class="bp">⍺⍺</span><span class="w"> </span><span class="bp">⍵⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span><span class="p">(</span><span class="o">×</span><span class="na">⍨</span><span class="p">)</span><span class="o">⊢-+</span><span class="na">⌿</span><span class="o">÷≢</span><span class="p">)</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span>
+<span class="c1">⍝ 1.6</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>To summarize, we’ve explored how to calculate standard deviation on arrays of any rank using various APL techniques. Our final implementation allows us to effectively compute the standard deviation while incorporating Roger Huey’s influence.</p>
+<p>Thank you for joining us on this APL quest!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2015"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-overview">Problem Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-mean-and-deviation">Defining the Mean and Deviation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#helper-functions">Helper Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-arrays-of-any-rank">Handling Arrays of Any Rank</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compact-style">Compact Style</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-recursion">Implementing Recursion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

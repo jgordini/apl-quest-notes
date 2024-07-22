@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Finding Locations of Identical Characters in Text &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2017/Double-Trouble-APLQuest-2017-9';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2017/Double-Trouble-APLQuest-2017-9.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Finding Locations of Identical Characters in Text</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-with-lambda-function">Implementation with Lambda Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-edge-cases">Handling Edge Cases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-more-robust-solution">A More Robust Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenating-for-a-safe-result">Concatenating for a Safe Result</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-the-final-zero">Adding the Final Zero</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="finding-locations-of-identical-characters-in-text">
+<h1>Finding Locations of Identical Characters in Text<a class="headerlink" href="#finding-locations-of-identical-characters-in-text" title="Link to this heading">#</a></h1>
+<p>In this article, we will explore a method for identifying the locations of characters in a given text where those characters are followed by an identical character immediately to the right. Our goal is not to retrieve the characters themselves or their indices, but rather to produce a mask that indicates where such pairs begin.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>A classic example of text processing in APL is using the word “Mississippi,” as it contains a variety of duplicated characters. However, it only has two identical characters in a row. To expand our example, we will consider cases where we have three consecutive identical characters, allowing for overlapping pairs.</p>
+<p>The output mask will contain:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> for positions where the characters do not match.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> for positions where identical characters are found.</p></li>
+</ul>
+<p>For instance, in the string “Mississippi”, we can generate the mask with the following APL function:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="m">2</span><span class="o">=</span><span class="na">/</span><span class="bp">⍵</span><span class="kt">}</span><span class="s1">&#39;Mississippi 39111&#39;</span>
+</pre></div>
+</div>
+<p>This outputs:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>0 0 1 0 0 1 0 0 1 0 0 0 0 0 1 1
+</pre></div>
+</div>
+<p>Here, the last character is not followed by another character, so we end with a zero.</p>
+</section>
+<section id="implementation-with-lambda-function">
+<h2>Implementation with Lambda Function<a class="headerlink" href="#implementation-with-lambda-function" title="Link to this heading">#</a></h2>
+<p>We will start with a Lambda function and refer to the function’s argument as <code class="docutils literal notranslate"><span class="pre">Ω</span></code>, which symbolizes the rightmost character of the Greek alphabet.</p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">reducing</span></code> operation (represented by <code class="docutils literal notranslate"><span class="pre">NY</span></code>), we will examine all windows of length 2 and reduce them using equality, effectively inserting a comparison between the two characters.</p>
+<p>You might notice that if our string does not contain any pairs, we end up with an incomplete mask. As a remedy, we can use an alternative approach, like this:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="p">(</span><span class="m">2</span><span class="o">=</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="m">0</span><span class="kt">}</span><span class="s1">&#39;Mississippi 39111&#39;</span>
+</pre></div>
+</div>
+<p>This outputs:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>0 0 1 0 0 1 0 0 1 0 0 0 0 0 1 1 0
+</pre></div>
+</div>
+<section id="handling-edge-cases">
+<h3>Handling Edge Cases<a class="headerlink" href="#handling-edge-cases" title="Link to this heading">#</a></h3>
+<p>To address the issue of empty strings, we can extend the string with a character that doesn’t appear elsewhere, allowing us to complete the expected output. Yet, if the last character is already such an added character (like a space or a plus), the result might be inaccurate.</p>
+<p>When examining special characters, we can attempt this with the added characters:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="m">2</span><span class="o">=</span><span class="na">/</span><span class="bp">⍵</span><span class="o">,</span><span class="s1">&#39;+&#39;</span><span class="kt">}</span><span class="na">¨</span><span class="s1">&#39;Mississippi 39111&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
+</pre></div>
+</div>
+<p>This gives us a structured output, ensuring we address empty cases:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────────┬┐
+│0 0 1 0 0 1 0 0 1 0 0 0 0 0 1 1 0││
+└─────────────────────────────────┴┘
+</pre></div>
+</div>
+</section>
+</section>
+<section id="a-more-robust-solution">
+<h2>A More Robust Solution<a class="headerlink" href="#a-more-robust-solution" title="Link to this heading">#</a></h2>
+<p>One clever solution involves reversing the argument. By applying operations on the reversed string, we can safely check for the last character without affecting the initial characters. For instance:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⌽</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="s1">&#39;Mississippi 39111&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;C++&#39;</span>
+</pre></div>
+</div>
+<p>This outputs:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>┌─────────────────┬┬───┐
+│11193 ippississiM││++C│
+└─────────────────┴┴───┘
+</pre></div>
+</div>
+<p>We also want to ensure we safely navigate through added characters. After extracting the right characters, we can generate a comparison:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⊃</span><span class="s1">&#39;+-&#39;</span><span class="o">~⊃⌽</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="s1">&#39;Mississippi 39111&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;C++&#39;</span>
+</pre></div>
+</div>
+<section id="concatenating-for-a-safe-result">
+<h3>Concatenating for a Safe Result<a class="headerlink" href="#concatenating-for-a-safe-result" title="Link to this heading">#</a></h3>
+<p>After appending our safe filler character, we can perform the reduction to ensure our results include a correct mask.</p>
+</section>
+<section id="adding-the-final-zero">
+<h3>Adding the Final Zero<a class="headerlink" href="#adding-the-final-zero" title="Link to this heading">#</a></h3>
+<p>An alternative approach is to explicitly append a zero at the end of our processed output. However, we must ensure we do not encounter length issues when dealing with empty inputs.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="m">2</span><span class="o">=</span><span class="na">/</span><span class="bp">⍵</span><span class="o">,⊃</span><span class="s1">&#39;+&#39;</span><span class="o">~⊃⌽</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="s1">&#39;Mississippi 39111&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;C++&#39;</span>
+</pre></div>
+</div>
+<p>This gives us:</p>
+<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────────┬┬─────┐
+│0 0 1 0 0 1 0 0 1 0 0 0 0 0 1 1 0││0 1 0│
+└─────────────────────────────────┴┴─────┘
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>This method of using Lambda functions and reducing operations gives us a clear path to creating a function that can reliably determine the positions of identical characters followed by the same characters within text.</p>
+<p>By transforming this function into a tested form, expressed explicitly through its structural relationships rather than direct references, we achieve a cleaner and more elegant solution.</p>
+<p>Thank you for taking the time to delve into this fascinating topic!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2017"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-with-lambda-function">Implementation with Lambda Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-edge-cases">Handling Edge Cases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-more-robust-solution">A More Robust Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenating-for-a-safe-result">Concatenating for a Safe Result</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-the-final-zero">Adding the Final Zero</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

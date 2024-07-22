@@ -1,0 +1,535 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Counting DNA Letters in a Character Vector &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2022/Counting-DNA-Nucleotides-APLQuest-2022-1';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2022/Counting-DNA-Nucleotides-APLQuest-2022-1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Counting DNA Letters in a Character Vector</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-dna-string">Sample DNA String</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-boolean-table">Creating the Boolean Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-single-letters">Handling Single Letters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-function">Creating a Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-approach-using-the-key-operator">Alternative Approach: Using the Key Operator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-the-function-neatly">Writing the Function Neatly</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-of-the-extended-key-operator">Implementation of the Extended Key Operator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="counting-dna-letters-in-a-character-vector">
+<h1>Counting DNA Letters in a Character Vector<a class="headerlink" href="#counting-dna-letters-in-a-character-vector" title="Link to this heading">#</a></h1>
+<p>In this article, we will explore a method to count the occurrences of the letters A, C, G, and T in a given character vector or scalar. This task is essential in bioinformatics and genetics, where we often need to analyze DNA sequences.</p>
+<section id="sample-dna-string">
+<h2>Sample DNA String<a class="headerlink" href="#sample-dna-string" title="Link to this heading">#</a></h2>
+<p>We start by defining a sample DNA string, which contains the letters A, C, G, and T. Our goal is to compare each of these letters with the entire string. To achieve this, we can use an outer product, which allows us to generate all combinations of elements from the left (the set of letters) with elements from the right (the DNA string).</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">dna</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-the-boolean-table">
+<h2>Creating the Boolean Table<a class="headerlink" href="#creating-the-boolean-table" title="Link to this heading">#</a></h2>
+<p>The outer product will produce a Boolean table indicating the presence of each letter in the DNA string. Our next step is to count the number of ones in each row of this table. We can easily reduce the data to find these counts.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;ACGT&#39;</span><span class="na">∘.</span><span class="o">=</span><span class="nv">dna</span>
+<span class="o">+</span><span class="na">/</span><span class="s1">&#39;ACGT&#39;</span><span class="na">∘.</span><span class="o">=</span><span class="nv">dna</span>
+</pre></div>
+</div>
+<p>The first line generates a Boolean table showing where each letter appears, while the second line sums these occurrences, producing:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">20</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="m">21</span>
+</pre></div>
+</div>
+<section id="handling-single-letters">
+<h3>Handling Single Letters<a class="headerlink" href="#handling-single-letters" title="Link to this heading">#</a></h3>
+<p>However, we encounter an issue when we only have a single letter, such as ‘C’. In this case, the outer product gives us a vector instead of a matrix. Consequently, when we sum the rows, we obtain a single number instead of distinct counts for each letter.</p>
+<p>To address this, we can use the <code class="docutils literal notranslate"><span class="pre">revel</span></code> function, which ensures scalars are treated as vectors:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;ACGT&#39;</span><span class="na">∘.</span><span class="o">=</span><span class="s1">&#39;C&#39;</span>
+<span class="o">+</span><span class="na">/</span><span class="s1">&#39;ACGT&#39;</span><span class="na">∘.</span><span class="o">=</span><span class="s1">&#39;C&#39;</span>
+</pre></div>
+</div>
+<p>This results in a correct count for ‘C’:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="creating-a-function">
+<h2>Creating a Function<a class="headerlink" href="#creating-a-function" title="Link to this heading">#</a></h2>
+<p>We can then encapsulate this entire process into a single test function that works seamlessly with our DNA string.</p>
+<section id="alternative-approach-using-the-key-operator">
+<h3>Alternative Approach: Using the Key Operator<a class="headerlink" href="#alternative-approach-using-the-key-operator" title="Link to this heading">#</a></h3>
+<p>Another approach to solving this counting problem is to utilize the key operator. However, this method has an issue with ordering.</p>
+<p>The key operator works by returning each unique element as the left argument to the function, while the indices of the original data are provided on the right. Because of this, we might miss elements if they aren’t all present.</p>
+<p>To ensure we capture all letters, we can insert “ACGT” before our data. This guarantees that each letter will be encountered in the correct order and that there will be at least one occurrence of each letter. After counting, we simply need to subtract one from the results to eliminate the dummy entries we added.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="m">¯1</span><span class="o">+</span><span class="kt">{</span><span class="o">≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌸</span><span class="s1">&#39;ACGT&#39;</span><span class="o">,</span><span class="nv">dna</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>This will yield our final counts:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">20</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="m">21</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="writing-the-function-neatly">
+<h2>Writing the Function Neatly<a class="headerlink" href="#writing-the-function-neatly" title="Link to this heading">#</a></h2>
+<p>Here’s how we can formulate this solution in a neat function. Additionally, I have an idea for an extension that could make this process even cleaner. We can achieve this by importing a model from my GitHub account that includes a special operator called <code class="docutils literal notranslate"><span class="pre">quad</span></code>.</p>
+<section id="implementation-of-the-extended-key-operator">
+<h3>Implementation of the Extended Key Operator<a class="headerlink" href="#implementation-of-the-extended-key-operator" title="Link to this heading">#</a></h3>
+<p>By renaming the operator to something more intuitive, we can now try out our new approach. Instead of taking a function as an argument, this operator takes a vocabulary (in this case, “ACGT”). We can then apply it to our DNA string, producing a list of indices for each unique letter.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">get</span><span class="w"> </span><span class="nv">github</span><span class="na">.</span><span class="nv">com</span><span class="na">/</span><span class="nv">abrudz</span><span class="na">/</span><span class="nv">dyalog_vision</span><span class="na">/</span><span class="nv">blob</span><span class="na">/</span><span class="nv">main</span><span class="na">/</span><span class="nv">QuadEqual</span><span class="na">.</span><span class="nv">aplo</span>
+<span class="err">Ⓚ</span><span class="kd">←</span><span class="c1">#.QuadEqual</span>
+<span class="p">(</span><span class="o">≢</span><span class="na">¨</span><span class="s1">&#39;ACGT&#39;</span><span class="err">Ⓚ</span><span class="p">)</span><span class="nv">dna</span>
+</pre></div>
+</div>
+<p>This adjustment will lead us to a more efficient and user-friendly counting process, producing our desired counts of:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">20</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="m">21</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Counting the occurrences of DNA letters is a vital task that can be executed using a variety of methods, from straightforward approaches to more advanced operator extensions. By understanding and utilizing these techniques, we can simplify our analysis of DNA sequences. Thank you for reading!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2022"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-dna-string">Sample DNA String</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-boolean-table">Creating the Boolean Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-single-letters">Handling Single Letters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-function">Creating a Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-approach-using-the-key-operator">Alternative Approach: Using the Key Operator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-the-function-neatly">Writing the Function Neatly</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-of-the-extended-key-operator">Implementation of the Extended Key Operator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

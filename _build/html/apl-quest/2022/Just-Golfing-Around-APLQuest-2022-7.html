@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2022/Just-Golfing-Around-APLQuest-2022-7';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2022/Just-Golfing-Around-APLQuest-2022-7.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-overview">Problem Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-approach">General Approach</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-strategies">Implementation Strategies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-grading-and-grouping">Method 1: Grading and Grouping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-stable-sorting-and-averaging">Method 2: Stable Sorting and Averaging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-using-functions-in-apl">Method 3: Using Functions in APL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-edge-cases">Handling Edge Cases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-comparison">Performance Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analyzing-golf-scores-rank-calculation-with-average-position-for-tied-scores">
+<h1>Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores<a class="headerlink" href="#analyzing-golf-scores-rank-calculation-with-average-position-for-tied-scores" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>In this article, we explore a method for ranking golf scores. The challenge is to assign ranks based on the lowest scores while accounting for ties in scores. If two or more players have the same score, they receive the same rank, and the rank positions they occupy are averaged to determine their final standing.</p>
+</section>
+<section id="problem-overview">
+<h2>Problem Overview<a class="headerlink" href="#problem-overview" title="Link to this heading">#</a></h2>
+<p>The main goal is to assign ranks in a sequence where a lower score corresponds to a better rank. However, if players score the same, they must receive the same rank, and the average position of all tied players must be computed accordingly.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<p>Given a set of sample scores, we can observe the following:</p>
+<ul class="simple">
+<li><p>Scores: <code class="docutils literal notranslate"><span class="pre">67,</span> <span class="pre">68,</span> <span class="pre">68,</span> <span class="pre">70,</span> <span class="pre">70,</span> <span class="pre">70,</span> <span class="pre">74</span></code></p></li>
+</ul>
+<p>When sorted, we can see:</p>
+<ol class="arabic simple">
+<li><p><strong>67</strong> gets 1st place.</p></li>
+<li><p>The two <strong>68</strong> scores will share the average of 2nd and 3rd places to get <strong>2.5</strong>.</p></li>
+<li><p>The three <strong>70</strong> scores will share the average of 4th, 5th, and 6th places to get <strong>5</strong>.</p></li>
+<li><p>The <strong>74</strong> score gets 7th place.</p></li>
+</ol>
+<p>We can represent these scores in APL:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">s</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">67</span><span class="w"> </span><span class="m">68</span><span class="w"> </span><span class="m">68</span><span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="m">74</span>
+</pre></div>
+</div>
+</section>
+<section id="general-approach">
+<h3>General Approach<a class="headerlink" href="#general-approach" title="Link to this heading">#</a></h3>
+<p>To resolve this, a computational approach is employed:</p>
+<ol class="arabic simple">
+<li><p><strong>Sorting</strong>: The scores need to be sorted in ascending order.</p></li>
+<li><p><strong>Ranking</strong>: Use a method that accounts for ties and averages their ranks.</p></li>
+</ol>
+<p>In APL, this could be accomplished by:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="o">⍋</span><span class="nv">s</span><span class="w"> </span><span class="c1">⍝ Sort scores to get ranks</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="implementation-strategies">
+<h2>Implementation Strategies<a class="headerlink" href="#implementation-strategies" title="Link to this heading">#</a></h2>
+<section id="method-1-grading-and-grouping">
+<h3>Method 1: Grading and Grouping<a class="headerlink" href="#method-1-grading-and-grouping" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Grading</strong>: First, identify the sequence of scores and their corresponding indices.</p></li>
+<li><p><strong>Grouping</strong>: Group scores that are the same, calculate their averages, and use those for ranking.</p></li>
+</ul>
+<p>For example, we can find the unique ranks and their frequencies:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">s</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">67</span><span class="w"> </span><span class="m">68</span><span class="w"> </span><span class="m">68</span><span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="m">70</span><span class="w"> </span><span class="m">74</span>
+<span class="p">(</span><span class="o">≢⍴</span><span class="w"> </span><span class="o">+</span><span class="na">⌿</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="o">≢</span><span class="p">)</span><span class="na">¨</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="o">⊆</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="o">≢</span><span class="w"> </span><span class="nv">s</span>
+</pre></div>
+</div>
+</section>
+<section id="method-2-stable-sorting-and-averaging">
+<h3>Method 2: Stable Sorting and Averaging<a class="headerlink" href="#method-2-stable-sorting-and-averaging" title="Link to this heading">#</a></h3>
+<p>By creating indices and sorting them accordingly, we can utilize a stable sort to maintain the original order of scores, aiding in identifying ties. The APL approach might look like this:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">∊</span><span class="p">(</span><span class="o">≢⍴</span><span class="w"> </span><span class="o">+</span><span class="na">⌿</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="o">≢</span><span class="p">)</span><span class="na">¨</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="o">⊆</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="o">≢</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">F</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="c1">⍝ Calculate the ranks based on scores</span>
+</pre></div>
+</div>
+</section>
+<section id="method-3-using-functions-in-apl">
+<h3>Method 3: Using Functions in APL<a class="headerlink" href="#method-3-using-functions-in-apl" title="Link to this heading">#</a></h3>
+<p>In APL (A Programming Language), we can implement various functions:</p>
+<ol class="arabic simple">
+<li><p>A function to compute the average of scores and occurrences.</p></li>
+<li><p>A group function that is capable of handling indices, which will ensure that duplicate scores are grouped together correctly.</p></li>
+</ol>
+<p>Here’s how one would create a proper function:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">g</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span>
+<span class="w">  </span><span class="bp">⍵</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kd">→</span><span class="w"> </span><span class="err">`</span><span class="nv">group</span><span class="err">`</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">grouping</span><span class="w"> </span><span class="nv">function</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</section>
+<section id="handling-edge-cases">
+<h3>Handling Edge Cases<a class="headerlink" href="#handling-edge-cases" title="Link to this heading">#</a></h3>
+<p>When applying functions to single values, adjustments may be necessary to ensure that scalar cases are handled without error. For instance, returning values as arrays allows functions that are meant to group and average to work seamlessly.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">G</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">∊</span><span class="p">(</span><span class="o">⊂≢⍴</span><span class="w"> </span><span class="o">+</span><span class="na">⌿</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="o">≢</span><span class="p">)</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌸</span>
+<span class="nv">G</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1">⍝ RANK ERROR</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-comparison">
+<h2>Performance Comparison<a class="headerlink" href="#performance-comparison" title="Link to this heading">#</a></h2>
+<p>We can compare the execution times of different methods using random score generation to assess how well each ranks scores:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">cmp</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span>
+<span class="w">  </span><span class="na">//</span><span class="w"> </span><span class="nv">Comparison</span><span class="w"> </span><span class="nv">logic</span><span class="w"> </span><span class="nv">here</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+<p>When conducting tests with a dataset of 5000 scores in the range of 10,000, we find that certain methods yield significantly faster results. For instance, using the grade method that sorts both ways (ascending and descending) was identified as the fastest for the given input size:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">?</span><span class="m">5E3</span><span class="o">⍴</span><span class="m">1E4</span>
+<span class="nv">t</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">t</span><span class="sr">[</span><span class="o">⍋</span><span class="nv">t</span><span class="sr">]</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>The process of ranking golf scores while accounting for ties can be complex, but through careful methodology and leveraging of APL functions, we can arrive at an elegant solution. The different methods employed not only provide accurate rankings but also perform efficiently across varied dataset sizes.</p>
+<p>Thank you for reading! Feel free to share your thoughts or questions regarding golf score ranking in the comments below.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2022"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-overview">Problem Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-approach">General Approach</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-strategies">Implementation Strategies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-grading-and-grouping">Method 1: Grading and Grouping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-stable-sorting-and-averaging">Method 2: Stable Sorting and Averaging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-using-functions-in-apl">Method 3: Using Functions in APL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-edge-cases">Handling Edge Cases</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-comparison">Performance Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

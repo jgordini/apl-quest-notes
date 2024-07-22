@@ -1,0 +1,549 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Converting Gregorian Year Numbers to Chinese Zodiac Animals &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2018/Whats-Your-Sign-APLQuest-2018-4';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2018/Whats-Your-Sign-APLQuest-2018-4.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Converting Gregorian Year Numbers to Chinese Zodiac Animals</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-the-data">Reshaping the Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-the-zodiac-cycle">Working with the Zodiac Cycle</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-years-to-zodiac-animals">Mapping Years to Zodiac Animals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#character-vector-membership">Character Vector Membership</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#addressing-year-zero">Addressing Year Zero</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-function-implementation">Final Function Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-function-calls">Examples of Function Calls</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="converting-gregorian-year-numbers-to-chinese-zodiac-animals">
+<h1>Converting Gregorian Year Numbers to Chinese Zodiac Animals<a class="headerlink" href="#converting-gregorian-year-numbers-to-chinese-zodiac-animals" title="Link to this heading">#</a></h1>
+<p>In this article, we will cover the process of converting a Gregorian year number to the closest matching Chinese zodiac animal. It is essential to note that the proleptic Gregorian calendar does not have a year zero, which adds complexity to our task.</p>
+<section id="data-preparation">
+<h2>Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h2>
+<p>There are various methods to scrape data from a website. For our purposes, I’ve defined a matrix that corresponds to a table on a website. This matrix is a bit “dirty,” so the first thing we need to do is clean it up.</p>
+<p>We do not require all the columns, so we will index into this data and select columns one and four for the year numbers. Additionally, we will select the animal names from columns two and five, skipping the empty column four, which was merely for spacing.</p>
+<p>As we examine the data, we can see that there are trailing spaces at the end of both the animal names and the year numbers. We can clean this up by applying a set difference function to remove the spaces, as there are no internal spaces to worry about.</p>
+<p>Here’s how we can prepare the data using APL:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">r</span><span class="sr">[;</span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">5</span><span class="sr">]</span>
+</pre></div>
+</div>
+</section>
+<section id="reshaping-the-data">
+<h2>Reshaping the Data<a class="headerlink" href="#reshaping-the-data" title="Link to this heading">#</a></h2>
+<p>Next, we can transpose the cleaned data to improve the reading order. However, we still have two rows for each item. We only want two rows in total: one for the years and one for the animal names. We can reshape our data to achieve this, resulting in a clearer table.</p>
+<p>Since the data is now in reverse order, we will mirror it. Finally, we want to split our matrix into two lists, resulting in vectors for the years and the zodiac sign names. The years are not numeric, but this is not a significant concern for our immediate task.</p>
+<p>To generate the year numbers, we can create a sequence starting from 2006. Here’s an example of reshaping data in APL:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="w"> </span><span class="m">12</span><span class="o">⍴⍉</span><span class="nv">r</span><span class="sr">[;</span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">5</span><span class="sr">]</span><span class="o">~</span><span class="na">¨</span><span class="s1">&#39; &#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="working-with-the-zodiac-cycle">
+<h2>Working with the Zodiac Cycle<a class="headerlink" href="#working-with-the-zodiac-cycle" title="Link to this heading">#</a></h2>
+<p>We are going to work with a 12-year cycle. To identify the origin point for our zodiac signs, we can calculate the remainder of the year after dividing by 12. We can find exactly one year that is evenly divisible by 12 and obtain its index (which is 10). Starting from year 2007, we want to rotate our animal names by nine steps.</p>
+<section id="mapping-years-to-zodiac-animals">
+<h3>Mapping Years to Zodiac Animals<a class="headerlink" href="#mapping-years-to-zodiac-animals" title="Link to this heading">#</a></h3>
+<p>Now, let’s clarify how the zodiac assignments work. If the result of the division of the year by 12 is zero, then the zodiac is the Monkey. If there is a remainder of one, the zodiac is the Rooster, and so on, up to eleven, which corresponds to the Pig.</p>
+<p>To streamline the process, we can transform our processing logic into an APL expression. A special user command will help us with this, but we can also combine all the characters into a single character vector.</p>
+<p>An example to illustrate this mapping is shown below:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">y</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">↓⌽</span><span class="m">2</span><span class="w"> </span><span class="m">12</span><span class="o">⍴⍉</span><span class="nv">r</span><span class="sr">[;</span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">5</span><span class="sr">]</span><span class="o">~</span><span class="na">¨</span><span class="s1">&#39; &#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="character-vector-membership">
+<h3>Character Vector Membership<a class="headerlink" href="#character-vector-membership" title="Link to this heading">#</a></h3>
+<p>We make use of a special system variable called <code class="docutils literal notranslate"><span class="pre">Quade</span></code>, which provides the alphabet. By checking membership against this, we can ensure that we keep track of the leading uppercase letters in our animal names.</p>
+<p>Next, we can create a function that references the arguments in terms of function application to partition the list based on the membership we derived from our earlier checks.</p>
+</section>
+</section>
+<section id="addressing-year-zero">
+<h2>Addressing Year Zero<a class="headerlink" href="#addressing-year-zero" title="Link to this heading">#</a></h2>
+<p>One significant challenge arises when dealing with years one and negative one. Since the Gregorian calendar lacks a year zero, a negative input year number must be adjusted by adding one.</p>
+<p>Here’s how the APL adjustment looks for handling the year zero issue:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⊃</span><span class="p">(</span><span class="s1">&#39;MonkeyRoosterDogPigRatOxTigerRabbitDragonSnakeHorseGoat&#39;</span><span class="p">(</span><span class="o">∊⊂⊣</span><span class="p">)</span><span class="nf">⎕A</span><span class="p">)</span><span class="o">⌽</span><span class="na">⍨</span><span class="o">⊢+</span><span class="m">0</span><span class="na">∘</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>We need to account for this adjustment in our calculations by using a greater-than function to determine whether the year number is positive or negative. By implementing this logic, we can effectively adjust our year numbers before rotations.</p>
+</section>
+<section id="final-function-implementation">
+<h2>Final Function Implementation<a class="headerlink" href="#final-function-implementation" title="Link to this heading">#</a></h2>
+<p>Now that we have a method to calculate the year number while compensating for the absence of a year zero, we can create our complete function. With this in place, we can easily retrieve the zodiac sign for any given year, including negative years.</p>
+<p>Here’s a brief example for the years:</p>
+<ul class="simple">
+<li><p>For the year 2018, we find that the corresponding zodiac animal is the Dog.</p></li>
+<li><p>For 2007, it’s the Pig, and for -1, we should arrive at the Monkey.</p></li>
+</ul>
+<section id="examples-of-function-calls">
+<h3>Examples of Function Calls<a class="headerlink" href="#examples-of-function-calls" title="Link to this heading">#</a></h3>
+<p>To illustrate how this can be done in APL:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="m">2018</span>
+</pre></div>
+</div>
+<p>This will yield:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dog</span>
+</pre></div>
+</div>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>This will yield:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rooster</span>
+</pre></div>
+</div>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="m">¯1</span>
+</pre></div>
+</div>
+<p>This will yield:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Monkey</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>This approach robustly combines data cleaning, reshaping, and numeric adjustments to ensure accurate outputs for the Chinese zodiac corresponding to any Gregorian year.</p>
+<p>For improved efficiency and readability, it is advised to save the list of zodiac signs as a constant, allowing for cleaner function definitions and better reusability without altering the logic fundamentally.</p>
+<p>Thank you for reading!</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2018"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">Data Preparation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-the-data">Reshaping the Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-the-zodiac-cycle">Working with the Zodiac Cycle</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-years-to-zodiac-animals">Mapping Years to Zodiac Animals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#character-vector-membership">Character Vector Membership</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#addressing-year-zero">Addressing Year Zero</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-function-implementation">Final Function Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-function-calls">Examples of Function Calls</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

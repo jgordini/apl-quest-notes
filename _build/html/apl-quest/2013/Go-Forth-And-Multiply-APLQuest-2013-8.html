@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Welcome to the APL Quest &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/Go-Forth-And-Multiply-APLQuest-2013-8';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2013/Go-Forth-And-Multiply-APLQuest-2013-8.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Welcome to the APL Quest</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today-s-quest-go-forth-and-multiply">Today’s Quest: Go forth and Multiply</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-obvious-solution">The Obvious Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-alternative-solutions">Exploring Alternative Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-definition-of-the-outer-product">Using the Definition of the Outer Product</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-indices-as-vectors">Generating Indices as Vectors</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-for-fun">Reshaping for Fun</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-and-further-exploration">Testing and Further Exploration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-cumulative-additions">Using Cumulative Additions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#going-further-implementing-functions-without-operators">Going Further: Implementing Functions without Operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-alternative-methods">Finding Alternative Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relying-on-apl-s-scalar-extension">Relying on APL’s Scalar Extension</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-challenge-multiplication-without-arithmetic">Final Challenge: Multiplication without Arithmetic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-the-apl-quest">
+<h1>Welcome to the APL Quest<a class="headerlink" href="#welcome-to-the-apl-quest" title="Link to this heading">#</a></h1>
+<section id="today-s-quest-go-forth-and-multiply">
+<h2>Today’s Quest: Go forth and Multiply<a class="headerlink" href="#today-s-quest-go-forth-and-multiply" title="Link to this heading">#</a></h2>
+<p>Today’s quest is called <strong>Go forth and Multiply</strong>. It’s really simple; we just need to create a multiplication table. This task is the eighth problem from the <a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P8_Go_Forth_And_Multiply">2013 APL Problem Solving Competition</a>.</p>
+<section id="the-obvious-solution">
+<h3>The Obvious Solution<a class="headerlink" href="#the-obvious-solution" title="Link to this heading">#</a></h3>
+<p>For once, we are going to go straight to the obvious solution. We can generate the indices from <strong>1</strong> to a certain target number. Then, we simply need to provide the <a class="reference external" href="https://mastering.dyalog.com/Operators.html?highlight=outer%20product#outer-product">outer product</a> using that argument, both on the left and the right side—so, vertically and horizontally in our table. This gives us our solution.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Basic solution</span>
+<span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="na">∘.</span><span class="o">×</span><span class="na">⍨</span><span class="o">⍳</span>
+</pre></div>
+</div>
+<p>Let’s get rid of the argument and give it a name. Now we can apply it as you want, and it works even on zero!</p>
+</section>
+<section id="exploring-alternative-solutions">
+<h3>Exploring Alternative Solutions<a class="headerlink" href="#exploring-alternative-solutions" title="Link to this heading">#</a></h3>
+<p>Now, let’s have some fun, as the problem is already solved! The first thing we’re going to do is try to solve this without using the outer product, which is the obvious solution.</p>
+<section id="using-the-definition-of-the-outer-product">
+<h4>Using the Definition of the Outer Product<a class="headerlink" href="#using-the-definition-of-the-outer-product" title="Link to this heading">#</a></h4>
+<p>The outer product pairs up every element from the list on the left with every element from the list on its right. We can utilize a property of multiplication that it distributes over multiple arguments. If we pair up every element from our list of numbers with the entire list of numbers, that will be equivalent.</p>
+<p>Let’s say we have the numbers here and then multiply using a rank. We want every element, which are scalars (rank 0), from the left paired with the entire vector (rank 1) on the right using <code class="docutils literal notranslate"><span class="pre">iota</span> <span class="pre">7</span></code>, which gives us our solution.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="o">×</span><span class="na">⍤</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="na">⍨</span><span class="o">⍳</span>
+</pre></div>
+</div>
+<p>This approach uses the outer product in a hidden way because it’s the definition of the outer product for scalar operands!</p>
+</section>
+<section id="generating-indices-as-vectors">
+<h4>Generating Indices as Vectors<a class="headerlink" href="#generating-indices-as-vectors" title="Link to this heading">#</a></h4>
+<p>Interestingly, if you give a vector argument to <code class="docutils literal notranslate"><span class="pre">iota</span></code>, it generates all the indices of an array with that shape. This holds true even for a scalar one-element vector. Since these are the indices, those are the corresponding numbers that need to be multiplied together in the multiplication table.</p>
+<p>We can simply say that we multiply across these or reduce each of these pairs of numbers:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">×</span><span class="na">/¨</span><span class="o">⍳</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>This results in our multiplication table!</p>
+</section>
+</section>
+<section id="reshaping-for-fun">
+<h3>Reshaping for Fun<a class="headerlink" href="#reshaping-for-fun" title="Link to this heading">#</a></h3>
+<p>Let’s start again with these numbers. This time, we reshape them into the shape of our multiplication table. This just gives us repetition.</p>
+<p>Now, what we see is that multiplication is just a series of additions. On the first row, we need our original numbers from <strong>1</strong> to <strong>7</strong>. On the second row, we want the numbers from <strong>1</strong> to <strong>7</strong> added with the numbers from <strong>1</strong> to <strong>7</strong> again. In the third row, we want it added again. This is simply cumulative addition going down.</p>
+<p>We can easily write that as <code class="docutils literal notranslate"><span class="pre">+/\</span></code>. So this is the cumulative vertical addition, and that gives us our multiplication table as well.</p>
+<p>We can then write this as a function:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">D</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">+</span><span class="na">⍀</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="o">⍴⍳</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-and-further-exploration">
+<h3>Testing and Further Exploration<a class="headerlink" href="#testing-and-further-exploration" title="Link to this heading">#</a></h3>
+<p>We can further observe that this is a function application of <code class="docutils literal notranslate"><span class="pre">iota</span></code> on the argument and this is duplication on the argument. Duplication could also be written as self-concatenation, expressed as <code class="docutils literal notranslate"><span class="pre">omega</span> <span class="pre">,</span> <span class="pre">omega</span></code>.</p>
+<p>Now we can write this treatedly as self-concatenation with <code class="docutils literal notranslate"><span class="pre">iota</span></code> on the right. Next, let’s eliminate <code class="docutils literal notranslate"><span class="pre">iota</span></code>.</p>
+<p>If you take <strong>7</strong> and use it to reshape <strong>1</strong>, we get <strong>seven ones</strong>. Now we can do the same cumulative addition on those; that gives us the equivalent of <code class="docutils literal notranslate"><span class="pre">iota</span></code>, and then we can proceed as before.</p>
+</section>
+<section id="using-cumulative-additions">
+<h3>Using Cumulative Additions<a class="headerlink" href="#using-cumulative-additions" title="Link to this heading">#</a></h3>
+<p>We can write this testedly using the cumulative vertical sum of the self-concatenation reshaping the cumulative sum of reshaping with the right argument of <strong>1</strong>.</p>
+<p>We can now apply this and get our multiplication table.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">E</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">+</span><span class="na">⍀</span><span class="o">,</span><span class="na">⍨</span><span class="o">⍴⍳</span>
+</pre></div>
+</div>
+<p>It may seem silly, but it’s a nice exercise that can give insights into the relationship between functions.</p>
+</section>
+<section id="going-further-implementing-functions-without-operators">
+<h3>Going Further: Implementing Functions without Operators<a class="headerlink" href="#going-further-implementing-functions-without-operators" title="Link to this heading">#</a></h3>
+<p>Let’s take it one step further: let’s get rid of all APL operators. Now we’re only allowed to use functions.</p>
+<p>We will start by generating our numbers and then recycle these until we have enough to fill the entire multiplication table. This just repeats them over and over again.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">H</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="o">⍴</span><span class="p">(</span><span class="bp">⍵</span><span class="na">/</span><span class="o">⍳</span><span class="bp">⍵</span><span class="p">)</span><span class="o">×</span><span class="p">(</span><span class="bp">⍵</span><span class="o">×</span><span class="bp">⍵</span><span class="p">)</span><span class="o">⍴⍳</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Next, we need to multiply them with the corresponding numbers. The first seven numbers here need to be multiplied by <strong>1</strong>, and the next seven need to be multiplied by <strong>2</strong>. If we start with the numbers from <strong>1</strong> to <strong>7</strong> and replicate them by <strong>7</strong> each, we can then put these two things together, resulting in the multiplication table.</p>
+</section>
+<section id="finding-alternative-methods">
+<h3>Finding Alternative Methods<a class="headerlink" href="#finding-alternative-methods" title="Link to this heading">#</a></h3>
+<p>There are also other fun ways we can do this. We can take the numbers, reshape them repeatedly, and transpose that.</p>
+<p>Now we have the corresponding vertical numbers just like in the outer product, and the horizontal numbers as we had for multiplication in the outer product. All we need to do now is to multiply these two together.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nv">t</span><span class="o">×⍉</span><span class="nv">t</span><span class="kd">←</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="o">⍴⍳</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>We can also multiply by the transpose, yielding a multiplication table!</p>
+<p>If we wanted to make this into a function, we could just wrap it again or give it a name.</p>
+</section>
+<section id="relying-on-apl-s-scalar-extension">
+<h3>Relying on APL’s Scalar Extension<a class="headerlink" href="#relying-on-apl-s-scalar-extension" title="Link to this heading">#</a></h3>
+<p>We can use APL’s scalar extension to simplify matters. If we enclose the numbers from <strong>1</strong> to <strong>7</strong>, this makes it a scalar.</p>
+<p>If we pair up these two, the scalar <strong>1, 2, 3, 4, 5, 6, 7</strong> gets paired with <strong>1</strong>, paired with <strong>2</strong>, paired with <strong>3</strong>, and so forth.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">↑</span><span class="p">(</span><span class="o">⍳</span><span class="bp">⍵</span><span class="p">)</span><span class="o">×⊂⍳</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>This gives the rows of our matrix. The only thing that’s missing is mixing the rows into a proper matrix.</p>
+</section>
+<section id="final-challenge-multiplication-without-arithmetic">
+<h3>Final Challenge: Multiplication without Arithmetic<a class="headerlink" href="#final-challenge-multiplication-without-arithmetic" title="Link to this heading">#</a></h3>
+<p>Finally, for the ultimate challenge, let’s implement the multiplication table without any arithmetic at all.</p>
+<p>Though this might seem impossible, we can implement multiplication using the counting stick method.</p>
+<p>Here is an example. We can generate the numbers with <code class="docutils literal notranslate"><span class="pre">iota</span></code> used twice.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">M</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">≢</span><span class="na">¨</span><span class="o">,</span><span class="na">¨</span><span class="o">⍳</span><span class="na">¨</span><span class="o">⍳</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Now, we simply must count the number of elements in each cell by raveling it, giving us the multiplication table without using arithmetic whatsoever!</p>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>There are many ways to implement the multiplication table in APL, from traditional using operators to clever functional approaches and methods without arithmetic.</p>
+<p>While the simplest solution remains the outer product with normal multiplication, the exploration of alternatives shows the power and flexibility of APL, revealing many ways it can be used to solve problems.</p>
+<p>Thank you so much for reading!</p>
+</section>
+</section>
+<section id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Video Explanation:</strong> <a class="reference external" href="https://youtu.be/O_l-nJYmDrs">Dyalog APL Multiplication Table Video</a></p></li>
+<li><p><strong>GitHub Repository:</strong> <a class="reference external" href="https://github.com/abrudz/apl_quest/blob/main/2013/8.apl">APL Quest Code Examples</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2013"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today-s-quest-go-forth-and-multiply">Today’s Quest: Go forth and Multiply</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-obvious-solution">The Obvious Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-alternative-solutions">Exploring Alternative Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-definition-of-the-outer-product">Using the Definition of the Outer Product</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-indices-as-vectors">Generating Indices as Vectors</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reshaping-for-fun">Reshaping for Fun</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-and-further-exploration">Testing and Further Exploration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-cumulative-additions">Using Cumulative Additions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#going-further-implementing-functions-without-operators">Going Further: Implementing Functions without Operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-alternative-methods">Finding Alternative Methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relying-on-apl-s-scalar-extension">Relying on APL’s Scalar Extension</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-challenge-multiplication-without-arithmetic">Final Challenge: Multiplication without Arithmetic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-resources">Additional Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

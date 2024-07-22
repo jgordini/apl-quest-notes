@@ -1,0 +1,569 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Welcome to the APL Quest &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2015/Farey-Tales-APLQuest-2015-3';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2015/Farey-Tales-APLQuest-2015-3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Welcome to the APL Quest</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#farey-sequence">Farey Sequence</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-n-5">Example: n = 5</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-the-sequence">Generating the Sequence</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-implementation">Step-by-step Implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-considerations">Performance Considerations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-approaches">Alternative Approaches</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-thoughts">Final Thoughts</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-the-apl-quest">
+<h1>Welcome to the APL Quest<a class="headerlink" href="#welcome-to-the-apl-quest" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Welcome to the APL Quest CAPL! For more details, please refer to the wiki. Today, we’re exploring the third quest from the 2015 round of the APL Problem Solving Competition. The task is to generate the Farey Sequence of order <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+</section>
+<section id="farey-sequence">
+<h2>Farey Sequence<a class="headerlink" href="#farey-sequence" title="Link to this heading">#</a></h2>
+<p>The Farey Sequence is defined as the sequence of fully reduced fractions from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">1</span></code>, where both the numerators and denominators are integers between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">n</span></code>. The fractions must be presented in ascending order based on their values.</p>
+<section id="example-n-5">
+<h3>Example: n = 5<a class="headerlink" href="#example-n-5" title="Link to this heading">#</a></h3>
+<p>For <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">5</span></code>, the sequence starts with:</p>
+<ul class="simple">
+<li><p>0 (which is ( <span class="math notranslate nohighlight">\(\frac{0}{1}\)</span> ))</p></li>
+<li><p>( <span class="math notranslate nohighlight">\(\frac{1}{5}\)</span> )</p></li>
+<li><p>( <span class="math notranslate nohighlight">\(\frac{1}{4}\)</span> )</p></li>
+<li><p>( <span class="math notranslate nohighlight">\(\frac{1}{3}\)</span> )</p></li>
+<li><p>( <span class="math notranslate nohighlight">\(\frac{2}{5}\)</span> ) (as it is between ( <span class="math notranslate nohighlight">\(\frac{1}{3}\)</span> ) and ( <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> ))</p></li>
+</ul>
+<p>Several methods exist to generate this sequence, and we will explore a few of them.</p>
+</section>
+</section>
+<section id="generating-the-sequence">
+<h2>Generating the Sequence<a class="headerlink" href="#generating-the-sequence" title="Link to this heading">#</a></h2>
+<p>To generate the sequence, we can follow these steps:</p>
+<ol class="arabic">
+<li><p><strong>Generate All Possible Fractions</strong>:
+Create all valid pairs of integers from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">n</span></code>, including <code class="docutils literal notranslate"><span class="pre">0</span></code> but excluding pairs where the denominator is zero.</p>
+<p>You can use the following APL function to generate indices for an <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">x</span> <span class="pre">n</span></code> matrix:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">Ii</span><span class="kd">←</span><span class="kt">{</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="o">,</span><span class="na">⍥</span><span class="o">⊆</span><span class="nv">f</span><span class="sr">[</span><span class="nv">i</span><span class="sr">][</span><span class="o">⍋</span><span class="nv">q</span><span class="sr">[</span><span class="nv">i</span><span class="kd">←</span><span class="p">(</span><span class="m">1</span><span class="na">∘</span><span class="o">≥∩</span><span class="na">⍥</span><span class="o">⍸≠</span><span class="p">)</span><span class="nv">q</span><span class="kd">←</span><span class="o">÷</span><span class="na">/¨</span><span class="nv">f</span><span class="kd">←</span><span class="o">,⍳</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="sr">]]</span><span class="kt">}</span>
+<span class="nv">Ij</span><span class="kd">←</span><span class="kt">{</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="o">,</span><span class="na">⍥</span><span class="o">⊆</span><span class="nv">f</span><span class="sr">[</span><span class="nv">i</span><span class="sr">][</span><span class="o">⍋</span><span class="nv">q</span><span class="sr">[</span><span class="nv">i</span><span class="kd">←</span><span class="o">⍸</span><span class="p">(</span><span class="m">1</span><span class="na">∘</span><span class="o">≥∧≠</span><span class="p">)</span><span class="nv">q</span><span class="kd">←</span><span class="o">÷</span><span class="na">/¨</span><span class="nv">f</span><span class="kd">←</span><span class="o">,⍳</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="sr">]]</span><span class="kt">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+2. **Remove Non-Reduced Fractions**:
+   Identify and remove duplicates and fractions that are not fully reduced (fractions that can be simplified). The following APL example illustrates reducing the indices:
+
+   ```apl
+   Im←{0 1,⍥⊆(m/f)[⍋q/⍨m←(1∘≥∧≠)q←÷/¨f←,⍳⍵ ⍵]}
+</pre></div>
+</div>
+<ol class="arabic" start="3">
+<li><p><strong>Sort Valid Fractions</strong>:
+Divide the numerator by the denominator to obtain a quotient and sort them to ensure they are in ascending order. The example below shows how to filter using the GCD:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">G</span><span class="kd">←</span><span class="kt">{</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="o">,</span><span class="na">⍥</span><span class="o">⊆</span><span class="nv">f</span><span class="sr">[</span><span class="o">⍋÷</span><span class="na">/¨</span><span class="nv">f</span><span class="kd">←</span><span class="o">⍸</span><span class="na">∘.</span><span class="p">(</span><span class="o">≤∧</span><span class="m">1</span><span class="o">=∨</span><span class="p">)</span><span class="na">⍨</span><span class="o">⍳</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Filter Valid Fractions</strong>:
+Keep only those fractions that are less than or equal to <code class="docutils literal notranslate"><span class="pre">1</span></code>. Compute the quotients as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">Q</span><span class="kd">←</span><span class="kt">{</span><span class="p">(</span><span class="o">,÷∨</span><span class="p">)</span><span class="na">∘</span><span class="m">1</span><span class="na">¨</span><span class="kt">{</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="m">0</span><span class="o">,∪</span><span class="m">1</span><span class="o">⌊,</span><span class="na">∘.</span><span class="o">÷</span><span class="na">⍨</span><span class="o">⍳</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Add Zero</strong>:
+Lastly, include <code class="docutils literal notranslate"><span class="pre">0</span></code> as the first element of the sequence.</p></li>
+</ol>
+<section id="step-by-step-implementation">
+<h3>Step-by-step Implementation<a class="headerlink" href="#step-by-step-implementation" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Initial Setup</strong>:
+We create a matrix of fractions of shape <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">x</span> <span class="pre">n</span></code>.</p></li>
+<li><p><strong>Reduction and Validation</strong>:
+We utilize a unique mask to track the first occurrence of reduced fractions. Use the greatest common divisor logic to ensure that fractions represent a number that is less than or equal to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><strong>Index Selection</strong>:
+Use the intersection of two boolean masks to ensure we have valid, unique fractions.</p></li>
+<li><p><strong>Sorting</strong>:
+Sort the remaining fractions based on their values.</p></li>
+<li><p><strong>Insert Zero</strong>:
+Finally, concatenate zero with the list of the sorted fractions.</p></li>
+</ol>
+</section>
+</section>
+<section id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading">#</a></h2>
+<p>We can compare different implementations by measuring execution time and determining whether to use indices or boolean masks optimally.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span><span class="s1">&#39;Ij 1000&#39;</span><span class="w"> </span><span class="s1">&#39;Im 1000&#39;</span>
+</pre></div>
+</div>
+<section id="alternative-approaches">
+<h3>Alternative Approaches<a class="headerlink" href="#alternative-approaches" title="Link to this heading">#</a></h3>
+<p>An alternative method involves treating the fractions as pairs ( (a, b) ) and filtering directly for coprimality, applying the greatest common divisor (gcd) to check if a fraction is fully reduced.</p>
+<ul>
+<li><p><strong>Outer Product</strong>: By generating an outer product of enumerators and denominators, we can efficiently filter valid fractions:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">G2</span><span class="kd">←</span><span class="kt">{</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="o">,</span><span class="na">⍥</span><span class="o">⊆</span><span class="nv">f</span><span class="sr">[</span><span class="o">⍋÷</span><span class="na">/¨</span><span class="nv">f</span><span class="kd">←</span><span class="o">⍸</span><span class="p">(</span><span class="na">∘.</span><span class="o">≤∧</span><span class="m">1</span><span class="o">=</span><span class="na">∘.</span><span class="o">∨</span><span class="p">)</span><span class="na">⍨</span><span class="o">⍳</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Quotients First</strong>: Generate quotients directly and eliminate any that exceed <code class="docutils literal notranslate"><span class="pre">1</span></code>, keeping the process streamlined.</p></li>
+</ul>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">Qf</span><span class="kd">←</span><span class="kt">{</span><span class="o">↓</span><span class="p">(</span><span class="o">,</span><span class="na">⍤</span><span class="m">0</span><span class="o">÷</span><span class="na">⍤</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="o">∨</span><span class="p">)</span><span class="na">∘</span><span class="m">1</span><span class="kt">{</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="m">0</span><span class="o">,∪</span><span class="m">1</span><span class="o">⌊,</span><span class="na">∘.</span><span class="o">÷</span><span class="na">⍨</span><span class="o">⍳</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="final-thoughts">
+<h2>Final Thoughts<a class="headerlink" href="#final-thoughts" title="Link to this heading">#</a></h2>
+<p>Ultimately, the goal is to generate the Farey Sequence efficiently. We will explore multiple approaches and compare their performance, focusing on how optimizations affect execution time.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span><span class="s1">&#39;Im 100&#39;</span><span class="w"> </span><span class="s1">&#39;G2 100&#39;</span><span class="w"> </span><span class="s1">&#39;Qf 100&#39;</span>
+</pre></div>
+</div>
+<p>Thank you for following this exploration into generating the Farey Sequence!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2015"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#farey-sequence">Farey Sequence</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-n-5">Example: n = 5</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-the-sequence">Generating the Sequence</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-implementation">Step-by-step Implementation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-considerations">Performance Considerations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-approaches">Alternative Approaches</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-thoughts">Final Thoughts</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

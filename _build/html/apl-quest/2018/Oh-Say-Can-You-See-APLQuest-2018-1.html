@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Counting Visible Buildings &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2018/Oh-Say-Can-You-See-APLQuest-2018-1';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2018/Oh-Say-Can-You-See-APLQuest-2018-1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Counting Visible Buildings</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-visibility">Understanding Visibility</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-apl-function">Creating an APL Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#traversing-the-list">Traversing the List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Counting Visible Buildings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-approaches">Alternative Approaches</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-maximum-comparison">Cumulative Maximum Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-considerations">Performance Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-testing">Performance Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="counting-visible-buildings">
+<h1>Counting Visible Buildings<a class="headerlink" href="#counting-visible-buildings" title="Link to this heading">#</a></h1>
+<p>When given a list of heights of buildings, imagine that you are standing in front of that list and looking at the buildings. The visibility rule is simple: you cannot see a lower building if it is behind a taller building, but you can see a taller building behind a lower building. Our goal is to determine how many buildings are visible.</p>
+<section id="understanding-visibility">
+<h2>Understanding Visibility<a class="headerlink" href="#understanding-visibility" title="Link to this heading">#</a></h2>
+<p>Let’s consider some test data:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="kd">←</span><span class="m">5</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">10</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>We have two buildings of the same height (5). The second one is entirely obscured by the first.</p></li>
+<li><p>A lower building (2) is also obscured.</p></li>
+<li><p>A taller building (10) is visible.</p></li>
+<li><p>A lower building (3) behind a building of height 10 and two buildings of height 5 is likewise obscured.</p></li>
+<li><p>Finally, there’s a building of height 15, which is taller than the previous maximum height of 10.</p></li>
+</ul>
+<p>Through this example, we can see that we can initially see three buildings. We can express this visibility calculation in APL as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⌈</span><span class="na">\</span><span class="bp">⍵</span><span class="kt">}</span><span class="nv">t</span>
+</pre></div>
+</div>
+<p>This expression computes the cumulative maximum of the heights, resulting in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="mi">5</span> <span class="mi">5</span> <span class="mi">10</span> <span class="mi">10</span> <span class="mi">15</span> <span class="mi">15</span>
+</pre></div>
+</div>
+<p>Next, to count the unique visible heights, we can use:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">∪⌈</span><span class="na">\</span><span class="bp">⍵</span><span class="kt">}</span><span class="nv">t</span>
+</pre></div>
+</div>
+<p>This evaluates to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="mi">10</span> <span class="mi">15</span>
+</pre></div>
+</div>
+<p>Finally, to count the number of visible buildings, we can determine the length of this unique set:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">≢∪⌈</span><span class="na">\</span><span class="bp">⍵</span><span class="kt">}</span><span class="nv">t</span>
+</pre></div>
+</div>
+<p>This gives us:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-an-apl-function">
+<h2>Creating an APL Function<a class="headerlink" href="#creating-an-apl-function" title="Link to this heading">#</a></h2>
+<p>We want to implement an APL function that can calculate the number of visible buildings. We can start by defining an anonymous lambda function which will refer to our test case. But how do we compute visibility?</p>
+<section id="traversing-the-list">
+<h3>Traversing the List<a class="headerlink" href="#traversing-the-list" title="Link to this heading">#</a></h3>
+<p>The approach is to traverse the list of building heights from left to right while keeping track of the maximum height observed so far. We can utilize a scan (cumulative reduction) technique, using the maximum function.</p>
+<p>The maximum of subsequent buildings allows us to determine visibility:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⌈</span><span class="na">\</span><span class="bp">⍵</span><span class="kt">}</span><span class="nv">t</span>
+</pre></div>
+</div>
+<p>This function captures the concept of comparing current heights to the maximum height observed thus far.</p>
+</section>
+<section id="id1">
+<h3>Counting Visible Buildings<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>To count the number of distinct visible heights, since we can never see a taller building after a shorter one, we only count the first appearance of each height. As illustrated above, we can achieve this in APL with:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">≢∪⌈</span><span class="na">\</span><span class="bp">⍵</span><span class="kt">}</span><span class="nv">t</span>
+</pre></div>
+</div>
+<p>This function counts the unique visible heights effectively.</p>
+</section>
+</section>
+<section id="alternative-approaches">
+<h2>Alternative Approaches<a class="headerlink" href="#alternative-approaches" title="Link to this heading">#</a></h2>
+<section id="cumulative-maximum-comparison">
+<h3>Cumulative Maximum Comparison<a class="headerlink" href="#cumulative-maximum-comparison" title="Link to this heading">#</a></h3>
+<p>An alternative method involves examining mathematical relationships between heights:</p>
+<ul class="simple">
+<li><p>We can look for increases between consecutive adjacent buildings.</p></li>
+<li><p>By employing reductions with comparisons (e.g., less than), we can assess visibility but must be cautious, as we may miss some buildings.</p></li>
+</ul>
+<p>To address the edge case of no visible buildings, we can prepend a zero to our list. This ensures we get an increase from zero to the first building’s height, allowing the visibility function to work correctly:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="m">2</span><span class="o">&lt;</span><span class="na">/</span><span class="o">⌈</span><span class="na">\</span><span class="m">0</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span><span class="nv">t</span>
+</pre></div>
+</div>
+<p>This returns:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>Here, the zeros represent buildings that are obscured, while the ones indicate visible buildings.</p>
+</section>
+<section id="performance-considerations">
+<h3>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading">#</a></h3>
+<p>Comparing the two methods, the first option (using unique) may be inefficient as it does not leverage the already known ordered nature of our input. It might necessitate additional checks and memory overhead.</p>
+<p>The second method, which computes visibility with cumulative maximums and counts increases directly, is more memory-efficient because it uses boolean arrays and requires less space and processing time.</p>
+<p>To handle edge cases effectively, we can introduce an early exit condition for empty lists, allowing the algorithm to return zero buildings visible without unnecessary computations:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">H</span><span class="kd">←</span><span class="kt">{</span><span class="no">⍬</span><span class="o">≡</span><span class="bp">⍵:</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="m">1</span><span class="o">++</span><span class="na">/</span><span class="m">2</span><span class="o">&lt;</span><span class="na">/</span><span class="o">⌈</span><span class="na">\</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-testing">
+<h2>Performance Testing<a class="headerlink" href="#performance-testing" title="Link to this heading">#</a></h2>
+<p>To assess the differences in performance, we can use a comparator tool while generating a large dataset (e.g., 1000 buildings of varying heights). By comparing the performance outputs of different implementations, we can determine which method is not only faster but also easier to read and maintain:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;cmpx&#39;</span><span class="nf">⎕CY</span><span class="s1">&#39;dfns&#39;</span>
+<span class="nv">s</span><span class="kd">←</span><span class="o">?⍳</span><span class="m">1000</span>
+<span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;F s&#39;</span><span class="w"> </span><span class="s1">&#39;G s&#39;</span><span class="w"> </span><span class="s1">&#39;H s&#39;</span>
+</pre></div>
+</div>
+<p>The results for different implementations would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>F s → 6.3E¯6 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+G s → 2.7E¯6 | -58% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕     
+H s → 2.1E¯6 | -68% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕   
+</pre></div>
+</div>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>In summary, while both methods could yield results, leveraging mathematical properties of the list and minimizing data manipulations allows for a more efficient computation. As always, balancing code neatness and performance is crucial in software development.</p>
+<p>Thank you for reading!</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2018"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-visibility">Understanding Visibility</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-an-apl-function">Creating an APL Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#traversing-the-list">Traversing the List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Counting Visible Buildings</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-approaches">Alternative Approaches</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cumulative-maximum-comparison">Cumulative Maximum Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-considerations">Performance Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-testing">Performance Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

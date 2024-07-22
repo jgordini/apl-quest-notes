@@ -1,0 +1,546 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>APL Quest: Analyzing the Largest Percentage Increase &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2014/Sales-Are-Up-APLQuest-2014-10';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2014/Sales-Are-Up-APLQuest-2014-10.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>APL Quest: Analyzing the Largest Percentage Increase</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement">Problem Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approach">Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-process">Step-by-Step Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-development">Function Development</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-cases">Edge Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apl-implementation-examples">APL Implementation Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apl-quest-analyzing-the-largest-percentage-increase">
+<h1>APL Quest: Analyzing the Largest Percentage Increase<a class="headerlink" href="#apl-quest-analyzing-the-largest-percentage-increase" title="Link to this heading">#</a></h1>
+<p>Hello and welcome to this APL Quest. Today’s quest focuses on the 10th and last problem from the 2014 round of the APL Problem Solving Competition.</p>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Link to this heading">#</a></h2>
+<p>We are given a vector of non-zero numbers, and our task is to identify the largest percentage increase from one number to the next.</p>
+</section>
+<section id="approach">
+<h2>Approach<a class="headerlink" href="#approach" title="Link to this heading">#</a></h2>
+<p>To approach this problem, we’ll start with a simple test case from the problem statement. One effective method is to calculate the pairwise differences (or deltas) between the numbers in the vector. The goal is to determine the increase in percentage compared to the starting number.</p>
+<p>For example, given a vector of monthly sales figures:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="m">120</span><span class="w"> </span><span class="m">140</span>
+</pre></div>
+</div>
+<section id="step-by-step-process">
+<h3>Step-by-Step Process<a class="headerlink" href="#step-by-step-process" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Calculate Pairwise Differences</strong>:
+We need to find the differences between consecutive numbers in the vector.</p>
+<p>This can be implemented in APL as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">diffs</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">¯2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="bp">⍵</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Percentage Calculation</strong>:
+The percentage increase can be calculated using the formula:</p>
+<ul class="simple">
+<li><p>For the first increase: Divide the increase by the starting number (e.g., the first increase from 80 to 100).</p></li>
+<li><p>Continue this for subsequent numbers.</p></li>
+</ul>
+<p>The generalized formula in APL to compute the percentage increase is:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="m">100</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">⌈</span><span class="na">⌿</span><span class="p">(</span><span class="m">¯2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="na">⌿</span><span class="bp">⍵</span><span class="p">)</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">¯1</span><span class="o">↓</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Identify the Maximum Percentage</strong>:
+After calculating the percentage increases, we need to determine which one is the largest. It’s essential to convert these fractions into percentages by multiplying by 100.</p>
+<p>An example of this implementation can be viewed using the function:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">⌈</span><span class="na">⌿</span><span class="p">(</span><span class="m">¯2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="na">⌿</span><span class="bp">⍵</span><span class="p">)</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">¯2</span><span class="o">⊢</span><span class="na">⌿</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="function-development">
+<h3>Function Development<a class="headerlink" href="#function-development" title="Link to this heading">#</a></h3>
+<p>Let’s encapsulate the above logic into a function that takes a vector as an argument and finds the maximum percentage increase.</p>
+<p>We can implement this with:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">s</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">?⍴</span><span class="na">⍨</span><span class="m">1000</span>
+<span class="s1">&#39;cmpx&#39;</span><span class="w"> </span><span class="nf">⎕CY</span><span class="w"> </span><span class="s1">&#39;dfns&#39;</span>
+<span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;A s&#39;</span><span class="w"> </span><span class="s1">&#39;B s&#39;</span>
+</pre></div>
+</div>
+<p>This will benchmark implementations (A) and (B) which may utilize different approaches to calculate the maximum percentage increase. For example:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="kd">→</span><span class="w"> </span><span class="m">3.5E¯6</span><span class="w"> </span><span class="o">|</span><span class="w">     </span><span class="m">0</span><span class="err">%</span><span class="w"> </span><span class="vg">⎕</span><span class="w">                                       </span>
+<span class="nv">B</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="kd">→</span><span class="w"> </span><span class="m">1.7E¯4</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">+</span><span class="m">4850</span><span class="err">%</span><span class="w"> </span><span class="vg">⎕⎕⎕⎕⎕⎕⎕⎕</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="edge-cases">
+<h2>Edge Cases<a class="headerlink" href="#edge-cases" title="Link to this heading">#</a></h2>
+<p>An interesting observation relates to cases where there might be decreasing values in the vector (e.g., a negative drop). To handle this, we consider selecting the left value for each window of size 2, similar to how we calculated the deltas.</p>
+<p>To ensure proper functionality, we might need to employ a pairwise reduction method but adjust our arithmetic functions to focus on left and right values appropriately.</p>
+<section id="performance-considerations">
+<h3>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading">#</a></h3>
+<p>While we can combine calculations for efficiency, it’s crucial to note that certain combinations, especially involving frequent n-wise or pairwise operations, may lead to performance inefficiencies. For instance, using specialized cases efficiently can significantly improve performance compared to generalized methods.</p>
+</section>
+<section id="apl-implementation-examples">
+<h3>APL Implementation Examples<a class="headerlink" href="#apl-implementation-examples" title="Link to this heading">#</a></h3>
+<p>To illustrate this, we can benchmark the performance of two implementations:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">⌈</span><span class="na">⌿</span><span class="m">¯2</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="na">⌿</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;A s&#39;</span><span class="w"> </span><span class="s1">&#39;C s&#39;</span>
+</pre></div>
+</div>
+<p>Results can be as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="kd">→</span><span class="w"> </span><span class="m">3.4E¯6</span><span class="w"> </span><span class="o">|</span><span class="w">   </span><span class="m">0</span><span class="err">%</span><span class="w"> </span><span class="vg">⎕</span>
+<span class="nv">C</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="kd">→</span><span class="w"> </span><span class="m">2.5E¯6</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">-</span><span class="m">27</span><span class="err">%</span><span class="w"> </span><span class="vg">⎕</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Upon testing a large sample set (e.g., 1000 random numbers), we can compare the performance of both implementations. This analysis will reveal the importance of optimizing reduction strategies for improving computational efficiency.</p>
+<p>In the end, our refined implementation will yield a function that not only achieves the desired outcome more succinctly but also performs better than the original approach.</p>
+<p>Thank you for following along with this detailed exploration of the APL Problem Solving Competition problem!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2014"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement">Problem Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approach">Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-process">Step-by-Step Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-development">Function Development</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edge-cases">Edge Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apl-implementation-examples">APL Implementation Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

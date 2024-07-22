@@ -1,0 +1,611 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Understanding the Movement of a Chess Knight &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2019/Knight-Moves-APLQuest-2019-4';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2019/Knight-Moves-APLQuest-2019-4.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Understanding the Movement of a Chess Knight</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approaches-to-the-problem">Approaches to the Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-chessboard">Setting Up the Chessboard</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-valid-moves">Identifying Valid Moves</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-boolean-array">Creating the Boolean Array</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizing-the-pythagorean-theorem">Utilizing the Pythagorean Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="understanding-the-movement-of-a-chess-knight">
+<h1>Understanding the Movement of a Chess Knight<a class="headerlink" href="#understanding-the-movement-of-a-chess-knight" title="Link to this heading">#</a></h1>
+<p>In this article, we will explore the possible movements a chess knight can make from a given starting position on the board. We will discuss two main approaches to tackling this problem and delve into a logical solution.</p>
+<section id="approaches-to-the-problem">
+<h2>Approaches to the Problem<a class="headerlink" href="#approaches-to-the-problem" title="Link to this heading">#</a></h2>
+<p>There are essentially two methods to approach this issue:</p>
+<ol class="arabic">
+<li><p><strong>Calculate Available Moves from a Starting Position:</strong> We could begin with a specific starting position and compute all potential locations the knight can move to.</p>
+<p>Here’s an example where we compute the squares a knight can move to from the starting position (5, 4):</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⍳</span><span class="m">8</span><span class="w"> </span><span class="m">8</span><span class="kt">}</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>The board representation will be generated as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌───┬───┬───┬───┬───┬───┬───┬───┐
+│1 1│1 2│1 3│1 4│1 5│1 6│1 7│1 8│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│2 1│2 2│2 3│2 4│2 5│2 6│2 7│2 8│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│3 1│3 2│3 3│3 4│3 5│3 6│3 7│3 8│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│4 1│4 2│4 3│4 4│4 5│4 6│4 7│4 8│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│5 1│5 2│5 3│5 4│5 5│5 6│5 7│5 8│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│6 1│6 2│6 3│6 4│6 5│6 6│6 7│6 8│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│7 1│7 2│7 3│7 4│7 5│7 6│7 7│7 8│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│8 1│8 2│8 3│8 4│8 5│8 6│8 7│8 8│
+└───┴───┴───┴───┴───┴───┴───┴───┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Evaluate Every Position on the Board:</strong> Alternatively, we could consider all possible positions on the chessboard and determine if the knight can move to each of them. We will focus on the second method, as it often leads to a simpler solution.</p></li>
+</ol>
+</section>
+<section id="setting-up-the-chessboard">
+<h2>Setting Up the Chessboard<a class="headerlink" href="#setting-up-the-chessboard" title="Link to this heading">#</a></h2>
+<p>Let’s use an example, although we won’t fixate on a specific position such as (5, 4) for now. We will generate an 8x8 chessboard using a lambda function that creates an array to denote the indices of each element. Each index will be represented as a vector with two elements corresponding to the row and column positions.</p>
+<p>As we generate this chessboard, we can compute the distance between each element and the designated starting position by subtracting the starting position from every element’s coordinates. The result will give us the vertical and horizontal distances from the starting point. The starting position itself will naturally have a difference of (0, 0).</p>
+<p>To visualize the distance computation, we can use the following APL code:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="p">(</span><span class="o">⍳</span><span class="m">8</span><span class="w"> </span><span class="m">8</span><span class="p">)</span><span class="o">-⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>This will yield a representation of the distances from position (5, 4):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌─────┬─────┬─────┬────┬────┬────┬────┬────┐
+│¯4 ¯3│¯4 ¯2│¯4 ¯1│¯4 0│¯4 1│¯4 2│¯4 3│¯4 4│
+├─────┼─────┼─────┼────┼────┼────┼────┼────┤
+│¯3 ¯3│¯3 ¯2│¯3 ¯1│¯3 0│¯3 1│¯3 2│¯3 3│¯3 4│
+├─────┼─────┼─────┼────┼────┼────┼────┼────┤
+│¯2 ¯3│¯2 ¯2│¯2 ¯1│¯2 0│¯2 1│¯2 2│¯2 3│¯2 4│
+├─────┼─────┼─────┼────┼────┼────┼────┼────┤
+│¯1 ¯3│¯1 ¯2│¯1 ¯1│¯1 0│¯1 1│¯1 2│¯1 3│¯1 4│
+├─────┼─────┼─────┼────┼────┼────┼────┼────┤
+│0 ¯3 │0 ¯2 │0 ¯1 │0 0 │0 1 │0 2 │0 3 │0 4 │
+├─────┼─────┼─────┼────┼────┼────┼────┼────┤
+│1 ¯3 │1 ¯2 │1 ¯1 │1 0 │1 1 │1 2 │1 3 │1 4 │
+├─────┼─────┼─────┼────┼────┼────┼────┼────┤
+│2 ¯3 │2 ¯2 │2 ¯1 │2 0 │2 1 │2 2 │2 3 │2 4 │
+├─────┼─────┼─────┼────┼────┼────┼────┼────┤
+│3 ¯3 │3 ¯2 │3 ¯1 │3 0 │3 1 │3 2 │3 3 │3 4 │
+└─────┴─────┴─────┴────┴────┴────┴────┴────┘
+</pre></div>
+</div>
+</section>
+<section id="identifying-valid-moves">
+<h2>Identifying Valid Moves<a class="headerlink" href="#identifying-valid-moves" title="Link to this heading">#</a></h2>
+<p>The knight moves in an L-shape: either two steps in one direction and one in another, or vice versa. This yields several possible movements:</p>
+<ul class="simple">
+<li><p>One step right and two steps up.</p></li>
+<li><p>Two steps up and one step right.</p></li>
+<li><p>One step up and two steps right.</p></li>
+<li><p>Two steps right and one step down.</p></li>
+</ul>
+<p>From our analysis, we notice that the differences for valid knight movements include combinations of (2, 1) or (1, 2), irrespective of their signs. We can therefore generate a list of all valid movements based on these differences.</p>
+<p>To visualize this step mathematically, we can use the following function in APL:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">|</span><span class="p">(</span><span class="o">⍳</span><span class="m">8</span><span class="w"> </span><span class="m">8</span><span class="p">)</span><span class="o">-⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>This will provide us the distances suggesting which moves are possible:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌───┬───┬───┬───┬───┬───┬───┬───┐
+│4 3│4 2│4 1│4 0│4 1│4 2│4 3│4 4│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│3 3│3 2│3 1│3 0│3 1│3 2│3 3│3 4│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│2 3│2 2│2 1│2 0│2 1│2 2│2 3│2 4│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│1 3│1 2│1 1│1 0│1 1│1 2│1 3│1 4│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│0 3│0 2│0 1│0 0│0 1│0 2│0 3│0 4│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│1 3│1 2│1 1│1 0│1 1│1 2│1 3│1 4│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│2 3│2 2│2 1│2 0│2 1│2 2│2 3│2 4│
+├───┼───┼───┼───┼───┼───┼───┼───┤
+│3 3│3 2│3 1│3 0│3 1│3 2│3 3│3 4│
+└───┴───┴───┴───┴───┴───┴───┴───┘
+</pre></div>
+</div>
+<p>To streamline our approach, we look at only the absolute values since whether it’s positive or negative doesn’t affect movement.</p>
+</section>
+<section id="creating-the-boolean-array">
+<h2>Creating the Boolean Array<a class="headerlink" href="#creating-the-boolean-array" title="Link to this heading">#</a></h2>
+<p>Using the valid movements we identified (which include (1, 2) and (2, 1)), we can determine if each absolute distance is a valid move. By applying a membership function to these values, we create a Boolean array indicating the positions the knight can move to.</p>
+<p>Here’s how we can obtain a Boolean mask for valid moves:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="p">)(</span><span class="m">2</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="o">∊</span><span class="na">⍨</span><span class="o">|</span><span class="p">(</span><span class="o">⍳</span><span class="m">8</span><span class="w"> </span><span class="m">8</span><span class="p">)</span><span class="o">-⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>The output will represent valid moves on the board, as such:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>The ultimate goal is not the Boolean array itself but to extract the indices (positions) where the knight can legally move. We can utilize a function, such as <code class="docutils literal notranslate"><span class="pre">where</span></code>, to obtain the indices corresponding to <code class="docutils literal notranslate"><span class="pre">True</span></code> values in our Boolean array.</p>
+<p>This solution is not only elegant but also effective. However, there is another mathematical approach we can explore.</p>
+</section>
+<section id="utilizing-the-pythagorean-theorem">
+<h2>Utilizing the Pythagorean Theorem<a class="headerlink" href="#utilizing-the-pythagorean-theorem" title="Link to this heading">#</a></h2>
+<p>Returning to our distance table, we can leverage the Pythagorean theorem to facilitate our calculations. According to the theorem, if we have a right triangle, the sum of the squares of the two shorter sides equates to the square of the hypotenuse.</p>
+<p>While our scenario may not seem to involve triangles, knight moves can be visualized geometrically in this way. The movements consist of pairs of distances, which we can square.</p>
+<p>Using self-multiplication, where we multiply each element by itself, we can compute the squares of our distances. Now, we will look for all instances where the squared values yield a total of 5.</p>
+<p>Here is an APL function that applies this concept:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="p">(</span><span class="o">⍳</span><span class="m">8</span><span class="w"> </span><span class="m">8</span><span class="p">)</span><span class="o">-⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>This generates an array of distances we can further analyze. Next, we compute the squares:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">×</span><span class="na">⍨</span><span class="p">(</span><span class="o">⍳</span><span class="m">8</span><span class="w"> </span><span class="m">8</span><span class="p">)</span><span class="o">-⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>The output will look like this, representing the squared distances:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌────┬────┬────┬────┬────┬────┬────┬─────┐
+│16 9│16 4│16 1│16 0│16 1│16 4│16 9│16 16│
+├────┼────┼────┼────┼────┼────┼────┼─────┤
+│9 9 │9 4 │9 1 │9 0 │9 1 │9 4 │9 9 │9 16 │
+├────┼────┼────┼────┼────┼────┼────┼─────┤
+│4 9 │4 4 │4 1 │4 0 │4 1 │4 4 │4 9 │4 16 │
+├────┼────┼────┼────┼────┼────┼────┼─────┤
+│1 9 │1 4 │1 1 │1 0 │1 1 │1 4 │1 9 │1 16 │
+├────┼────┼────┼────┼────┼────┼────┼─────┤
+│0 9 │0 4 │0 1 │0 0 │0 1 │0 4 │0 9 │0 16 │
+├────┼────┼────┼────┼────┼────┼────┼─────┤
+│1 9 │1 4 │1 1 │1 0 │1 1 │1 4 │1 9 │1 16 │
+├────┼────┼────┼────┼────┼────┼────┼─────┤
+│4 9 │4 4 │4 1 │4 0 │4 1 │4 4 │4 9 │4 16 │
+├────┼────┼────┼────┼────┼────┼────┼─────┤
+│9 9 │9 4 │9 1 │9 0 │9 1 │9 4 │9 9 │9 16 │
+└────┴────┴────┴────┴────┴────┴────┴─────┘
+</pre></div>
+</div>
+<p>By summing the squared values in each case, we can compare the resulting sums to 5, creating a Boolean mask for valid moves:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">+</span><span class="na">/¨</span><span class="o">×</span><span class="na">⍨</span><span class="p">(</span><span class="o">⍳</span><span class="m">8</span><span class="w"> </span><span class="m">8</span><span class="p">)</span><span class="o">-⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>The final output will represent the valid knight moves based on this method.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>By employing these methods, we can effectively determine where a knight can move from any starting position on a chessboard. Chess puzzles like this highlight the intersection of logic and mathematics within the realm of gaming. Thank you for exploring this concept with us!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2019"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approaches-to-the-problem">Approaches to the Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-chessboard">Setting Up the Chessboard</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-valid-moves">Identifying Valid Moves</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-boolean-array">Creating the Boolean Array</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizing-the-pythagorean-theorem">Utilizing the Pythagorean Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

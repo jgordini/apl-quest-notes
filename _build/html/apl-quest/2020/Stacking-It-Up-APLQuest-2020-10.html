@@ -1,0 +1,624 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Emulating APL Array Printing Behavior &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2020/Stacking-It-Up-APLQuest-2020-10';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2020/Stacking-It-Up-APLQuest-2020-10.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Emulating APL Array Printing Behavior</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-data">Sample Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-approach">Initial Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting-each-element">Formatting Each Element</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-code">Example Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-scalars">Handling Scalars</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-replication">Using Replication</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-approaches">Alternative Approaches</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-apl-s-default-display">Using APL’s Default Display</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dropping-extra-spaces">Dropping Extra Spaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-operator">Rank Operator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-touches">Final Touches</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-unicode-implementation">Example Unicode Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-up">Clean Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="emulating-apl-array-printing-behavior">
+<h1>Emulating APL Array Printing Behavior<a class="headerlink" href="#emulating-apl-array-printing-behavior" title="Link to this heading">#</a></h1>
+<p>In this article, we’ll explore how to emulate the behavior of an APL (A Programming Language) interpreter, specifically focusing on printing arrays. Our objective is to combine multiple arrays into a single array for display, allowing them to appear formatted correctly without printing each one individually. This approach helps us avoid clutter and maintain organization.</p>
+<section id="sample-data">
+<h2>Sample Data<a class="headerlink" href="#sample-data" title="Link to this heading">#</a></h2>
+<p>To illustrate our goal, let’s start with some sample data. When printed, these arrays appear side by side. However, if we print them one by one, they stack on top of each other. The idea is to generate an array that looks uniform when outputted.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">d</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">⍴</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="m">9</span><span class="p">)(</span><span class="o">↑</span><span class="w"> </span><span class="s1">&#39;Adam&#39;</span><span class="w"> </span><span class="s1">&#39;Michael&#39;</span><span class="p">)(</span><span class="o">⍳</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w"> </span><span class="p">(</span><span class="m">5</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">⍴</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="m">25</span><span class="p">)</span>
+<span class="nv">d</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ ┌─────┬───────┬────────────────────┬─┬──────────────┐
+⍝ │1 2 3│Adam   │1 2 3 4 5 6 7 8 9 10│*│ 1  2  3  4  5│
+⍝ │4 5 6│Michael│                    │ │ 6  7  8  9 10│
+⍝ │7 8 9│       │                    │ │11 12 13 14 15│
+⍝ │     │       │                    │ │16 17 18 19 20│
+⍝ │     │       │                    │ │21 22 23 24 25│
+⍝ └─────┴───────┴────────────────────┴─┴──────────────┘
+</pre></div>
+</div>
+</section>
+<section id="initial-approach">
+<h2>Initial Approach<a class="headerlink" href="#initial-approach" title="Link to this heading">#</a></h2>
+<p>The simplest way to achieve this is to split the display of each item into separate rows. We can then combine all those rows into a single list and subsequently into a matrix.</p>
+<section id="formatting-each-element">
+<h3>Formatting Each Element<a class="headerlink" href="#formatting-each-element" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Character Arrays Creation</strong>: We begin by formatting each element of the right argument. This doesn’t change the appearance initially but converts them into character arrays, allowing for scalars, vectors, or matrices to be processed uniformly.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">⍕</span><span class="na">¨</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="nv">d</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ ┌─────┬───────┬────────────────────┬─┬──────────────┐
+⍝ │1 2 3│Adam   │1 2 3 4 5 6 7 8 9 10│*│ 1  2  3  4  5│
+⍝ │4 5 6│Michael│                    │ │ 6  7  8  9 10│
+⍝ │7 8 9│       │                    │ │11 12 13 14 15│
+⍝ │     │       │                    │ │16 17 18 19 20│
+⍝ │     │       │                    │ │21 22 23 24 25│
+⍝ └─────┴───────┴────────────────────┴─┴──────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Splitting into Rows</strong>: Next, we can split each formatted array into its constituent rows. For vectors and scalars, this will not produce significant changes; it merely encloses the scalar or vector representation.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">↓</span><span class="na">¨</span><span class="w"> </span><span class="o">⍕</span><span class="na">¨</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="nv">d</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ ┌───────────────────┬─────────────────┬──────────────────────┬─┬────────────────────────────────────────────────────────────────────────────┐
+⍝ │┌─────┬─────┬─────┐│┌───────┬───────┐│┌────────────────────┐│*│┌──────────────┬──────────────┬──────────────┬──────────────┬──────────────┐│
+⍝ ││1 2 3│4 5 6│7 8 9│││Adam   │Michael│││1 2 3 4 5 6 7 8 9 10││ ││ 1  2  3  4  5│ 6  7  8  9 10│11 12 13 14 15│16 17 18 19 20│21 22 23 24 25││
+⍝ │└─────┴─────┴─────┘│└───────┴───────┘│└────────────────────┘│ │└──────────────┴──────────────┴──────────────┴──────────────┴──────────────┘│
+⍝ └───────────────────┴─────────────────┴──────────────────────┴─┴────────────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Combining Rows</strong>: Combining all the individual arrays at this stage gives us the basis for our final result. We’ll use a concatenation reduction approach, which combines them while reducing their rank.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">,</span><span class="na">/</span><span class="o">↓</span><span class="na">¨</span><span class="o">⍕</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="nv">d</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+⍝ │┌─────┬─────┬─────┬───────┬───────┬────────────────────┬─┬──────────────┬──────────────┬──────────────┬──────────────┬──────────────┐│
+⍝ ││1 2 3│4 5 6│7 8 9│Adam   │Michael│1 2 3 4 5 6 7 8 9 10│*│ 1  2  3  4  5│ 6  7  8  9 10│11 12 13 14 15│16 17 18 19 20│21 22 23 24 25││
+⍝ │└─────┴─────┴─────┴───────┴───────┴────────────────────┴─┴──────────────┴──────────────┴──────────────┴──────────────┴──────────────┘│
+⍝ └─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="example-code">
+<h3>Example Code<a class="headerlink" href="#example-code" title="Link to this heading">#</a></h3>
+<p>The following APL code snippet illustrates the described approach:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">formattedData</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">⍉</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="nv">d</span>
+<span class="nv">result</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">⍉</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="nv">allRows</span>
+</pre></div>
+</div>
+<section id="handling-scalars">
+<h4>Handling Scalars<a class="headerlink" href="#handling-scalars" title="Link to this heading">#</a></h4>
+<p>An important point to note is that if we simply work with character scalars, we risk obtaining an incorrect output. Scalars do not provide the required format changes, thus failing our need for separation.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="o">↑⊃,</span><span class="na">/</span><span class="o">↓</span><span class="na">⍤</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="s1">&#39;abcd&#39;</span><span class="w">  </span><span class="c1">⍝ simple scalar characters are problematic</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ abcd
+</pre></div>
+</div>
+</section>
+</section>
+<section id="using-replication">
+<h3>Using Replication<a class="headerlink" href="#using-replication" title="Link to this heading">#</a></h3>
+<p>To counter this issue, we can convert each scalar into a vector using the <code class="docutils literal notranslate"><span class="pre">replicate</span></code> function. This function takes an array and an axis as arguments, ensuring that we achieve the required vector formation without affecting other arrays.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">replicatedScalar</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">1</span><span class="w"> </span><span class="o">⍴</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>By applying this <code class="docutils literal notranslate"><span class="pre">replicate</span></code> function to each element, we can ensure that even scalars are now formatted as vectors.</p>
+</section>
+</section>
+<section id="alternative-approaches">
+<h2>Alternative Approaches<a class="headerlink" href="#alternative-approaches" title="Link to this heading">#</a></h2>
+<p>Besides the initial method, there are various different techniques to achieve similar results.</p>
+<section id="using-apl-s-default-display">
+<h3>Using APL’s Default Display<a class="headerlink" href="#using-apl-s-default-display" title="Link to this heading">#</a></h3>
+<p>Instead of formatting arrays individually, we could stack them on top of each other to create a vector of vectors. By utilizing APL’s default display capabilities and functions such as <code class="docutils literal notranslate"><span class="pre">,</span></code> (the comma operator), we can transform the data effectively.</p>
+</section>
+<section id="dropping-extra-spaces">
+<h3>Dropping Extra Spaces<a class="headerlink" href="#dropping-extra-spaces" title="Link to this heading">#</a></h3>
+<p>While this method gets us close to the desired outcome, we might encounter issues with unwanted spaces on either end. A straightforward solution involves transposing the array, dropping the first and last rows, and then transposing it back.</p>
+</section>
+<section id="rank-operator">
+<h3>Rank Operator<a class="headerlink" href="#rank-operator" title="Link to this heading">#</a></h3>
+<p>Alternatively, we can apply the rank operator to achieve desired transformations. This method allows us to drop excess rows systematically without manual transposition.</p>
+</section>
+</section>
+<section id="final-touches">
+<h2>Final Touches<a class="headerlink" href="#final-touches" title="Link to this heading">#</a></h2>
+<p>At this point, once we’ve formatted the data appropriately, we can concatenate each entry with a newline character. Using Unicode character sets helps in formatting while maintaining the final output’s cleanliness.</p>
+<section id="example-unicode-implementation">
+<h3>Example Unicode Implementation<a class="headerlink" href="#example-unicode-implementation" title="Link to this heading">#</a></h3>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">newLine</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nf">⎕UCS</span><span class="w"> </span><span class="m">10</span><span class="kt">}</span><span class="w">   </span><span class="c1">⍝ Unicode for Line Feed</span>
+</pre></div>
+</div>
+<p>We then concatenate our formatted data with newLine, ensuring we have the right spacing between outputs.</p>
+</section>
+<section id="clean-up">
+<h3>Clean Up<a class="headerlink" href="#clean-up" title="Link to this heading">#</a></h3>
+<p>After achieving the desired output, we can simplify further by flattening the structure into a list using the <code class="docutils literal notranslate"><span class="pre">⍴</span></code> operator, while ensuring to drop any unnecessary trailing newlines.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">¯1</span><span class="o">↓</span><span class="na">∘</span><span class="o">∊⍕</span><span class="na">¨</span><span class="o">,</span><span class="na">¨∘</span><span class="nf">⎕UCS</span><span class="w"> </span><span class="m">10</span><span class="na">⍨</span><span class="p">)</span><span class="w"> </span><span class="nv">d</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ 1 2 3
+⍝ 4 5 6
+⍝ 7 8 9
+⍝ Adam   
+⍝ Michael
+⍝ 1 2 3 4 5 6 7 8 9 10
+⍝ *
+⍝  1  2  3  4  5
+⍝  6  7  8  9 10
+⍝ 11 12 13 14 15
+⍝ 16 17 18 19 20
+⍝ 21 22 23 24 25
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Through various methods, we’ve demonstrated how to effectively combine and display arrays in an APL interpreter while overcoming common formatting issues. Each of these techniques presents unique advantages, and you may choose the one that fits your specific requirements best.</p>
+<p>Thank you for reading!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2020"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-data">Sample Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initial-approach">Initial Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting-each-element">Formatting Each Element</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-code">Example Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-scalars">Handling Scalars</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-replication">Using Replication</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-approaches">Alternative Approaches</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-apl-s-default-display">Using APL’s Default Display</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dropping-extra-spaces">Dropping Extra Spaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-operator">Rank Operator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-touches">Final Touches</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-unicode-implementation">Example Unicode Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-up">Clean Up</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

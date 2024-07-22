@@ -1,0 +1,525 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>APL Quest: 8th Quest Overview &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2016/Separating-Outthe-Negative-APLQuest-2016-8';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2016/Separating-Outthe-Negative-APLQuest-2016-8.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>APL Quest: 8th Quest Overview</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quest-description">Quest Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approach">Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicit-mapping-in-apl">Implicit Mapping in APL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-function">Creating a Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplifying-the-expression">Simplifying the Expression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avoiding-redundant-calculations">Avoiding Redundant Calculations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-computations-variation">Set Computations Variation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apl-quest-8th-quest-overview">
+<h1>APL Quest: 8th Quest Overview<a class="headerlink" href="#apl-quest-8th-quest-overview" title="Link to this heading">#</a></h1>
+<p>Welcome to the APL Quest. Today, we’re diving into the details of the 8th Quest for the 2016 round of the APL Problem Solving Competition.</p>
+<section id="quest-description">
+<h2>Quest Description<a class="headerlink" href="#quest-description" title="Link to this heading">#</a></h2>
+<p>In this Quest, we are provided with a list of numbers, and our goal is to return a two-element list. The first element must contain all the negative values, while the second element must contain all the non-negative values.</p>
+</section>
+<section id="approach">
+<h2>Approach<a class="headerlink" href="#approach" title="Link to this heading">#</a></h2>
+<p>We can achieve this by filtering the values. Let’s get started by creating some values.</p>
+<section id="implicit-mapping-in-apl">
+<h3>Implicit Mapping in APL<a class="headerlink" href="#implicit-mapping-in-apl" title="Link to this heading">#</a></h3>
+<p>APL has implicit mapping over arrays, meaning that any comparison, such as checking if a number is less than or equal to zero, automatically applies to all the values in the array.</p>
+<p>In APL, <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">0</span></code> represent <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code>, respectively. We can use this property to filter our array <code class="docutils literal notranslate"><span class="pre">V</span></code> with the following expressions:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">positiveValues</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">V</span><span class="w"> </span><span class="na">/</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="nv">V</span>
+<span class="nv">negativeValues</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">V</span><span class="w"> </span><span class="na">/</span><span class="w"> </span><span class="nv">V</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<p>This can also be expressed using a single function that returns both negative and non-negative values:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">filterValues</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="p">((</span><span class="m">0</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)((</span><span class="m">0</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Now, we’re equipped with two formulas that we can place next to each other.</p>
+</section>
+<section id="creating-a-function">
+<h3>Creating a Function<a class="headerlink" href="#creating-a-function" title="Link to this heading">#</a></h3>
+<p>To turn this into a function, we encapsulate it in braces, forming an anonymous lambda function. We designate the argument as <code class="docutils literal notranslate"><span class="pre">Ω</span></code>, the rightmost letter of the Greek alphabet, since our argument will be placed on the right:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">filterValues</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="p">(</span><span class="nv">V</span><span class="w"> </span><span class="na">/</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="nv">V</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="p">(</span><span class="nv">V</span><span class="w"> </span><span class="na">/</span><span class="w"> </span><span class="nv">V</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>This expression forms one solution, but it has a lot of parentheses, which can reduce readability. Alternatively, we can define the function using the explicit filtering approach with a mask:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">filterValues</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="p">(</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">0</span><span class="o">&gt;</span><span class="bp">⍵</span><span class="p">)(</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">0</span><span class="o">≤</span><span class="bp">⍵</span><span class="p">)</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+</section>
+<section id="simplifying-the-expression">
+<h3>Simplifying the Expression<a class="headerlink" href="#simplifying-the-expression" title="Link to this heading">#</a></h3>
+<p>To simplify, we can create a function that takes the mask on the right and the data on the left. Although APL does not have a built-in function for this, we can utilize a modifier called <strong>commute</strong> (or <strong>swap</strong>), which rearranges the function arguments. We redefine our expression as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">filterValues</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="p">(</span><span class="nv">M</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍵</span><span class="na">/</span><span class="m">0</span><span class="o">≤</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="p">(</span><span class="bp">⍵</span><span class="na">/</span><span class="nv">M</span><span class="p">)</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>However, since we want to filter values and keep track of them efficiently, we can store the mask as <code class="docutils literal notranslate"><span class="pre">M</span></code> directly. Notably, the result of the assignment in APL is always the value being assigned.</p>
+</section>
+<section id="avoiding-redundant-calculations">
+<h3>Avoiding Redundant Calculations<a class="headerlink" href="#avoiding-redundant-calculations" title="Link to this heading">#</a></h3>
+<p>To optimize further, we can use a positive mask instead and negate it when needed. Our expression reads:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">positiveMask</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="na">/</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="bp">⍵</span>
+<span class="nv">negativeValues</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="na">/</span><span class="w"> </span><span class="o">~</span><span class="nv">positiveMask</span>
+</pre></div>
+</div>
+<p>Alternatively, we could declare masks separately, enhancing code clarity:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">negativeMask</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="na">/</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span>
+<span class="nv">positiveMask</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="na">/</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="bp">⍵</span>
+</pre></div>
+</div>
+<p>In this way, we have neatly organized our logic.</p>
+</section>
+<section id="set-computations-variation">
+<h3>Set Computations Variation<a class="headerlink" href="#set-computations-variation" title="Link to this heading">#</a></h3>
+<p>For a slightly different approach, we can switch our focus to directly computing the positive values first:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">positiveValues</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="na">/</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="bp">⍵</span>
+<span class="nv">negativeValues</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="na">\</span><span class="w"> </span><span class="nv">positiveValues</span>
+</pre></div>
+</div>
+<p>In this case, we employ the <strong>tilde (~)</strong> operator to denote “without,” distinguishing between <em>not</em> in logical contexts and <em>except</em> in set difference contexts.</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>This strategy leads us to a final solution that efficiently separates our values into negative and non-negative categories. We thank you for watching, and we hope this guide has clarified the process of tackling this Quest in APL!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2016"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quest-description">Quest Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approach">Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implicit-mapping-in-apl">Implicit Mapping in APL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-function">Creating a Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplifying-the-expression">Simplifying the Expression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#avoiding-redundant-calculations">Avoiding Redundant Calculations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#set-computations-variation">Set Computations Variation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

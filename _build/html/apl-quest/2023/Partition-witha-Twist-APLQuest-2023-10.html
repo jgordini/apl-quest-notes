@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>APL Quest: Splitting Text on Spaces &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2023/Partition-witha-Twist-APLQuest-2023-10';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2023/Partition-witha-Twist-APLQuest-2023-10.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>APL Quest: Splitting Text on Spaces</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today-s-quest">Today’s Quest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-ways-to-split-on-spaces">Classic Ways to Split on Spaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automatically-inserting-an-empty-segment">Automatically Inserting an Empty Segment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-trailing-elements">Merging Trailing Elements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-solution-to-the-problem">Another Solution to the Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-excess-segments">Handling Excess Segments</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apl-quest-splitting-text-on-spaces">
+<h1>APL Quest: Splitting Text on Spaces<a class="headerlink" href="#apl-quest-splitting-text-on-spaces" title="Link to this heading">#</a></h1>
+<p>Welcome to this very last APL Quest video. Please see the APL Wiki for details on the quest.</p>
+<section id="today-s-quest">
+<h2>Today’s Quest<a class="headerlink" href="#today-s-quest" title="Link to this heading">#</a></h2>
+<p>Today’s quest is to split a text on spaces, with the additional specification of a left argument that tells us how many segments to cut into. Our goal is to be greedy and split at the first occurring spaces until we have as many segments as required. If the number of segments required exceeds what we get simply by splitting on spaces, we will need to add empty segments at the end.</p>
+<p>Let’s get started! Here is a sample text. First, we will try this as a test function.</p>
+<section id="classic-ways-to-split-on-spaces">
+<h3>Classic Ways to Split on Spaces<a class="headerlink" href="#classic-ways-to-split-on-spaces" title="Link to this heading">#</a></h3>
+<p>A couple of classic ways to split on spaces exist. We can start off with the left argument and concatenate another space in front. The reason for this additional space is to ensure we can compare with the space and create a mask that we can then use to partition the right argument.</p>
+<p>This gives us a cutoff set, but we are a bit off because we added an extra space at the beginning. To correct this, we can split the concatenated string instead of the original.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">(</span><span class="o">,</span><span class="p">)</span><span class="o">⊢</span><span class="p">)</span><span class="s1">&#39;this is a sample&#39;</span>
+<span class="c1">⍝  this is a sample</span>
+</pre></div>
+</div>
+<p>This looks more sensible to work with. Here’s a trick: since we might need to add empty segments at the end, we want our nested array to have a prototypical element of an empty character vector. We can inject an empty string at the beginning.</p>
+</section>
+<section id="automatically-inserting-an-empty-segment">
+<h3>Automatically Inserting an Empty Segment<a class="headerlink" href="#automatically-inserting-an-empty-segment" title="Link to this heading">#</a></h3>
+<p>We could do this manually, but we can also automate it. Remember how we created the mask? We know that if we add a 1, that tells the partition function we want two segments to begin with, resulting in an empty segment at the beginning.</p>
+<p>Now, we can use this to partition the concatenation of the added space with the original argument. This allows us to pad with empty elements at the end if we take too many elements.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">(</span><span class="o">⊣=,</span><span class="p">)</span><span class="o">⊢</span><span class="p">)</span><span class="s1">&#39;this is a sample&#39;</span>
+<span class="c1">⍝ 1 0 0 0 0 1 0 0 1 0 1 0 0 0 0 0 0</span>
+</pre></div>
+</div>
+<p>If we didn’t do this and attempted to take too many elements (for example, six), we would end up with non-empty elements because they are based on the length of the first element. Thus, this solution resolves that issue.</p>
+</section>
+<section id="merging-trailing-elements">
+<h3>Merging Trailing Elements<a class="headerlink" href="#merging-trailing-elements" title="Link to this heading">#</a></h3>
+<p>All that remains is to merge as many trailing elements as required to match the right number. Finally, we need to remove this leading element that was added temporarily.</p>
+<p>Let’s add the left argument; for now, we can use 3. We can take the leading elements we want to preserve and then use a drop to get the trailing elements we want to join together.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">3</span><span class="p">(</span><span class="o">⊣↑</span><span class="s1">&#39; &#39;</span><span class="p">(</span><span class="o">,⊂</span><span class="na">⍨</span><span class="m">2</span><span class="o">,=</span><span class="p">)</span><span class="o">⊢</span><span class="p">)</span><span class="s1">&#39;this is a sample&#39;</span>
+<span class="c1">⍝ ┌┬─────┬───┐</span>
+<span class="c1">⍝ ││ this│ is│</span>
+<span class="c1">⍝ └┴─────┴───┘</span>
+<span class="m">3</span><span class="p">(</span><span class="o">⊣↓</span><span class="s1">&#39; &#39;</span><span class="p">(</span><span class="o">,⊂</span><span class="na">⍨</span><span class="m">2</span><span class="o">,=</span><span class="p">)</span><span class="o">⊢</span><span class="p">)</span><span class="s1">&#39;this is a sample&#39;</span>
+<span class="c1">⍝ ┌──┬───────┐</span>
+<span class="c1">⍝ │ a│ sample│</span>
+<span class="c1">⍝ └──┴───────┘</span>
+</pre></div>
+</div>
+<p>We can combine this by saying we take the leading elements followed by the trailing ones.</p>
+<p>Before performing this concatenation, however, we will postprocess the drop by reducing it with concatenation, inserting concatenation between all these elements. This gives us a total of three elements (excluding the leading element we inserted).</p>
+<p>This approach gives a fit for three and four segments, while for five or higher numbers, we get additional empty segments as required.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">3</span><span class="p">(</span><span class="o">⊣</span><span class="p">(</span><span class="o">↑,↓</span><span class="p">)</span><span class="s1">&#39; &#39;</span><span class="p">(</span><span class="o">,⊂</span><span class="na">⍨</span><span class="m">2</span><span class="o">,=</span><span class="p">)</span><span class="o">⊢</span><span class="p">)</span><span class="s1">&#39;this is a sample&#39;</span>
+<span class="c1">⍝ ┌┬─────┬───┬──┬───────┐</span>
+<span class="c1">⍝ ││ this│ is│ a│ sample│</span>
+<span class="c1">⍝ └┴─────┴───┴──┴───────┘</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="another-solution-to-the-problem">
+<h2>Another Solution to the Problem<a class="headerlink" href="#another-solution-to-the-problem" title="Link to this heading">#</a></h2>
+<p>Here’s another solution to the problem. We can begin similarly by concatenating a space on the left and calling it <code class="docutils literal notranslate"><span class="pre">s</span></code>. We can create a mask using this space and change the mask to eliminate segments we don’t want to create.</p>
+<p>Instead of generating all segments and joining them, we can use a running count or scan that gives us the number of segments. If we clamp the segments, we can ensure that our mask remains intact.</p>
+<p>The uniqueness of each number ensures we can track the first occurrence of each segment, allowing us to drop unnecessary segments while preserving the relevant ones.</p>
+<section id="handling-excess-segments">
+<h3>Handling Excess Segments<a class="headerlink" href="#handling-excess-segments" title="Link to this heading">#</a></h3>
+<p>When we apply this mask and attempt to partition the text, everything works nicely. However, if we want too many segments, we will not have enough. To handle this, we can instruct the partition to include trailing elements by adding a number equal to the count of segments at the end of the mask.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">6</span><span class="o">↑</span><span class="s1">&#39; &#39;</span><span class="p">(</span><span class="o">,⊂</span><span class="na">⍨</span><span class="m">2</span><span class="o">,=</span><span class="p">)</span><span class="o">⊢</span><span class="p">)</span><span class="s1">&#39;this is a sample&#39;</span>
+<span class="c1">⍝ ┌┬─────┬───┬──┬───────┬┐</span>
+<span class="c1">⍝ ││ this│ is│ a│ sample││</span>
+<span class="c1">⍝ └┴─────┴───┴──┴───────┴┘</span>
+</pre></div>
+</div>
+<p>We can then adjust to retrieve as many of the segments as we need, while discarding any unnecessary leading spaces from the results.</p>
+<p>Thank you for watching!</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2023"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today-s-quest">Today’s Quest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classic-ways-to-split-on-spaces">Classic Ways to Split on Spaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automatically-inserting-an-empty-segment">Automatically Inserting an Empty Segment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-trailing-elements">Merging Trailing Elements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#another-solution-to-the-problem">Another Solution to the Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-excess-segments">Handling Excess Segments</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

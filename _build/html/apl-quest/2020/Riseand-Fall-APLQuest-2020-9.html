@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2020/Riseand-Fall-APLQuest-2020-9';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2020/Riseand-Fall-APLQuest-2020-9.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-concept">Understanding the Concept</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-up-and-down-sequence">Example: Up and Down Sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scanning-in-the-opposite-direction">Scanning in the Opposite Direction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-the-two-scans">Combining the Two Scans</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-rule-violations">Testing for Rule Violations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#re-assessing-with-variations">Re-assessing with Variations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-checks">Final Checks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analyzing-non-decreasing-and-non-increasing-patterns-in-a-list-of-numbers">
+<h1>Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers<a class="headerlink" href="#analyzing-non-decreasing-and-non-increasing-patterns-in-a-list-of-numbers" title="Link to this heading">#</a></h1>
+<p>In this article, we will explore how to check if a given list of numbers fits a specific pattern: a non-decreasing segment followed by a non-increasing segment. While the terms “non-decreasing” and “non-increasing” may seem unusual, they serve our purpose well, as plateaus (where values remain the same) are acceptable. In other words, we will allow the values to stay constant but not decrease.</p>
+<section id="understanding-the-concept">
+<h2>Understanding the Concept<a class="headerlink" href="#understanding-the-concept" title="Link to this heading">#</a></h2>
+<section id="example-up-and-down-sequence">
+<h3>Example: Up and Down Sequence<a class="headerlink" href="#example-up-and-down-sequence" title="Link to this heading">#</a></h3>
+<p>Let’s consider a simple example that clearly demonstrates our goal. We will normalize the input list by applying transformations to ensure it adheres to the specified rules. If there are any violations, our modifications will reflect those changes, allowing us to compare the original list with the modified one. If they are identical, the original list follows the rules; if not, it does.</p>
+<p>To demonstrate, we will perform a test from the outset, applying functions without naming our arguments. The technique we’ll use involves a “maximum scan.” The maximum function takes two arguments and returns the larger of them, which we will insert between the elements, processing them over prefixes as we go.</p>
+<p>The following APL expression performs this left maximum scan:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">⌈</span><span class="na">\</span><span class="p">)</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>This results in:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<p>Continuing, when we utilize a reverse operation to apply the same logic from the right side, we use the following:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">⌈</span><span class="na">\∘</span><span class="o">⌽</span><span class="p">)</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>which yields:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+</section>
+<section id="scanning-in-the-opposite-direction">
+<h3>Scanning in the Opposite Direction<a class="headerlink" href="#scanning-in-the-opposite-direction" title="Link to this heading">#</a></h3>
+<p>Now, let’s consider what happens if we start our scan from the right. This means after reaching the highest point, we must stay at that maximum value as we move left.</p>
+<p>To achieve this, we can preprocess our input by reversing it. For example:</p>
+<ul class="simple">
+<li><p>Input: <code class="docutils literal notranslate"><span class="pre">1,</span> <span class="pre">3,</span> <span class="pre">5,</span> <span class="pre">4,</span> <span class="pre">3,</span> <span class="pre">2,</span> <span class="pre">1</span></code></p></li>
+<li><p>After reversing: <code class="docutils literal notranslate"><span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5</span></code></p></li>
+<li><p>Performing the maximum scan now gives us the result:</p></li>
+</ul>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">⌽⌈</span><span class="na">\∘</span><span class="o">⌽</span><span class="p">)</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Resulting in:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">5</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="combining-the-two-scans">
+<h2>Combining the Two Scans<a class="headerlink" href="#combining-the-two-scans" title="Link to this heading">#</a></h2>
+<p>To determine whether our original list follows the rules, we need to combine these two maximum scans—one from left to right and one from right to left. We will take the minimum values of the corresponding positions from both scans.</p>
+<p>Here’s how it breaks down:</p>
+<ul class="simple">
+<li><p>Compare the results from both scans:</p>
+<ul>
+<li><p>Minimum of <code class="docutils literal notranslate"><span class="pre">1</span></code> (left) and <code class="docutils literal notranslate"><span class="pre">5</span></code> (right) is <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p>Minimum of <code class="docutils literal notranslate"><span class="pre">2</span></code> (left) and <code class="docutils literal notranslate"><span class="pre">5</span></code> (right) is <code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p>Continue until the scans converge</p></li>
+</ul>
+</li>
+</ul>
+<p>This method effectively checks both segments of the list for non-decreasing and non-increasing patterns. Using APL, we can illustrate this combination:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">⌈</span><span class="na">\</span><span class="w"> </span><span class="o">⌊</span><span class="na">∘</span><span class="o">⌽</span><span class="w"> </span><span class="o">⌈</span><span class="na">\∘</span><span class="o">⌽</span><span class="p">)</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>This expression combines the results yielding:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>When introducing a slight variation by adding an extra element:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">⌈</span><span class="na">\</span><span class="w"> </span><span class="o">⌊</span><span class="na">∘</span><span class="o">⌽</span><span class="w"> </span><span class="o">⌈</span><span class="na">\∘</span><span class="o">⌽</span><span class="p">)</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>The result becomes:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-for-rule-violations">
+<h2>Testing for Rule Violations<a class="headerlink" href="#testing-for-rule-violations" title="Link to this heading">#</a></h2>
+<p>We must check if modifications still hold true to the original pattern. If we introduce a change, we will see potential violations. For example, if we analyze the list:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">⊢</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="o">⌈</span><span class="na">\</span><span class="w"> </span><span class="o">⌊</span><span class="na">∘</span><span class="o">⌽</span><span class="w"> </span><span class="o">⌈</span><span class="na">\∘</span><span class="o">⌽</span><span class="p">)</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">7</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>this results in:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">0</span>
+</pre></div>
+</div>
+<p>indicating a failure in following the pattern. In contrast, for a valid input:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">⊢</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="o">⌈</span><span class="na">\</span><span class="w"> </span><span class="o">⌊</span><span class="na">∘</span><span class="o">⌽</span><span class="w"> </span><span class="o">⌈</span><span class="na">\∘</span><span class="o">⌽</span><span class="p">)</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>we receive:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">1</span>
+</pre></div>
+</div>
+<p>showing conformity.</p>
+<section id="re-assessing-with-variations">
+<h3>Re-assessing with Variations<a class="headerlink" href="#re-assessing-with-variations" title="Link to this heading">#</a></h3>
+<p>Testing with various configurations (like changing an element in the middle) shows how new values can obscure the original values from both sides.</p>
+<p>For instance, if we apply our final check:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⊢</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="o">⌈</span><span class="na">\</span><span class="w"> </span><span class="o">⌊</span><span class="na">∘</span><span class="o">⌽</span><span class="w"> </span><span class="o">⌈</span><span class="na">\∘</span><span class="o">⌽</span>
+<span class="nv">F</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>this returns:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">1</span>
+</pre></div>
+</div>
+<p>indicating that it respects the pattern.</p>
+</section>
+</section>
+<section id="final-checks">
+<h2>Final Checks<a class="headerlink" href="#final-checks" title="Link to this heading">#</a></h2>
+<p>Finally, we will compare the collected results with the original input array using an identity function.</p>
+<p>This executes checks iteratively:</p>
+<ul class="simple">
+<li><p>Perform a right scan</p></li>
+<li><p>Perform a left scan</p></li>
+<li><p>Take the minimum of both</p></li>
+<li><p>Compare with the original input list</p></li>
+</ul>
+<p>This systematic approach can confirm whether the original arrangement abides by the non-decreasing/non-increasing rules.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>By applying these scanning techniques and transformations, we can effectively analyze any list of numbers to determine if they follow a specified non-decreasing and non-increasing pattern. Thank you for reading!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2020"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-concept">Understanding the Concept</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-up-and-down-sequence">Example: Up and Down Sequence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scanning-in-the-opposite-direction">Scanning in the Opposite Direction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-the-two-scans">Combining the Two Scans</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-rule-violations">Testing for Rule Violations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#re-assessing-with-variations">Re-assessing with Variations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-checks">Final Checks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

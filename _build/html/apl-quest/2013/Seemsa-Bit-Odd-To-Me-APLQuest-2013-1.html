@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>APL Quest: Generating Odd Numbers &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/Seemsa-Bit-Odd-To-Me-APLQuest-2013-1';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2013/Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>APL Quest: Generating Odd Numbers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today-s-problem">Today’s Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-odd-numbers">Generating Odd Numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-different-index-origins">Handling Different Index Origins</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-flexible-solution">A Flexible Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-mathematical-approach">A Mathematical Approach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#revisiting-the-original-approach">Revisiting the Original Approach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-clever-solution">Another Clever Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apl-quest-generating-odd-numbers">
+<h1>APL Quest: Generating Odd Numbers<a class="headerlink" href="#apl-quest-generating-odd-numbers" title="Link to this heading">#</a></h1>
+<p>Hello and welcome to this very first episode of the APL Quest, where we explore one problem each week from past APL problem-solving competitions. For more details, take a look at the <a class="reference external" href="https://aplwiki.com">APL Wiki</a>.</p>
+<section id="today-s-problem">
+<h2>Today’s Problem<a class="headerlink" href="#today-s-problem" title="Link to this heading">#</a></h2>
+<p>Today’s problem is the first from 2013, where we are asked to generate odd numbers. Let’s dive in by generating some numbers. For instance, if we want to generate the first 10 odd numbers, we start with the following concept:</p>
+<section id="generating-odd-numbers">
+<h3>Generating Odd Numbers<a class="headerlink" href="#generating-odd-numbers" title="Link to this heading">#</a></h3>
+<p>We can generate adjacent integers and then manipulate them to get our odd numbers. If we multiply by two, we generate every other number, and we can then offset it by one. For instance, we can take a one and subtract it—swapping the arguments in the minus function.</p>
+<p>Here’s how we can define a function that generates odd numbers if we start counting from one:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Using ⎕IO←1</span>
+<span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="na">⍨</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ F will generate the first n odd numbers</span>
+</pre></div>
+</div>
+<p>For more examples, consider the following definitions:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="kd">←</span><span class="kt">{</span><span class="m">1</span><span class="o">-</span><span class="na">⍨</span><span class="m">2</span><span class="o">×⍳</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Starting from one</span>
+<span class="nv">G</span><span class="kd">←</span><span class="p">(</span><span class="o">⍸</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="o">⍴</span><span class="na">⍨</span><span class="m">2</span><span class="o">×⊢</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Adjusted for index origin zero</span>
+<span class="nv">H</span><span class="kd">←</span><span class="kt">{</span><span class="o">⍸</span><span class="m">2</span><span class="o">|⍳</span><span class="m">2</span><span class="o">×</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Flexible for either Index Origin</span>
+<span class="nv">I</span><span class="kd">←</span><span class="kt">{</span><span class="o">+</span><span class="na">\</span><span class="m">2</span><span class="o">-</span><span class="bp">⍵</span><span class="o">↑</span><span class="m">1</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Cumulative Sum to Generate Odd Numbers</span>
+</pre></div>
+</div>
+<p>Alternatively, to generate odd numbers from an index origin of zero, we could define the function as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Using ⎕IO←0</span>
+<span class="nf">⎕IO</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span>
+<span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ F will generate the first n odd numbers</span>
+</pre></div>
+</div>
+<p>As you can see, by default, APL starts counting from one. However, some computer scientists and mathematicians prefer starting from zero, and APL allows you to choose that. You can set the index origin to zero:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕IO</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<p>Now we count from zero instead. This has both upsides and downsides. The upside is flexibility for your problem context, while the downside is the potential for miscommunication when sharing code with others.</p>
+</section>
+<section id="handling-different-index-origins">
+<h3>Handling Different Index Origins<a class="headerlink" href="#handling-different-index-origins" title="Link to this heading">#</a></h3>
+<p>If you share code with others, you must make sure to manage the correct index origin; otherwise, you can end up with entirely wrong results. The corresponding function for an index origin of zero, instead of subtracting one, would require you to add one:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Index Origin Adjustment</span>
+<span class="nv">G</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⍸</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">⍴</span><span class="w"> </span><span class="na">⍨</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">⊢</span><span class="p">)</span><span class="w">  </span><span class="c1">⍝ F will account for an index origin of zero</span>
+</pre></div>
+</div>
+<p>Although the problem asks for a defined function, we can also write tested functions in APL. Here’s another approach using a tested function framework:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">H</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">⍸</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Flexible for either Index Origin</span>
+</pre></div>
+</div>
+<p>Now let’s switch back to index origin one, but this might not work without adjustments. Instead, we just need to flip the zeros and ones.</p>
+</section>
+<section id="a-flexible-solution">
+<h3>A Flexible Solution<a class="headerlink" href="#a-flexible-solution" title="Link to this heading">#</a></h3>
+<p>What if we want to write a function that can work with either setting of the index origin? Here’s a clever solution:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">oddNumbers</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">⍸</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ A flexible solution that works regardless of index origin</span>
+</pre></div>
+</div>
+<p>In this function, we start by multiplying the argument by 2 and checking the parity, giving us the correct result regardless of the index origin.</p>
+<p>The function works in both scenarios—when <code class="docutils literal notranslate"><span class="pre">⎕IO</span></code> is one and zero—because the index generator <strong>iota</strong> and the <strong>where</strong> function (for true values) cancel each other out.</p>
+</section>
+<section id="a-mathematical-approach">
+<h3>A Mathematical Approach<a class="headerlink" href="#a-mathematical-approach" title="Link to this heading">#</a></h3>
+<p>Dealing with indices leads us to explore a mathematical approach. If we observe that we start with 1 and increase by 2 every time, we derive an interesting property:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="m">10</span><span class="w">  </span><span class="c1">⍝ Generates the first 10 odd numbers</span>
+</pre></div>
+</div>
+<p>Using the cumulative sum (plus scan) gives us all odd numbers without any index-related functionality, making it immune to index origin changes:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">+</span><span class="na">\</span><span class="m">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="bp">⍵</span><span class="o">↑</span><span class="m">1</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Cumulative Sum to Generate Odd Numbers</span>
+</pre></div>
+</div>
+</section>
+<section id="revisiting-the-original-approach">
+<h3>Revisiting the Original Approach<a class="headerlink" href="#revisiting-the-original-approach" title="Link to this heading">#</a></h3>
+<p>Now, let’s revert to our original formulation of generating odd numbers by adjusting how we handle the index origin. We can map our operations mathematically:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">oddNumbers</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">2</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="m">¯1</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="nf">⎕IO</span><span class="p">)</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ Adjusting for index origin</span>
+</pre></div>
+</div>
+<p>By using negative one raised to the power of <code class="docutils literal notranslate"><span class="pre">⎕IO</span></code>, we can handle both cases without additional complexity.</p>
+</section>
+<section id="another-clever-solution">
+<h3>Another Clever Solution<a class="headerlink" href="#another-clever-solution" title="Link to this heading">#</a></h3>
+<p>Here’s another clever solution using a tacit function:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">oddNumbers</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">⍳</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">≢</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ Tacit function to generate odd numbers</span>
+</pre></div>
+</div>
+<p>This tacit function utilizes a <strong>fork</strong> structure, where we subtract the tally from the indices and use that to add to the <strong>iota</strong> applied to the argument.</p>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>And that’s all for today! Thank you for following along in this APL Quest. We hope you enjoyed exploring how to generate odd numbers and the nuances of APL’s index management.</p>
+<p>For more about the problem and solutions, check out the original <a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P1_Seems_a_Bit_Odd_To_Me">problem set</a>. Watch the <a class="reference external" href="https://youtu.be/Mj4wyLKrBho">video</a> for further elaboration and access the <a class="reference external" href="https://github.com/abrudz/apl_quest/blob/main/2013/1.apl">source code</a> for hands-on learning.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2013"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#today-s-problem">Today’s Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-odd-numbers">Generating Odd Numbers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-different-index-origins">Handling Different Index Origins</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-flexible-solution">A Flexible Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-mathematical-approach">A Mathematical Approach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#revisiting-the-original-approach">Revisiting the Original Approach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-clever-solution">Another Clever Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

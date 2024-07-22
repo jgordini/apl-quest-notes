@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Seems a Bit Odd To Me &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/old/1';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/apl-quest/2013/old/1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Seems a Bit Odd To Me</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="seems-a-bit-odd-to-me">
+<h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P1_Seems_a_Bit_Odd_To_Me">Seems a Bit Odd To Me</a><a class="headerlink" href="#seems-a-bit-odd-to-me" title="Link to this heading">#</a></h1>
+<p><strong>Problem:</strong> Write a dfn to produce a vector of the first n odd numbers.</p>
+<p><strong>Video:</strong> <a class="reference external" href="https://youtu.be/Mj4wyLKrBho">https://youtu.be/Mj4wyLKrBho</a>
+<strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2013/1.apl">abrudz/apl_quest</a></p>
+<p><strong>Example Solutions:</strong></p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="kd">←</span><span class="kt">{</span><span class="m">1</span><span class="o">-</span><span class="na">⍨</span><span class="m">2</span><span class="o">×⍳</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">G</span><span class="kd">←</span><span class="p">(</span><span class="o">⍸</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="o">⍴</span><span class="na">⍨</span><span class="m">2</span><span class="o">×⊢</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Tacit</span>
+<span class="nv">H</span><span class="kd">←</span><span class="kt">{</span><span class="o">⍸</span><span class="m">2</span><span class="o">|⍳</span><span class="m">2</span><span class="o">×</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Any ⎕IO</span>
+<span class="nv">I</span><span class="kd">←</span><span class="p">(</span><span class="o">⍳+⍳-≢</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Tacit</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong></p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="kd">←</span><span class="kt">{</span><span class="m">1</span><span class="o">-</span><span class="na">⍨</span><span class="m">2</span><span class="o">×⍳</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⍳⍵</span></code> - Use <a class="reference external" href="https://aplwiki.com/wiki/Index_Generator">Iota</a> to generate the first <code class="docutils literal notranslate"><span class="pre">⍵</span></code> natural numbers (1, 2, 3, 4 etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1-⍨2×</span></code> - <a class="reference external" href="https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant">Swap</a>  ⍨ - Preserves the right to left order. - parsed as <code class="docutils literal notranslate"><span class="pre">(2×⍳5)-1</span></code></p></li>
+<li><p>Multiply the values by 2</p></li>
+<li><p>Subtract one from each of the array values.</p></li>
+</ol>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">G</span><span class="kd">←</span><span class="p">(</span><span class="o">⍸</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="o">⍴</span><span class="na">⍨</span><span class="m">2</span><span class="o">×⊢</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(2×⊢)</span></code>- parses as (2×⍵) -  <a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity</a> replaces <code class="docutils literal notranslate"><span class="pre">⍵</span></code> - () indicates tacit</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">0⍴⍨2×⊢</span></code> <a class="reference external" href="https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant">Swap</a>  ⍨ - parses as <code class="docutils literal notranslate"><span class="pre">((2×⍵)⍴1</span> <span class="pre">0)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">0⍴</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshape</a>  see above -  returns the argument as boolean vector of ones and zeros</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍸</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Identity">Where</a>  gives the indices of ones in a Boolean <a class="reference external" href="https://aplwiki.com/wiki/Vector" title="Vector">vector</a></p></li>
+</ol>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">H</span><span class="kd">←</span><span class="kt">{</span><span class="o">⍸</span><span class="m">2</span><span class="o">|⍳</span><span class="m">2</span><span class="o">×</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Either Index Origin</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⍳2×⍵</span></code> - multiplys the argument by two and returns the <a class="reference external" href="https://aplwiki.com/wiki/Index_Generator">Index</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2|</span></code> -  <a class="reference external" href="https://aplwiki.com/wiki/Residue">Modulus</a>  2  - returns 0 (even) and 1 (odd) see Parity</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍸</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Identity">Where</a>  gives the indices of ones(true values) in a Boolean <a class="reference external" href="https://aplwiki.com/wiki/Vector" title="Vector">vector</a></p></li>
+</ol>
+<p><strong>Comment:</strong>
+<a class="reference external" href="https://mathworld.wolfram.com/Parity.html">Parity</a> of an integer is being even or odd.
+<a class="reference external" href="https://aplwiki.com/wiki/Residue">Modulus</a> gives the <a class="reference external" href="https://en.wikipedia.org/wiki/Remainder" title="wikipedia:Remainder">remainder</a> of <a class="reference external" href="https://aplwiki.com/wiki/Divide" title="Divide">division</a> between two real numbers.
+<a class="reference external" href="https://aplwiki.com/wiki/Index_origin">Index Origin</a>  <code class="docutils literal notranslate"><span class="pre">⎕IO</span></code> - Generating Functions with that work with 0 or 1 origin see <a class="reference external" href="https://en.wikipedia.org/wiki/Zero-based_numbering">Zero based Numbering</a></p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="kd">←</span><span class="kt">{</span><span class="o">+</span><span class="na">\</span><span class="m">2</span><span class="o">-</span><span class="bp">⍵</span><span class="o">↑</span><span class="m">1</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Works with ⎕IO←0 or 1</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵↑1</span></code> - <a class="reference external" href="https://xpqz.github.io/cultivations/Functions4.html?highlight=overtaking#take">Overtake</a> 1 adds zeros to pad the array starting with 1 <em>ex</em> <code class="docutils literal notranslate"><span class="pre">5↑1</span></code> is 1 0 0 0 0</p></li>
+<li><p>subtract the result from 2 (1 2 2 2 2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">+\</span></code> - <a class="reference external" href="https://mastering.dyalog.com/Operators.html?highlight=scan#scan">Plus Scan</a> returns the running sums from the vector in step two. (1 3 5 7 9)</p></li>
+</ol>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="kd">←</span><span class="p">(</span><span class="o">⍳+⍳-≢</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ {(⍳⍵)+((⍳⍵)-(≢⍵))}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⍳-≢</span></code> - <a class="reference external" href="https://aplwiki.com/wiki/Indices">Indices</a>  of argument, subtracted from the <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> of the argument (1 item)  <em>ex</em>  1-⍨⍳5 (0 1 2 3 4)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍳+⍳-≢</span></code> -  <a class="reference external" href="https://aplwiki.com/wiki/Indices">Indices</a>  of argument added to the result from step 1.
+<em>ex</em> <code class="docutils literal notranslate"><span class="pre">(⍳5)+(⍳5)-1</span></code> (1 3 5 7 9)</p></li>
+</ol>
+<p><strong>Glyphs Used:</strong>
+<a class="reference external" href="https://aplwiki.com/wiki/Index_Generator">Index</a> - aka Iota - The notation <code class="docutils literal notranslate"><span class="pre">⍳N</span></code> where <code class="docutils literal notranslate"><span class="pre">N</span></code> is a natural number, describes a vector of the first <code class="docutils literal notranslate"><span class="pre">N</span></code> natural numbers. Starting from 0 or 1 depending on the <a class="reference external" href="https://aplwiki.com/wiki/Index_origin">Index Origin</a></p>
+<p><strong>Concepts Used:</strong>
+<a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a>
+<a class="reference external" href="https://tacit.help/">https://tacit.help/</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a>
+<a class="reference external" href="https://xpqz.github.io/cultivations/Functions2.html#magnitude-residue">Parity - Modulous 2</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Fill_element">Fill Elements</a> - Padding with zeros
+<a class="reference external" href="https://aplwiki.com/wiki/Train#3-trains">Fork</a> - 3 Train</p>
+<p><strong>Summary</strong></p>
+<p>Welcome to the inaugural episode of “The APL Quest,” where we will examine a different problem each week from past APL problem-solving competitions. In Phase One, please refer to the APL Wiki for details. Today, we will focus on the first problem from 2013, which asks us to write a DFN to generate odd numbers.</p>
+<p>Let us discuss the generation of numbers. Suppose we want to generate the first ten numbers. We can use iota to genterate them however, the issue is that these are all consecutive integers.</p>
+<p>To resolve this, we multiply by two to obtain every other number, which we can then offset by one. For example, we can subtract one from one.</p>
+<p>We can switch the arguments on the minus operation. There are other options available, such as adding negative one or using parentheses.</p>
+<p>We can construct our argument name omega to build this and try it out. As we can see, APL starts counting from one by default.</p>
+<p>Many individuals, particularly computer scientists and some mathematicians, prefer starting from zero instead of one. APL allows you to choose this option. Therefore, we can set the index origin to zero, and we will now count from zero instead.</p>
+<p>This has both advantages and disadvantages. The benefit is that you can choose whichever option fits your problem and personal preference. However, the disadvantage is that if you share your code with others, you must ensure that you obtain the correct index origin. You may need to set it yourself, and writing code that works with any index origin is a classic issue.</p>
+<p>If we attempt to apply a function now, we will obtain an entirely incorrect result. The corresponding function for index origin zero would be to add one instead of subtracting one.</p>
+<p>There are alternative methods for generating this output. Although the problem requests a DFN, we can also write tested functions in APL. Here is another approach.</p>
+<p>We can begin by creating the framework for a tested function, and then multiply the argument by two to generate those integers. Next, we reshape a series of zeros and ones using the zero one reshape function, with the shape on the right and the content on the left. We must now determine the indices where the true or one values are located, which we can accomplish using the where function.</p>
+<p>This was the index origin zero case. Let us now switch back to index origin one. Naturally, this will no longer work. Instead, we must merely switch the ones and zeros.</p>
+<p>However, suppose we wished to write a function that could function with either setting of quad I o, the index origin. In that case, there are numerous ways to accomplish this. Here are some fantastic ideas that were generated during the live event.</p>
+<p>Suppose we start by multiplying the argument by two and generating those integers. Then we take the parity of that, or the two residue or modulus two of that. Finally, we determine where the ones are. This approach is beneficial because it works with either origin.</p>
+<p>Let us name this argument, and what is occurring is that the index generator Iota and the where function’s Iota underbar are counterbalancing one another. Therefore, quad io equals one, and this approach works. Similarly, quad io equals zero, and it still functions correctly. It is a clever solution because it does not matter which index origin you are employing.</p>
+<p>The reason we are encountering this issue is that we are dealing with indices. We have the index generator and the where function, which is the indices of the true values. However, we could approach this in a completely different manner, namely in a mathematical sense. If we observe that we begin with one and then increase by two each time, this is a fascinating property.</p>
+<p>Suppose we take overtaken here, and we are taking the first ten elements of a one. There are not ten elements in the one, so APL will pad with appropriate fill elements, which are zeros. We can then subtract this from two. Notice that we have the beginning element, the one, and then the offset to the next number repeatedly.</p>
+<p>This means that if we ask for the cumulative sum or the plus scan of that, we will obtain all the odd numbers. As we did not utilize any index-related functionality, there is no influence from the index origin. We can also put this into a function.</p>
+<p>Suppose we wanted to return to our original formulation, where we began with two times the indices. In that case, we would subtract one if quad io equals one and add one if quad io equals zero. How can we adjust this?</p>
+<p>Both subtraction and addition can be viewed as an addition. We simply need to add negative one or one. Therefore, if quad io equals one, we will subtract one, and if quad io equals zero, we will add one, which we can map mathematically. We can accomplish this by raising negative one to the power of quad io.</p>
+<p>This will take whatever global quad IO is currently in effect and add it to twice the indices. We can now test this for quad io equal to one and quad io equal to zero, and it will still function correctly.</p>
+<p>Allow me to demonstrate another clever solution. It is as follows: iota plus Iota minus the tally. This is a tacit function. We can apply it and see that it functions correctly.</p>
+<p>It is a fork where the right tie of the fork is a fork itself. We begin by subtracting the tally from the indices. The tally represents the number of major cells in the argument. A symbol number is just one, so this is a clever method of subtracting one from the indices.</p>
+<p>We use this as the right argument for plus. The left argument is Iota applied to the argument or the indices once more. If we add these together, we will obtain precisely what we desire. We can write all of this as indices plus indices minus the tally and give it a name to apply it.</p>
+<p>That concludes today’s discussion. Thank you for following along.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2013/old"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

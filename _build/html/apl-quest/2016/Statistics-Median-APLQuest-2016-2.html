@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Welcome to the APL Quest &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2016/Statistics-Median-APLQuest-2016-2';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2016/Statistics-Median-APLQuest-2016-2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Welcome to the APL Quest</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement">Problem Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-data">Test Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-odd-number-of-elements">Example 1: Odd Number of Elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-even-number-of-elements">Example 2: Even Number of Elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-single-element">Example 3: Single Element</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4-empty-list">Example 4: Empty List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apl-syntax">APL Syntax</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approaching-the-computation-of-the-median">Approaching the Computation of the Median</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-and-dropping-elements">Sorting and Dropping Elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-scalars">Handling Scalars</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizing-the-grade-function">Utilizing the Grade Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-to-create-a-sorted-list">Indexing to Create a Sorted List</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-function-for-median-calculation">Recursive Function for Median Calculation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-delta-for-recursion">Using Delta for Recursion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#averaging-the-result">Averaging the Result</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-method-dropping-indices">Alternative Method: Dropping Indices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="welcome-to-the-apl-quest">
+<h1>Welcome to the APL Quest<a class="headerlink" href="#welcome-to-the-apl-quest" title="Link to this heading">#</a></h1>
+<p>Welcome to the APL Quest! For details, see the APL Wiki. Today’s quest is the second problem from the 2016 round of the APL Problem Solving Competition.</p>
+<section id="problem-statement">
+<h2>Problem Statement<a class="headerlink" href="#problem-statement" title="Link to this heading">#</a></h2>
+<p>We are given some numbers, which can be either a list or a single number, and we are to compute the median. The median is defined as the middle element of a sorted list. If there is no distinct middle element, we take the average of the two middle elements.</p>
+</section>
+<section id="test-data">
+<h2>Test Data<a class="headerlink" href="#test-data" title="Link to this heading">#</a></h2>
+<p>To understand how to compute the median, we will explore some test data. There is a key difference between lists with even and odd lengths concerning the median calculation.</p>
+<section id="example-1-odd-number-of-elements">
+<h3>Example 1: Odd Number of Elements<a class="headerlink" href="#example-1-odd-number-of-elements" title="Link to this heading">#</a></h3>
+<p>Let’s start with an odd number of elements:</p>
+<ol class="arabic simple">
+<li><p>Given the list <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5]</span></code>, when ordered, the middle element is <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p></li>
+</ol>
+</section>
+<section id="example-2-even-number-of-elements">
+<h3>Example 2: Even Number of Elements<a class="headerlink" href="#example-2-even-number-of-elements" title="Link to this heading">#</a></h3>
+<p>Now, consider the case of an even number of elements:</p>
+<ol class="arabic simple" start="2">
+<li><p>Given the list <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">3,</span> <span class="pre">4]</span></code>, the middle elements are <code class="docutils literal notranslate"><span class="pre">1</span></code> (one of the two) and <code class="docutils literal notranslate"><span class="pre">3</span></code>. The average of these two values is <code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">+</span> <span class="pre">3)</span> <span class="pre">/</span> <span class="pre">2</span> <span class="pre">=</span> <span class="pre">2</span></code>.</p></li>
+</ol>
+</section>
+<section id="example-3-single-element">
+<h3>Example 3: Single Element<a class="headerlink" href="#example-3-single-element" title="Link to this heading">#</a></h3>
+<p>In the case of a single element, the median is simply that element itself.</p>
+</section>
+<section id="example-4-empty-list">
+<h3>Example 4: Empty List<a class="headerlink" href="#example-4-empty-list" title="Link to this heading">#</a></h3>
+<p>If we have an empty list, as per the problem specification, the median should be considered <code class="docutils literal notranslate"><span class="pre">0</span></code>, even though there are no elements.</p>
+</section>
+<section id="apl-syntax">
+<h3>APL Syntax<a class="headerlink" href="#apl-syntax" title="Link to this heading">#</a></h3>
+<p>In APL, you denote an empty vector with a numeric <code class="docutils literal notranslate"><span class="pre">1</span></code>. To handle a one-element list, we use the revel operator (<code class="docutils literal notranslate"><span class="pre">,</span></code>) to flatten it. Note that APL denotes negative numbers with a high minus (e.g., <code class="docutils literal notranslate"><span class="pre">⍷-1</span></code>).</p>
+</section>
+</section>
+<section id="approaching-the-computation-of-the-median">
+<h2>Approaching the Computation of the Median<a class="headerlink" href="#approaching-the-computation-of-the-median" title="Link to this heading">#</a></h2>
+<p>We will eventually use the <code class="docutils literal notranslate"><span class="pre">each</span></code> operator, which applies a function to each element of the list.</p>
+<section id="sorting-and-dropping-elements">
+<h3>Sorting and Dropping Elements<a class="headerlink" href="#sorting-and-dropping-elements" title="Link to this heading">#</a></h3>
+<p>To compute the median, one straightforward method is to sort the elements first, then remove the elements that are before and after the middle element(s):</p>
+<ol class="arabic simple">
+<li><p>We define a function encapsulated in braces <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p></li>
+<li><p>Using the <code class="docutils literal notranslate"><span class="pre">each</span></code> operator, we apply the function to each element of our input list.</p></li>
+<li><p>To sort in APL, we typically use the <code class="docutils literal notranslate"><span class="pre">grade</span></code> function as there is no direct sort function.</p></li>
+</ol>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">MedianR</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">2</span><span class="w"> </span><span class="o">≥</span><span class="w"> </span><span class="o">≢</span><span class="w"> </span><span class="bp">⍵:</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="na">⍨</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">⍴</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">∇</span><span class="w"> </span><span class="m">1</span><span class="o">↓</span><span class="w"> </span><span class="m">¯1</span><span class="o">↓</span><span class="w"> </span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="w"> </span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>This function, <code class="docutils literal notranslate"><span class="pre">MedianR</span></code>, computes the median recursively by dropping elements one at a time until one or two remain.</p>
+</section>
+<section id="handling-scalars">
+<h3>Handling Scalars<a class="headerlink" href="#handling-scalars" title="Link to this heading">#</a></h3>
+<p>A challenge arises if one of our inputs is a scalar since it lacks an order. To resolve this, we can use the revel operator to treat it as a list.</p>
+</section>
+<section id="utilizing-the-grade-function">
+<h3>Utilizing the Grade Function<a class="headerlink" href="#utilizing-the-grade-function" title="Link to this heading">#</a></h3>
+<p>Using <code class="docutils literal notranslate"><span class="pre">grade</span></code>, we can obtain the indices required to sort the data. A stable sort preserves the relative ordering of equal elements.</p>
+</section>
+<section id="indexing-to-create-a-sorted-list">
+<h3>Indexing to Create a Sorted List<a class="headerlink" href="#indexing-to-create-a-sorted-list" title="Link to this heading">#</a></h3>
+<p>APL allows us to perform multiple indexing in one step. This way, we can retrieve the sorted list elements efficiently.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">MedianI</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="no">⍬</span><span class="o">≡</span><span class="bp">⍵:</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="na">⍨</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="w"> </span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="w"> </span><span class="bp">⍵</span><span class="sr">][</span><span class="o">⌈</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="na">⍨</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">≢</span><span class="w"> </span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">MedianI</span></code> computes the indices in the sorted array that allows for retrieving the median values.</p>
+</section>
+</section>
+<section id="recursive-function-for-median-calculation">
+<h2>Recursive Function for Median Calculation<a class="headerlink" href="#recursive-function-for-median-calculation" title="Link to this heading">#</a></h2>
+<p>We will now write a recursive function to drop elements until we are left with one or two elements. The stopping condition will ensure that we do not loop infinitely. The function processes as follows:</p>
+<ol class="arabic simple">
+<li><p>Count the elements in the argument.</p></li>
+<li><p>If the count is <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, or <code class="docutils literal notranslate"><span class="pre">2</span></code>, we can return the argument without further modification.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">drop</span></code> to remove elements from both ends of the list.</p></li>
+</ol>
+<section id="using-delta-for-recursion">
+<h3>Using Delta for Recursion<a class="headerlink" href="#using-delta-for-recursion" title="Link to this heading">#</a></h3>
+<p>The upside-down triangle symbol (Δ) represents recursion in APL, allowing us to define an anonymous function easily.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">MedianD</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nv">d</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⌊</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="na">⍨</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">≢</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="na">⍨</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">⍴</span><span class="w"> </span><span class="nv">d</span><span class="o">↓</span><span class="p">(</span><span class="o">-</span><span class="nv">d</span><span class="p">)</span><span class="o">↓</span><span class="w"> </span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="w"> </span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">MedianD</span></code>, we compute how many elements should be dropped based on the total count of elements in the array.</p>
+</section>
+<section id="averaging-the-result">
+<h3>Averaging the Result<a class="headerlink" href="#averaging-the-result" title="Link to this heading">#</a></h3>
+<p>For the final step, if we are left with two elements, we can compute their average. The cyclic <code class="docutils literal notranslate"><span class="pre">reshape</span></code> function helps ensure that we always operate with two-element lists to facilitate averaging.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">median</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="na">...</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>You would ultimately implement this function to return the correct median based on the input list.</p>
+</section>
+</section>
+<section id="alternative-method-dropping-indices">
+<h2>Alternative Method: Dropping Indices<a class="headerlink" href="#alternative-method-dropping-indices" title="Link to this heading">#</a></h2>
+<p>We can also approach the median computation by calculating how many elements should be dropped based on the length of the list:</p>
+<ol class="arabic simple">
+<li><p>Identify the number of elements.</p></li>
+<li><p>Compute how many to drop, which depends on whether the count is even or odd.</p></li>
+<li><p>Use the calculated indices to directly access the required elements.</p></li>
+</ol>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>In conclusion, there are multiple ways to compute the median in APL, whether by dropping elements, averaging, or directly indexing sorted lists.</p>
+<p>Thank you for joining today’s quest. Feel free to explore other methods and applications in APL!</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2016"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-statement">Problem Statement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-data">Test Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-odd-number-of-elements">Example 1: Odd Number of Elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-even-number-of-elements">Example 2: Even Number of Elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-single-element">Example 3: Single Element</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4-empty-list">Example 4: Empty List</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apl-syntax">APL Syntax</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approaching-the-computation-of-the-median">Approaching the Computation of the Median</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-and-dropping-elements">Sorting and Dropping Elements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-scalars">Handling Scalars</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizing-the-grade-function">Utilizing the Grade Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-to-create-a-sorted-list">Indexing to Create a Sorted List</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-function-for-median-calculation">Recursive Function for Median Calculation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-delta-for-recursion">Using Delta for Recursion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#averaging-the-result">Averaging the Result</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alternative-method-dropping-indices">Alternative Method: Dropping Indices</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

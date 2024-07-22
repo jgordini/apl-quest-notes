@@ -1,0 +1,536 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>APL Quest: Average Calculation Over Sub-Periods &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/It-Isa-Moving-Experience-APLQuest-2013-9';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2013/It-Isa-Moving-Experience-APLQuest-2013-9.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>APL Quest: Average Calculation Over Sub-Periods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-overview">Problem Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-n-wise-reduction">Visualizing n-wise Reduction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-the-approach">Improving the Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clamping-input-size">Clamping Input Size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-solutions">Generalized Solutions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-error-handling">Advanced Error Handling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maintaining-data-shape">Maintaining Data Shape</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apl-quest-average-calculation-over-sub-periods">
+<h1>APL Quest: Average Calculation Over Sub-Periods<a class="headerlink" href="#apl-quest-average-calculation-over-sub-periods" title="Link to this heading">#</a></h1>
+<p>Hi and welcome to the APL Quest see the APL wiki for details! Today, we’re looking at the ninth problem from the 2013 round of the APL Problem Solving Competition. The task is to find the average over a selected sub-period of a year’s worth of data.</p>
+<section id="problem-overview">
+<h2>Problem Overview<a class="headerlink" href="#problem-overview" title="Link to this heading">#</a></h2>
+<p>We start with some data represented as cells. The obvious approach here is to use n-wise reduction, and one of the simplest ways to visualize this is through additive reduction using concatenation.</p>
+<section id="visualizing-n-wise-reduction">
+<h3>Visualizing n-wise Reduction<a class="headerlink" href="#visualizing-n-wise-reduction" title="Link to this heading">#</a></h3>
+<p>Suppose we have sales data. We can perform a three-wise reduction of the sales by concatenating groups of three elements, which provides us with small windows. Our goal is to calculate the average of each window. The idiomatic APL expression for an average is the sum divided by the length:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">avgSales</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="p">(</span><span class="o">≢</span><span class="bp">⍵</span><span class="p">)</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>However, we can also consider a naive solution to generate moving averages for a month of data:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">naiveAvg</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">÷</span><span class="na">⌿</span><span class="o">÷≢</span><span class="p">)</span><span class="na">¨</span><span class="o">,</span><span class="na">/</span>
+</pre></div>
+</div>
+<p>Here, although this provides the basic functionality, it is not the most efficient.</p>
+</section>
+</section>
+<section id="improving-the-approach">
+<h2>Improving the Approach<a class="headerlink" href="#improving-the-approach" title="Link to this heading">#</a></h2>
+<p>The initial solution computes the average by summing three elements and dividing by three repeatedly. A better approach is:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">improvedAvg</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>We can express the moving average using a tacit equivalent:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">tacitAvg</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">+</span><span class="na">⌿</span><span class="o">÷⊣</span>
+</pre></div>
+</div>
+<p>We also need to ensure that our function can handle varying input sizes properly.</p>
+<section id="clamping-input-size">
+<h3>Clamping Input Size<a class="headerlink" href="#clamping-input-size" title="Link to this heading">#</a></h3>
+<p>An interesting edge case to consider is when the window size exceeds the data size, such as window sizes greater than twelve months. For instance, using a window size of thirteen gives us no averages, while a window size of fourteen generates an error.</p>
+<p>To handle this, we can clamp the left argument (the window size) to ensure it never exceeds the length of the sales data (thirteen):</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">clampedAvg</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="p">((</span><span class="bp">⍺</span><span class="o">⌊</span><span class="m">13</span><span class="p">)</span><span class="o">+</span><span class="na">⌿</span><span class="bp">⍵</span><span class="p">)</span><span class="o">÷</span><span class="bp">⍺</span><span class="o">⌊</span><span class="m">13</span><span class="kt">}</span>
+</pre></div>
+</div>
+</section>
+<section id="generalized-solutions">
+<h3>Generalized Solutions<a class="headerlink" href="#generalized-solutions" title="Link to this heading">#</a></h3>
+<p>We might also prefer a more generalized solution that dynamically adjusts based on the length of the input. By adding one to the length of the sales data, we can create a more universal approach that handles varying element counts effectively:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">generalizedAvg</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="p">((</span><span class="bp">⍺</span><span class="o">⌊</span><span class="m">1</span><span class="o">+≢</span><span class="bp">⍵</span><span class="p">)</span><span class="o">+</span><span class="na">⌿</span><span class="bp">⍵</span><span class="p">)</span><span class="o">÷</span><span class="bp">⍺</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Another method could involve error handling. In this scenario, we compute the average as before, but if the window size fails due to being too large, we catch the error and return an empty vector:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">errorHandledAvg</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="m">5</span><span class="bp">::</span><span class="no">⍬</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍺</span><span class="o">÷</span><span class="na">⍨</span><span class="bp">⍺</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-error-handling">
+<h2>Advanced Error Handling<a class="headerlink" href="#advanced-error-handling" title="Link to this heading">#</a></h2>
+<p>For those who prefer an explicit approach, we can test our inputs by asserting conditions before performing operations. This method checks if the left argument exceeds the length of the right argument:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">safeAvg</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span>
+<span class="w">    </span><span class="bp">⍺</span><span class="o">&gt;≢</span><span class="bp">⍵:</span><span class="no">⍬</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍺</span><span class="o">÷</span><span class="na">⍨</span><span class="bp">⍺</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+<p>This solution eliminates reliance on catching errors and simplifies maintenance and understanding.</p>
+<section id="maintaining-data-shape">
+<h3>Maintaining Data Shape<a class="headerlink" href="#maintaining-data-shape" title="Link to this heading">#</a></h3>
+<p>When handling cases where the input size is too large, it is essential to keep the shape of the output consistent. If we encounter a situation where the left argument is too large, we should return a zero-row table instead of an empty vector:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">shapePreservingAvg</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span>
+<span class="w">    </span><span class="bp">⍺</span><span class="o">&gt;≢</span><span class="bp">⍵:</span><span class="m">0</span><span class="na">⌿</span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍺</span><span class="o">÷</span><span class="na">⍨</span><span class="bp">⍺</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+<p>This ultimate solution ensures that our averages are calculated accurately while maintaining the intended structure of the data.</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In this article, we’ve explored various strategies to compute the average over a sub-period effectively in APL. From basic methods to refined solutions that handle edge cases efficiently, there are multiple ways to approach this problem. Thank you for reading, and happy coding!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2013"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-overview">Problem Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-n-wise-reduction">Visualizing n-wise Reduction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-the-approach">Improving the Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clamping-input-size">Clamping Input Size</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-solutions">Generalized Solutions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-error-handling">Advanced Error Handling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maintaining-data-shape">Maintaining Data Shape</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

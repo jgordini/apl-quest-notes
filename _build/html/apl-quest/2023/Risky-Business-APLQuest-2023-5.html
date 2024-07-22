@@ -1,0 +1,605 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Understanding Dice Mechanics in Risk &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2023/Risky-Business-APLQuest-2023-5';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2023/Risky-Business-APLQuest-2023-5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Understanding Dice Mechanics in Risk</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-the-mechanics">Overview of the Mechanics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-players">The Players</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-dice-throws">Example Dice Throws</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-losses">Determining Losses</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apl-calculation">APL Calculation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dice-comparison-rules">Dice Comparison Rules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-table">Comparison Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apl-comparison-table">APL Comparison Table</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-the-diagonal">Extracting the Diagonal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-losses">Counting Losses</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summing-the-losses">Summing the Losses</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="understanding-dice-mechanics-in-risk">
+<h1>Understanding Dice Mechanics in Risk<a class="headerlink" href="#understanding-dice-mechanics-in-risk" title="Link to this heading">#</a></h1>
+<p>This article explores the mechanics of dice throws in the board game Risk. If you are not familiar with Risk, we recommend pausing the video and reading through the rules before proceeding.</p>
+<section id="overview-of-the-mechanics">
+<h2>Overview of the Mechanics<a class="headerlink" href="#overview-of-the-mechanics" title="Link to this heading">#</a></h2>
+<p>In Risk, two players engage in battle: the attacker and the defender. The outcomes of their engagements are determined by rolling dice, and our goal here is to generalize the rules surrounding these dice throws.</p>
+<section id="the-players">
+<h3>The Players<a class="headerlink" href="#the-players" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Attacker</strong>: represented by an integer vector on the left.</p></li>
+<li><p><strong>Defender</strong>: represented by an integer vector on the right.</p></li>
+</ul>
+<p>To illustrate, we will analyze a scenario where the attacker uses five armies (as per the game’s rules) and throws five dice. In response, the defender utilizes three dice.</p>
+<section id="example-dice-throws">
+<h4>Example Dice Throws<a class="headerlink" href="#example-dice-throws" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Attacker’s Rolls</strong>: 6, 6, 4, 2, 1</p></li>
+<li><p><strong>Defender’s Rolls</strong>: 6, 5, 5</p></li>
+</ol>
+</section>
+</section>
+<section id="determining-losses">
+<h3>Determining Losses<a class="headerlink" href="#determining-losses" title="Link to this heading">#</a></h3>
+<p>To calculate how many armies each player loses, we compare the corresponding rolls of the attacker and defender.</p>
+<ol class="arabic simple">
+<li><p><strong>First Roll</strong>: 6 (Attacker) vs. 6 (Defender) - Attacker loses.</p></li>
+<li><p><strong>Second Roll</strong>: 6 (Attacker) vs. 5 (Defender) - Defender loses.</p></li>
+<li><p><strong>Third Roll</strong>: 4 (Attacker) vs. 5 (Defender) - Attacker loses.</p></li>
+<li><p><strong>Fourth Roll</strong>: 2 (Attacker) vs. 0 (Defender) - No loss.</p></li>
+<li><p><strong>Fifth Roll</strong>: 1 (Attacker) vs. 0 (Defender) - No loss.</p></li>
+</ol>
+<p>By analyzing the rolls:</p>
+<ul class="simple">
+<li><p>The attacker loses 2 armies.</p></li>
+<li><p>The defender loses 1 army.</p></li>
+</ul>
+<section id="apl-calculation">
+<h4>APL Calculation<a class="headerlink" href="#apl-calculation" title="Link to this heading">#</a></h4>
+<p>Using APL, we can represent the comparison of the rolls as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">6</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="na">∘.</span><span class="o">&gt;</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span>
+<span class="c1">⍝ This results in:</span>
+<span class="c1">⍝ 0 1 1</span>
+</pre></div>
+</div>
+<p>The output indicates that for each roll, the first number shows the number of armies lost by the attacker, the second by the defender.</p>
+</section>
+</section>
+<section id="dice-comparison-rules">
+<h3>Dice Comparison Rules<a class="headerlink" href="#dice-comparison-rules" title="Link to this heading">#</a></h3>
+<p>The attacker wins if the attacking die shows a higher number than the defending die. Our calculations assume that the rolls are sorted, which simplifies the process.</p>
+<p>We also need to account for the potential discrepancy in the lengths of the two vectors. While this may lead to inefficiencies, we can elegantly compare all values to produce a comparison table.</p>
+</section>
+<section id="comparison-table">
+<h3>Comparison Table<a class="headerlink" href="#comparison-table" title="Link to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Defender Die Rolls</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Attacker</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rolls</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>6</strong></p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>6</strong></p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>4</strong></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>2</strong></p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>1</strong></p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>In this table:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> indicates the attacker lost.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> indicates the defender lost.</p></li>
+</ul>
+<section id="apl-comparison-table">
+<h4>APL Comparison Table<a class="headerlink" href="#apl-comparison-table" title="Link to this heading">#</a></h4>
+<p>The comparisons can also be evaluated with APL’s transpose functionality to create a comparison matrix:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">6</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">(</span><span class="o">⍉</span><span class="na">∘.</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span>
+<span class="c1">⍝ This results in:</span>
+<span class="c1">⍝ 0 0 0 0 0</span>
+<span class="c1">⍝ 1 1 0 0 0</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="extracting-the-diagonal">
+<h3>Extracting the Diagonal<a class="headerlink" href="#extracting-the-diagonal" title="Link to this heading">#</a></h3>
+<p>To analyze the results accurately, we can manipulate the matrix to extract the diagonal of the comparison table. This method will help us focus on the relevant comparisons:</p>
+<ul class="simple">
+<li><p><strong>Transpose Function</strong>: Manipulates the matrix to fit our needs, allowing us to travel through both axes and extract the necessary data.</p></li>
+</ul>
+</section>
+<section id="counting-losses">
+<h3>Counting Losses<a class="headerlink" href="#counting-losses" title="Link to this heading">#</a></h3>
+<p>To find out how many armies each player lost, we must count the occurrences of <code class="docutils literal notranslate"><span class="pre">1</span></code>s and <code class="docutils literal notranslate"><span class="pre">0</span></code>s in the comparison results. A <code class="docutils literal notranslate"><span class="pre">1</span></code> signifies the attacker lost an army, while a <code class="docutils literal notranslate"><span class="pre">0</span></code> signifies the defender lost an army.</p>
+<p>We can achieve this list manipulation in APL:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">+</span><span class="na">⌿</span><span class="o">⍪,~</span><span class="p">)</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">⍉</span><span class="w"> </span><span class="na">∘.</span><span class="o">≤</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<p>This function counts the losses based on the comparison.</p>
+</section>
+<section id="summing-the-losses">
+<h3>Summing the Losses<a class="headerlink" href="#summing-the-losses" title="Link to this heading">#</a></h3>
+<p>Finally, we sum the columns using a reduction technique. The resulting value gives the total number of armies lost. For our example, we get a total of 2 lost armies for the attacker and 1 lost army for the defender, calculated by running:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">6</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nv">F</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">5</span>
+<span class="c1">⍝ This results in:</span>
+<span class="c1">⍝ 2 1</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>Through these steps, we’ve illustrated the mechanics of determining losses in Risk involving dice throws. By structuring the approach and methodologies, we can effectively analyze game scenarios and outcomes.</p>
+<p>Thank you for reading! For further discussions and variations on this topic, feel free to check the description for additional resources.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2023"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-the-mechanics">Overview of the Mechanics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-players">The Players</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-dice-throws">Example Dice Throws</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-losses">Determining Losses</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apl-calculation">APL Calculation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dice-comparison-rules">Dice Comparison Rules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-table">Comparison Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#apl-comparison-table">APL Comparison Table</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-the-diagonal">Extracting the Diagonal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-losses">Counting Losses</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summing-the-losses">Summing the Losses</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

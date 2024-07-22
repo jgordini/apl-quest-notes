@@ -1,0 +1,525 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Making the Grade &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/old/2';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/apl-quest/2013/old/2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Making the Grade</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="making-the-grade">
+<h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P2_Making_The_Grade">Making the Grade</a><a class="headerlink" href="#making-the-grade" title="Link to this heading">#</a></h1>
+<p><strong>Problem:</strong> Write a dfn which returns the percent (from 0 to 100) of passing (65 or higher) grades in a vector of grades.</p>
+<p><strong>Video:</strong> <a class="reference external" href="https://youtu.be/pxo2BtoMxP4">https://youtu.be/pxo2BtoMxP4</a>
+<strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2013/2.apl">abrudz/apl_quest</a></p>
+<p><strong>Example Solutions:</strong>
+2 Scaler functions and a reduction over a vectorized operation.</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">100</span><span class="o">×+</span><span class="na">.</span><span class="o">≥</span><span class="na">∘</span><span class="m">65</span><span class="o">÷≢</span><span class="w"> </span><span class="c1">⍝ Tacit</span>
+</pre></div>
+</div>
+<p><strong>Explanation:</strong></p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(+/⍵≥65)</span></code> use <a class="reference external" href="https://aplwiki.com/wiki/Greater_than_or_Equal_to">greater than or equal to</a> as a <a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Function</a> returning a boolean vector of 1 if true and 0 if false.</p></li>
+<li><p>Then <a class="reference external" href="https://aplwiki.com/wiki/Reduce">sum</a> the result - <code class="docutils literal notranslate"><span class="pre">+/</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">÷≢⍵</span></code>  <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> the length of your argument and divde that by the result in step 1.</p></li>
+<li><p>Multiply this by 100 to get your percentage of passing grades.</p></li>
+</ol>
+<p><strong>Performance:</strong></p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ n:≥ n-1:+ 1:÷ 1:×</span>
+<span class="nv">G</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×+</span><span class="na">/</span><span class="p">(</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ n:≥ n-1:+ n:÷ 1:×</span>
+<span class="nv">H</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">+</span><span class="na">/</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ n:≥ n-1:+ n:÷ n:×</span>
+</pre></div>
+</div>
+<p>Note that it does not matter where we do the sum mathmatically. However there are siginificant performance penalties for summing after the division.</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">s</span><span class="kd">←</span><span class="o">?</span><span class="m">1e6</span><span class="o">⍴</span><span class="m">100</span>
+<span class="s1">&#39;cmpx&#39;</span><span class="nf">⎕cy</span><span class="s1">&#39;dfns&#39;</span>
+<span class="nv">cmpx</span><span class="s1">&#39;F s&#39;</span><span class="w"> </span><span class="s1">&#39;G s&#39;</span><span class="w"> </span><span class="s1">&#39;H s&#39;</span>
+<span class="c1">⍝ F s → 6.6E¯5 | 0%</span>
+<span class="c1">⍝ G s → 2.4E¯3 | +3451%</span>
+<span class="c1">⍝ H s → 2.8E¯3 | +4126% </span>
+</pre></div>
+</div>
+<p>We can evalute the performance of each function by importing the <a class="reference external" href="http://dfns.dyalog.com/n_cmpx.htm">CMPX</a> function from the <a class="reference external" href="http://dfns.dyalog.com/n_contents.htm">DFNS</a> library.</p>
+<ol class="arabic simple">
+<li><p>We <a class="reference external" href="https://aplwiki.com/wiki/Roll">Roll</a>1 million <code class="docutils literal notranslate"><span class="pre">1e6</span></code> random numbers between 1 and 100</p></li>
+<li><p>We <a class="reference external" href="http://help.dyalog.com/latest/Content/Language/System%20Functions/cy.htm">copy</a> <code class="docutils literal notranslate"><span class="pre">⎕cy</span></code> CMPX from the DFNS library into our workspace</p></li>
+<li><p>We use cmpx to evalute the performance of each function. With the first function as our baseline.</p></li>
+</ol>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="bp">⍵</span><span class="o">+</span><span class="na">.</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">100</span><span class="o">×+</span><span class="na">.</span><span class="o">≥</span><span class="na">∘</span><span class="m">65</span><span class="o">÷≢</span><span class="w"> </span><span class="c1">⍝ Tacit</span>
+<span class="nv">K</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">100</span><span class="o">×+</span><span class="na">.</span><span class="o">≤÷≢</span><span class="na">⍤</span><span class="o">⊢</span>
+</pre></div>
+</div>
+<p>We are dealing with a scaler (65) and a vector (Scores). We should notice this pattern. We have a sum over a comparison of vectors. When we have that, we should think, <a class="reference external" href="https://aplwiki.com/wiki/Inner_Product">Inner Product</a>.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">+.≥</span></code>  Replace reduce in <code class="docutils literal notranslate"><span class="pre">+/</span></code> with inner product</p></li>
+<li><p>(J) 65 is a <a class="reference external" href="https://aplwiki.com/wiki/Bind">Bound</a> constant to the inner product allowing us to remove the parenthesis.</p></li>
+<li><p>J is parsed as <code class="docutils literal notranslate"><span class="pre">{100×((⍵(+.≥)65)÷(≢⍵))}</span></code></p></li>
+</ol>
+<p><strong>Generalization:</strong> Adding the cutoff point as an additional argument</p>
+<ol class="arabic simple">
+<li><p>K is parsed as <code class="docutils literal notranslate"><span class="pre">{100×((⍺(+.≤)⍵)÷(≢⍵))}</span></code></p></li>
+<li><p>We are reversing the <code class="docutils literal notranslate"><span class="pre">≥</span></code> so that the Cuttoff Point (65) can be taken as the left argument. Represented by <code class="docutils literal notranslate"><span class="pre">⍺</span></code> in step 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">≢⍤⊢</span></code> We use Atop so that we can apply <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> monadically. (Dyadic Tally is <a class="reference external" href="https://aplwiki.com/wiki/Not_Match">Not Match</a>) We could also use Jot <code class="docutils literal notranslate"><span class="pre">≢∘⊢</span></code> in this case and achieve the same result.</p></li>
+</ol>
+<p><strong>Comment:</strong></p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">,⍳</span><span class="m">64</span><span class="w"> </span><span class="c1">⍝ Raveld with zero becuase ⎕IO←1</span>
+</pre></div>
+</div>
+<p><strong>Glyphs Used:</strong>
+<a class="reference external" href="https://aplwiki.com/wiki/Roll">Roll</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshape</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Greater_than_or_Equal_to">Greater than or Equal to</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Scan">Scan</a> - Plus Scan
+<a class="reference external" href="https://aplwiki.com/wiki/Quad_name">Quad</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Statement_Separator">Diamond</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Ravel">Ravel</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Index_Generator">Iota</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Without">Without</a> aka not
+<a class="reference external" href="https://aplwiki.com/wiki/Over">Over</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Indices">Indices</a> aka Where</p>
+<p><strong>Concepts Used:</strong>
+<a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Function</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Dfns_workspace">Dfns Workspace</a>
+<a class="reference external" href="https://mastering.dyalog.com/Data-and-Variables.html#data-and-variables-representation-of-numbers">Scientific Notation</a>
+<a class="reference external" href="http://dfns.dyalog.com/n_cmpx.htm">CMPX</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Scalar_function">Scalar Function</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduction</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Inner_Product">Inner Product</a>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Dot_product">Dot Product</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a>
+<a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=atop#function-atop-tack">Function Atop Tack</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Dfn#Default_left_arguments">Default Left Arguments</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Train#2-trains">Fork</a> - 2 Train
+<a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Code_reuse">Code Reuse</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Scalar_extension">Scalar Extension</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Conformability">Conformability</a></p>
+<p><strong>Transcript:</strong></p>
+<p>Welcome to this second episode of the APL Quest! Check out the APL Wiki for details. Today’s quest is called “Making the Grade” and it’s the second problem from the 2013 APL Problem Solving Competition’s Phase 1. Here we are to write a function which takes a list of numbers representing the points that people scored on some type of test. If they scored 65 or higher, then they’ve passed in the test, and we are to compute the percentage of people who passed.</p>
+<p>Let’s start off by generating some test data. So here are 10 scores between 1 and 100, and those that have succeeded in the test had scores 69 and 72. So we know how many scores there are in total and we can compare all these scores with 65, so if the test scores are greater than or equal to 65, then they have succeeded and this gives us a boolean vector indicating the ones and zeros, the ones that have succeeded. Then we can sum the boolean vector to find out how many have succeeded and then we can divide that by the total number so this gives us a fraction and we can multiply that by 100 to get a percentage.</p>
+<p>Putting all this together, we have the function f, and we take 100 multiplied by the sum of the scores that are larger than 65, divided by the total tally of scores. That’s the argument here, not the variable t, and we can try this on t and that gives us the correct thing.</p>
+<p>Now there’s something here that’s worth noting: we are doing a bunch of different operations on our data and while mathematically equivalent, it is important which order we do this in in order to have the maximal performance. So here are some variations of things that we could do in f. We started off by the comparison and then we summed. However, we could also start off a bit differently. So let’s say that we start off by doing the comparison and then we divide by the total count, then we sum and then we multiply by the 100. So this is mathematically equivalent, but we’ll see in a moment and it makes a big difference.</p>
+<p>What we could also do is we could start off in the same way by computing the numbers greater than or equal to 65, we could divide by the total number of numbers, then we could multiply by 100 and then sum again. Mathematically equivalent, but this makes a difference in performance.</p>
+<p>Let’s generate a bunch of test data. So, here’s some test data, we’re going to do random numbers between 1 and 100 but this time we’re going to do a million of them. I’m not going to print these out. Let’s get in the comPare Execution Time utility from the Dfns workspace and then we’re going to run f on these test scores and g on the test scores and h on the test scores and we’ll see in a moment that there is a quite significant difference in the performance here.</p>
+<p>So what is it that’s actually going on in f? We are doing, if we call the number of scores n, we’re doing n comparisons first and then we are doing n minus one additions, we’re doing one division and one multiplication. So we can write this, we’re doing n comparisons like this and then we are doing an n minus 1 summations and then we’re doing one division and one multiplication.</p>
+<p>In g, we again start off the same way, we’re doing n comparisons and then but then we’re dividing every comparison with the tally so that means we’re doing n divisions and we’re doing the summation after that, so that’s n minus 1 summations and finally, we’re doing one multiplication.</p>
+<p>And in h, here we are doing starting off the same way with an n comparisons then we’re doing the n divisions and then we’re doing n multiplications as well and finally we’re doing n minus 1 at additions. So while these are mathematically equivalent, we can see that there’s going to be a big difference in the performance and indeed, f is the one where we’re doing the least amount of work.</p>
+<p>So now we could sum this up and divide by the total number of scores, but let’s do it a little bit differently. Instead, we can use iota algebra again, but this time magnetically. This computes the indices of those that fulfill the requirement of being above 65.</p>
+<p>Now we can use the same method as we did above, where we take this result and divide it by the tallies of the original. Then we add the last thing. This is using “where” and the interval index, so we can say it’s 100 times this. Of course, for both S and T, we could modify them to take an optional or required left argument.</p>
+<p>Here are all the definitions that we did today. Compare them, and don’t forget to check out what the performance looks like on the kind of data that you’re running with.</p>
+<p>Thank you so much for watching.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2013/old"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

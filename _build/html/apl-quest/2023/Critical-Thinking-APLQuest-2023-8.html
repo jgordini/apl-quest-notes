@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Computing the Next Double Critical Day &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2023/Critical-Thinking-APLQuest-2023-8';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2023/Critical-Thinking-APLQuest-2023-8.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Computing the Next Double Critical Day</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-concept">Understanding the Concept</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-determine-the-next-double-critical-day">Steps to Determine the Next Double Critical Day</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-the-solution">Programming the Solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-example">Implementation Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="computing-the-next-double-critical-day">
+<h1>Computing the Next Double Critical Day<a class="headerlink" href="#computing-the-next-double-critical-day" title="Link to this heading">#</a></h1>
+<p>In this article, we will explore the concept of <strong>double critical days</strong> based on cycles of days stemming from specific dates, such as a birthday. The double critical day occurs when two of three cycles — 23 days, 28 days, and 33 days — align. Let’s break this down step by step.</p>
+<section id="understanding-the-concept">
+<h2>Understanding the Concept<a class="headerlink" href="#understanding-the-concept" title="Link to this heading">#</a></h2>
+<p>The <strong>double critical day</strong> is defined as the first occurrence when any two of the three cycles meet after a given date. The cycles are as follows:</p>
+<ul class="simple">
+<li><p><strong>23 days</strong></p></li>
+<li><p><strong>28 days</strong></p></li>
+<li><p><strong>33 days</strong></p></li>
+</ul>
+<p>Additionally, there is a mention of a <strong>triple critical day</strong>. However, it is important to note that a triple critical day is inherently a double critical day as well.</p>
+<p>To compute these dates, we start counting from a birthday and look for the first instance after a specific event date. Our goal is to find the Least Common Multiple (LCM) of the cycles to determine the next double critical day.</p>
+</section>
+<section id="steps-to-determine-the-next-double-critical-day">
+<h2>Steps to Determine the Next Double Critical Day<a class="headerlink" href="#steps-to-determine-the-next-double-critical-day" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Identify the Cycles</strong>: We have three cycles: 23, 28, and 33 days.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">cycles</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">23</span><span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">33</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Use a Sign Curve Analogy</strong>: After completing their full period, the cycles cross the x-axis in the same direction. This means we are primarily interested in half the period of the cycles.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">halfPeriods</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">cycles</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Compute the Least Common Multiple (LCM)</strong>:</p>
+<ul class="simple">
+<li><p>We will create an LCM table to facilitate our calculations. The essential focus is on the upper right corner of this table, which provides us with the required values.</p></li>
+</ul>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">lcmTable</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="na">∘.</span><span class="o">∧</span><span class="na">⍨</span><span class="nv">halfPeriods</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This provides the LCM table:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌─────┬───────────────┐
+│1 2 3│ 11.5 322 379.5│
+│     │322    14 462  │
+│     │379.5 462  16.5│
+└─────┴───────────────┘
+</pre></div>
+</div>
+</li>
+<li><p><strong>Input Dates</strong>: For example, consider the input dates of October 31, 1962, and January 1, 2023.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">birthDate</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1962</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">31</span>
+<span class="nv">eventDate</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">2023</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Transform Dates</strong>: Convert the dates into a serial format for computation. This involves creating a date-time conversion function that treats the dates as timestamps, allowing easy arithmetic operations.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">serialBirthDate</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">birthDate</span><span class="w"> </span><span class="o">-</span><span class="na">⍥</span><span class="p">(</span><span class="m">1</span><span class="nf">⎕DT</span><span class="o">⊂</span><span class="p">)</span><span class="w"> </span><span class="nv">eventDate</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="programming-the-solution">
+<h2>Programming the Solution<a class="headerlink" href="#programming-the-solution" title="Link to this heading">#</a></h2>
+<p>Now that we’ve laid out the steps, let’s briefly summarize how we can program this:</p>
+<ul>
+<li><p><strong>Concatenate Date Formats</strong>: First, we will concatenate both input dates and apply the conversion function to treat them uniformly.</p></li>
+<li><p><strong>Date Calculation</strong>: We calculate the difference in days and determine how many complete cycles fit within that difference using modulus operations.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">differences</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">birthDate</span><span class="w"> </span><span class="o">-</span><span class="na">⍨⍥</span><span class="p">(</span><span class="m">1</span><span class="nf">⎕DT</span><span class="o">⊂</span><span class="p">)</span><span class="w"> </span><span class="nv">eventDate</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Negate for Adjustments</strong>: In some calculations, negating the right argument allows us to find dates right after critical cutoffs.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">criticalDays</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="nv">p</span><span class="w"> </span><span class="o">|-</span><span class="na">⍨</span><span class="p">)</span><span class="w"> </span><span class="na">⍥</span><span class="p">(</span><span class="m">1</span><span class="nf">⎕DT</span><span class="o">⊂</span><span class="p">)</span><span class="w"> </span><span class="nv">eventDate</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Return the Resulting Date</strong>: Finally, we will convert the calculated date back into our desired output format.</p></li>
+</ul>
+</section>
+<section id="implementation-example">
+<h2>Implementation Example<a class="headerlink" href="#implementation-example" title="Link to this heading">#</a></h2>
+<p>Using example input dates of <strong>October 31, 1962</strong>, and <strong>January 1, 2023</strong>, we can follow through the outlined programming logic:</p>
+<ol class="arabic">
+<li><p><strong>Convert Dates to Serial Numbers</strong>: This allows us to work with integers rather than complex date formats.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">serialBirthDate</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1962</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">31</span><span class="w"> </span><span class="err">−</span><span class="na">⍥</span><span class="p">(</span><span class="m">1</span><span class="nf">⎕DT</span><span class="o">⊂</span><span class="p">)</span><span class="w"> </span><span class="m">2023</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Perform Calculations</strong>: Using LCM and modulus, we can derive how many days away the next double critical day is from the specified date.</p></li>
+<li><p><strong>Convert Back to Date Format</strong>: Finally, we will negate or perform necessary operations to find the next critical day and convert it back into a standard date format.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">nextDate</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">3</span><span class="o">↑</span><span class="na">∘</span><span class="o">⊃</span><span class="m">¯1</span><span class="nf">⎕DT</span><span class="o">⊢+</span><span class="nv">p</span><span class="o">⌊</span><span class="na">.</span><span class="o">|-</span><span class="p">)</span><span class="w"> </span><span class="na">⍥</span><span class="p">(</span><span class="m">1</span><span class="nf">⎕DT</span><span class="o">⊂</span><span class="p">)</span><span class="w"> </span><span class="m">2023</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In summary, by following these cycles and computations, we can efficiently determine the next double critical day based on any initial date. The process primarily hinges on understanding cycles, the use of LCM, and mathematical date manipulations. This fascinating concept intertwines mathematics with calendar events, providing insightful patterns based on individual life milestones.</p>
+<p>Thank you for exploring this topic with us!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2023"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-concept">Understanding the Concept</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-determine-the-next-double-critical-day">Steps to Determine the Next Double Critical Day</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-the-solution">Programming the Solution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-example">Implementation Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

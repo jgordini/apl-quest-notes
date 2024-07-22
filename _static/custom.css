@@ -1,0 +1,9 @@
+/* Custom CSS for APL fonts */
+code, pre {
+  font-family: "APL385 Unicode", "Fira Code", "Courier New", monospace;
+}
+
+.apl-code {
+  font-family: "APL385 Unicode", monospace;
+}
+

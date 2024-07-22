@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>APL Quest: Solving Linear Equations &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/Solution-Salvation-APLQuest-2013-10';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2013/Solution-Salvation-APLQuest-2013-10.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>APL Quest: Solving Linear Equations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-equation-system">Setting Up the Equation System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-missing-values">Finding the Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-techniques">Iterative Techniques</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-an-initial-guess">Finding an Initial Guess</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apl-quest-solving-linear-equations">
+<h1>APL Quest: Solving Linear Equations<a class="headerlink" href="#apl-quest-solving-linear-equations" title="Link to this heading">#</a></h1>
+<p>Hello and welcome to this APL quest! In today’s episode, we’re tackling the last problem from the 2013 round of the APL problem-solving competition. The objective is straightforward: we are given a set of linear equations and their corresponding results, and we need to find the values of the variables.</p>
+<section id="setting-up-the-equation-system">
+<h2>Setting Up the Equation System<a class="headerlink" href="#setting-up-the-equation-system" title="Link to this heading">#</a></h2>
+<p>Let’s start by creating a simple example of a system of equations with three variables:</p>
+<ul class="simple">
+<li><p>(4x + 1y + 1z = 2)</p></li>
+<li><p>(2x + 2y + 2z = 6)</p></li>
+<li><p>(6x + 3y + 1z = 4)</p></li>
+</ul>
+<p>A potential solution for this system could be:</p>
+<ul class="simple">
+<li><p>(x = -1)</p></li>
+<li><p>(y = 3)</p></li>
+<li><p>(z = 1)</p></li>
+</ul>
+<p>We can verify this by substituting the values back into the equations and calculating the results.</p>
+<p>The equations simplify to:</p>
+<ul class="simple">
+<li><p>(4 \times (-1) + 1 \times 3 + 1 \times 1 = 2)</p></li>
+<li><p>(2 \times (-1) + 2 \times 3 + 2 \times 1 = 6)</p></li>
+<li><p>(6 \times (-1) + 3 \times 3 + 1 \times 1 = 4)</p></li>
+</ul>
+<p>Indeed, these yield the correct outcomes.</p>
+</section>
+<section id="finding-the-missing-values">
+<h2>Finding the Missing Values<a class="headerlink" href="#finding-the-missing-values" title="Link to this heading">#</a></h2>
+<p>The next step is to compute the values of (x, y,) and (z) without knowing them a priori. We know the results (2, 6,) and (4), and we can express our goal as finding a vector (v) such that:</p>
+<p><span class="math notranslate nohighlight">\([ M \cdot v = R ]\)</span></p>
+<p>Where (M) represents the matrix of coefficients and (R) represents our results.</p>
+<p>In APL, we can represent the system of equations and the results as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">M</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="o">⍴</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1">⍝ Coefficient matrix</span>
+<span class="nv">r</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">4</span><span class="w">                  </span><span class="c1">⍝ Results vector</span>
+<span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span><span class="w">                  </span><span class="c1">⍝ Initial guess for the solution</span>
+</pre></div>
+</div>
+<p>We can also check if (v) satisfies the equation with the following expressions:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="nv">r</span><span class="w"> </span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍣</span><span class="m">¯1</span><span class="na">⍨</span><span class="w"> </span><span class="nv">M</span><span class="w">           </span><span class="c1">⍝ Iteratively solve for v</span>
+<span class="nv">v</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="nv">r</span><span class="w"> </span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍨∘</span><span class="o">⌹</span><span class="w"> </span><span class="nv">M</span><span class="w">           </span><span class="c1">⍝ Check if v satisfies the system</span>
+<span class="nv">v</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="nv">r</span><span class="w"> </span><span class="o">⌹</span><span class="w"> </span><span class="nv">M</span><span class="w">                  </span><span class="c1">⍝ Another method to verify</span>
+</pre></div>
+</div>
+<p>These commands utilize APL’s powerful array manipulation capabilities to find (v).</p>
+</section>
+<section id="iterative-techniques">
+<h2>Iterative Techniques<a class="headerlink" href="#iterative-techniques" title="Link to this heading">#</a></h2>
+<p>While APL makes solving this problem elegant, we can also explore iterative methods to approximate the inverse of a matrix. One such technique is known as the <strong>Hotelling-Bodewig Scheme</strong>. The iterative relationship looks like this:</p>
+<p><span class="math notranslate nohighlight">\([ v_{n+1} = v_n \cdot (2I - M \cdot v_n) ]\)</span></p>
+<p>Where:</p>
+<ul class="simple">
+<li><p>(I) is the identity matrix</p></li>
+<li><p>(M) is our original matrix of coefficients</p></li>
+</ul>
+<p>Here is how we can define the Hotelling-Bodewig scheme in APL:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Hotelling-Bodewig iterations</span>
+<span class="nv">v</span><span class="err">ᵢ₊₁</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">v</span><span class="err">ᵢ</span><span class="p">(</span><span class="m">2</span><span class="nv">I</span><span class="err">−</span><span class="nv">M</span><span class="w"> </span><span class="nv">v</span><span class="err">ᵢ</span><span class="p">)</span>
+<span class="nv">v</span><span class="err">ᵢ₊₁</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="nv">v</span><span class="err">ᵢ−</span><span class="nv">v</span><span class="err">ᵢ</span><span class="w"> </span><span class="nv">A</span><span class="w"> </span><span class="nv">v</span><span class="err">ᵢ</span>
+<span class="nv">v</span><span class="err">ᵢ₊₁</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">v</span><span class="err">ᵢ</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">v</span><span class="err">ᵢ</span><span class="w"> </span><span class="err">−</span><span class="w"> </span><span class="nv">v</span><span class="err">ᵢ</span><span class="w"> </span><span class="nv">A</span><span class="w"> </span><span class="nv">v</span><span class="err">ᵢ</span>
+</pre></div>
+</div>
+<p>To implement this in APL, we would set up a function that computes the next estimate until we reach a stable solution, using something like the following notation:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nv">r</span><span class="w"> </span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍨</span><span class="w"> </span><span class="na">∘</span><span class="p">(</span><span class="o">⊢</span><span class="p">(</span><span class="o">⊢</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">⊢</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">⊢</span><span class="w"> </span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="w"> </span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="p">)</span><span class="na">⍣</span><span class="o">≡</span><span class="w"> </span><span class="o">⍉</span><span class="w"> </span><span class="o">÷,+</span><span class="na">.</span><span class="o">×,</span><span class="p">)</span><span class="w"> </span><span class="nv">M</span><span class="kt">}</span><span class="na">⍤</span><span class="m">0</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="m">11</span><span class="w">   </span><span class="c1">⍝ show steps</span>
+</pre></div>
+</div>
+</section>
+<section id="finding-an-initial-guess">
+<h2>Finding an Initial Guess<a class="headerlink" href="#finding-an-initial-guess" title="Link to this heading">#</a></h2>
+<p>An important aspect of the iterative method is selecting a good initial guess for the values of (x, y,) and (z). Recently, a method proposed by Solemani suggests that the initial guess can be obtained using:</p>
+<p>[ \frac{M^T}{\text{trace}(M \cdot M^T)} ]</p>
+<p>In APL, we can calculate this with the following code:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">/</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="o">⍉+</span><span class="na">.</span><span class="o">×</span><span class="na">∘</span><span class="o">⍉</span><span class="na">⍨</span><span class="w"> </span><span class="nv">M</span><span class="w">          </span><span class="c1">⍝ Calculate the trace of MMᵀ</span>
+</pre></div>
+</div>
+<p>This gives us a systematic approach to finding a starting point that can be utilized within our iterative procedure.</p>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>Through APL’s powerful capabilities and mathematical techniques, we explored various methods to solve systems of linear equations. We verified results through substitution, applied matrix inverses, and iterated toward solutions with the following Gauss-Jordan elimination function:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">GaussJordan</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nf">⎕IO</span><span class="w"> </span><span class="nf">⎕ML</span><span class="kd">←</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w">              </span><span class="c1">⍝ Gauss-Jordan elimination</span>
+<span class="w">    </span><span class="nv">Elim</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w">                           </span><span class="c1">⍝ elimination of row/col ⍺</span>
+<span class="w">        </span><span class="nv">p</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍺</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⍳⌈</span><span class="na">/</span><span class="bp">⍵</span><span class="kt">}</span><span class="o">|</span><span class="bp">⍺</span><span class="o">↓</span><span class="bp">⍵</span><span class="sr">[;</span><span class="bp">⍺</span><span class="sr">]</span><span class="w">       </span><span class="c1">⍝ index of pivot row</span>
+<span class="w">        </span><span class="nv">swap</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⊖</span><span class="na">@</span><span class="bp">⍺</span><span class="w"> </span><span class="nv">p</span><span class="o">⊢</span><span class="bp">⍵</span><span class="w">                 </span><span class="c1">⍝ swap ⍺th and pth rows</span>
+<span class="w">        </span><span class="nv">mat</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">swap</span><span class="sr">[</span><span class="bp">⍺</span><span class="sr">;</span><span class="bp">⍺</span><span class="sr">]</span><span class="o">÷</span><span class="na">⍨@</span><span class="bp">⍺</span><span class="o">⊢</span><span class="nv">swap</span><span class="w">      </span><span class="c1">⍝ col diag red to 1</span>
+<span class="w">        </span><span class="nv">mat</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="nv">mat</span><span class="sr">[;</span><span class="bp">⍺</span><span class="sr">]</span><span class="o">×</span><span class="bp">⍺</span><span class="o">≠⍳≢</span><span class="bp">⍵</span><span class="p">)</span><span class="na">∘.</span><span class="o">×</span><span class="nv">mat</span><span class="sr">[</span><span class="bp">⍺</span><span class="sr">;]</span><span class="w"> </span><span class="c1">⍝ col off-diag red to 0</span>
+<span class="w">    </span><span class="kt">}</span>
+<span class="w">    </span><span class="p">(</span><span class="o">⍴</span><span class="bp">⍺</span><span class="p">)</span><span class="o">⍴</span><span class="p">(</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="o">×⍴</span><span class="bp">⍵</span><span class="p">)</span><span class="o">↓↑</span><span class="nv">Elim</span><span class="na">/</span><span class="p">(</span><span class="o">⌽⍳⌊</span><span class="na">/</span><span class="o">⍴</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,⊂</span><span class="bp">⍵</span><span class="o">,</span><span class="bp">⍺</span><span class="w"> </span><span class="c1">⍝ Elim/ … 2 1 0 (⍵,⍺)</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+<p>This concludes the first year of APL problem-solving competitions. We look forward to tackling the problems from 2014 in upcoming episodes. Thank you for joining us!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2013"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-equation-system">Setting Up the Equation System</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-missing-values">Finding the Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterative-techniques">Iterative Techniques</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-an-initial-guess">Finding an Initial Guess</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

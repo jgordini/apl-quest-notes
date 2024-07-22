@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Creating a Cover for the Dyadic Iota in APL &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2021/Index-Of-Modified-APLQuest-2021-2';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2021/Index-Of-Modified-APLQuest-2021-2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Creating a Cover for the Dyadic Iota in APL</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">The Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-default-behavior">Understanding the Default Behavior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approaches-to-change-the-behavior">Approaches to Change the Behavior</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approach-1-conditional-mapping">Approach 1: Conditional Mapping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#better-conditional-handling">Better Conditional Handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-time-index-function">One-time Index Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing-with-modulus">Post-processing with Modulus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explicit-function-definition">Explicit Function Definition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="creating-a-cover-for-the-dyadic-iota-in-apl">
+<h1>Creating a Cover for the Dyadic Iota in APL<a class="headerlink" href="#creating-a-cover-for-the-dyadic-iota-in-apl" title="Link to this heading">#</a></h1>
+<p>In this article, we will explore how to create a cover for the Dyadic Iota (or index of primitive) in APL (A Programming Language). Our implementation will behave exactly like the original, with one important exception: when using  Dyadic iota  to look up items from the right argument in the collection (the left argument), and the item isn’t found, the next index after the last position will be returned to indicate that the item is not found.</p>
+<p>This behavior is particularly useful because it allows us to take indices where items are found and use those indices to map into another substitution collection. This enables us to perform a mapping from one thing to another and add an additional element at the end, which can be used to map all missing elements.</p>
+<section id="the-problem">
+<h2>The Problem<a class="headerlink" href="#the-problem" title="Link to this heading">#</a></h2>
+<p>The challenge we face is to change the behavior of the original dyadic iota Instead of returning the next index after the last element, we want it to return zero. This makes sense in a one-based indexing context (which is the default in APL), where zero indicates an element before the first one.</p>
+</section>
+<section id="understanding-the-default-behavior">
+<h2>Understanding the Default Behavior<a class="headerlink" href="#understanding-the-default-behavior" title="Link to this heading">#</a></h2>
+<p>Let’s first analyze the normal behavior of dyadic iota.  When we have a character vector:</p>
+<ul class="simple">
+<li><p>If we look for ‘D’, it is found at position 3.</p></li>
+<li><p>When we look for ‘Y’, there are no matches, and the indication is position 7.</p></li>
+<li><p>Looking for ‘A’ returns position 4.</p></li>
+</ul>
+<p>We can illustrate this with the following APL expression:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;DYALOG&#39;</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="s1">&#39;APL&#39;</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ 3 7 4
+</pre></div>
+</div>
+</section>
+<section id="approaches-to-change-the-behavior">
+<h2>Approaches to Change the Behavior<a class="headerlink" href="#approaches-to-change-the-behavior" title="Link to this heading">#</a></h2>
+<p>There are different approaches to achieve the desired behavior.</p>
+<section id="approach-1-conditional-mapping">
+<h3>Approach 1: Conditional Mapping<a class="headerlink" href="#approach-1-conditional-mapping" title="Link to this heading">#</a></h3>
+<p>One way is to check whether the index obtained is larger than the length of the left argument. Here’s how we can implement this:</p>
+<ol class="arabic simple">
+<li><p>Check the index against the length of the left argument.</p></li>
+<li><p>If the index is greater than the length, map it to zero.</p></li>
+<li><p>We can achieve this using multiplication with a condition.</p></li>
+</ol>
+<p>However, multiplying directly can yield incorrect results, as it would apply to existing indices. To illustrate this:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;DYALOG&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">⍳&gt;≢</span><span class="na">⍤</span><span class="o">⊣</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;APL&#39;</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ 0 1 0
+</pre></div>
+</div>
+</section>
+<section id="better-conditional-handling">
+<h3>Better Conditional Handling<a class="headerlink" href="#better-conditional-handling" title="Link to this heading">#</a></h3>
+<p>Instead of checking if the index is greater than the length, we can invert this condition to check if it is less than or equal to the length. This allows us to multiply the indices, binding them correctly.</p>
+<p>While this approach works, it finds indices twice, resulting in inefficiency.</p>
+</section>
+<section id="one-time-index-function">
+<h3>One-time Index Function<a class="headerlink" href="#one-time-index-function" title="Link to this heading">#</a></h3>
+<p>We can optimize the function by passing the indices and the length of the left argument directly to a new function. This function does not need to access the original arguments – it only relies on the data provided.</p>
+</section>
+<section id="post-processing-with-modulus">
+<h3>Post-processing with Modulus<a class="headerlink" href="#post-processing-with-modulus" title="Link to this heading">#</a></h3>
+<p>Another way to tweak the behavior is by using a post-processing operation on the indices. We will wrap around to zero when we hit the limit, which can be effectively done using the modulus operation.</p>
+<p>The expression could be structured as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">indices</span><span class="w"> </span><span class="nv">mod</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">left</span><span class="w"> </span><span class="nv">argument</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This format ensures we wrap to zero correctly.</p>
+<p>Alternatively, we could use the following expression for clarity:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;DYALOG&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">⍳|</span><span class="na">⍨</span><span class="m">1</span><span class="o">+≢</span><span class="na">⍤</span><span class="o">⊣</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;APL&#39;</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ 3 0 4
+</pre></div>
+</div>
+<p>Additionally, we could eliminate parentheses by switching the arguments in the modulus function, making the expression a bit cleaner.</p>
+</section>
+<section id="explicit-function-definition">
+<h3>Explicit Function Definition<a class="headerlink" href="#explicit-function-definition" title="Link to this heading">#</a></h3>
+<p>Finally, we can define an explicit function for clarity and readability. This could help streamline the implementation while making it more understandable.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;DYALOG&#39;</span><span class="w"> </span><span class="p">(</span><span class="kt">{</span><span class="m">1</span><span class="o">+≢</span><span class="bp">⍺</span><span class="kt">}</span><span class="o">|⍳</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;APL&#39;</span>
+</pre></div>
+</div>
+<p>Result:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>⍝ 3 0 4
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>We have explored several effective solutions to modify the behavior of the DIIC Iota in APL to meet specific requirements. Each approach has its own merits, from conditionally mapping indices to leveraging modulus arithmetic for wrap-around functionality. Thank you for following along in this exploration of APL indexing.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2021"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">The Problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-default-behavior">Understanding the Default Behavior</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approaches-to-change-the-behavior">Approaches to Change the Behavior</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approach-1-conditional-mapping">Approach 1: Conditional Mapping</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#better-conditional-handling">Better Conditional Handling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-time-index-function">One-time Index Function</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing-with-modulus">Post-processing with Modulus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explicit-function-definition">Explicit Function Definition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

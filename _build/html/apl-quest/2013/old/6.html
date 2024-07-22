@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Home on the range &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/old/6';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/apl-quest/2013/old/6.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Home on the range</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="home-on-the-range">
+<h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P6_Home_On_The_Range">Home on the range</a><a class="headerlink" href="#home-on-the-range" title="Link to this heading">#</a></h1>
+<p><strong>Problem:</strong> Write a dfn which returns the magnitude of the range (i.e. the difference between the lowest and highest values) of a numeric array.</p>
+<p><strong>Video:</strong> <a class="reference external" href="https://youtu.be/36HlHsEjUIQ">https://youtu.be/36HlHsEjUIQ</a>
+<strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2013/6.apl">abrudz/apl_quest</a></p>
+<p><strong>Example Solutions:</strong></p>
+<p>Non empty Vectors</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="w">	</span><span class="nv">V</span><span class="w"> </span><span class="kd">←</span><span class="m">¯1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">6</span>
+<span class="w">	</span><span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="c1">⍝ Tacit - ravel the array and the take the difference of the max and min {(⌈/,⍵)-(⌊/,⍵)}</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/∘</span><span class="o">,</span><span class="na">∘.</span><span class="o">-</span><span class="na">⍨</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ {(⌈/)(,(⍵(∘.-)⍵))}</span>
+</pre></div>
+</div>
+<p>A</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">,</span></code> We <a class="reference external" href="https://aplwiki.com/wiki/Ravel">Ravel</a> <code class="docutils literal notranslate"><span class="pre">,</span></code> the array first to convert it into a <a class="reference external" href="https://aplwiki.com/wiki/Vector">vector</a>  so that it works on a <a class="reference external" href="https://aplwiki.com/wiki/Rank">Matrix</a>, a two dimensional array.</p></li>
+<li><p>Then we apply a <a class="reference external" href="https://aplwiki.com/wiki/Train#3-trains">fork</a> The two outer functions are applied first, and their results are used as arguments to the middle function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⌈/-⌊/</span></code> The two outer arguments are <a class="reference external" href="https://aplwiki.com/wiki/Maximum">Maximum Reduce</a> <code class="docutils literal notranslate"><span class="pre">⌈/</span></code>  returns the largest element of a vector and <a class="reference external" href="https://aplwiki.com/wiki/Minimum">Minimum Reduce</a> <code class="docutils literal notranslate"><span class="pre">⌊/</span></code> returns the smallest element of a vector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-</span></code> The middle function is <a class="reference external" href="https://aplwiki.com/wiki/Subtract">Subtract</a>.</p></li>
+</ol>
+<p>B</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">∘.-</span></code> Using our vector we create a Subtraction Table (<a class="reference external" href="https://aplwiki.com/wiki/Outer_Product">Outer Product</a> <code class="docutils literal notranslate"><span class="pre">∘.</span></code>). This will give us all the possible differences between values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⌈/,⍵∘.-⍵</span></code> We then ravel this and <a class="reference external" href="https://aplwiki.com/wiki/Maximum">Maximum Reduce</a> <code class="docutils literal notranslate"><span class="pre">⌈/,</span></code> returning the largest value in our table.</p></li>
+<li><p>To make this <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit</a> we <a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a> <code class="docutils literal notranslate"><span class="pre">∘</span></code> the Maximum Reduce with the Ravel <code class="docutils literal notranslate"><span class="pre">⌈∘,</span></code> and use <a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">∘.-⍨</span></code>  to put our argument on either side of the Outer Product.</p></li>
+</ol>
+<p>Empty Arrays
+Comments</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌈</span><span class="na">/</span><span class="no">⍬</span><span class="w"> </span><span class="c1">⍝ Maximum of empty vector is smallest representable number. Minimum reduction produces the opposite value.</span>
+<span class="m">1</span><span class="o">⌈≢</span><span class="w"> </span><span class="c1">⍝ is the length larger than one. Using this as a check to make sure it is not an empty array. Taking this result returns the entire array or zero if empty. </span>
+</pre></div>
+</div>
+<p>Examples</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="w"> </span><span class="kd">←</span><span class="kt">{</span><span class="m">0</span><span class="o">∊⍴</span><span class="bp">⍵:</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ If zero is a member of the shape of the array return zero. Otherwise find the range.</span>
+<span class="nv">D</span><span class="w"> </span><span class="kd">←</span><span class="p">(</span><span class="o">⊃</span><span class="na">⍤</span><span class="o">⌽-⊃</span><span class="p">)</span><span class="kt">{</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="na">⍤</span><span class="o">,</span><span class="w"> </span><span class="c1">⍝ {(⊃(⌽⍵))-(⊃⍵)} ⍵ is the sorted array. </span>
+<span class="nv">E</span><span class="w"> </span><span class="kd">←</span><span class="p">((</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">⊢↑</span><span class="na">⍨</span><span class="m">1</span><span class="o">⌈≢</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="c1">⍝ {(1⌈(≢(,⍵)))↑(,⍵)}</span>
+</pre></div>
+</div>
+<p>C</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Membership">Membership</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> - tests if each of the elements of the left <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> appears as an element of the right argument.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> - returns the <em>shape</em> of its argument array</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0∊⍴⍵</span></code> So we are testing if 0 is a member of the shape of the array <code class="docutils literal notranslate"><span class="pre">⍵</span></code>.</p></li>
+<li><p>The <a class="reference external" href="https://aplwiki.com/wiki/Dfn#Guards">Guard</a> :  Returns 0 if the left argument is true.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Statement_separator">Diamond</a> ⋄ - Statement Seperator divides the two statements. The left one (with the guard) is evaluated first.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⌈/-⌊/),⍵</span></code> Once we have confirmed that the vector is not an empty array we then move on to Solution A. It’s details are above.</p></li>
+</ol>
+<p>D</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵[⍋⍵]</span></code> Uses <a class="reference external" href="https://aplwiki.com/wiki/Grade">Grade Up</a> <code class="docutils literal notranslate"><span class="pre">⍋</span></code> to generate an index from lowest to highest. We can then <a class="reference external" href="https://xpqz.github.io/learnapl/manip.html?highlight=sort#grade-up-down">Sort</a> <code class="docutils literal notranslate"><span class="pre">data[⍋data]</span></code> the array using that <a class="reference external" href="https://xpqz.github.io/learnapl/indexing.html#bracket-indexing">index</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⊃⍤⌽-⊃)</span></code> Now that it’s been sorted we can subtract the first element from the last. Here we use <a class="reference external" href="https://aplwiki.com/wiki/First">First</a> <code class="docutils literal notranslate"><span class="pre">⊃</span></code>  to grab the first element. We then use <a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a> <code class="docutils literal notranslate"><span class="pre">⍤</span></code>  to apply <a class="reference external" href="https://aplwiki.com/wiki/First">First</a> <code class="docutils literal notranslate"><span class="pre">⊃</span></code> to the result of the <a class="reference external" href="https://aplwiki.com/wiki/Rotate">Rotate</a> <code class="docutils literal notranslate"><span class="pre">⌽</span></code>  See the <a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a> in the comment for more details.</p></li>
+</ol>
+<p>E</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1⌈≢,</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> <code class="docutils literal notranslate"><span class="pre">≢</span></code>  the <a class="reference external" href="https://aplwiki.com/wiki/Ravel">Raveled</a> <code class="docutils literal notranslate"><span class="pre">,</span></code> array. Then do a <a class="reference external" href="https://aplwiki.com/wiki/Maximum">Maximum</a> <code class="docutils literal notranslate"><span class="pre">⌈</span></code>  with 1 as the left argument. If the array is length zero we get 1. Otherwise we get the tally of the array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⊢↑⍨</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Take">Take</a> <code class="docutils literal notranslate"><span class="pre">↑</span></code> the result. If the array is empty it <a class="reference external" href="https://aplwiki.com/wiki/Take#Overtaking">Overtakes</a> <code class="docutils literal notranslate"><span class="pre">↑</span></code>  (pads with a zero) otherwise it just returns the array. We use <a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity </a><code class="docutils literal notranslate"><span class="pre">⊢</span></code> and <a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> to make the solution Tacit. See the Dfn in the comments.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⌈/-⌊/)</span></code> We then move on to Solution A passing it the result of take. It’s details are above.</p></li>
+</ol>
+<p>Using Reshape</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">,,</span><span class="w"> </span><span class="c1">⍝ Catenate the ravel</span>
+<span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">⊢⍴</span><span class="na">⍨</span><span class="m">1</span><span class="o">⌈×</span><span class="na">/⍤</span><span class="o">⍴</span><span class="w"> </span><span class="c1">⍝ {((⌈/)((1⌈((×/)(⍴⍵)))⍴⍵))-((⌊/)((1⌈((×/)(⍴⍵)))⍴⍵))}</span>
+<span class="nv">G</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,,</span><span class="m">0</span><span class="na">/⍨</span><span class="m">0</span><span class="o">∊⍴</span><span class="w"> </span><span class="c1">⍝ {((⌈/)((,⍵),((0∊(⍴⍵))/0)))-((⌊/)((,⍵),((0∊(⍴⍵))/0)))}</span>
+<span class="nv">H</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,,</span><span class="m">0</span><span class="o">∩⍴</span><span class="w"> </span><span class="c1">⍝ {((⌈/)((,⍵),(0∩(⍴⍵))))-((⌊/)((,⍵),(0∩(⍴⍵))))}</span>
+</pre></div>
+</div>
+<p>F</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1⌈×/⍤⍴</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> returns the <em>shape</em> of its argument array. <a class="reference external" href="https://aplwiki.com/wiki/Reduce">Times Reduction</a>  <code class="docutils literal notranslate"><span class="pre">×/</span></code>  <a class="reference external" href="https://aplwiki.com/wiki/Maximum">Maximum</a> <code class="docutils literal notranslate"><span class="pre">⌈</span></code>  with 1 as the left argument. If the array is length zero we get 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⊢⍴⍨</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> returns the <em>shape</em> of its argument array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⌈/-⌊/)</span></code> We then move on to Solution A passing it the result of Shape. It’s details are above.</p></li>
+<li><p>We use <a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity </a><code class="docutils literal notranslate"><span class="pre">⊢</span></code>  <a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> and <a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a> <code class="docutils literal notranslate"><span class="pre">⍤</span></code> to make the solution Tacit. See the Dfn in the comments.
+G</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0/⍨0∊⍴</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> returns a <a class="reference external" href="https://aplwiki.com/wiki/Vector" title="Vector">vector</a> of lengths of the array along each <a class="reference external" href="https://aplwiki.com/wiki/Axis" title="Axis">axis</a>.</p></li>
+<li><p>[Membership](<a class="reference external" href="https://aplwiki.com/wiki/Membership">Membership - APL Wiki</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> Tests if each of the elements of the left argument appears in the right argument.  If 0 appears in the shape of the array this returns a 1 for true.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Replicate">Replicate </a> <code class="docutils literal notranslate"><span class="pre">/</span></code> will then add a zero 1 time. If membership is false it returns a 0 so replicate does not add a zero.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">,,0/</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Catenate">Catenate</a> <code class="docutils literal notranslate"><span class="pre">,</span></code>  add the zero (or nothing) to the <a class="reference external" href="https://aplwiki.com/wiki/Ravel">Ravel</a> <code class="docutils literal notranslate"><span class="pre">,</span></code>  of the array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⌈/-⌊/)</span></code> We then move on to Solution A passing it the result of Shape. It’s details are above.</p></li>
+</ol>
+<p>H</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0∩⍴</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Intersection">Intersection</a> <code class="docutils literal notranslate"><span class="pre">∩</span></code> -For each element to the left, keep it if it’s also in the right. So if there is a zero in the <a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> we keep it and Catentate it to ravel of the array.</p></li>
+</ol>
+<p>Nested Arrays</p>
+<p>Examples</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">((</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">⊢↑</span><span class="na">⍨</span><span class="m">1</span><span class="o">⌈≢</span><span class="w"> </span><span class="p">)</span><span class="o">∊</span><span class="w"> </span><span class="c1">⍝ adds enlist to solution E</span>
+<span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">((</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">⊢,</span><span class="m">0</span><span class="na">/⍨</span><span class="no">⍬</span><span class="o">≡⊢</span><span class="p">)</span><span class="o">∊</span><span class="w"> </span><span class="c1">⍝ Checks if zero matches the Identity</span>
+<span class="nv">K</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">((</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">⊢,</span><span class="m">0</span><span class="o">∩⍴</span><span class="p">)</span><span class="o">∊</span><span class="w"> </span><span class="c1">⍝ adds enlist to solution H</span>
+</pre></div>
+</div>
+<p>I</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/enlist">Enlist</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> - Flattens over all levels of nesting</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/match">Match</a> <code class="docutils literal notranslate"><span class="pre">≡</span></code> - indicates whether the left and right <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> arrays are identical</p></li>
+</ol>
+<p><strong>Comment:</strong></p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌈</span><span class="na">/</span><span class="no">⍬</span><span class="w"> </span><span class="c1">⍝ Maximum of empty vector is smallest representable number. Minimum reduction produces the opposite value.</span>
+<span class="o">⊃</span><span class="na">⍤</span><span class="o">⌽</span><span class="w"> </span><span class="c1">⍝ Choose the last element of a vector</span>
+<span class="m">1</span><span class="o">⌈≢</span><span class="w"> </span><span class="c1">⍝ is the length larger than one. Using this as a check to make sure it is not an empty array. Taking this result returns the entire array or zero if empty. </span>
+<span class="o">,,</span><span class="w"> </span><span class="c1">⍝ Catenate the ravel</span>
+
+<span class="w">	</span><span class="nv">I</span><span class="kd">←</span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="c1">⍝ Tacit - ravel the array and the take the difference of the max and min</span>
+<span class="w">	</span><span class="nv">J</span><span class="kd">←</span><span class="kt">{</span><span class="m">0</span><span class="o">∊⍴</span><span class="bp">⍵:</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ If zero is a member of the shape of the array return zero. Otherwise find the range. </span>
+<span class="w">	</span><span class="nv">K</span><span class="kd">←</span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,,</span><span class="m">42</span><span class="na">/⍨</span><span class="m">0</span><span class="o">∊⍴</span><span class="w"> </span><span class="c1">⍝ If zero is a member of the shape of the array return 42. Otherwise return nothing. Catenate the result with the ravel of the array (See I). Take the difference of the max and min.  </span>
+</pre></div>
+</div>
+<p><strong>Glyphs Used:</strong>
+<a class="reference external" href="https://aplwiki.com/wiki/Maximum">Maximum Reduce</a> <code class="docutils literal notranslate"><span class="pre">⌈/</span></code> - returns the largest element of a <a class="reference external" href="https://aplwiki.com/wiki/Vector" title="Vector">vector</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Minimum">Minimum Reduce</a> <code class="docutils literal notranslate"><span class="pre">⌊/</span></code> - returns the smallest element of a <a class="reference external" href="https://aplwiki.com/wiki/Vector" title="Vector">vector</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Ravel">Ravel</a> <code class="docutils literal notranslate"><span class="pre">,</span></code> - an array’s ravel is the <a class="reference external" href="https://aplwiki.com/wiki/Vector" title="Vector">vector</a> containing all its <a class="reference external" href="https://aplwiki.com/wiki/Elements" title="Elements">elements</a> in <a class="reference external" href="https://aplwiki.com/wiki/Ravel_order" title="Ravel order">ravel order</a>.
+<a class="reference external" href="https://aplwiki.com/wiki/over">Over</a> <code class="docutils literal notranslate"><span class="pre">⍥</span></code> - both arguments are pre-processed using the right operand
+<a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code>  - aka Selfie or Swap
+<a class="reference external" href="https://aplwiki.com/wiki/Membership">Membership</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> - tests if each of the elements of the left <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> appears as an element of the right argument.
+<a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> - returns the <em>shape</em> of its argument array
+<a class="reference external" href="https://aplwiki.com/wiki/Dfn#Guards">Guards</a> : - Return result
+<a class="reference external" href="https://aplwiki.com/wiki/Statement_separator">Diamond</a> ⋄ - Statement Seperator
+<a class="reference external" href="https://aplwiki.com/wiki/Each">Each</a> <code class="docutils literal notranslate"><span class="pre">¨</span></code> - Apply to each element
+<a class="reference external" href="https://aplwiki.com/wiki/Grade">Grade </a> <code class="docutils literal notranslate"><span class="pre">⍋</span> <span class="pre">⍒</span></code>  - ⍋ ‘foo’ ‘bar’ ‘baz’  - <strong>Example</strong> resulting in 2 3 1 means( the second item is first, The 3rd item is second, The first item is third.) This can then be used to index into the array and alphabeticlaly Sort it.
+<a class="reference external" href="https://mastering.dyalog.com/Nested-Arrays-Continued.html?highlight=pick#pick">Pick</a> <code class="docutils literal notranslate"><span class="pre">⊃</span></code> - Left argument is path, right argument is data.
+<a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a> <code class="docutils literal notranslate"><span class="pre">⍤</span></code> - Uses the left argument to process the result of the right.
+<a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> <code class="docutils literal notranslate"><span class="pre">≢</span></code> - Length of the array
+<a class="reference external" href="https://aplwiki.com/wiki/Take">Take</a> <code class="docutils literal notranslate"><span class="pre">↑</span></code> - used to get the first few, or last few, elements of a vector
+<a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity </a><code class="docutils literal notranslate"><span class="pre">⊢</span></code> functions and operators rather than names are used to direct the flow of arguments
+<a class="reference external" href="https://xpqz.github.io/cultivations/Functions7.html?#replicate">Replicate</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> - copies each <a class="reference external" href="https://aplwiki.com/wiki/Element" title="Element">element</a> of the right <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> a given number of times
+<a class="reference external" href="https://aplwiki.com/wiki/Catenate">Catenate</a> <code class="docutils literal notranslate"><span class="pre">,</span></code> - combines two arrays along a shared <a class="reference external" href="https://aplwiki.com/wiki/Axis" title="Axis">axis</a>, left to right
+<a class="reference external" href="https://aplwiki.com/wiki/Intersection">Intersection</a> <code class="docutils literal notranslate"><span class="pre">∩</span></code> - removes elements from the left which are not present in the right. Duplicates in the right do not matter.
+<a class="reference external" href="https://aplwiki.com/wiki/enlist">Enlist</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> - Flattens over all levels of nesting
+<a class="reference external" href="https://aplwiki.com/wiki/match">Match</a> <code class="docutils literal notranslate"><span class="pre">≡</span></code> - indicates whether the left and right <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> arrays are identical</p>
+<p><strong>Concepts Used:</strong>
+<a class="reference external" href="https://aplwiki.com/wiki/Ravel_order">Ravel Order</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a>
+<a class="reference external" href="https://aplwiki.com/wiki/Outer_Product">Outer Product</a> <code class="docutils literal notranslate"><span class="pre">∘.</span></code>
+<a class="reference external" href="https://xpqz.github.io/learnapl/manip.html?highlight=sort#grade-up-down">Sort</a> <code class="docutils literal notranslate"><span class="pre">data[⍋data]</span></code>
+<a class="reference external" href="https://aplwiki.com/wiki/Take#Overtaking">Overtake</a> <code class="docutils literal notranslate"><span class="pre">↑</span></code> - A length larger than the argument length causes <a class="reference external" href="https://aplwiki.com/wiki/Fill_element" title="Fill element">fills</a> to be inserted
+<a class="reference external" href="https://aplwiki.com/wiki/Train#3-trains">Fork</a></p>
+<p><strong>Transcript:</strong></p>
+<p>Hi and welcome to the APL Quest-C APL Wiki. Today’s quest is the sixth problem from the 2013 round of the APL Problem Solving Competition. It’s a very simple problem of just finding out the numeric range of an array, that is, the highest value minus the lowest value. But we’ll see that there is a special edge case that we need to take action for, and we’ll look into some generalization as well.</p>
+<p>Without further ado, let’s generate some data we can work on. Here’s a numeric vector, and the highest value is the maximum reduction of that vector, and the lowest value is the minimum reduction over the vector. Then we can take those two values and subtract the smaller from the larger, and we get the full numeric range. So that’s really all there is to the basic problem.</p>
+<p>Let’s put this into a function, and we can write the max reduction of omega minus the min reduction of omega. There’s a redundant parenthesis here, but that’s mostly just for clarity and to make the expression symmetric. We can try this on v, and that works great.</p>
+<p>Now, there are a couple of problems with this. One is that it has to work on any array. So let’s make a matrix which is two rows and four columns containing the same numbers as v. It looks like this. Now if we were to apply our function here on m instead, then it doesn’t work because it gives us the numeric range for every row. We want the numeric range for the entire array, and we can solve that by raveling the array first. So we revel it here, remember it here, and this gives us the full range as we can see here. We are reveling twice, which is quite unnecessary, and we can actually in a neat way break this reveling out of the parenthesis.</p>
+<p>So let’s get rid of the ravel from here and the rev from here, and we can actually switch to a tested form quite easily. So we just say the max minus the min off the ravel of the array. Here we go.</p>
+<p>We can get this even further because now we can observe that we actually have a full tested function and a top simply wrapped in a different wrapper so we can completely get rid of that syntax and it still works. We can give this a name then see how that works. Of course, it still works on our vector. It also works on a scalar where the range is zero because we revel in the largest minus the smallest is and it’s the same number so it gives zero.</p>
+<p>So this is a good method, and one method that isn’t so good but it’s kind of fun to look at if we take our vector and do an outer product but instead of multiplication we’re doing an outer subtraction so that means it’s a subtraction table that gives all the possible differences between values and then the full range is then the largest number in this table. So we can take the maximum of the level of that and that gives us also the range. Not a good way to do it, but it works.</p>
+<p>So we could make a function out of this by saying the maximum over and ravel of the outer and subtraction selfie, and in fact, this will work on our matrix as well. It just generates an even higher rank array as an intermediary step, but there’s a catch. According to the example cases in the problem specification, the function also has to work on empty arrays, and that doesn’t work. Why doesn’t it work?</p>
+<p>Well, we can try our original function.</p>
+<p>Let’s go up and define that again. We have it right here, this was this one. If you try that on say the empty vector, we get a domain error and we’re supposed to get a zero instead, as it is to say, there is no range. The problem is that the maximum over an empty vector is the smallest representable number in the current numeric system. So these are 64-bit floats and this is the smallest representable 64-bit float.</p>
+<p>Why is that? That is because the reduction over an empty axis gives the identity element for that operation. So for plus, identity element is the value that you can plus with without changing anything, that would be zero. For multiplication, what you can multiply with is a one and for max, the only number that you can do a max with and make sure that your original numbers becomes the result so it’s an identity operation, nothing changes, is the smallest representable number or a negative infinity if that’s available. Similarly, if we do a minimum reduction, we get the max representable number. Trying to subtract this very small number from this very large number goes beyond the range of the floating point system that we are using and we get the domain error. So, this system doesn’t quite work.</p>
+<p>How can we solve it? Well, one simple way to do it is simply to say, is our array empty? Now we can’t just compare to the empty vector because there might be multiple x’s, say we could have a zero row two column matrix of numbers which isn’t visible but it sure exists. What we can do is that we can take its shape and there is a zero there. If there is a zero anywhere in the shape of an array, it’s called an empty array and then the range has to be zero. So, we can write this function as: if zero is a member of the shape of the array then return zero, otherwise we take the maximum minus the minimum of the ravel of the array.</p>
+<p>Now we can apply this on each of our arrays: the vector, the matrix, the empty vector, and why not our zero by two matrix as well, and now it works. So, this is a valid solution and it’s very clear. It’s probably the clearest solution that there is.</p>
+<p>We can be a bit more clever about this. First, for a fun solution but not an efficient one, we can sort the array first. Let’s say we start with our matrix and then we revel the matrix and then we sort it. Then we know that the range is the last element minus the first element. So the last element can be written as the pick atop reverse minus the first element which is just a first pick, and that works. The reason I’m using this method for getting the first and last element is that if we try to pick the first element of an empty vector, then it coerces out a number. So that means that both of these terms would become zero, so we get zero minus zero, which is zero, and that’s the correct result for the empty array. Even of course, if we have something like this, a matrix, because we revel first, it will work the same way.</p>
+<p>This is a solution, but not a very good one. In order to make it a full function, there are a couple of different ways we could do it. We could take this tested function here and put it inside the parenthesis, but as you can see, the color changes. That is because it ceases to use the sorting idiom, so things will run a bit slower but it works. If you want to preserve the speed of it, then we can just string things together using in the top. Either way, it could be in the top here or you could be in the top over here, or we can use all three of them. All of that works. All three are topped together.</p>
+<p>There are clever ways that we could do this, and for that, we need to think a little bit. Okay, so we have a matrix, and we need to ravel it and then we want to have a zero if the array is empty. Okay, how could we do that? So we can tally the reveled array, and then we can have a maximum with one. If the array is length zero, then we get one. Otherwise, we just get the length of the array. And then we can use this to take from the reveled array again.</p>
+<p>So now here it doesn’t make a difference of course we can see that that gives our data as we expected if we do it on an empty vector then we end up overtaking by one and that pads with another zero at the end and then the rest of the procedure will be the same so we can say the maximum minus the minimum of the revel let’s say we can write take this whole expression here we can write it like this and then we can go and simplify things a bit.</p>
+<p>We can turn all of this tested actually so we could ravel first and then we could apply a function to that where we use this value which is the length except it becomes one and we can take from that same thing so this is a possibility and now we don’t need the braces anymore but we have three functions here so we need to atop at least one place so now we can this works and it works on empty arrays as well.</p>
+<p>There’s actually more we could we could do firstly for the syntax here and we instead of since we have three functions that we want to avoid we because of we have to do the explicit at the top we can take this which is a magnetic function and put inside the parenthesis as a left carriage on the strain so here is the original function we’re applying it becomes a fork right here and then another fork and then finally in the top with this function here so that works as well and it gives us our results as we expect.</p>
+<p>What else can we do well observe that the ravel of an array gives us all the elements in a single vector how many elements well that’s the product over the length of all the x’s in that array so for our matrix the shape is this and that means that the product is how many elements we have very good so if we say that there are none so if there’s any zero inside the shape then the product is going to be zero so we can take that the maximum of that will one and then we can simply use that to reshape their array itself so here when the array is empty.</p>
+<p>We reshape the empty array into a one element vector giving us just a one element vector with a zero, and if we used it on say our matrix, then this would be equivalent to reveling it. So we can put all this together and again say the maximum minus the minimum of the array itself reshaped by the maximum of one and the tally of the array when that entire thing is reveled, and this works.</p>
+<p>Another thing we can do is, since we’re raveling anyway, then we can selectively append a zero, which will then be picked up by the maximum minimum, or it could actually be any other number that we add because it will be that same number minus itself, and then that the range is zero. How do we do this? Well, we have the condition zero is a member of the shape of this array, and you can see that here, and then we can use this to replicate a zero or any other number. So here we get a zero, but if the array isn’t empty, then we get nothing, and we can then append that to the ravel of the array.</p>
+<p>So now we can write the revel over the array concatenated with this as a tested function. So here we do not add any zeros, but in an empty array, we do add it to the revel. So now we selectively add a zero when we need it or any other number it would be. We can use any other number as well, and then we can say the maximum minus the minimum of that, and then that gives us zero. Let’s put this vector right here. There’s no reason to find any other number, so this is another solution.</p>
+<p>Can we be even clever? Yes, because think about it. We want to add a zero if there is a zero in the shape, and any other number in the shape, we’re not interested in only zeros. We could even be multiple zeros; it wouldn’t matter because the maximum and minimum are not going to change, just a bunch of zeros, or actually any other number, but the important thing is that we add a number or more numbers when there’s a zero in the shape. So how about just adding all the zeros from the shape?</p>
+<p>Okay, let’s say we have this array two zero zero two, reshape zero. This is this invisible matrix, and then we take the intersection of zero with the shape of this. That gives us the zero. If our array wasn’t empty, then there would be nothing there. If our array had multiple zeros in its shape, then we have the intersection of and of a single zero with all these numbers here, including the zeros, and so we get that single zero. So we can use this and concatenate this intersection.</p>
+<p>So we can write the maximum minus the minimum of the ravel concatenated with zero intersection of the shape, and that works. This is probably the most concise and way and a tested way of writing it.</p>
+<p>Now for going a little bit beyond the original question, which was just in a given numeric array, we could choose to understand it as giving any array that consists eventually of atomic numbers. How would that look? Well, we could split our matrix into a vector of vectors, and our method is not going to work anymore. We’re going to get something completely unrelated to what we’re looking for, and because our function just travels it and that doesn’t open up the structure.</p>
+<p>But we do have a function called enlist, which is just like gravel but more powerful in that it completely takes any array and flattens it out to be a simple vector. So if we take our old solution of the maximum minus the minimum of the argument and we overtake with one maximum of the length and all of this applied not on the rebel but rather on the list, now it will work.</p>
+<p>And we can do exactly the same thing with our function up here that uses the intersection. The only important thing is that instead of just using the shape directly, we get rid of this ravel and move outside the whole expression this in list. So this is in list: if there is any zero in the intersection with the shape of that in list, then we concatenate that to the argument which is the enlisted argument, and then we compute the range as normal.</p>
+<p>However, at this point, when we’ve already made the enlist, we don’t need to take the shape at all because we already know that this is a vector. And if it’s a vector and it’s empty, then it must be the empty numeric vector. So we can actually say that if the argument is the empty vector, then we add another number.</p>
+<p>So this is another way to do it, and of course, it works just fine to say the intersection with the shape or even with the tally would be just fine as well. And that’s it. Thank you so much, and see you next week.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2013/old"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

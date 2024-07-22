@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Splitting a List of Words by Length &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2019/Odds-Evens-APLQuest-2019-10';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2019/Odds-Evens-APLQuest-2019-10.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Splitting a List of Words by Length</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-data">Test Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-using-lambda-functions">Method 1: Using Lambda Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-using-the-key-operator">Method 2: Using the Key Operator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-to-ordering">Solution to Ordering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-approach">Another Approach</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-sorting-by-length">Method 3: Sorting by Length</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="splitting-a-list-of-words-by-length">
+<h1>Splitting a List of Words by Length<a class="headerlink" href="#splitting-a-list-of-words-by-length" title="Link to this heading">#</a></h1>
+<p>In this article, we will explore how to split a list of words into two categories: words with an even number of letters and words with an odd number of letters. The order of the words is important; we want the odd-lettered words to appear first, followed by the even-lettered words.</p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>We will examine three different approaches to solving this problem. Each method provides a unique way of tackling the same issue, and there are many other strategies that could also be employed.</p>
+<section id="test-data">
+<h3>Test Data<a class="headerlink" href="#test-data" title="Link to this heading">#</a></h3>
+<p>Let’s start with some test data that includes both even and odd length words:</p>
+<ul class="simple">
+<li><p><strong>Test Data in APL:</strong></p></li>
+</ul>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;only&#39;</span><span class="w"> </span><span class="s1">&#39;even&#39;</span><span class="w"> </span><span class="s1">&#39;all&#39;</span><span class="w"> </span><span class="s1">&#39;odd&#39;</span><span class="w"> </span><span class="s1">&#39;the&#39;</span><span class="w"> </span><span class="s1">&#39;plan&#39;</span><span class="w"> </span><span class="s1">&#39;is&#39;</span><span class="w"> </span><span class="s1">&#39;great&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Odd Words:</strong> “cat”, “dog”, “horse”</p></li>
+<li><p><strong>Even Words:</strong> “fish”, “seal”, “turtle”</p></li>
+<li><p>A mixture of both: “cat”, “fish”, “dog”, “seal”, “horse”, “turtle”</p></li>
+</ul>
+<p>We will start our analysis by counting the number of letters in each word. However, we are primarily interested in determining whether each word has an odd or even number of letters.</p>
+<p>To achieve this, we can inspect the remainder of the length of each word when divided by two. If the remainder is zero, the number of letters is even; if it is one, the number of letters is odd.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="o">≢</span><span class="na">¨</span><span class="w"> </span><span class="nv">t</span><span class="w">  </span><span class="c1">⍝ Count the number of letters in each word</span>
+</pre></div>
+</div>
+<p>This will return:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="method-1-using-lambda-functions">
+<h2>Method 1: Using Lambda Functions<a class="headerlink" href="#method-1-using-lambda-functions" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Creating a Lambda Function:</strong><br />
+We will create a Lambda function that takes an argument and refers to it as <code class="docutils literal notranslate"><span class="pre">ω</span></code>.</p></li>
+<li><p><strong>Generating Masks:</strong><br />
+We need two masks: one for odd-numbered words and another for even-numbered words. The mask for even numbers is simply the Boolean negation of the odd mask.</p></li>
+</ol>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">|≢</span><span class="na">¨</span><span class="nv">t</span><span class="w">  </span><span class="c1">⍝ This gives a mask for even (0) and odd (1)</span>
+</pre></div>
+</div>
+<p>This returns:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Applying the Masks:</strong><br />
+We apply both masks to the list of words. The application of each mask will yield the respective even and odd categorized words.</p></li>
+</ol>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="m">2</span><span class="o">|≢</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="nv">t</span><span class="w">  </span><span class="c1">⍝ Mask for odd words</span>
+<span class="kt">{</span><span class="o">~</span><span class="m">2</span><span class="o">|≢</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="nv">t</span><span class="w">  </span><span class="c1">⍝ Mask for even words</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Final Concatenation:</strong><br />
+After applying the masks, we will concatenate the results, ensuring that odd-numbered words appear first.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example in Python-like pseudocode</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;fish&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;seal&quot;</span><span class="p">,</span> <span class="s2">&quot;horse&quot;</span><span class="p">,</span> <span class="s2">&quot;turtle&quot;</span><span class="p">]</span>
+<span class="n">odd_mask</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span>
+<span class="n">even_mask</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="n">odd_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">odd_mask</span><span class="p">(</span><span class="n">word</span><span class="p">)]</span>
+<span class="n">even_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">even_mask</span><span class="p">(</span><span class="n">word</span><span class="p">)]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">odd_words</span> <span class="o">+</span> <span class="n">even_words</span>
+</pre></div>
+</div>
+</section>
+<section id="method-2-using-the-key-operator">
+<h2>Method 2: Using the Key Operator<a class="headerlink" href="#method-2-using-the-key-operator" title="Link to this heading">#</a></h2>
+<p>The problem specification suggests using a key operator. This method groups words based on their characteristic (odd or even length), but we encounter an issue with the order since the first group ends up being even if the first word is even.</p>
+<section id="solution-to-ordering">
+<h3>Solution to Ordering<a class="headerlink" href="#solution-to-ordering" title="Link to this heading">#</a></h3>
+<p>To maintain the desired order, we can prepend words of the appropriate lengths, remove them from the incoming data, and then regroup.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="m">2</span><span class="o">|≢</span><span class="na">¨</span><span class="p">)</span><span class="o">⊂</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌸</span><span class="o">⊢</span><span class="p">)</span><span class="w"> </span><span class="nv">t</span><span class="w">  </span><span class="c1">⍝ Key-based approach maintaining order</span>
+</pre></div>
+</div>
+</section>
+<section id="another-approach">
+<h3>Another Approach<a class="headerlink" href="#another-approach" title="Link to this heading">#</a></h3>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">2</span><span class="o">|≢</span><span class="na">¨</span><span class="p">)</span><span class="o">⊂</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌸</span><span class="o">⊢</span><span class="w"> </span><span class="nv">t</span><span class="w">  </span><span class="c1">⍝ Grouping based on the key, shows odd/even categorization</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="method-3-sorting-by-length">
+<h2>Method 3: Sorting by Length<a class="headerlink" href="#method-3-sorting-by-length" title="Link to this heading">#</a></h2>
+<p>Another straightforward method is to sort the list of words based on their length. By sorting first and then splitting the results, we can ensure that all odd-length words come before even-length words.</p>
+<ol class="arabic simple">
+<li><p><strong>Sort Words by Length:</strong><br />
+Using a descending sort based on whether the length is odd or even will arrange the words correctly.</p></li>
+</ol>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="nv">n</span><span class="kd">←</span><span class="m">2</span><span class="o">|≢</span><span class="na">¨</span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍒</span><span class="nv">n</span><span class="sr">]</span><span class="kt">}</span><span class="w"> </span><span class="nv">t</span><span class="w">  </span><span class="c1">⍝ Sort based on length even/odd</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Counting Odd Words:</strong><br />
+We can count how many odd words are present and then split the list at that point.</p></li>
+</ol>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="nv">n</span><span class="kd">←</span><span class="m">2</span><span class="o">|≢</span><span class="na">¨</span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">c</span><span class="kd">←</span><span class="o">+</span><span class="na">/</span><span class="nv">n</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">c</span><span class="o">↑</span><span class="nv">s</span><span class="kt">}</span><span class="w"> </span><span class="nv">t</span><span class="w">  </span><span class="c1">⍝ Count odd length words, split result</span>
+</pre></div>
+</div>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In this article, we demonstrated three distinct methods for splitting a list of words into odd and even categories based on the number of letters.</p>
+<ul class="simple">
+<li><p>The first method utilized Lambda functions.</p></li>
+<li><p>The second method involved the key operator with additional manipulation to maintain order.</p></li>
+<li><p>The third method relied on sorting the words based on their length.</p></li>
+</ul>
+<p>Each approach shows the flexibility of programming techniques in addressing the same problem in various ways. Thank you for reading!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2019"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-data">Test Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-using-lambda-functions">Method 1: Using Lambda Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-using-the-key-operator">Method 2: Using the Key Operator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-to-ordering">Solution to Ordering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-approach">Another Approach</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-sorting-by-length">Method 3: Sorting by Length</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

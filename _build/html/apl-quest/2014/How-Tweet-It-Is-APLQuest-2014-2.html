@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>APL Quest: Problem Solving and Performance of Text Processing Techniques &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2014/How-Tweet-It-Is-APLQuest-2014-2';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2014/How-Tweet-It-Is-APLQuest-2014-2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>APL Quest: Problem Solving and Performance of Text Processing Techniques</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-problem">Understanding the Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-the-solution">Implementing the Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-performance">Comparing Performance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#addressing-edge-cases">Addressing Edge Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-regular-expressions">Exploring Regular Expressions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-insights">Performance Insights</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apl-quest-problem-solving-and-performance-of-text-processing-techniques">
+<h1>APL Quest: Problem Solving and Performance of Text Processing Techniques<a class="headerlink" href="#apl-quest-problem-solving-and-performance-of-text-processing-techniques" title="Link to this heading">#</a></h1>
+<p>Welcome to the APL Quest! Today, we’ll delve into the second problem from the 2014 round of the APL Problem Solver Competition. The challenge is to process a given text and find words, removing any vowels from those words, except when the vowel is at the beginning or end of the word.</p>
+<section id="understanding-the-problem">
+<h2>Understanding the Problem<a class="headerlink" href="#understanding-the-problem" title="Link to this heading">#</a></h2>
+<p>Let’s break down our approach to tackling this problem:</p>
+<ol class="arabic">
+<li><p><strong>Identifying Spaces and Non-Spaces</strong><br />
+We can begin by identifying spaces and non-space characters in our text. This identification allows us to partition the text effectively.</p></li>
+<li><p><strong>Partitioning the Text</strong><br />
+Using a mask that corresponds to runs of ones (letters) and zeros (non-letters), we can use a partitioning function that combines runs of letters into single elements while discarding anything represented by a zero.</p></li>
+<li><p><strong>Processing Each Word</strong><br />
+Since we need to handle words in a case-insensitive manner, we can convert our text to uppercase. We then ascertain which characters are vowels, accounting for their positions within words.</p>
+<p>Here’s a simple APL function that accepts a character vector and removes the interior vowels from each word:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="kd">←</span><span class="kt">{</span><span class="m">1</span><span class="o">↓∊</span><span class="kt">{</span><span class="s1">&#39; &#39;</span><span class="o">,</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">1</span><span class="na">@</span><span class="m">1</span><span class="p">(</span><span class="o">≢</span><span class="bp">⍵</span><span class="p">)</span><span class="o">~</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">∊</span><span class="na">⍨</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="bp">⍵</span><span class="o">⊆</span><span class="na">⍨</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">   </span><span class="c1">⍝ Cut</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Creating the Vowel Mask</strong><br />
+Each word has its own mask to identify vowels. However, we must ensure that any vowel at the end of a word is not mistakenly removed.</p>
+<p>The following APL function demonstrates the ‘drop’ method, which processes the entire array in one go:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">D</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍲</span><span class="m">0</span><span class="o">,</span><span class="m">¯1</span><span class="o">↓</span><span class="s1">&#39; &#39;</span><span class="p">(</span><span class="o">∧</span><span class="na">⌿</span><span class="o">≠</span><span class="p">)</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="o">↓</span><span class="na">⍤</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="o">⊢</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ Drop</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Finalizing the Compression</strong><br />
+After creating a mask, we can determine which characters to keep and which to remove. By applying a compression technique, we join the words back together, ensuring to eliminate leading spaces.</p>
+<p>Here’s how the ‘reduce’ function is defined in APL:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">R</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍲</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="na">⍨</span><span class="s1">&#39; &#39;</span><span class="p">(</span><span class="m">3</span><span class="o">∧</span><span class="na">/</span><span class="o">≠</span><span class="p">)</span><span class="o">⊢</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">           </span><span class="c1">⍝ Reduce</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<section id="implementing-the-solution">
+<h3>Implementing the Solution<a class="headerlink" href="#implementing-the-solution" title="Link to this heading">#</a></h3>
+<p>This solution is effectively illustrated through the following APL functions:</p>
+<ul>
+<li><p><strong>Cut (C)</strong>: Processes each word individually, removing unwanted vowels.</p></li>
+<li><p><strong>Drop (D)</strong>: Processes the entire array in one go without splitting into words.</p></li>
+<li><p><strong>Reduce (R)</strong>: Uses reduction techniques to streamline processing.</p></li>
+<li><p><strong>Stencil (S)</strong>: Applies a stencil approach, using neighborhoods of characters to determine vowel removals.</p>
+<p>The stencil implementation can be defined as:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">S</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍲</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">(</span><span class="o">∧</span><span class="na">/</span><span class="o">≠</span><span class="p">)</span><span class="o">⊢</span><span class="p">)</span><span class="na">⌺</span><span class="m">3</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">             </span><span class="c1">⍝ Stencil</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="comparing-performance">
+<h3>Comparing Performance<a class="headerlink" href="#comparing-performance" title="Link to this heading">#</a></h3>
+<p>In our tests, we’ve measured the performance of various implementations with differing techniques. The naive “cut” method performs the weakest, likely due to its word-by-word processing, while “drop” and “reduce” yield much better performance since they handle the entire structure at once.</p>
+<p>Stencils also show competitive results, but they can be slower than other methods due to complex operand handling.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;cmpx&#39;</span><span class="w"> </span><span class="s1">&#39;dxb&#39;</span><span class="nf">⎕CY</span><span class="s1">&#39;dfns&#39;</span>
+<span class="o">≢</span><span class="nv">t3</span><span class="kd">←</span><span class="nv">dxb</span><span class="kt">{</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">?</span><span class="m">1e3</span><span class="o">⍴≢</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="m">60</span><span class="o">↑</span><span class="nf">⎕A</span><span class="o">,</span><span class="nf">⎕C⎕A</span>
+<span class="nv">cmpx</span><span class="s1">&#39;CDRS&#39;</span><span class="o">,</span><span class="na">¨</span><span class="o">⊂</span><span class="s1">&#39; t3&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="addressing-edge-cases">
+<h2>Addressing Edge Cases<a class="headerlink" href="#addressing-edge-cases" title="Link to this heading">#</a></h2>
+<p>After the initial implementations, we faced challenges with punctuation, specifically letters adjacent to non-space characters, which were erroneously marked for removal. Adjusting our membership checks to ensure only alphabetical characters were considered as neighbors resolved this issue. Here’s how the improved functions look:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">D</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍲</span><span class="m">0</span><span class="o">,</span><span class="m">¯1</span><span class="o">↓</span><span class="nf">⎕A</span><span class="p">(</span><span class="o">∧</span><span class="na">⌿</span><span class="o">∊</span><span class="p">)</span><span class="na">⍨</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="o">↓</span><span class="na">⍤</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="o">⊢</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">R</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍲</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="na">⍨</span><span class="nf">⎕A</span><span class="p">(</span><span class="m">3</span><span class="o">∧</span><span class="na">/</span><span class="o">∊</span><span class="p">)</span><span class="na">⍨</span><span class="o">⊢</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">S</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍲</span><span class="nf">⎕A</span><span class="p">(</span><span class="o">∧</span><span class="na">/</span><span class="o">∊</span><span class="p">)</span><span class="na">⍨</span><span class="kt">{</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="m">3</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<section id="exploring-regular-expressions">
+<h3>Exploring Regular Expressions<a class="headerlink" href="#exploring-regular-expressions" title="Link to this heading">#</a></h3>
+<p>In addition to array-oriented methods, we also investigated using regular expressions. By crafting expressions to match characters while applying look-behind and look-ahead assertions, we can effectively remove internal vowels while preserving those on word boundaries.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define regex patterns</span>
+<span class="nv">patternA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;(*?)&#39;</span><span class="w"> </span><span class="p">(</span><span class="o">?&lt;=</span><span class="na">\</span><span class="nv">w</span><span class="p">)</span><span class="sr">[</span><span class="nv">aeiou</span><span class="sr">]</span><span class="p">(</span><span class="o">?=</span><span class="na">\</span><span class="nv">w</span><span class="p">)</span><span class="s1">&#39;⎕R&#39;&#39;⍠1     ⍝ look-Arounds</span>
+<span class="s1">patternB = &#39;</span><span class="na">\</span><span class="nv">b</span><span class="na">\</span><span class="nv">w</span><span class="o">|</span><span class="na">\</span><span class="nv">w</span><span class="na">\</span><span class="nv">b</span><span class="s1">&#39; &#39;</span><span class="sr">[</span><span class="nv">aeiou</span><span class="sr">]</span><span class="s1">&#39;⎕R&#39;</span><span class="na">&amp;</span><span class="s1">&#39; &#39;</span><span class="err">&#39;</span><span class="na">⍠</span><span class="m">1</span><span class="w">       </span><span class="c1">⍝ word-Boundaries</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-insights">
+<h3>Performance Insights<a class="headerlink" href="#performance-insights" title="Link to this heading">#</a></h3>
+<p>Though regex can elegantly handle complex string manipulations, it often comes with performance trade-offs, particularly when compared to the optimizations achievable through array-centric operations. In many cases, utilizing APL’s array capabilities can provide significant performance gains.</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>In this exploration of text processing techniques in APL, we highlighted the effectiveness of various methods, comparing their performance while also addressing edge cases, ultimately demonstrating the suitability of array-oriented approaches over regex in most scenarios.</p>
+<p>Thank you for joining me in this analysis. Let’s continue refining our problem-solving skills in APL and explore new challenges together!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2014"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-problem">Understanding the Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-the-solution">Implementing the Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-performance">Comparing Performance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#addressing-edge-cases">Addressing Edge Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-regular-expressions">Exploring Regular Expressions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-insights">Performance Insights</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

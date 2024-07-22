@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>APL Quest &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2014/Going-Ballistic-APLQuest-2014-9';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">APL Quest Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2014/Going-Ballistic-APLQuest-2014-9.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>APL Quest</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quest-overview">Quest Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-formula">The Formula</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplification">Simplification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-values">Testing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge">Challenge</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-sine-function">Implementing Sine Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-pi">Implementing Pi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-approach-for-pi">Series Approach for Pi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation">Calculation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-computation">Final Computation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="apl-quest">
+<h1>APL Quest<a class="headerlink" href="#apl-quest" title="Link to this heading">#</a></h1>
+<p>Welcome to the APL Quest</p>
+<section id="quest-overview">
+<h2>Quest Overview<a class="headerlink" href="#quest-overview" title="Link to this heading">#</a></h2>
+<p>Today’s quest is the 9th from the 2014 round of the APL Problem Solving Competition. We are tasked with computing how far an object reaches based on the angle and velocity at which it is thrown.</p>
+<p>Although the angle and velocity are given, we have a formula ready to use. All we need to do is translate it into APL code.</p>
+</section>
+<section id="the-formula">
+<h2>The Formula<a class="headerlink" href="#the-formula" title="Link to this heading">#</a></h2>
+<p>The distance ( d ) can be computed using the following formula:</p>
+<p><span class="math notranslate nohighlight">\([ d = \frac{v^2 \cdot \sin(2\theta)}{g} ]\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p>( g = 9.8 ) (gravitational constant)</p></li>
+<li><p>( v ) is the velocity</p></li>
+<li><p>( \theta ) is the angle in radians</p></li>
+</ul>
+<p>Since the angle is provided in degrees, we need to convert it by multiplying by ( \frac{\pi}{180} ).</p>
+<section id="simplification">
+<h3>Simplification<a class="headerlink" href="#simplification" title="Link to this heading">#</a></h3>
+<p>We can simplify the expression by doing the following transformations:</p>
+<ol class="arabic simple">
+<li><p>Instead of using <span class="math notranslate nohighlight">\(( \sin(2\theta) )\)</span>, we can multiply and divide by ( 2 ) and use <span class="math notranslate nohighlight">\(( \sin(90) )\)</span>.</p></li>
+<li><p>This allows us to divide by 90 instead of 180, which keeps the expression neat.</p></li>
+</ol>
+<p>In APL, the distance can be calculated using the following function:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">D</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">9.8</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="na">⍨</span><span class="w"> </span><span class="p">(</span><span class="bp">⍺</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">180</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>This allows us to compute the distance given initial velocity and angle using the provided formula.</p>
+</section>
+<section id="testing-values">
+<h3>Testing Values<a class="headerlink" href="#testing-values" title="Link to this heading">#</a></h3>
+<p>We can test various velocities and angles. For example, if we set:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">100</span><span class="w"> </span>
+<span class="nv">a</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">45</span><span class="w"> </span><span class="m">45</span><span class="w"> </span><span class="m">90</span>
+<span class="nv">v</span><span class="w"> </span><span class="nv">D</span><span class="w"> </span><span class="nv">a</span>
+</pre></div>
+</div>
+<p>We might observe that when using an angle of 90 degrees, the distance won’t quite be zero due to floating-point inaccuracies. An object thrown straight up will return to the origin, resulting in no horizontal displacement.</p>
+</section>
+<section id="challenge">
+<h3>Challenge<a class="headerlink" href="#challenge" title="Link to this heading">#</a></h3>
+<p>To make this more interesting, a challenge was proposed: implement the calculation without using the <code class="docutils literal notranslate"><span class="pre">circle</span></code> function, which we currently require for the sine function and for multiplying by ( <span class="math notranslate nohighlight">\(\pi\)</span> ).</p>
+</section>
+</section>
+<section id="implementing-sine-function">
+<h2>Implementing Sine Function<a class="headerlink" href="#implementing-sine-function" title="Link to this heading">#</a></h2>
+<p>We can use a Taylor series expansion for the sine function:</p>
+<p>[ <span class="math notranslate nohighlight">\(\sin(x) = \sum_{n=0}^{\infty} \frac{(-1)^n \cdot x^{2n+1}}{(2n+1)!}\)</span> ]</p>
+<p>We can calculate the alternating sum with only a few terms for a sufficiently accurate result. In APL, this can be implemented as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">Sin</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">-</span><span class="na">/</span><span class="p">(</span><span class="bp">⍵</span><span class="w"> </span><span class="na">∘</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="o">!</span><span class="p">)</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="m">9</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ Taylor series</span>
+</pre></div>
+</div>
+<p>Let’s test this against the native sine function to confirm its accuracy.</p>
+</section>
+<section id="implementing-pi">
+<h2>Implementing Pi<a class="headerlink" href="#implementing-pi" title="Link to this heading">#</a></h2>
+<p>To compute ( \pi ), one option is to use <strong>Euler’s identity</strong>:</p>
+<p>[ <span class="math notranslate nohighlight">\(e^{i \cdot \pi} + 1 = 0\)</span> ]</p>
+<p>First, we can isolate ( <span class="math notranslate nohighlight">\(e^{i \cdot \pi}\)</span> ) by rearranging the equation and applying the logarithm. In APL, we compute this as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="nv">J</span><span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1">⍝ Euler&#39;s identity</span>
+<span class="m">¯1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="nv">J</span><span class="w"> </span><span class="m">1</span>
+<span class="p">(</span><span class="o">⍟</span><span class="w"> </span><span class="m">¯1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="m">0j1</span>
+<span class="p">(</span><span class="m">0J1</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">⍟</span><span class="w"> </span><span class="m">¯1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="m">¯1</span>
+<span class="p">(</span><span class="m">0</span><span class="nv">J</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">⍟</span><span class="w"> </span><span class="m">¯1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="m">1</span>
+<span class="m">0</span><span class="nv">J</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">⍟</span><span class="w"> </span><span class="m">¯1</span>
+</pre></div>
+</div>
+<p>While this method may seem like “cheating,” as it leverages the properties of logarithms and complex numbers, we can also use a series approach.</p>
+<section id="series-approach-for-pi">
+<h3>Series Approach for Pi<a class="headerlink" href="#series-approach-for-pi" title="Link to this heading">#</a></h3>
+<p>The simplest series approximates ( <span class="math notranslate nohighlight">\(\frac{\pi}{4}\)</span> ):</p>
+<p>[ <span class="math notranslate nohighlight">\(\sum_{n=0}^{\infty} \frac{(-1)^n}{2n + 1}\)</span> ]</p>
+<p>However, even with many terms, it converges slowly. A more effective series for ( <span class="math notranslate nohighlight">\(\pi\)</span> ) can be implemented in APL as follows:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">pi</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">-</span><span class="na">/</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="m">999</span>
+<span class="nv">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="m">1</span>
+<span class="nv">pi</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>or a faster convergence version:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">pi</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">12</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">-</span><span class="na">/</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="p">(</span><span class="m">3</span><span class="w"> </span><span class="na">∘</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">+</span><span class="na">⍨</span><span class="p">)</span><span class="w"> </span><span class="m">0</span><span class="o">,</span><span class="w"> </span><span class="o">⍳</span><span class="w"> </span><span class="m">99</span>
+<span class="nv">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="m">1</span>
+<span class="nv">pi</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="calculation">
+<h3>Calculation<a class="headerlink" href="#calculation" title="Link to this heading">#</a></h3>
+<p>By simplifying the series and performing calculations, we can compute values exceedingly close to the official value of ( \pi ). By utilizing this, we can now substitute our sine and pi calculations back into the initial formula.</p>
+</section>
+</section>
+<section id="final-computation">
+<h2>Final Computation<a class="headerlink" href="#final-computation" title="Link to this heading">#</a></h2>
+<p>The final distance ( d ) can now be computed as:</p>
+<p>[ <span class="math notranslate nohighlight">\(d = \frac{9.8}{\alpha} \cdot \alpha \cdot \sin\left(\frac{\pi \cdot \text{angle}}{90}\right)\)</span> ]</p>
+<p>Using the following APL expression:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="m">9.8</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="na">⍨</span><span class="w"> </span><span class="bp">⍺</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="bp">⍺</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="nv">Sin</span><span class="w"> </span><span class="nv">pi</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="m">90</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">each</span></code> effectively allows us to compute the results for various inputs, leading us to satisfactory values even for extreme angles.</p>
+<p>Thank you for watching!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "jgordini/apl-quest-notes",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2014"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quest-overview">Quest Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-formula">The Formula</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplification">Simplification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-values">Testing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#challenge">Challenge</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-sine-function">Implementing Sine Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-pi">Implementing Pi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#series-approach-for-pi">Series Approach for Pi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation">Calculation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-computation">Final Computation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
