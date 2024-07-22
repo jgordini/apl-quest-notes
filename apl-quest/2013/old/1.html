@@ -103,8 +103,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -137,40 +137,24 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
-  
-
-<a class="navbar-brand logo" href="../../../intro.html">
-  
-  
-  
-  
-  
-  
-    <p class="title logo__title">APL Quest Notes</p>
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../../../intro.html">
-                    Welcome to your Jupyter Book
-                </a>
-            </li>
-        </ul>
         
     </div>
 </nav></div>
@@ -323,8 +307,8 @@ document.write(`
   <section id="seems-a-bit-odd-to-me">
 <h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P1_Seems_a_Bit_Odd_To_Me">Seems a Bit Odd To Me</a><a class="headerlink" href="#seems-a-bit-odd-to-me" title="Link to this heading">#</a></h1>
 <p><strong>Problem:</strong> Write a dfn to produce a vector of the first n odd numbers.</p>
-<p><strong>Video:</strong> <a class="reference external" href="https://youtu.be/Mj4wyLKrBho">https://youtu.be/Mj4wyLKrBho</a>
-<strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2013/1.apl">abrudz/apl_quest</a></p>
+<p><strong>Video:</strong> https://youtu.be/Mj4wyLKrBho
+<strong>Code:</strong> https://github.com/abrudz/apl_quest/blob/main/2013/1.apl</p>
 <p><strong>Example Solutions:</strong></p>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="kd">←</span><span class="kt">{</span><span class="m">1</span><span class="o">-</span><span class="na">⍨</span><span class="m">2</span><span class="o">×⍳</span><span class="bp">⍵</span><span class="kt">}</span>
 <span class="nv">G</span><span class="kd">←</span><span class="p">(</span><span class="o">⍸</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="o">⍴</span><span class="na">⍨</span><span class="m">2</span><span class="o">×⊢</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ Tacit</span>
@@ -384,7 +368,7 @@ document.write(`
 <p><strong>Concepts Used:</strong>
 <a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a>
 <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a>
-<a class="reference external" href="https://tacit.help/">https://tacit.help/</a>
+https://tacit.help/
 <a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a>
 <a class="reference external" href="https://xpqz.github.io/cultivations/Functions2.html#magnitude-residue">Parity - Modulous 2</a>
 <a class="reference external" href="https://aplwiki.com/wiki/Fill_element">Fill Elements</a> - Padding with zeros
@@ -420,8 +404,8 @@ document.write(`
     {
         requestKernel: true,
         binderOptions: {
-            repo: "jgordini/apl-quest-notes",
-            ref: "main",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",

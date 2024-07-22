@@ -103,8 +103,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -137,40 +137,24 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
-  
-
-<a class="navbar-brand logo" href="../../../intro.html">
-  
-  
-  
-  
-  
-  
-    <p class="title logo__title">APL Quest Notes</p>
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../../../intro.html">
-                    Welcome to your Jupyter Book
-                </a>
-            </li>
-        </ul>
         
     </div>
 </nav></div>
@@ -323,8 +307,8 @@ document.write(`
   <section id="float-your-boat">
 <h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P7_Float_Your_Boat">Float your Boat</a><a class="headerlink" href="#float-your-boat" title="Link to this heading">#</a></h1>
 <p><strong>Problem:</strong> Write a dfn which selects the floating point (non-integer) numbers from a numeric vector.</p>
-<p><strong>Video:</strong> <a class="reference external" href="https://youtu.be/w5LvImFVi2M">https://youtu.be/w5LvImFVi2M</a>
-<strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2013/7.apl">abrudz/apl_quest</a></p>
+<p><strong>Video:</strong> https://youtu.be/w5LvImFVi2M
+<strong>Code:</strong> https://github.com/abrudz/apl_quest/blob/main/2013/7.apl</p>
 <p><strong>Example Solutions:</strong></p>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">¯3.1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="m">92.6</span><span class="w"> </span><span class="m">¯5</span><span class="w"> </span><span class="c1">⍝ Test Data</span>
 <span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="bp">⍵</span><span class="o">≠⌊</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Compare the number against it&#39;s rounded version. Same is int. Different is Float.  </span>
@@ -560,8 +544,8 @@ document.write(`
     {
         requestKernel: true,
         binderOptions: {
-            repo: "jgordini/apl-quest-notes",
-            ref: "main",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",

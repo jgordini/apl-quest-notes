@@ -103,8 +103,8 @@
          class="form-control"
          name="q"
          id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
+         placeholder="Search..."
+         aria-label="Search..."
          autocomplete="off"
          autocorrect="off"
          autocapitalize="off"
@@ -137,40 +137,24 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
-  
-
-<a class="navbar-brand logo" href="../../../intro.html">
-  
-  
-  
-  
-  
-  
-    <p class="title logo__title">APL Quest Notes</p>
-  
-</a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../../../intro.html">
-                    Welcome to your Jupyter Book
-                </a>
-            </li>
-        </ul>
         
     </div>
 </nav></div>
@@ -331,8 +315,8 @@ document.write(`
                 <article class="bd-article">
                   
   <p><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P8_Go_Forth_And_Multiply">Problem:</a>Write a dfn which produces a multiplication table.
-<strong>Video:</strong> <a class="reference external" href="https://youtu.be/O_l-nJYmDrs">https://youtu.be/O_l-nJYmDrs</a>
-<strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2013/8.apl">abrudz/apl_quest</a></p>
+<strong>Video:</strong> https://youtu.be/O_l-nJYmDrs
+<strong>Code:</strong> https://github.com/abrudz/apl_quest/blob/main/2013/8.apl</p>
 <p><strong>Outer Product</strong></p>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="na">∘.</span><span class="o">×</span><span class="na">⍨</span><span class="o">⍳</span><span class="w"> </span><span class="c1">⍝ for n=4 : same as 1 2 3 4 ∘.× 1 2 3 4</span>
 <span class="w">	</span><span class="err">```</span>
@@ -560,8 +544,8 @@ document.write(`
     {
         requestKernel: true,
         binderOptions: {
-            repo: "jgordini/apl-quest-notes",
-            ref: "main",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",
