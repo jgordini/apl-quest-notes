@@ -13,25 +13,28 @@ In today's quest, we are tasked with selecting the numbers from a vector that ar
 
 First, let’s create some data for ourselves. What defines a number that isn’t an integer? There are various ways to approach this, but a very simple and effective method is to compare the number to what happens if we round it. Any integer remains unchanged when rounded, while a non-integer will change.
 
-We can find the integer values in our vector by using the floor function. This allows us to filter the non-integers. Here’s how we can implement this as a function called `A`:
+We can find the integer values in our vector by using the floor function. This allows us to filter the non-integers. Here’s how we can implement this as a function called `A`
+
+**Floor**
 
 ```apl
 v ← ¯3.1 4 1.5 92.6 ¯5 ⍝ Test Data
 A ← {⍵/⍨⍵≠⌊⍵} ⍝ Compare the number against it's rounded version. Same is int. Different is Float.  
 ```
 
-Here’s the [tacit](https://aplwiki.com/wiki/Tacit_programming) version:
-
-```apl
-B ← (/⍨)∘(≠∘⌊⍨)⍨ ⍝ Tacit {(⍵≠(⌊⍵))/⍵}
-```
-A
 1. `⍵≠⌊⍵` [Floor](https://aplwiki.com/wiki/Floor) `⌊` Rounds down to the nearest real number.
 2. [Not Equal to](https://aplwiki.com/wiki/Not_Equal_to) `≠` a [comparison function](https://aplwiki.com/wiki/Comparison_function "Comparison function")  tests whether arguments are unequal. This returns a boolean array where 1 indicates the non-integers. 
 3. `⍵/`  [Compress](https://mastering.dyalog.com/Some-Primitive-Functions.html?highlight=compress#replicate) filters the right argument using the boolean array on the left. 
 4. [Commute](https://aplwiki.com/wiki/Commute) `⍨` aka Swap used to put the boolean array generated in Step 1 on the left of the Compress. 
 
-B
+**Tacit**
+
+Here’s the [tacit](https://aplwiki.com/wiki/Tacit_programming) version:
+
+```apl
+B ← (/⍨)∘(≠∘⌊⍨)⍨ ⍝ Tacit {(⍵≠(⌊⍵))/⍵}
+```
+
 1. `(≠∘⌊⍨)`  [Selfie](https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#commute-selfie-and-constant) `⍨` - used monadically, the same argument gets used on both sides of the function. Thus, `F⍨y` is equivalent to - `y F y`.
 2. `∘` Preprocess the right argument `≠` with Floor `⌊`
 3. `(/⍨)∘` This time preprocess the right argument with Filter `/`  Using the original test data. 
@@ -59,15 +62,17 @@ Another approach is to use APL's internal representation of numbers.  By checkin
 
 ```APL
 x ← v,1e400 ⍝ Test Data
-D ← {⍵/⍨645=⎕DR¨⍵} ⍝ 645 is 64 bit per element and 5 means it's floating point
-E ← {⍵/⍨645 1287∊⍨⎕DR¨⍵} ⍝ 1287 is a 128-bit decimal float. 7 indicates Decimal.  
+D ← {⍵/⍨645=⎕DR¨⍵} ⍝ 645 is 64 bit per element and 5 means it's floating point 
 ```
 
-D 
 1. [Data Representation](https://help.dyalog.com/latest/Content/Language/System%20Functions/Data%20Representation%20Dyadic.htm) `⎕DR` - converts the data type of its argument Y according to the type specification X. Here we check if `⎕DR` at 645 (64 means the 64 bit per element and 5 means it's floating point) is equal to [Each](https://aplwiki.com/wiki/Each) `¨` element of omega. 
 2. `⍵/⍨` First [Swapping](https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#commute-selfie-and-constant) `⍨`  the arguments. [Compress](https://mastering.dyalog.com/Some-Primitive-Functions.html?highlight=compress#replicate) `⍵/` filters the right argument using the boolean array (Result of Step 1) on the left. 
 
-E
+```APL
+x ← v,1e400 ⍝ Test Data
+E ← {⍵/⍨645 1287∊⍨⎕DR¨⍵} ⍝ 1287 is a 128-bit decimal float. 7 indicates Decimal.  
+```
+
 1. `645 1287∊⍨⎕DR¨⍵` Swapping the arguments and checking if 645 or 1287 are [Members](https://aplwiki.com/wiki/Membership) `∊` of the Data Representiaton of Each element in omega. 
 2. `⍵/⍨` We then filter the result against the original.  First [Swapping](https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#commute-selfie-and-constant) `⍨`  the arguments. [Compress](https://mastering.dyalog.com/Some-Primitive-Functions.html?highlight=compress#replicate) `⍵/` filters the right argument using the boolean array (Result of Step 1) on the left. 
 
@@ -75,9 +80,17 @@ E
 
 A simple, human-readable approach is to check for a decimal point in the formatted number:
 
+
+
 ```apl
 F ← {⍵/⍨'.'∊∘⍕¨⍵}
 ```
+
+1. `⍕¨⍵` [Format](https://aplwiki.com/wiki/Format) `⍕` Each `¨` formats the right [argument](https://aplwiki.com/wiki/Argument "Argument") into a [simple](https://aplwiki.com/wiki/Simple "Simple") [character](https://aplwiki.com/index.php?title=Character&action=edit&redlink=1 "Character (page does not exist)") array.
+2. `'.'∊` Checks if `'.'` is a member of the each formated element of Omega `⍵`.
+3. `⍵/⍨` Filters the original argument against the result of Step 2.  
+
+
 
 This method can be improved by increasing the print precision:
 
@@ -85,16 +98,9 @@ This method can be improved by increasing the print precision:
 G ← {⎕PP←34 ⋄ ⍵/⍨'.'∊∘⍕¨⍵} ⍝ Solution for near integers
 ```
 
-F
-
-1. `⍕¨⍵` [Format](https://aplwiki.com/wiki/Format) `⍕` Each `¨` formats the right [argument](https://aplwiki.com/wiki/Argument "Argument") into a [simple](https://aplwiki.com/wiki/Simple "Simple") [character](https://aplwiki.com/index.php?title=Character&action=edit&redlink=1 "Character (page does not exist)") array.
-2. `'.'∊` Checks if `'.'` is a member of the each formated element of Omega `⍵`.
-3. `⍵/⍨` Filters the original argument against the result of Step 2.  
-
-G
-
 1. `⎕PP←34` [Print Precision](https://help.dyalog.com/latest/Content/Language/System%20Functions/pp.htm) `⎕PP` - number of significant digits in the display of numeric output. Default is 10. Max is 34. 
 2. Apply the Function in F.
+3. 
 
 ### Mathematical Approaches
 
@@ -107,27 +113,53 @@ J ← {⍵/⍨×1⊤⍵} ⍝ Using Encode
 K ← {⍵/⍨0≠⍵-⌊⍵} ⍝ Subtract
 ```
 
-H
+
+
+**Modulus**
+
+```APL
+H ← {⍵/⍨×1|⍵} ⍝ Using Modulus
+```
+
 1. `1|⍵` [Residue](https://aplwiki.com/wiki/Residue) `|` - aka Modulo - gives the [remainder](https://en.wikipedia.org/wiki/Remainder "wikipedia:Remainder") of [division](https://aplwiki.com/wiki/Divide "Divide") between two real numbers.
 2. `×`  [Signum](https://aplwiki.com/wiki/Signum) `×` -  three possible results of Signum on a real argument are `0`, `1`, and `¯1` : Positive, Negative and Zero. Signum will always be positive or zero in this case. 
 3. If we check the remainder when divding by 1 we can filter the result based on if the Signum is 1 or 0.
 4. Floating point numbers will have a positive signum of the remainder or 1. 
 5. `⍵/⍨` We can then apply this [Boolean Mask](https://aplwiki.com/wiki/Boolean) against our orginal argument. 
 
-I
+
+
+**Comparison Tolerance**
+
+```APL
+I ← {⎕CT←0 ⋄ ⍵/⍨×1|⍵} ⍝ Comparison Tolerance 
+```
+
 1. `⎕CT←0` [Comparison Tolerance](https://help.dyalog.com/latest/Content/Language/System%20Functions/ct.htm) `⎕CT` - determines the precision with which two numbers are judged to be equal. Setting this to zero means all our numbers are considered to be floating point. 
 2. We can then Apply the function in H. 
 
 
-J
+
+**Encode**
+
+```APL
+J ← {⍵/⍨×1⊤⍵} ⍝ Using Encode
+```
+
 1. `1⊤⍵` [Encode](https://mastering.dyalog.com/Mathematical-Functions.html?highlight=encode#encode) `⊤` - Checking if the smallest unit in the base is a one and how many ones there are. This is exactly the same as division remainder. Encode doesn't care about [Comparison Tolerance](https://help.dyalog.com/latest/Content/Language/System%20Functions/ct.htm) `⎕CT` it is always 0. 
 2. `×`  [Signum](https://aplwiki.com/wiki/Signum) `×` -  three possible results of Signum on a real argument are `0`, `1`, and `¯1` : Positive, Negative and Zero. Signum will always be positive or zero in this case. 
 3. `⍵/⍨` We can then apply this [Boolean Mask](https://aplwiki.com/wiki/Boolean) against our orginal argument. 
 
-K
-1. In any comparison with a true zero, the comparison tolerance doesn't matter.
-2. `0≠⍵-⌊⍵` Subtracting the argument from it's [Floor](https://aplwiki.com/wiki/Floor) `⌊`  and comparing the result against [Not Equal to](https://aplwiki.com/wiki/Not_Equal_to) `≠` Zero. 
-3. `⍵/⍨` Use the result to filter the argument. 
+
+
+**Subtract**
+
+```APL
+K ← {⍵/⍨0≠⍵-⌊⍵} ⍝ Subtract
+```
+
+1. `0≠⍵-⌊⍵` Subtracting the argument from it's [Floor](https://aplwiki.com/wiki/Floor) `⌊`  and comparing the result against [Not Equal to](https://aplwiki.com/wiki/Not_Equal_to) `≠` Zero. 
+2. `⍵/⍨` Use the result to filter the argument. 
 
 
 
@@ -141,7 +173,6 @@ L ← ∊{0::⍵⋄⍵/⍬}¨ ⍝ If any error happens, that means that the test
 
 This function attempts to use each number as a replication factor on an empty vector. It will error on non-integers, which we catch and interpret as our desired result.
 
-L
 1. `⍵/⍬` [Replicate](https://aplwiki.com/wiki/Replicate) `/` - copies each [element](https://aplwiki.com/wiki/Element "Element") of the right [argument](https://aplwiki.com/wiki/Argument "Argument") a given number of times - left argument will error on any non integer. Apply Omega `⍵` against Zilde `⍬` - the empty vector.
 2. `0::⍵` [Error Guard](http://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Error%20Guards.htm) `::` is a vector of error numbers :: expression to be evaluated
 3. `∊{}¨` [Membership](https://aplwiki.com/wiki/Membership) `∊` - tests if [Each](https://aplwiki.com/wiki/Each) `¨` of the elements of the left [argument](https://aplwiki.com/wiki/Argument "Argument") appears as an element of the right argument. 

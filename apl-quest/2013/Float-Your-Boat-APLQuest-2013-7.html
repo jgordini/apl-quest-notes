@@ -463,23 +463,23 @@ document.write(`
 <section id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
 <p>First, let’s create some data for ourselves. What defines a number that isn’t an integer? There are various ways to approach this, but a very simple and effective method is to compare the number to what happens if we round it. Any integer remains unchanged when rounded, while a non-integer will change.</p>
-<p>We can find the integer values in our vector by using the floor function. This allows us to filter the non-integers. Here’s how we can implement this as a function called <code class="docutils literal notranslate"><span class="pre">A</span></code>:</p>
+<p>We can find the integer values in our vector by using the floor function. This allows us to filter the non-integers. Here’s how we can implement this as a function called <code class="docutils literal notranslate"><span class="pre">A</span></code></p>
+<p><strong>Floor</strong></p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">¯3.1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="m">92.6</span><span class="w"> </span><span class="m">¯5</span><span class="w"> </span><span class="c1">⍝ Test Data</span>
 <span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="bp">⍵</span><span class="o">≠⌊</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Compare the number against it&#39;s rounded version. Same is int. Different is Float.  </span>
 </pre></div>
 </div>
-<p>Here’s the <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">tacit</a> version:</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="na">/⍨</span><span class="p">)</span><span class="na">∘</span><span class="p">(</span><span class="o">≠</span><span class="na">∘</span><span class="o">⌊</span><span class="na">⍨</span><span class="p">)</span><span class="na">⍨</span><span class="w"> </span><span class="c1">⍝ Tacit {(⍵≠(⌊⍵))/⍵}</span>
-</pre></div>
-</div>
-<p>A</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵≠⌊⍵</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Floor">Floor</a> <code class="docutils literal notranslate"><span class="pre">⌊</span></code> Rounds down to the nearest real number.</p></li>
 <li><p><a class="reference external" href="https://aplwiki.com/wiki/Not_Equal_to">Not Equal to</a> <code class="docutils literal notranslate"><span class="pre">≠</span></code> a <a class="reference external" href="https://aplwiki.com/wiki/Comparison_function" title="Comparison function">comparison function</a>  tests whether arguments are unequal. This returns a boolean array where 1 indicates the non-integers.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/</span></code>  <a class="reference external" href="https://mastering.dyalog.com/Some-Primitive-Functions.html?highlight=compress#replicate">Compress</a> filters the right argument using the boolean array on the left.</p></li>
 <li><p><a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> aka Swap used to put the boolean array generated in Step 1 on the left of the Compress.</p></li>
 </ol>
-<p>B</p>
+<p><strong>Tacit</strong></p>
+<p>Here’s the <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">tacit</a> version:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="na">/⍨</span><span class="p">)</span><span class="na">∘</span><span class="p">(</span><span class="o">≠</span><span class="na">∘</span><span class="o">⌊</span><span class="na">⍨</span><span class="p">)</span><span class="na">⍨</span><span class="w"> </span><span class="c1">⍝ Tacit {(⍵≠(⌊⍵))/⍵}</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">(≠∘⌊⍨)</span></code>  <a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#commute-selfie-and-constant">Selfie</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> - used monadically, the same argument gets used on both sides of the function. Thus, <code class="docutils literal notranslate"><span class="pre">F⍨y</span></code> is equivalent to - <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">F</span> <span class="pre">y</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">∘</span></code> Preprocess the right argument <code class="docutils literal notranslate"><span class="pre">≠</span></code> with Floor <code class="docutils literal notranslate"><span class="pre">⌊</span></code></p></li>
@@ -503,16 +503,17 @@ document.write(`
 <h2>Data Representation<a class="headerlink" href="#data-representation" title="Link to this heading">#</a></h2>
 <p>Another approach is to use APL’s internal representation of numbers.  By checking the representation of these values, we can see their actual types (e.g., 64-bit binary float or other types). This works well for most cases but can fail with very large numbers that use different internal representations.</p>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">x</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">v</span><span class="o">,</span><span class="m">1e400</span><span class="w"> </span><span class="c1">⍝ Test Data</span>
-<span class="nv">D</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">645</span><span class="o">=</span><span class="nf">⎕DR</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ 645 is 64 bit per element and 5 means it&#39;s floating point</span>
-<span class="nv">E</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">645</span><span class="w"> </span><span class="m">1287</span><span class="o">∊</span><span class="na">⍨</span><span class="nf">⎕DR</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ 1287 is a 128-bit decimal float. 7 indicates Decimal.  </span>
+<span class="nv">D</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">645</span><span class="o">=</span><span class="nf">⎕DR</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ 645 is 64 bit per element and 5 means it&#39;s floating point </span>
 </pre></div>
 </div>
-<p>D</p>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://help.dyalog.com/latest/Content/Language/System%20Functions/Data%20Representation%20Dyadic.htm">Data Representation</a> <code class="docutils literal notranslate"><span class="pre">⎕DR</span></code> - converts the data type of its argument Y according to the type specification X. Here we check if <code class="docutils literal notranslate"><span class="pre">⎕DR</span></code> at 645 (64 means the 64 bit per element and 5 means it’s floating point) is equal to <a class="reference external" href="https://aplwiki.com/wiki/Each">Each</a> <code class="docutils literal notranslate"><span class="pre">¨</span></code> element of omega.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> First <a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#commute-selfie-and-constant">Swapping</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code>  the arguments. <a class="reference external" href="https://mastering.dyalog.com/Some-Primitive-Functions.html?highlight=compress#replicate">Compress</a> <code class="docutils literal notranslate"><span class="pre">⍵/</span></code> filters the right argument using the boolean array (Result of Step 1) on the left.</p></li>
 </ol>
-<p>E</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">x</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">v</span><span class="o">,</span><span class="m">1e400</span><span class="w"> </span><span class="c1">⍝ Test Data</span>
+<span class="nv">E</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">645</span><span class="w"> </span><span class="m">1287</span><span class="o">∊</span><span class="na">⍨</span><span class="nf">⎕DR</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ 1287 is a 128-bit decimal float. 7 indicates Decimal.  </span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">645</span> <span class="pre">1287∊⍨⎕DR¨⍵</span></code> Swapping the arguments and checking if 645 or 1287 are <a class="reference external" href="https://aplwiki.com/wiki/Membership">Members</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> of the Data Representiaton of Each element in omega.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> We then filter the result against the original.  First <a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#commute-selfie-and-constant">Swapping</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code>  the arguments. <a class="reference external" href="https://mastering.dyalog.com/Some-Primitive-Functions.html?highlight=compress#replicate">Compress</a> <code class="docutils literal notranslate"><span class="pre">⍵/</span></code> filters the right argument using the boolean array (Result of Step 1) on the left.</p></li>
@@ -524,20 +525,19 @@ document.write(`
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="s1">&#39;.&#39;</span><span class="o">∊</span><span class="na">∘</span><span class="o">⍕</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span>
 </pre></div>
 </div>
-<p>This method can be improved by increasing the print precision:</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">G</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nf">⎕PP</span><span class="kd">←</span><span class="m">34</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍵</span><span class="na">/⍨</span><span class="s1">&#39;.&#39;</span><span class="o">∊</span><span class="na">∘</span><span class="o">⍕</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Solution for near integers</span>
-</pre></div>
-</div>
-<p>F</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">⍕¨⍵</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Format">Format</a> <code class="docutils literal notranslate"><span class="pre">⍕</span></code> Each <code class="docutils literal notranslate"><span class="pre">¨</span></code> formats the right <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> into a <a class="reference external" href="https://aplwiki.com/wiki/Simple" title="Simple">simple</a> <a class="reference external" href="https://aplwiki.com/index.php?title=Character&amp;amp;action=edit&amp;amp;redlink=1" title="Character (page does not exist)">character</a> array.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'.'∊</span></code> Checks if <code class="docutils literal notranslate"><span class="pre">'.'</span></code> is a member of the each formated element of Omega <code class="docutils literal notranslate"><span class="pre">⍵</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> Filters the original argument against the result of Step 2.</p></li>
 </ol>
-<p>G</p>
+<p>This method can be improved by increasing the print precision:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">G</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nf">⎕PP</span><span class="kd">←</span><span class="m">34</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍵</span><span class="na">/⍨</span><span class="s1">&#39;.&#39;</span><span class="o">∊</span><span class="na">∘</span><span class="o">⍕</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Solution for near integers</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">⎕PP←34</span></code> <a class="reference external" href="https://help.dyalog.com/latest/Content/Language/System%20Functions/pp.htm">Print Precision</a> <code class="docutils literal notranslate"><span class="pre">⎕PP</span></code> - number of significant digits in the display of numeric output. Default is 10. Max is 34.</p></li>
 <li><p>Apply the Function in F.</p></li>
+<li></li>
 </ol>
 </section>
 <section id="mathematical-approaches">
@@ -549,7 +549,10 @@ document.write(`
 <span class="nv">K</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">0</span><span class="o">≠</span><span class="bp">⍵</span><span class="o">-⌊</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Subtract</span>
 </pre></div>
 </div>
-<p>H</p>
+<p><strong>Modulus</strong></p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">H</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">×</span><span class="m">1</span><span class="o">|</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Using Modulus</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">1|⍵</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Residue">Residue</a> <code class="docutils literal notranslate"><span class="pre">|</span></code> - aka Modulo - gives the <a class="reference external" href="https://en.wikipedia.org/wiki/Remainder" title="wikipedia:Remainder">remainder</a> of <a class="reference external" href="https://aplwiki.com/wiki/Divide" title="Divide">division</a> between two real numbers.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">×</span></code>  <a class="reference external" href="https://aplwiki.com/wiki/Signum">Signum</a> <code class="docutils literal notranslate"><span class="pre">×</span></code> -  three possible results of Signum on a real argument are <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, and <code class="docutils literal notranslate"><span class="pre">¯1</span></code> : Positive, Negative and Zero. Signum will always be positive or zero in this case.</p></li>
@@ -557,20 +560,28 @@ document.write(`
 <li><p>Floating point numbers will have a positive signum of the remainder or 1.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> We can then apply this <a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a> against our orginal argument.</p></li>
 </ol>
-<p>I</p>
+<p><strong>Comparison Tolerance</strong></p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nf">⎕CT</span><span class="kd">←</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">×</span><span class="m">1</span><span class="o">|</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Comparison Tolerance </span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">⎕CT←0</span></code> <a class="reference external" href="https://help.dyalog.com/latest/Content/Language/System%20Functions/ct.htm">Comparison Tolerance</a> <code class="docutils literal notranslate"><span class="pre">⎕CT</span></code> - determines the precision with which two numbers are judged to be equal. Setting this to zero means all our numbers are considered to be floating point.</p></li>
 <li><p>We can then Apply the function in H.</p></li>
 </ol>
-<p>J</p>
+<p><strong>Encode</strong></p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">×</span><span class="m">1</span><span class="o">⊤</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Using Encode</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">1⊤⍵</span></code> <a class="reference external" href="https://mastering.dyalog.com/Mathematical-Functions.html?highlight=encode#encode">Encode</a> <code class="docutils literal notranslate"><span class="pre">⊤</span></code> - Checking if the smallest unit in the base is a one and how many ones there are. This is exactly the same as division remainder. Encode doesn’t care about <a class="reference external" href="https://help.dyalog.com/latest/Content/Language/System%20Functions/ct.htm">Comparison Tolerance</a> <code class="docutils literal notranslate"><span class="pre">⎕CT</span></code> it is always 0.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">×</span></code>  <a class="reference external" href="https://aplwiki.com/wiki/Signum">Signum</a> <code class="docutils literal notranslate"><span class="pre">×</span></code> -  three possible results of Signum on a real argument are <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, and <code class="docutils literal notranslate"><span class="pre">¯1</span></code> : Positive, Negative and Zero. Signum will always be positive or zero in this case.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> We can then apply this <a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a> against our orginal argument.</p></li>
 </ol>
-<p>K</p>
+<p><strong>Subtract</strong></p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">K</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">0</span><span class="o">≠</span><span class="bp">⍵</span><span class="o">-⌊</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Subtract</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
-<li><p>In any comparison with a true zero, the comparison tolerance doesn’t matter.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">0≠⍵-⌊⍵</span></code> Subtracting the argument from it’s <a class="reference external" href="https://aplwiki.com/wiki/Floor">Floor</a> <code class="docutils literal notranslate"><span class="pre">⌊</span></code>  and comparing the result against <a class="reference external" href="https://aplwiki.com/wiki/Not_Equal_to">Not Equal to</a> <code class="docutils literal notranslate"><span class="pre">≠</span></code> Zero.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> Use the result to filter the argument.</p></li>
 </ol>
@@ -582,7 +593,6 @@ document.write(`
 </pre></div>
 </div>
 <p>This function attempts to use each number as a replication factor on an empty vector. It will error on non-integers, which we catch and interpret as our desired result.</p>
-<p>L</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍬</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Replicate">Replicate</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> - copies each <a class="reference external" href="https://aplwiki.com/wiki/Element" title="Element">element</a> of the right <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> a given number of times - left argument will error on any non integer. Apply Omega <code class="docutils literal notranslate"><span class="pre">⍵</span></code> against Zilde <code class="docutils literal notranslate"><span class="pre">⍬</span></code> - the empty vector.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">0::⍵</span></code> <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Error%20Guards.htm">Error Guard</a> <code class="docutils literal notranslate"><span class="pre">::</span></code> is a vector of error numbers :: expression to be evaluated</p></li>
