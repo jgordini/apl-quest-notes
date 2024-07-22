@@ -75,51 +75,6 @@ By combining approaches, we can filter numbers based on the presence of a dot in
 H ← {⍵/⍨'.'∊∘⍕¨⍵} ⍝ Filtering by formatted representation
 ```
 
-
-
-# Float Your Boat: Selecting Non-Integer Numbers in APL
-
-## Introduction
-
-The APL problem "Float Your Boat" challenges us to select non-integer (floating-point) numbers from a numeric vector. This problem, number 7 from the 2013 APL problem-solving competition, seems straightforward but reveals interesting nuances in how APL handles numbers and comparisons.
-
-## The Basic Approach
-
-Let's start with a simple method to identify non-integers:
-
-```apl
-v ← ¯3.1 4 1.5 92.6 ¯5 ⍝ Test Data
-f ← {⍵/⍨⍵≠⌊⍵}
-```
-
-This function `f` compares each number with its floor (rounded-down integer value). If they're different, the number is non-integer. We use this comparison to filter the original vector.
-
-## Tacit Programming Approach
-
-We can rewrite this as a tacit (point-free) function:
-
-```apl
-ft ← (/⍨)∘(≠∘⌊⍨)⍨
-```
-
-This dense expression does the same thing as `f`, but using only operators and functions. While correct, it's less readable and mainly serves as an exercise in APL's expressive power.
-
-## The Comparison Tolerance Issue
-
-APL has a built-in comparison tolerance (`⎕CT`) that affects how numbers are compared. This can lead to unexpected results with numbers very close to integers:
-
-```apl
-w ← 1e¯13+⍳15 ⍝ Test Data using 13 decimals
-f w ⍝ Only considers 1-9 as non-integers
-```
-
-To address this, we can set `⎕CT` to zero:
-
-```apl
-fc ← {⎕CT←0 ⋄ ⍵/⍨⍵≠⌊⍵}
-fc w ⍝ Now considers all 15 numbers as non-integers
-```
-
 ## Internal Representation Approach
 
 Another approach is to use APL's internal representation of numbers:

@@ -158,6 +158,9 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Float your Boat</a></li>
 
+
+
+
 <li class="toctree-l1 has-children"><a class="reference internal" href="../2014/Go-The-Distance-APLQuest-2014-8.html">Welcome to the APL Quest</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../2014/Going-Ballistic-APLQuest-2014-9.html">APL Quest</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2014/How-Tweet-It-Is-APLQuest-2014-2.html">APL Quest: Problem Solving and Performance of Text Processing Techniques</a></li>
@@ -431,17 +434,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-integer-definitions">Non-integer Definitions</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#float-your-boat-selecting-non-integer-numbers-in-apl">Float Your Boat: Selecting Non-Integer Numbers in APL</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basic-approach">The Basic Approach</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tacit-programming-approach">Tacit Programming Approach</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-comparison-tolerance-issue">The Comparison Tolerance Issue</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-representation-approach">Internal Representation Approach</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-point-detection">Decimal Point Detection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quirky-solution">A Quirky Solution</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-representation-approach">Internal Representation Approach</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-point-detection">Decimal Point Detection</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quirky-solution">A Quirky Solution</a></li>
 </ul>
 
             </nav>
@@ -518,44 +514,8 @@ document.write(`
 </div>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="float-your-boat-selecting-non-integer-numbers-in-apl">
-<h1>Float Your Boat: Selecting Non-Integer Numbers in APL<a class="headerlink" href="#float-your-boat-selecting-non-integer-numbers-in-apl" title="Link to this heading">#</a></h1>
-<section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>The APL problem “Float Your Boat” challenges us to select non-integer (floating-point) numbers from a numeric vector. This problem, number 7 from the 2013 APL problem-solving competition, seems straightforward but reveals interesting nuances in how APL handles numbers and comparisons.</p>
-</section>
-<section id="the-basic-approach">
-<h2>The Basic Approach<a class="headerlink" href="#the-basic-approach" title="Link to this heading">#</a></h2>
-<p>Let’s start with a simple method to identify non-integers:</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">¯3.1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="m">92.6</span><span class="w"> </span><span class="m">¯5</span><span class="w"> </span><span class="c1">⍝ Test Data</span>
-<span class="nv">f</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="bp">⍵</span><span class="o">≠⌊</span><span class="bp">⍵</span><span class="kt">}</span>
-</pre></div>
-</div>
-<p>This function <code class="docutils literal notranslate"><span class="pre">f</span></code> compares each number with its floor (rounded-down integer value). If they’re different, the number is non-integer. We use this comparison to filter the original vector.</p>
-</section>
-<section id="tacit-programming-approach">
-<h2>Tacit Programming Approach<a class="headerlink" href="#tacit-programming-approach" title="Link to this heading">#</a></h2>
-<p>We can rewrite this as a tacit (point-free) function:</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">ft</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="na">/⍨</span><span class="p">)</span><span class="na">∘</span><span class="p">(</span><span class="o">≠</span><span class="na">∘</span><span class="o">⌊</span><span class="na">⍨</span><span class="p">)</span><span class="na">⍨</span>
-</pre></div>
-</div>
-<p>This dense expression does the same thing as <code class="docutils literal notranslate"><span class="pre">f</span></code>, but using only operators and functions. While correct, it’s less readable and mainly serves as an exercise in APL’s expressive power.</p>
-</section>
-<section id="the-comparison-tolerance-issue">
-<h2>The Comparison Tolerance Issue<a class="headerlink" href="#the-comparison-tolerance-issue" title="Link to this heading">#</a></h2>
-<p>APL has a built-in comparison tolerance (<code class="docutils literal notranslate"><span class="pre">⎕CT</span></code>) that affects how numbers are compared. This can lead to unexpected results with numbers very close to integers:</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">w</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1e¯13</span><span class="o">+⍳</span><span class="m">15</span><span class="w"> </span><span class="c1">⍝ Test Data using 13 decimals</span>
-<span class="nv">f</span><span class="w"> </span><span class="nv">w</span><span class="w"> </span><span class="c1">⍝ Only considers 1-9 as non-integers</span>
-</pre></div>
-</div>
-<p>To address this, we can set <code class="docutils literal notranslate"><span class="pre">⎕CT</span></code> to zero:</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">fc</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nf">⎕CT</span><span class="kd">←</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍵</span><span class="na">/⍨</span><span class="bp">⍵</span><span class="o">≠⌊</span><span class="bp">⍵</span><span class="kt">}</span>
-<span class="nv">fc</span><span class="w"> </span><span class="nv">w</span><span class="w"> </span><span class="c1">⍝ Now considers all 15 numbers as non-integers</span>
-</pre></div>
-</div>
-</section>
 <section id="internal-representation-approach">
-<h2>Internal Representation Approach<a class="headerlink" href="#internal-representation-approach" title="Link to this heading">#</a></h2>
+<h1>Internal Representation Approach<a class="headerlink" href="#internal-representation-approach" title="Link to this heading">#</a></h1>
 <p>Another approach is to use APL’s internal representation of numbers:</p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">g</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">645</span><span class="o">=</span><span class="nf">⎕DR</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ 645 is 64-bit floating point</span>
 </pre></div>
@@ -579,7 +539,7 @@ document.write(`
 </ol>
 </section>
 <section id="decimal-point-detection">
-<h2>Decimal Point Detection<a class="headerlink" href="#decimal-point-detection" title="Link to this heading">#</a></h2>
+<h1>Decimal Point Detection<a class="headerlink" href="#decimal-point-detection" title="Link to this heading">#</a></h1>
 <p>A simple, human-readable approach is to check for a decimal point in the formatted number:</p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">h</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="s1">&#39;.&#39;</span><span class="o">∊</span><span class="na">∘</span><span class="o">⍕</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span>
 </pre></div>
@@ -595,7 +555,7 @@ document.write(`
 </div>
 </section>
 <section id="mathematical-approaches">
-<h2>Mathematical Approaches<a class="headerlink" href="#mathematical-approaches" title="Link to this heading">#</a></h2>
+<h1>Mathematical Approaches<a class="headerlink" href="#mathematical-approaches" title="Link to this heading">#</a></h1>
 <p>We can use mathematical properties to identify non-integers:</p>
 <ol class="arabic">
 <li><p>Using modulus:</p>
@@ -645,7 +605,7 @@ document.write(`
 </ol>
 </section>
 <section id="a-quirky-solution">
-<h2>A Quirky Solution<a class="headerlink" href="#a-quirky-solution" title="Link to this heading">#</a></h2>
+<h1>A Quirky Solution<a class="headerlink" href="#a-quirky-solution" title="Link to this heading">#</a></h1>
 <p>For fun, here’s an unconventional approach using error handling:</p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">q</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">∊</span><span class="kt">{</span><span class="m">0</span><span class="bp">::⍵</span><span class="p">⋄</span><span class="bp">⍵</span><span class="na">/</span><span class="no">⍬</span><span class="kt">}</span><span class="na">¨</span>
 </pre></div>
@@ -741,7 +701,6 @@ Hello and welcome to the APL quest. See APL wiki for details. Today’s quest is
 <p>And finally, just for a bit of a joke solution, if we try to use the argument as left argument to replicate, but we’re not actually interested in using any value, so we can just replicate the empty vector, which will always give the empty vector. Then the function is subject to the limitations in domain of the replicate function.</p>
 <p>Now the replicate function can take any integer, positive or negative, including 0 as argument. This means that it will error if any element is not an integer, and that’s exactly what we’re looking for. So we can set up an error guard that says that if any error happens, it’s really the main error, but let’s just do any error for now. If any error happens, that means that the test that the argument is non-integer, and we want it. Otherwise, we replicate the empty vector, which gives us the empty vector. Let’s try this first. So if we do this on v, then we can see the gap here.</p>
 <p>So we get an empty vector for every integer, and we get the integer and they get the number itself for numbers that are not integers. And all we need to do now is enlist, and that collapses all the empty vectors away, and we just get the result we want. So this solution also works. It has horrible performance. It’s completely abusing the system, and it fails on numbers of very large magnitude, but well, it works, subject to comparison tolerance again like before, and we now know how we can deal with that if we want to, but that’s it joking solution. Please don’t do this.</p>
-</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -817,17 +776,10 @@ Hello and welcome to the APL quest. See APL wiki for details. Today’s quest is
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-integer-definitions">Non-integer Definitions</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#float-your-boat-selecting-non-integer-numbers-in-apl">Float Your Boat: Selecting Non-Integer Numbers in APL</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-basic-approach">The Basic Approach</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tacit-programming-approach">Tacit Programming Approach</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-comparison-tolerance-issue">The Comparison Tolerance Issue</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-representation-approach">Internal Representation Approach</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-point-detection">Decimal Point Detection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quirky-solution">A Quirky Solution</a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-representation-approach">Internal Representation Approach</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-point-detection">Decimal Point Detection</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quirky-solution">A Quirky Solution</a></li>
 </ul>
 
   </nav></div>
