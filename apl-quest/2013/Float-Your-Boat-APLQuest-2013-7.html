@@ -438,10 +438,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-tolerance">Comparison Tolerance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-representation">Data Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-point-detection">Decimal Point Detection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subtract">Subtract</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quirky-solution">A Quirky Solution</a></li>
 </ul>
             </nav>
@@ -546,6 +543,7 @@ document.write(`
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">H</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">×</span><span class="m">1</span><span class="o">|</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Using Modulus</span>
 <span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nf">⎕CT</span><span class="kd">←</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">×</span><span class="m">1</span><span class="o">|</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Comparison Tolerance </span>
 <span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">×</span><span class="m">1</span><span class="o">⊤</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Using Encode</span>
+<span class="nv">K</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">0</span><span class="o">≠</span><span class="bp">⍵</span><span class="o">-⌊</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Subtract</span>
 </pre></div>
 </div>
 <p>H</p>
@@ -567,17 +565,12 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">×</span></code>  <a class="reference external" href="https://aplwiki.com/wiki/Signum">Signum</a> <code class="docutils literal notranslate"><span class="pre">×</span></code> -  three possible results of Signum on a real argument are <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, and <code class="docutils literal notranslate"><span class="pre">¯1</span></code> : Positive, Negative and Zero. Signum will always be positive or zero in this case.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> We can then apply this <a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a> against our orginal argument.</p></li>
 </ol>
-<section id="subtract">
-<h3>Subtract<a class="headerlink" href="#subtract" title="Link to this heading">#</a></h3>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">K</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">0</span><span class="o">≠</span><span class="bp">⍵</span><span class="o">-⌊</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ In any comparison with a true zero, the comparison tolerance doesn&#39;t matter</span>
-</pre></div>
-</div>
 <p>K</p>
 <ol class="arabic simple">
+<li><p>In any comparison with a true zero, the comparison tolerance doesn’t matter.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">0≠⍵-⌊⍵</span></code> Subtracting the argument from it’s <a class="reference external" href="https://aplwiki.com/wiki/Floor">Floor</a> <code class="docutils literal notranslate"><span class="pre">⌊</span></code>  and comparing the result against <a class="reference external" href="https://aplwiki.com/wiki/Not_Equal_to">Not Equal to</a> <code class="docutils literal notranslate"><span class="pre">≠</span></code> Zero.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> Use the result to filter the argument.</p></li>
 </ol>
-</section>
 </section>
 <section id="a-quirky-solution">
 <h2>A Quirky Solution<a class="headerlink" href="#a-quirky-solution" title="Link to this heading">#</a></h2>
@@ -745,10 +738,7 @@ Hello and welcome to the APL quest. See APL wiki for details. Today’s quest is
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-tolerance">Comparison Tolerance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-representation">Data Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-point-detection">Decimal Point Detection</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subtract">Subtract</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quirky-solution">A Quirky Solution</a></li>
 </ul>
   </nav></div>

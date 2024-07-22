@@ -104,6 +104,7 @@ We can use mathematical properties to identify non-integers:
 H ← {⍵/⍨×1|⍵} ⍝ Using Modulus
 I ← {⎕CT←0 ⋄ ⍵/⍨×1|⍵} ⍝ Comparison Tolerance 
 J ← {⍵/⍨×1⊤⍵} ⍝ Using Encode
+K ← {⍵/⍨0≠⍵-⌊⍵} ⍝ Subtract
 ```
 
 H
@@ -123,15 +124,10 @@ J
 2. `×`  [Signum](https://aplwiki.com/wiki/Signum) `×` -  three possible results of Signum on a real argument are `0`, `1`, and `¯1` : Positive, Negative and Zero. Signum will always be positive or zero in this case. 
 3. `⍵/⍨` We can then apply this [Boolean Mask](https://aplwiki.com/wiki/Boolean) against our orginal argument. 
 
-### Subtract
-
-```APL
-K ← {⍵/⍨0≠⍵-⌊⍵} ⍝ In any comparison with a true zero, the comparison tolerance doesn't matter
-```
-
 K
-1. `0≠⍵-⌊⍵` Subtracting the argument from it's [Floor](https://aplwiki.com/wiki/Floor) `⌊`  and comparing the result against [Not Equal to](https://aplwiki.com/wiki/Not_Equal_to) `≠` Zero. 
-2. `⍵/⍨` Use the result to filter the argument. 
+1. In any comparison with a true zero, the comparison tolerance doesn't matter.
+2. `0≠⍵-⌊⍵` Subtracting the argument from it's [Floor](https://aplwiki.com/wiki/Floor) `⌊`  and comparing the result against [Not Equal to](https://aplwiki.com/wiki/Not_Equal_to) `≠` Zero. 
+3. `⍵/⍨` Use the result to filter the argument. 
 
 
 
