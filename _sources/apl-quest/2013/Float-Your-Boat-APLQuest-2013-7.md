@@ -113,7 +113,7 @@ K ← {⍵/⍨0≠⍵-⌊⍵} ⍝ Subtract
 
 
 
-**Modulus**
+#### Modulus
 
 ```APL
 H ← {⍵/⍨×1|⍵} ⍝ Using Modulus
@@ -127,7 +127,7 @@ H ← {⍵/⍨×1|⍵} ⍝ Using Modulus
 
 
 
-**Comparison Tolerance**
+#### Comparison Tolerance
 
 ```APL
 I ← {⎕CT←0 ⋄ ⍵/⍨×1|⍵} ⍝ Comparison Tolerance 
@@ -138,7 +138,7 @@ I ← {⎕CT←0 ⋄ ⍵/⍨×1|⍵} ⍝ Comparison Tolerance
 
 
 
-**Encode**
+#### Encode
 
 ```APL
 J ← {⍵/⍨×1⊤⍵} ⍝ Using Encode
@@ -150,7 +150,7 @@ J ← {⍵/⍨×1⊤⍵} ⍝ Using Encode
 
 
 
-**Subtract**
+#### Subtract
 
 ```APL
 K ← {⍵/⍨0≠⍵-⌊⍵} ⍝ Subtract
