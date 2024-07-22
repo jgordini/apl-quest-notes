@@ -25,7 +25,7 @@ A ← {⍵/⍨⍵≠⌊⍵} ⍝ Compare the number against it's rounded version.
 1. `⍵≠⌊⍵` [Floor](https://aplwiki.com/wiki/Floor) `⌊` Rounds down to the nearest real number.
 2. [Not Equal to](https://aplwiki.com/wiki/Not_Equal_to) `≠` a [comparison function](https://aplwiki.com/wiki/Comparison_function "Comparison function")  tests whether arguments are unequal. This returns a boolean array where 1 indicates the non-integers. 
 3. `⍵/`  [Compress](https://mastering.dyalog.com/Some-Primitive-Functions.html?highlight=compress#replicate) filters the right argument using the boolean array on the left. 
-4. [Commute](https://aplwiki.com/wiki/Commute) `⍨` aka Swap used to put the boolean array generated in Step 1 on the left of the Compress. 
+4. [Commute](https://aplwiki.com/wiki/Commute) `⍨` aka Swap used to put the boolean array generated in Step 2 on the left of the Compress. 
 
 **Tacit**
 
