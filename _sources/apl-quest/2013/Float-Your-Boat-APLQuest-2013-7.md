@@ -234,15 +234,18 @@ This function attempts to use each number as a replication factor on an empty ve
 
 <a name="note">**Note:**</a>
 
-<mark style="background: #FFF3A3A6;">B </mark> ← Tacit Derived Function - Composed of Operators
-Beginning with the first Parenthesis `(≠∘⌊⍨)`
+<mark style="background: #FAC898;">A</mark>  ← {⍵/⍨⍵≠⌊⍵}
 
-1.  ⌊<mark style="background: #ADCCFFA6;">⍨</mark> ⍵ - Compare Argument with it's own Floor:  Selfie - ⍨
-2.  ≠<mark style="background: #BBFABBA6;">∘</mark>⌊⍨ ⍵ - Preprocess the right argument with `≠` using the floor: Jot - ∘
-3.   <mark style="background: #FFB8EBA6;">/⍨</mark><mark style="background: #BBFABBA6;">∘</mark>⍺⍺- Preprocess the right parenthesis expression using Jot and then Swap
-4.   <mark style="background: #ADCCFFA6;">⍺⍺/ ⍵ ⍨ ⍵</mark> - Filter initial array using result: Selfie - ⍨
+<mark style="background: #FFF3A3A;">B </mark> ← Tacit Derived Function - Composed of Operators
+Beginning with the first Parenthesis `(/⍨)∘(≠∘⌊⍨)⍨`
 
-**Comment:** 
+1.  ⌊<mark style="background: #ADCCFFA6;">⍨</mark> ⍵ - Compare Argument with it's own Floor:  <mark style="background: #ADCCFFA6;">Selfie</mark> - ⍨
+2.  ≠<mark style="background: #BBFABBA6;">∘</mark>⌊⍨ ⍵ - Preprocess the right argument with `≠` using the floor:  <mark style="background: #BBFABBA6;">Jot</mark> - ∘
+3.   /<mark style="background: #FFB8EBA6;">⍨</mark><mark style="background: #BBFABBA6;">∘</mark>⍺⍺- Preprocess the right parenthesis expression using <mark style="background: #BBFABBA6;">Jot</mark> and then <mark style="background: #FFB8EBA6;">Swap</mark> - ⍨
+4.   ⍺⍺/ ⍵<mark style="background: #ADCCFFA6;">⍨</mark>⍵ - Filter initial array using result: <mark style="background: #ADCCFFA6;">Selfie</mark> - ⍨
+
+⍵ is argument
+⍺⍺ is result
 
 Swap - <mark style="background: #FFB8EBA6;">⍺ f ⍨ ⍵</mark>  is  <mark style="background: #FFB8EBA6;">⍵ f ⍺</mark>  
 
