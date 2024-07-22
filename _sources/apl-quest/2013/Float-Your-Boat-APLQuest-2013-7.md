@@ -15,7 +15,7 @@ First, let’s create some data for ourselves. What defines a number that isn’
 
 We can find the integer values in our vector by using the floor function. This allows us to filter the non-integers. Here’s how we can implement this as a function called `A`
 
-**Floor**
+**Rounding**
 
 ```apl
 v ← ¯3.1 4 1.5 92.6 ¯5 ⍝ Test Data
@@ -79,8 +79,6 @@ E ← {⍵/⍨645 1287∊⍨⎕DR¨⍵} ⍝ 1287 is a 128-bit decimal float. 7 i
 ### Decimal Point Detection
 
 A simple, human-readable approach is to check for a decimal point in the formatted number:
-
-
 
 ```apl
 F ← {⍵/⍨'.'∊∘⍕¨⍵}

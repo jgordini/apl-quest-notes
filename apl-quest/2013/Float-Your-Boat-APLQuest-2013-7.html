@@ -464,7 +464,7 @@ document.write(`
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
 <p>First, let’s create some data for ourselves. What defines a number that isn’t an integer? There are various ways to approach this, but a very simple and effective method is to compare the number to what happens if we round it. Any integer remains unchanged when rounded, while a non-integer will change.</p>
 <p>We can find the integer values in our vector by using the floor function. This allows us to filter the non-integers. Here’s how we can implement this as a function called <code class="docutils literal notranslate"><span class="pre">A</span></code></p>
-<p><strong>Floor</strong></p>
+<p><strong>Rounding</strong></p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">¯3.1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="m">92.6</span><span class="w"> </span><span class="m">¯5</span><span class="w"> </span><span class="c1">⍝ Test Data</span>
 <span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="bp">⍵</span><span class="o">≠⌊</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Compare the number against it&#39;s rounded version. Same is int. Different is Float.  </span>
 </pre></div>
