@@ -1,5 +1,5 @@
 
-## [Float your Boat](https://problems.tryapl.org/psets/2013.html?goto=P7_Float_Your_Boat)
+# [Float your Boat](https://problems.tryapl.org/psets/2013.html?goto=P7_Float_Your_Boat)
 
 **Problem:** Write a dfn which selects the floating point (non-integer) numbers from a numeric vector.
 
@@ -58,8 +58,8 @@ C ← {⎕CT←0 ⋄ ⍵/⍨⍵≠⌊⍵} ⍝ Set the comparison tolerance to ze
 Another approach is to use APL's internal representation of numbers.  By checking the representation of these values, we can see their actual types (e.g., 64-bit binary float or other types). This works well for most cases but can fail with very large numbers that use different internal representations.
 
 ```APL
-D ← {⍵/⍨645=⎕DR¨⍵} ⍝ 645 is 64 bit per element and 5 means it's floating point
 x ← v,1e400 ⍝ Test Data
+D ← {⍵/⍨645=⎕DR¨⍵} ⍝ 645 is 64 bit per element and 5 means it's floating point
 E ← {⍵/⍨645 1287∊⍨⎕DR¨⍵} ⍝ 1287 is a 128-bit decimal float. 7 indicates Decimal.  
 ```
 
