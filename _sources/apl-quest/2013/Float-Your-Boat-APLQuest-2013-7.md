@@ -4,6 +4,7 @@
 **Problem:** Write a dfn which selects the floating point (non-integer) numbers from a numeric vector.
 
 **Video:** https://youtu.be/w5LvImFVi2M
+
 **Code:** https://github.com/abrudz/apl_quest/blob/main/2013/7.apl
 
 In today's quest, we are tasked with selecting the numbers from a vector that are floating point or non-integers. This is Problem Seven from the [2013 APL Problem Solving Competition](https://problems.tryapl.org/psets/2013.html?goto=P7_Float_Your_Boat).
@@ -12,17 +13,16 @@ In today's quest, we are tasked with selecting the numbers from a vector that ar
 
 First, let’s create some data for ourselves. What defines a number that isn’t an integer? There are various ways to approach this, but a very simple and effective method is to compare the number to what happens if we round it. Any integer remains unchanged when rounded, while a non-integer will change.
 
-We can find the integer values in our vector by using the floor function. This allows us to filter the non-integers. Here’s how we can implement this as a function called `f`:
+We can find the integer values in our vector by using the floor function. This allows us to filter the non-integers. Here’s how we can implement this as a function called `A`:
 
 ```apl
 v ← ¯3.1 4 1.5 92.6 ¯5 ⍝ Test Data
-f ← {⍵/⍨⍵≠⌊⍵} ⍝ Compare the number against it's rounded version. Same is int. Different is Float.  
+A ← {⍵/⍨⍵≠⌊⍵} ⍝ Compare the number against it's rounded version. Same is int. Different is Float.  
 ```
 
-Here’s the derived function:
+Here’s the tacit version:
 
 ```apl
-A ← {⍵/⍨⍵≠⌊⍵} ⍝ Compare the number against its floored version
 B ← (/⍨)∘(≠∘⌊⍨)⍨ ⍝ Tacit {(⍵≠(⌊⍵))/⍵}
 ```
 A
@@ -36,26 +36,16 @@ B
 2. `∘` Preprocess the right argument `≠` with Floor `⌊`
 3. `(/⍨)∘` This time preprocess the right argument with Filter `/`  Using the original test data. 
 4. The first Selfie flips the whole expression. 
-5. See the comment for a Dfn version
 
 
 ### Comparison Tolerance
 
-Now, let’s examine what we mean by a floating point number. If we create some interesting data, say by adding a very small value (1 × 10^-13) to the integers 1 through 15, it may visually appear as though they are still integers due to APL's default rounding to approximately 10 digits of precision.
-
-However if we delve deeper and display the numbers using 14 decimals, we start to notice the discrepancies due to floating-point inaccuracies. This raises the question: should these numbers be considered floating point or not? 
-
-When applying the function `f` on this array, we find that some numbers (1 through 9) are considered non-integers, while others (10 through 15) are considered integers based on APL’s default comparison tolerance.
-
 [Comparison Tolerance](https://help.dyalog.com/latest/Content/Language/System%20Functions/ct.htm) `⎕CT` - determines the precision with which two numbers are judged to be equal. A value of 0 ensures exact comparison. 
 
-Comparison Tolerance
 ```APL
 T ← 1e¯13+⍳15 ⍝ Test Data using 13 decimals
-14⍕w ⍝ Format using 14 decimals
+14⍕w ⍝ Format using 14 decimals not all numbers represented
 ```
-
-### Adjusting Comparison Tolerance
 
 To address this issue, we can create a version of `A` that includes the comparison tolerance. By temporarily setting the comparison tolerance to zero, we ensure that all 15 numbers are classified as floating point values.
 
@@ -63,29 +53,10 @@ To address this issue, we can create a version of `A` that includes the comparis
 C ← {⎕CT←0 ⋄ ⍵/⍨⍵≠⌊⍵} ⍝ Set the comparison tolerance to zero and apply solution A. 
 ```
 
-Here are some additional considerations. APL allows us to see the internal representation of numbers, and understanding this can give further insight. By checking the representation of these values, we can see their actual types (e.g., 64-bit binary float or other types). 
+### Data Representation
 
-### Non-integer Definitions
+Another approach is to use APL's internal representation of numbers.  By checking the representation of these values, we can see their actual types (e.g., 64-bit binary float or other types). This works well for most cases but can fail with very large numbers that use different internal representations.
 
-It's also interesting to explore definitions. A simple method to determine non-integers is to format each number as a character array and check for the presence of a decimal point. This method of identification is not foolproof when dealing with scientific notation.
-
-By combining approaches, we can filter numbers based on the presence of a dot in their formatted representation. This can be done succinctly by using a membership check on the formatted versions of our values:
-
-```apl
-H ← {⍵/⍨'.'∊∘⍕¨⍵} ⍝ Filtering by formatted representation
-```
-
-## Internal Representation Approach
-
-Another approach is to use APL's internal representation of numbers:
-
-```apl
-g ← {⍵/⍨645=⎕DR¨⍵} ⍝ 645 is 64-bit floating point
-```
-
-This works well for most cases but can fail with very large numbers that use different internal representations.
-
-Data Representation
 ```APL
 D ← {⍵/⍨645=⎕DR¨⍵} ⍝ 645 is 64 bit per element and 5 means it's floating point
 x ← v,1e400 ⍝ Test Data
@@ -105,44 +76,34 @@ E
 A simple, human-readable approach is to check for a decimal point in the formatted number:
 
 ```apl
-h ← {⍵/⍨'.'∊∘⍕¨⍵}
+F ← {⍵/⍨'.'∊∘⍕¨⍵}
 ```
 
 This method can be improved by increasing the print precision:
 
 ```apl
-hp ← {⎕PP←34 ⋄ ⍵/⍨'.'∊∘⍕¨⍵}
-```
-
-Print Precision
-```APL
-F ← {⍵/⍨'.'∊∘⍕¨⍵}
 G ← {⎕PP←34 ⋄ ⍵/⍨'.'∊∘⍕¨⍵} ⍝ Solution for near integers
 ```
 
+F
 
+1. `⍕¨⍵` [Format](https://aplwiki.com/wiki/Format) `⍕` Each `¨` formats the right [argument](https://aplwiki.com/wiki/Argument "Argument") into a [simple](https://aplwiki.com/wiki/Simple "Simple") [character](https://aplwiki.com/index.php?title=Character&action=edit&redlink=1 "Character (page does not exist)") array.
+2. `'.'∊` Checks if `'.'` is a member of the each formated element of Omega `⍵`.
+3. `⍵/⍨` Filters the original argument against the result of Step 2.  
+
+G
+
+1. `⎕PP←34` [Print Precision](https://help.dyalog.com/latest/Content/Language/System%20Functions/pp.htm) `⎕PP` - number of significant digits in the display of numeric output. Default is 10. Max is 34. 
+2. Apply the Function in F.
 
 ## Mathematical Approaches
 
 We can use mathematical properties to identify non-integers:
 
-1. Using modulus:
-   ```apl
-   i ← {⍵/⍨×1|⍵}
-   ```
-
-2. Using subtraction:
-   ```apl
-   s ← {⍵/⍨0≠⍵-⌊⍵}
-   ```
-
-
-
-Signum
 ```APL
-H ← {⍵/⍨×1|⍵}
-I ← {⎕CT←0 ⋄ ⍵/⍨×1|⍵} ⍝ Solution for near integers
-J ← {⍵/⍨×1⊤⍵}
+H ← {⍵/⍨×1|⍵} ⍝ Using Modulus
+I ← {⎕CT←0 ⋄ ⍵/⍨×1|⍵} ⍝ Comparison Tolerance 
+J ← {⍵/⍨×1⊤⍵} ⍝ Using Encode
 ```
 
 H
@@ -162,7 +123,8 @@ J
 2. `×`  [Signum](https://aplwiki.com/wiki/Signum) `×` -  three possible results of Signum on a real argument are `0`, `1`, and `¯1` : Positive, Negative and Zero. Signum will always be positive or zero in this case. 
 3. `⍵/⍨` We can then apply this [Boolean Mask](https://aplwiki.com/wiki/Boolean) against our orginal argument. 
 
-Subtract
+### Subtract
+
 ```APL
 K ← {⍵/⍨0≠⍵-⌊⍵} ⍝ In any comparison with a true zero, the comparison tolerance doesn't matter
 ```
@@ -175,18 +137,13 @@ K
 
 ## A Quirky Solution
 
-For fun, here's an unconventional approach using error handling:
+For fun, here's an unconventional approach using replicate and error handling:
 
 ```apl
-q ← ∊{0::⍵⋄⍵/⍬}¨
+L ← ∊{0::⍵⋄⍵/⍬}¨ ⍝ If any error happens, that means that the test that the argument is non-integer, and we want it. Otherwise, we replicate the empty vector, which gives us the empty vector.
 ```
 
 This function attempts to use each number as a replication factor on an empty vector. It will error on non-integers, which we catch and interpret as our desired result.
-
-Replicate and Error Guard
-```APL
-L ← ∊{0::⍵⋄⍵/⍬}¨ ⍝ If any error happens, that means that the test that the argument is non-integer, and we want it. Otherwise, we replicate the empty vector, which gives us the empty vector.
-```
 
 L
 1. `⍵/⍬` [Replicate](https://aplwiki.com/wiki/Replicate) `/` - copies each [element](https://aplwiki.com/wiki/Element "Element") of the right [argument](https://aplwiki.com/wiki/Argument "Argument") a given number of times - left argument will error on any non integer. Apply Omega `⍵` against Zilde `⍬` - the empty vector.
@@ -196,36 +153,60 @@ L
 
 
 **Glyphs Used:**
+
 [Floor](https://aplwiki.com/wiki/Floor) `⌊` - a [monadic](https://aplwiki.com/wiki/Monadic "Monadic") [scalar function](https://aplwiki.com/wiki/Scalar_function "Scalar function") that gives the [floor](https://en.wikipedia.org/wiki/floor_and_ceiling_functions "wikipedia:floor and ceiling functions") of a real number
+
 [Equal to](https://aplwiki.com/wiki/Equal_to)  `=` - a [comparison function](https://aplwiki.com/wiki/Comparison_function "Comparison function") which tests whether argument elements are equal to each other.
+
 [Not Equal to](https://aplwiki.com/wiki/Not_Equal_to) `≠` - a [comparison function](https://aplwiki.com/wiki/Comparison_function "Comparison function") which tests whether argument elements are unequal.
+
 [Compress](https://aplwiki.com/wiki/Replicate) `/` - aka FIlter - requires the number of copies to be [Boolean](https://aplwiki.com/wiki/Boolean "Boolean"): each element is either retained (1 copy) or discarded (0 copies)
+
 [Commute](https://aplwiki.com/wiki/Commute) `⍨` - aka Swap - used dyadically, the arguments are swapped. 
+
 [Selfie](https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#commute-selfie-and-constant) `⍨` - used monadically, the same argument gets used on both sides of the function. Thus, `F⍨y` is equivalent to - `y F y`.
+
 [Format](https://aplwiki.com/wiki/Format) `⍕` - Dydactic column width and the number of decimal places for formatting [numeric](https://aplwiki.com/index.php?title=Numeric&action=edit&redlink=1 "Numeric (page does not exist)") arrays
+
 [Comparison Tolerance](https://help.dyalog.com/latest/Content/Language/System%20Functions/ct.htm) `⎕CT` - determines the precision with which two numbers are judged to be equal
+
 [Data Representation](https://help.dyalog.com/latest/Content/Language/System%20Functions/Data%20Representation%20Dyadic.htm) `⎕DR` - converts the data type of its argument Y according to the type specification X
+
 [Each](https://aplwiki.com/wiki/Each) `¨` - applies its [operand](https://aplwiki.com/wiki/Operand "Operand") to each [element](https://aplwiki.com/wiki/Element "Element") of the [arguments](https://aplwiki.com/wiki/Argument "Argument")
+
 [Membership](https://aplwiki.com/wiki/Membership) `∊` - tests if each of the elements of the left [argument](https://aplwiki.com/wiki/Argument "Argument") appears as an element of the right argument
+
 [Print Precision](https://help.dyalog.com/latest/Content/Language/System%20Functions/pp.htm) `⎕PP` - number of significant digits in the display of numeric output
+
 [Residue](https://aplwiki.com/wiki/Residue) `|` - aka Modulo - gives the [remainder](https://en.wikipedia.org/wiki/Remainder "wikipedia:Remainder") of [division](https://aplwiki.com/wiki/Divide "Divide") between two real numbers.
-[Signum](https://aplwiki.com/wiki/Signum) `×` -  three poss ible results of Signum on a real argument are `0`, `1`, and `¯1` : Positive, Negative and Zero
+
+[Signum](https://aplwiki.com/wiki/Signum) `×` -  three possible results of Signum on a real argument are `0`, `1`, and `¯1` : Positive, Negative and Zero
+
 [Encode](https://mastering.dyalog.com/Mathematical-Functions.html?highlight=encode#encode) `⊤` - `A⊤B`, turns `B` into a list(s) of digits in (mixed) base
+
 [Replicate](https://aplwiki.com/wiki/Replicate) `/` - copies each [element](https://aplwiki.com/wiki/Element "Element") of the right [argument](https://aplwiki.com/wiki/Argument "Argument") a given number of times
+
 [Error Guard](http://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Error%20Guards.htm) `::` - vector of error numbers :: expression to be evaluated
 
 **Concepts Used:**
 [Dfn](https://aplwiki.com/wiki/Dfn)
+
 [Tacit Programming](https://aplwiki.com/wiki/Tacit_programming)
+
 [Comparison Tolerance](https://www.jsoftware.com/papers/satn23.htm) 
+
 [Function Composition](http://help.dyalog.com/latest/index.htm#Language/Primitive%20Operators/Operator%20Syntax.htm#Function_Composition)
+
 [Hook](https://aplwiki.com/wiki/Hook)
+
 [Derived Function](https://aplwiki.com/wiki/Derived_function)
+
 [Modulo Operation](https://en.wikipedia.org/wiki/Modulo_operation)
 
 **Note:**
 <mark style="background: #FFF3A3A6;">Ft </mark> ← Tacit Derived Function - Composed of Operators
 Beginning with the first Parenthesis `(≠∘⌊⍨)`
+
 1.  ⌊<mark style="background: #ADCCFFA6;">⍨</mark> ⍵ - Compare Argument with it's own Floor:  Selfie - ⍨
 2.  ≠<mark style="background: #BBFABBA6;">∘</mark>⌊⍨ ⍵ - Preprocess the right argument with `≠` using the floor: Jot - ∘
 3.   <mark style="background: #FFB8EBA6;">/⍨</mark><mark style="background: #BBFABBA6;">∘</mark>⍺⍺- Preprocess the right parenthesis expression using Jot and then Swap
@@ -233,8 +214,12 @@ Beginning with the first Parenthesis `(≠∘⌊⍨)`
 
 **Comment:** 
 Swap - <mark style="background: #FFB8EBA6;">⍺ f ⍨ ⍵</mark>  is  <mark style="background: #FFB8EBA6;">⍵ f ⍺</mark>  
+
 Selfie- <mark style="background: #ADCCFFA6;"> f ⍨ ⍵</mark>  is  <mark style="background: #ADCCFFA6;">⍵ f ⍵</mark>
+
 <mark style="background: #BBFABBA6;">Jot </mark> - {R}←{X} f∘g Y - Preprocess the right argument. Then apply the left.
+
+
 
 **Transcript:**
 Hello and welcome to the APL quest. See APL wiki for details. Today's quest is called Float your Boat. We are to select the numbers from a vector of numbers that are floating point or non-integers, and this is problem seven from the 2013 APL problem-solving competition. It's a bit of an interesting thing that it's not well defined what exactly constitutes a floating point number or a non-integer number because in APL, a number is a number. There's not really any good distinction, but we'll do our best, and any of these solutions would be considered correct.
