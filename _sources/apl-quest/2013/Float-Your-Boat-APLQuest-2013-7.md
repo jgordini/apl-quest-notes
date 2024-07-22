@@ -39,6 +39,7 @@ B ← (/⍨)∘(≠∘⌊⍨)⍨ ⍝ Tacit {(⍵≠(⌊⍵))/⍵}
 2. `∘` Preprocess the right argument `≠` with Floor `⌊`
 3. `(/⍨)∘` This time preprocess the right argument with Filter `/`  Using the original test data. 
 4. The first Selfie flips the whole expression. 
+5. See [Note](#note)
 
 
 ### Comparison Tolerance
@@ -231,9 +232,9 @@ This function attempts to use each number as a replication factor on an empty ve
 
 [Modulo Operation](https://en.wikipedia.org/wiki/Modulo_operation)
 
-**Note:**
+<a name="note">**Note:**</a>
 
-<mark style="background: #FFF3A3A6;">Ft </mark> ← Tacit Derived Function - Composed of Operators
+<mark style="background: #FFF3A3A6;">B </mark> ← Tacit Derived Function - Composed of Operators
 Beginning with the first Parenthesis `(≠∘⌊⍨)`
 
 1.  ⌊<mark style="background: #ADCCFFA6;">⍨</mark> ⍵ - Compare Argument with it's own Floor:  Selfie - ⍨
