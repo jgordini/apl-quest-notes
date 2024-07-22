@@ -3,9 +3,9 @@
 
 **Problem:** Write a dfn which selects the floating point (non-integer) numbers from a numeric vector.
 
-**Video:** https://youtu.be/w5LvImFVi2M
+**Video:** [https://youtu.be/w5LvImFVi2M](https://youtu.be/w5LvImFVi2M)
 
-**Code:** https://github.com/abrudz/apl_quest/blob/main/2013/7.apl
+**Code:** [https://github.com/abrudz/apl_quest/blob/main/2013/7.apl](https://github.com/abrudz/apl_quest/blob/main/2013/7.apl)
 
 In today's quest, we are tasked with selecting the numbers from a vector that are floating point or non-integers. This is Problem Seven from the [2013 APL Problem Solving Competition](https://problems.tryapl.org/psets/2013.html?goto=P7_Float_Your_Boat).
 
@@ -189,6 +189,7 @@ L
 [Error Guard](http://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Error%20Guards.htm) `::` - vector of error numbers :: expression to be evaluated
 
 **Concepts Used:**
+
 [Dfn](https://aplwiki.com/wiki/Dfn)
 
 [Tacit Programming](https://aplwiki.com/wiki/Tacit_programming)
@@ -204,6 +205,7 @@ L
 [Modulo Operation](https://en.wikipedia.org/wiki/Modulo_operation)
 
 **Note:**
+
 <mark style="background: #FFF3A3A6;">Ft </mark> ← Tacit Derived Function - Composed of Operators
 Beginning with the first Parenthesis `(≠∘⌊⍨)`
 
@@ -213,6 +215,7 @@ Beginning with the first Parenthesis `(≠∘⌊⍨)`
 4.   <mark style="background: #ADCCFFA6;">⍺⍺/ ⍵ ⍨ ⍵</mark> - Filter initial array using result: Selfie - ⍨
 
 **Comment:** 
+
 Swap - <mark style="background: #FFB8EBA6;">⍺ f ⍨ ⍵</mark>  is  <mark style="background: #FFB8EBA6;">⍵ f ⍺</mark>  
 
 Selfie- <mark style="background: #ADCCFFA6;"> f ⍨ ⍵</mark>  is  <mark style="background: #ADCCFFA6;">⍵ f ⍵</mark>

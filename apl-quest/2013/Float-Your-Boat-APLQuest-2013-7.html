@@ -453,8 +453,8 @@ document.write(`
   <section id="float-your-boat">
 <h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P7_Float_Your_Boat">Float your Boat</a><a class="headerlink" href="#float-your-boat" title="Link to this heading">#</a></h1>
 <p><strong>Problem:</strong> Write a dfn which selects the floating point (non-integer) numbers from a numeric vector.</p>
-<p><strong>Video:</strong> https://youtu.be/w5LvImFVi2M</p>
-<p><strong>Code:</strong> https://github.com/abrudz/apl_quest/blob/main/2013/7.apl</p>
+<p><strong>Video:</strong> <a class="reference external" href="https://youtu.be/w5LvImFVi2M">https://youtu.be/w5LvImFVi2M</a></p>
+<p><strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2013/7.apl">abrudz/apl_quest</a></p>
 <p>In today’s quest, we are tasked with selecting the numbers from a vector that are floating point or non-integers. This is Problem Seven from the <a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P7_Float_Your_Boat">2013 APL Problem Solving Competition</a>.</p>
 <section id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
@@ -607,16 +607,16 @@ document.write(`
 <p><a class="reference external" href="https://mastering.dyalog.com/Mathematical-Functions.html?highlight=encode#encode">Encode</a> <code class="docutils literal notranslate"><span class="pre">⊤</span></code> - <code class="docutils literal notranslate"><span class="pre">A⊤B</span></code>, turns <code class="docutils literal notranslate"><span class="pre">B</span></code> into a list(s) of digits in (mixed) base</p>
 <p><a class="reference external" href="https://aplwiki.com/wiki/Replicate">Replicate</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> - copies each <a class="reference external" href="https://aplwiki.com/wiki/Element" title="Element">element</a> of the right <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> a given number of times</p>
 <p><a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Error%20Guards.htm">Error Guard</a> <code class="docutils literal notranslate"><span class="pre">::</span></code> - vector of error numbers :: expression to be evaluated</p>
-<p><strong>Concepts Used:</strong>
-<a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a></p>
+<p><strong>Concepts Used:</strong></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a></p>
 <p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a></p>
 <p><a class="reference external" href="https://www.jsoftware.com/papers/satn23.htm">Comparison Tolerance</a></p>
 <p><a class="reference external" href="http://help.dyalog.com/latest/index.htm#Language/Primitive%20Operators/Operator%20Syntax.htm#Function_Composition">Function Composition</a></p>
 <p><a class="reference external" href="https://aplwiki.com/wiki/Hook">Hook</a></p>
 <p><a class="reference external" href="https://aplwiki.com/wiki/Derived_function">Derived Function</a></p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Modulo_operation">Modulo Operation</a></p>
-<p><strong>Note:</strong>
-<mark style="background: #FFF3A3A6;">Ft </mark> ← Tacit Derived Function - Composed of Operators
+<p><strong>Note:</strong></p>
+<p><mark style="background: #FFF3A3A6;">Ft </mark> ← Tacit Derived Function - Composed of Operators
 Beginning with the first Parenthesis <code class="docutils literal notranslate"><span class="pre">(≠∘⌊⍨)</span></code></p>
 <ol class="arabic simple">
 <li><p>⌊<mark style="background: #ADCCFFA6;">⍨</mark> ⍵ - Compare Argument with it’s own Floor:  Selfie - ⍨</p></li>
@@ -624,8 +624,8 @@ Beginning with the first Parenthesis <code class="docutils literal notranslate">
 <li><p><mark style="background: #FFB8EBA6;">/⍨</mark><mark style="background: #BBFABBA6;">∘</mark>⍺⍺- Preprocess the right parenthesis expression using Jot and then Swap</p></li>
 <li><p><mark style="background: #ADCCFFA6;">⍺⍺/ ⍵ ⍨ ⍵</mark> - Filter initial array using result: Selfie - ⍨</p></li>
 </ol>
-<p><strong>Comment:</strong>
-Swap - <mark style="background: #FFB8EBA6;">⍺ f ⍨ ⍵</mark>  is  <mark style="background: #FFB8EBA6;">⍵ f ⍺</mark></p>
+<p><strong>Comment:</strong></p>
+<p>Swap - <mark style="background: #FFB8EBA6;">⍺ f ⍨ ⍵</mark>  is  <mark style="background: #FFB8EBA6;">⍵ f ⍺</mark></p>
 <p>Selfie- <mark style="background: #ADCCFFA6;"> f ⍨ ⍵</mark>  is  <mark style="background: #ADCCFFA6;">⍵ f ⍵</mark></p>
 <p><mark style="background: #BBFABBA6;">Jot </mark> - {R}←{X} f∘g Y - Preprocess the right argument. Then apply the left.</p>
 <p><strong>Transcript:</strong>
