@@ -434,7 +434,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rounding">Rounding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tacit">Tacit</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-representation">Data Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-point-detection">Decimal Point Detection</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a><ul class="nav section-nav flex-column">
@@ -447,7 +451,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quirky-solution">A Quirky Solution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">*<em>Transcript:</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript"><strong>Transcript</strong></a></li>
 </ul>
             </nav>
         </div>
@@ -469,7 +473,8 @@ document.write(`
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
 <p>First, let’s create some data for ourselves. What defines a number that isn’t an integer? There are various ways to approach this, but a very simple and effective method is to compare the number to what happens if we round it. Any integer remains unchanged when rounded, while a non-integer will change.</p>
 <p>We can find the integer values in our vector by using the floor function. This allows us to filter the non-integers. Here’s how we can implement this as a function called <code class="docutils literal notranslate"><span class="pre">A</span></code></p>
-<p><strong>Rounding</strong></p>
+<section id="rounding">
+<h3>Rounding<a class="headerlink" href="#rounding" title="Link to this heading">#</a></h3>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">¯3.1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1.5</span><span class="w"> </span><span class="m">92.6</span><span class="w"> </span><span class="m">¯5</span><span class="w"> </span><span class="c1">⍝ Test Data</span>
 <span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="bp">⍵</span><span class="o">≠⌊</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Compare the number against it&#39;s rounded version. Same is int. Different is Float.  </span>
 </pre></div>
@@ -480,7 +485,9 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/</span></code>  <a class="reference external" href="https://mastering.dyalog.com/Some-Primitive-Functions.html?highlight=compress#replicate">Compress</a> filters the right argument using the boolean array on the left.</p></li>
 <li><p><a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> aka Swap used to put the boolean array generated in Step 2 on the left of the Compress.</p></li>
 </ol>
-<p><strong>Tacit</strong></p>
+</section>
+<section id="tacit">
+<h3>Tacit<a class="headerlink" href="#tacit" title="Link to this heading">#</a></h3>
 <p>Here’s the <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">tacit</a> version:</p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="na">/⍨</span><span class="p">)</span><span class="na">∘</span><span class="p">(</span><span class="o">≠</span><span class="na">∘</span><span class="o">⌊</span><span class="na">⍨</span><span class="p">)</span><span class="na">⍨</span><span class="w"> </span><span class="c1">⍝ Tacit version of {(⍵≠(⌊⍵))/⍵}</span>
 </pre></div>
@@ -524,6 +531,7 @@ document.write(`
 <ol class="arabic simple">
 <li><p>See <a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#binding">Bind</a> for more information. <a class="reference internal" href="#note"><span class="xref myst">Note</span></a></p></li>
 </ol>
+</section>
 </section>
 <section id="data-representation">
 <h2>Data Representation<a class="headerlink" href="#data-representation" title="Link to this heading">#</a></h2>
@@ -681,7 +689,7 @@ Beginning with the first Parenthesis <code class="docutils literal notranslate">
 <p><mark style="background: #BBFABBA6;">Jot </mark> - {R}←{X} f∘g Y - Preprocess the right argument. Then apply the left.</p>
 </section>
 <section id="transcript">
-<h2>*<em>Transcript:</em><a class="headerlink" href="#transcript" title="Link to this heading">#</a></h2>
+<h2><strong>Transcript</strong><a class="headerlink" href="#transcript" title="Link to this heading">#</a></h2>
 <p>Hello and welcome to the APL quest. See APL wiki for details. Today’s quest is called Float your Boat. We are to select the numbers from a vector of numbers that are floating point or non-integers, and this is problem seven from the 2013 APL problem-solving competition. It’s a bit of an interesting thing that it’s not well defined what exactly constitutes a floating point number or a non-integer number because in APL, a number is a number. There’s not really any good distinction, but we’ll do our best, and any of these solutions would be considered correct.</p>
 <p>Let’s start off by creating some data for ourselves. What constitutes a number that isn’t an integer? Well, there are various ways to approach this. A very simple one and probably the best method really is to compare the number to what would happen to it if we were to round it. So any number that’s integer stays the same when rounded, and any number that isn’t integer would change. The floor of this vector gives us these integers, and then we can compare, and these give us the integers, but we’re actually interested in the non-integers, so let’s go change that, and then we can use this to filter, and this gives us the non-integers.</p>
 <p>We can put this into a function. Let’s call that f and use the name of the argument, and there you go. Somebody who participated in the live chat event noticed that this can actually be written as an entirely derived function, not even a train but a tested derived function, that is a function that entirely composed of operators and functions together, and we can see how we can transform f into such a thing.</p>
@@ -791,7 +799,11 @@ Beginning with the first Parenthesis <code class="docutils literal notranslate">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rounding">Rounding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tacit">Tacit</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-representation">Data Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-point-detection">Decimal Point Detection</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a><ul class="nav section-nav flex-column">
@@ -804,7 +816,7 @@ Beginning with the first Parenthesis <code class="docutils literal notranslate">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quirky-solution">A Quirky Solution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">*<em>Transcript:</em></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript"><strong>Transcript</strong></a></li>
 </ul>
   </nav></div>
 

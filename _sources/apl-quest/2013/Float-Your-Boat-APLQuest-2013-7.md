@@ -15,7 +15,7 @@ First, let’s create some data for ourselves. What defines a number that isn’
 
 We can find the integer values in our vector by using the floor function. This allows us to filter the non-integers. Here’s how we can implement this as a function called `A`
 
-**Rounding**
+#### Rounding
 
 ```apl
 v ← ¯3.1 4 1.5 92.6 ¯5 ⍝ Test Data
@@ -27,7 +27,7 @@ A ← {⍵/⍨⍵≠⌊⍵} ⍝ Compare the number against it's rounded version.
 3. `⍵/`  [Compress](https://mastering.dyalog.com/Some-Primitive-Functions.html?highlight=compress#replicate) filters the right argument using the boolean array on the left. 
 4. [Commute](https://aplwiki.com/wiki/Commute) `⍨` aka Swap used to put the boolean array generated in Step 2 on the left of the Compress. 
 
-**Tacit**
+#### Tacit
 
 Here’s the [tacit](https://aplwiki.com/wiki/Tacit_programming) version:
 
@@ -266,7 +266,7 @@ Selfie- <mark style="background: #ADCCFFA6;"> f ⍨ ⍵</mark>  is  <mark style=
 
 
 
-### **Transcript:*
+### **Transcript**
 
 Hello and welcome to the APL quest. See APL wiki for details. Today's quest is called Float your Boat. We are to select the numbers from a vector of numbers that are floating point or non-integers, and this is problem seven from the 2013 APL problem-solving competition. It's a bit of an interesting thing that it's not well defined what exactly constitutes a floating point number or a non-integer number because in APL, a number is a number. There's not really any good distinction, but we'll do our best, and any of these solutions would be considered correct.
 
