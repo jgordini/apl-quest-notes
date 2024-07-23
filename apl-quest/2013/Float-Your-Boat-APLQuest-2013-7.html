@@ -483,15 +483,47 @@ document.write(`
 </ol>
 <p><strong>Tacit</strong></p>
 <p>Here’s the <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">tacit</a> version:</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="na">/⍨</span><span class="p">)</span><span class="na">∘</span><span class="p">(</span><span class="o">≠</span><span class="na">∘</span><span class="o">⌊</span><span class="na">⍨</span><span class="p">)</span><span class="na">⍨</span><span class="w"> </span><span class="c1">⍝ Tacit {(⍵≠(⌊⍵))/⍵}</span>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="na">/⍨</span><span class="p">)</span><span class="na">∘</span><span class="p">(</span><span class="o">≠</span><span class="na">∘</span><span class="o">⌊</span><span class="na">⍨</span><span class="p">)</span><span class="na">⍨</span><span class="w"> </span><span class="c1">⍝ Tacit version of {(⍵≠(⌊⍵))/⍵}</span>
 </pre></div>
 </div>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">(≠∘⌊⍨)</span></code>  <a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#commute-selfie-and-constant">Selfie</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> - used monadically, the same argument gets used on both sides of the function. Thus, <code class="docutils literal notranslate"><span class="pre">F⍨y</span></code> is equivalent to - <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">F</span> <span class="pre">y</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">∘</span></code> Preprocess the right argument <code class="docutils literal notranslate"><span class="pre">≠</span></code> with Floor <code class="docutils literal notranslate"><span class="pre">⌊</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">(/⍨)∘</span></code> This time preprocess the right argument with Filter <code class="docutils literal notranslate"><span class="pre">/</span></code>  Using the original test data.</p></li>
-<li><p>The first Selfie flips the whole expression.</p></li>
-<li><p>See <a class="reference internal" href="#note"><span class="xref myst">Note</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(≠∘⌊⍨)</span></code>:</p>
+<ul class="simple">
+<li><p>The rightmost <code class="docutils literal notranslate"><span class="pre">⍨</span></code> (Selfie) is used monadically.</p></li>
+<li><p>It makes the function use the same argument on both sides.</p></li>
+<li><p>For an input <code class="docutils literal notranslate"><span class="pre">⍵</span></code>, this is equivalent to <code class="docutils literal notranslate"><span class="pre">⍵</span> <span class="pre">(≠∘⌊)</span> <span class="pre">⍵</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">≠∘⌊</span></code>:</p>
+<ul class="simple">
+<li><p>This is a composition of not-equal (<code class="docutils literal notranslate"><span class="pre">≠</span></code>) and floor (<code class="docutils literal notranslate"><span class="pre">⌊</span></code>).</p></li>
+<li><p>It first applies floor (<code class="docutils literal notranslate"><span class="pre">⌊</span></code>) to the argument.</p></li>
+<li><p>Then it compares the result with the original argument using not-equal (<code class="docutils literal notranslate"><span class="pre">≠</span></code>).</p></li>
+<li><p>So for an input <code class="docutils literal notranslate"><span class="pre">⍵</span></code>, this does <code class="docutils literal notranslate"><span class="pre">⍵</span> <span class="pre">≠</span> <span class="pre">⌊⍵</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(/⍨)∘</span></code>:</p>
+<ul class="simple">
+<li><p>This creates a derived monadic function using composition (<code class="docutils literal notranslate"><span class="pre">∘</span></code>).</p></li>
+<li><p>It takes a single right argument (the result of <code class="docutils literal notranslate"><span class="pre">≠∘⌊⍨</span></code>).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">⍨</span></code> in <code class="docutils literal notranslate"><span class="pre">/⍨</span></code> then commutes the arguments:</p>
+<ul>
+<li><p>It puts the result of <code class="docutils literal notranslate"><span class="pre">≠∘⌊⍨</span></code> as the left argument of <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p></li>
+<li><p>It uses the original input as the right argument of <code class="docutils literal notranslate"><span class="pre">/</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>In combination:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(≠∘⌊⍨)</span></code> creates a boolean mask identifying non-integers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(/⍨)∘</span></code> uses this mask to filter the original input.</p></li>
+<li><p>The outermost <code class="docutils literal notranslate"><span class="pre">⍨</span></code>  ensures the same input is used for both mask creation and filtering.</p></li>
+</ul>
+<p>This structure allows the function to create and apply a filtering condition in one concise operation.</p>
+<ol class="arabic simple">
+<li><p>See <a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#binding">Bind</a> for more information. <a class="reference internal" href="#note"><span class="xref myst">Note</span></a></p></li>
 </ol>
 </section>
 <section id="comparison-tolerance">

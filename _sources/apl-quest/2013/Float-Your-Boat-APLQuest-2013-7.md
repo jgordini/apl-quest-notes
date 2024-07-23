@@ -32,14 +32,35 @@ A ← {⍵/⍨⍵≠⌊⍵} ⍝ Compare the number against it's rounded version.
 Here’s the [tacit](https://aplwiki.com/wiki/Tacit_programming) version:
 
 ```apl
-B ← (/⍨)∘(≠∘⌊⍨)⍨ ⍝ Tacit {(⍵≠(⌊⍵))/⍵}
+B ← (/⍨)∘(≠∘⌊⍨)⍨ ⍝ Tacit version of {(⍵≠(⌊⍵))/⍵}
 ```
 
-1. `(≠∘⌊⍨)`  [Selfie](https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#commute-selfie-and-constant) `⍨` - used monadically, the same argument gets used on both sides of the function. Thus, `F⍨y` is equivalent to - `y F y`.
-2. `∘` Preprocess the right argument `≠` with Floor `⌊`
-3. `(/⍨)∘` This time preprocess the right argument with Filter `/`  Using the original test data. 
-4. The first Selfie flips the whole expression. 
-5. See [Note](#note)
+1. `(≠∘⌊⍨)`: 
+   - The rightmost `⍨` (Selfie) is used monadically.
+   - It makes the function use the same argument on both sides.
+   - For an input `⍵`, this is equivalent to `⍵ (≠∘⌊) ⍵`.
+
+2. `≠∘⌊`:
+   - This is a composition of not-equal (`≠`) and floor (`⌊`).
+   - It first applies floor (`⌊`) to the argument.
+   - Then it compares the result with the original argument using not-equal (`≠`).
+   - So for an input `⍵`, this does `⍵ ≠ ⌊⍵`.
+
+3. `(/⍨)∘`:
+   - This creates a derived monadic function using composition (`∘`).
+   - It takes a single right argument (the result of `≠∘⌊⍨`).
+   - The `⍨` in `/⍨` then commutes the arguments:
+     - It puts the result of `≠∘⌊⍨` as the left argument of `/`.
+     - It uses the original input as the right argument of `/`.
+
+In combination:
+- `(≠∘⌊⍨)` creates a boolean mask identifying non-integers.
+- `(/⍨)∘` uses this mask to filter the original input.
+- The outermost `⍨`  ensures the same input is used for both mask creation and filtering.
+
+This structure allows the function to create and apply a filtering condition in one concise operation.
+
+1. See [Bind](https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#binding) for more information. [Note](#note)
 
 
 ### Comparison Tolerance
