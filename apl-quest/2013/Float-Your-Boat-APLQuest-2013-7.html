@@ -435,12 +435,14 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-tolerance">Comparison Tolerance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-representation">Data Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-point-detection">Decimal Point Detection</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulus">Modulus</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Comparison Tolerance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-tolerance">Comparison Tolerance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encode">Encode</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subtract">Subtract</a></li>
 </ul>
@@ -526,18 +528,6 @@ document.write(`
 <li><p>See <a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#binding">Bind</a> for more information. <a class="reference internal" href="#note"><span class="xref myst">Note</span></a></p></li>
 </ol>
 </section>
-<section id="comparison-tolerance">
-<h2>Comparison Tolerance<a class="headerlink" href="#comparison-tolerance" title="Link to this heading">#</a></h2>
-<p><a class="reference external" href="https://help.dyalog.com/latest/Content/Language/System%20Functions/ct.htm">Comparison Tolerance</a> <code class="docutils literal notranslate"><span class="pre">⎕CT</span></code> - determines the precision with which two numbers are judged to be equal. A value of 0 ensures exact comparison.</p>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">T</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1e¯13</span><span class="o">+⍳</span><span class="m">15</span><span class="w"> </span><span class="c1">⍝ Test Data using 13 decimals</span>
-<span class="m">14</span><span class="o">⍕</span><span class="nv">w</span><span class="w"> </span><span class="c1">⍝ Format using 14 decimals not all numbers represented</span>
-</pre></div>
-</div>
-<p>To address this issue, we can create a version of <code class="docutils literal notranslate"><span class="pre">A</span></code> that includes the comparison tolerance. By temporarily setting the comparison tolerance to zero, we ensure that all 15 numbers are classified as floating point values.</p>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nf">⎕CT</span><span class="kd">←</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍵</span><span class="na">/⍨</span><span class="bp">⍵</span><span class="o">≠⌊</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Set the comparison tolerance to zero and apply solution A. </span>
-</pre></div>
-</div>
-</section>
 <section id="data-representation">
 <h2>Data Representation<a class="headerlink" href="#data-representation" title="Link to this heading">#</a></h2>
 <p>Another approach is to use APL’s internal representation of numbers.  By checking the representation of these values, we can see their actual types (e.g., 64-bit binary float or other types). This works well for most cases but can fail with very large numbers that use different internal representations.</p>
@@ -601,16 +591,21 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> We can then apply this <a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a> against our orginal argument.</p></li>
 </ol>
 </section>
-<section id="id1">
-<h3>Comparison Tolerance<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nf">⎕CT</span><span class="kd">←</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">×</span><span class="m">1</span><span class="o">|</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Comparison Tolerance </span>
+<section id="comparison-tolerance">
+<h3>Comparison Tolerance<a class="headerlink" href="#comparison-tolerance" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://help.dyalog.com/latest/Content/Language/System%20Functions/ct.htm">Comparison Tolerance</a> <code class="docutils literal notranslate"><span class="pre">⎕CT</span></code> - determines the precision with which two numbers are judged to be equal. A value of 0 ensures exact comparison.</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">T</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1e¯13</span><span class="o">+⍳</span><span class="m">15</span><span class="w"> </span><span class="c1">⍝ Test Data using 13 decimals</span>
+<span class="m">14</span><span class="o">⍕</span><span class="nv">w</span><span class="w"> </span><span class="c1">⍝ Format using 14 decimals not all numbers represented</span>
 </pre></div>
 </div>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">⎕CT←0</span></code> <a class="reference external" href="https://help.dyalog.com/latest/Content/Language/System%20Functions/ct.htm">Comparison Tolerance</a> <code class="docutils literal notranslate"><span class="pre">⎕CT</span></code> - determines the precision with which two numbers are judged to be equal. Setting this to zero means all our numbers are considered to be floating point.</p></li>
-<li><p>We can then Apply the function in H.</p></li>
-</ol>
+<p>To address this issue, we can create a version of <code class="docutils literal notranslate"><span class="pre">A</span></code> that includes the comparison tolerance. By temporarily setting the comparison tolerance to zero, we ensure that all 15 numbers are classified as floating point values.</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nf">⎕CT</span><span class="kd">←</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍵</span><span class="na">/⍨</span><span class="bp">⍵</span><span class="o">≠⌊</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Set the comparison tolerance to zero and apply solution A. </span>
+</pre></div>
+</div>
 </section>
+</section>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <section id="encode">
 <h3>Encode<a class="headerlink" href="#encode" title="Link to this heading">#</a></h3>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">×</span><span class="m">1</span><span class="o">⊤</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Using Encode</span>
@@ -803,12 +798,14 @@ Beginning with the first Parenthesis <code class="docutils literal notranslate">
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-tolerance">Comparison Tolerance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-representation">Data Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decimal-point-detection">Decimal Point Detection</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-approaches">Mathematical Approaches</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulus">Modulus</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Comparison Tolerance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-tolerance">Comparison Tolerance</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encode">Encode</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subtract">Subtract</a></li>
 </ul>

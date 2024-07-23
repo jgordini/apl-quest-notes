@@ -62,22 +62,6 @@ This structure allows the function to create and apply a filtering condition in 
 
 1. See [Bind](https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#binding) for more information. [Note](#note)
 
-
-### Comparison Tolerance
-
-[Comparison Tolerance](https://help.dyalog.com/latest/Content/Language/System%20Functions/ct.htm) `⎕CT` - determines the precision with which two numbers are judged to be equal. A value of 0 ensures exact comparison. 
-
-```APL
-T ← 1e¯13+⍳15 ⍝ Test Data using 13 decimals
-14⍕w ⍝ Format using 14 decimals not all numbers represented
-```
-
-To address this issue, we can create a version of `A` that includes the comparison tolerance. By temporarily setting the comparison tolerance to zero, we ensure that all 15 numbers are classified as floating point values.
-
-```APL
-C ← {⎕CT←0 ⋄ ⍵/⍨⍵≠⌊⍵} ⍝ Set the comparison tolerance to zero and apply solution A. 
-```
-
 ### Data Representation
 
 Another approach is to use APL's internal representation of numbers.  By checking the representation of these values, we can see their actual types (e.g., 64-bit binary float or other types). This works well for most cases but can fail with very large numbers that use different internal representations.
@@ -151,14 +135,20 @@ H ← {⍵/⍨×1|⍵} ⍝ Using Modulus
 
 #### Comparison Tolerance
 
+[Comparison Tolerance](https://help.dyalog.com/latest/Content/Language/System%20Functions/ct.htm) `⎕CT` - determines the precision with which two numbers are judged to be equal. A value of 0 ensures exact comparison. 
+
 ```APL
-I ← {⎕CT←0 ⋄ ⍵/⍨×1|⍵} ⍝ Comparison Tolerance 
+T ← 1e¯13+⍳15 ⍝ Test Data using 13 decimals
+14⍕w ⍝ Format using 14 decimals not all numbers represented
 ```
 
-1. `⎕CT←0` [Comparison Tolerance](https://help.dyalog.com/latest/Content/Language/System%20Functions/ct.htm) `⎕CT` - determines the precision with which two numbers are judged to be equal. Setting this to zero means all our numbers are considered to be floating point. 
-2. We can then Apply the function in H. 
+To address this issue, we can create a version of `A` that includes the comparison tolerance. By temporarily setting the comparison tolerance to zero, we ensure that all 15 numbers are classified as floating point values.
 
+```APL
+I ← {⎕CT←0 ⋄ ⍵/⍨⍵≠⌊⍵} ⍝ Set the comparison tolerance to zero and apply solution A. 
+```
 
+### 
 
 #### Encode
 
