@@ -189,7 +189,7 @@ This function attempts to use each number as a replication factor on an empty ve
 
 
 
-### Glyphs Used:
+### Glyphs Used
 
 [Floor](https://aplwiki.com/wiki/Floor) `⌊` - a [monadic](https://aplwiki.com/wiki/Monadic "Monadic") [scalar function](https://aplwiki.com/wiki/Scalar_function "Scalar function") that gives the [floor](https://en.wikipedia.org/wiki/floor_and_ceiling_functions "wikipedia:floor and ceiling functions") of a real number
 
@@ -227,7 +227,7 @@ This function attempts to use each number as a replication factor on an empty ve
 
 
 
-### Concepts Used:
+### Concepts Used
 
 [Dfn](https://aplwiki.com/wiki/Dfn)
 
@@ -266,7 +266,7 @@ Selfie- <mark style="background: #ADCCFFA6;"> f ⍨ ⍵</mark>  is  <mark style=
 
 
 
-### **Transcript:**
+### **Transcript:*
 
 Hello and welcome to the APL quest. See APL wiki for details. Today's quest is called Float your Boat. We are to select the numbers from a vector of numbers that are floating point or non-integers, and this is problem seven from the 2013 APL problem-solving competition. It's a bit of an interesting thing that it's not well defined what exactly constitutes a floating point number or a non-integer number because in APL, a number is a number. There's not really any good distinction, but we'll do our best, and any of these solutions would be considered correct.
 
