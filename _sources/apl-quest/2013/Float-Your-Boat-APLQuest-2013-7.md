@@ -148,7 +148,7 @@ To address this issue, we can create a version of `A` that includes the comparis
 I ← {⎕CT←0 ⋄ ⍵/⍨⍵≠⌊⍵} ⍝ Set the comparison tolerance to zero and apply solution A. 
 ```
 
-### 
+
 
 #### Encode
 
