@@ -92,7 +92,7 @@ F ← {⍵/⍨'.'∊∘⍕¨⍵}
 
 1. `⍕¨⍵` [Format](https://aplwiki.com/wiki/Format) `⍕` Each `¨` formats the right [argument](https://aplwiki.com/wiki/Argument "Argument") into a [simple](https://aplwiki.com/wiki/Simple "Simple") [character](https://aplwiki.com/index.php?title=Character&action=edit&redlink=1 "Character (page does not exist)") array.
 2. `'.'∊` Checks if `'.'` is a member of the each formated element of Omega `⍵`.
-3. `∘` applies the each to the membership function. Without compose the membership function use the entire array.
+3. `∘` applies the each to the membership function. Without compose the membership function uses the entire array.
 4. `⍵/⍨` Filters the original argument against the result of Step 2.  
 
 
