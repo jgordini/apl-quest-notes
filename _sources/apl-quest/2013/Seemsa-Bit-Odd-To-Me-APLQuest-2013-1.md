@@ -1,5 +1,5 @@
 
-# APL Quest: Generating Odd Numbers
+# Seems a bit odd 2013-1
 
 Hello and welcome to this very first episode of the APL Quest, where we explore one problem each week from past APL problem-solving competitions. For more details, take a look at the [APL Wiki](https://aplwiki.com).
 

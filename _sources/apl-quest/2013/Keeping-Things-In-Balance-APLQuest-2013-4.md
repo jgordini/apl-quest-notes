@@ -1,4 +1,4 @@
-# Maintaining Balanced Parentheses in APL
+# Keeping things in balance 2013-4
 
 Hello and welcome to this fourth APL quest! Today's quest is called **Keeping Things in Balance**. In this session, we will take a character vector that contains parentheses and check whether the parentheses are balanced. A balanced set of parentheses is where each opening parenthesis has a corresponding closing parenthesis and vice versa. We will also look for cases where there are closing parentheses that aren't paired with opening ones or opening parentheses that are left unclosed.
 
