@@ -4,9 +4,9 @@
 
 **Problem:** Write a dfn to produce a vector of the first n odd numbers.
 
-**Video:** https://youtu.be/Mj4wyLKrBho
+**Video:** [https://youtu.be/Mj4wyLKrBho](https://youtu.be/Mj4wyLKrBho)
 
-**Code:** https://github.com/abrudz/apl_quest/blob/main/2013/1.apl
+**Code:** [https://github.com/abrudz/apl_quest/blob/main/2013/1.apl](https://github.com/abrudz/apl_quest/blob/main/2013/1.apl)
 
 ## Example Solutions
 
@@ -100,7 +100,7 @@ It works by subtracting the tally (which is always 1 for a scalar argument) from
 
 - [Dfn](https://aplwiki.com/wiki/Dfn)
 - [Tacit Programming](https://aplwiki.com/wiki/Tacit_programming)
-- https://tacit.help/
+- [https://tacit.help/](https://tacit.help/)
 - [Boolean Mask](https://aplwiki.com/wiki/Boolean)
 - [Parity - Modulous 2](https://xpqz.github.io/cultivations/Functions2.html#magnitude-residue)
 - [Fill Elements](https://aplwiki.com/wiki/Fill_element) - Padding with zeros
