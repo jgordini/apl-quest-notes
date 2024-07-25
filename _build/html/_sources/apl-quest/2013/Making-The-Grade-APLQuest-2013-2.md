@@ -1,5 +1,5 @@
 
-# APL Quest Episode 2: Making the Grade
+# Making the Grade 2013-2
 
 Welcome to the second episode of the APL Quest! Check out the APL Wiki for details. Today's quest is called **Making the Grade**, which is the second problem from the [2013 APL Problem Solving Competition Phase 1](https://problems.tryapl.org/psets/2013.html?goto=P2_Making_The_Grade).
 

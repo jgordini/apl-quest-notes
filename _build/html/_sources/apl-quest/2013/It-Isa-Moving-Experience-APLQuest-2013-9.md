@@ -1,5 +1,5 @@
 
-# APL Quest: Average Calculation Over Sub-Periods
+# It's a moving experience 2013-9
 
 Hi and welcome to the APL Quest see the APL wiki for details! Today, we're looking at the ninth problem from the 2013 round of the APL Problem Solving Competition. The task is to find the average over a selected sub-period of a year's worth of data.
 

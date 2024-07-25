@@ -1,5 +1,5 @@
 
-# APL Quest: Understanding Numeric Range Calculation
+# Home on the range 2013-6
 
 Welcome to the APL Quest! Today's discussion revolves around a problem from the [2013 round of the APL Problem Solving Competition](https://problems.tryapl.org/psets/2013.html?goto=P6_Home_On_The_Range). The task is straightforward: finding the numeric range of an array, defined as the highest value minus the lowest value. However, there's a specific edge case we need to address, and we'll explore some generalizations along the way.
 

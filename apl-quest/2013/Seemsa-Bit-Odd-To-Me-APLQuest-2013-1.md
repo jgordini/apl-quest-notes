@@ -1,112 +1,157 @@
+# Seems a Bit Odd To Me 2013-1
 
-# APL Quest: Generating Odd Numbers
+## [Problem Description](https://problems.tryapl.org/psets/2013.html?goto=P1_Seems_a_Bit_Odd_To_Me)
 
-Hello and welcome to this very first episode of the APL Quest, where we explore one problem each week from past APL problem-solving competitions. For more details, take a look at the [APL Wiki](https://aplwiki.com).
+**Problem:** Write a dfn to produce a vector of the first n odd numbers.
 
-## Today's Problem
+**Video:** [https://youtu.be/Mj4wyLKrBho](https://youtu.be/Mj4wyLKrBho)
 
-Today's problem is the first from 2013, where we are asked to generate odd numbers. Let's dive in by generating some numbers. For instance, if we want to generate the first 10 odd numbers, we start with the following concept:
+**Code:** [https://github.com/abrudz/apl_quest/blob/main/2013/1.apl](https://github.com/abrudz/apl_quest/blob/main/2013/1.apl)
 
-### Generating Odd Numbers
+## Example Solutions
 
-We can generate adjacent integers and then manipulate them to get our odd numbers. If we multiply by two, we generate every other number, and we can then offset it by one. For instance, we can take a one and subtract it—swapping the arguments in the minus function.
-
-Here’s how we can define a function that generates odd numbers if we start counting from one:
-
-```apl
-⍝ Using ⎕IO←1
-F ← {1 - ⍨ 2 × ⍳ ⍵}  ⍝ F will generate the first n odd numbers
+```APL
+F←{1-⍨2×⍳⍵}
+G←(⍸1 0⍴⍨2×⊢) ⍝ Tacit
+H←{⍸2|⍳2×⍵} ⍝ Any ⎕IO
+I←{+\2-⍵↑1} ⍝ Works with ⎕IO←0 or 1
+J←(⍳+⍳-≢) ⍝ Tacit
 ```
 
-For more examples, consider the following definitions:
-```apl
-F←{1-⍨2×⍳⍵} ⍝ Starting from one
-G←(⍸1 0⍴⍨2×⊢) ⍝ Adjusted for index origin zero
-H←{⍸2|⍳2×⍵} ⍝ Flexible for either Index Origin
-I←{+\2-⍵↑1} ⍝ Cumulative Sum to Generate Odd Numbers
+## Detailed Explanations
+
+### Solution F
+
+```APL
+F←{1-⍨2×⍳⍵}
 ```
 
-Alternatively, to generate odd numbers from an index origin of zero, we could define the function as follows:
+This solution demonstrates the basic approach to generating odd numbers. It uses the index generator (⍳) to create a sequence of integers, multiplies them by 2 to get even numbers, and then subtracts 1 to obtain odd numbers.
 
-```apl
-⍝ Using ⎕IO←0
-⎕IO ← 0
-F ← {1 + 2 × ⍳ ⍵}  ⍝ F will generate the first n odd numbers
+1. `⍳⍵` - Use [Iota](https://aplwiki.com/wiki/Index_Generator) to generate the first `⍵` natural numbers (1, 2, 3, 4 etc.)
+2. `1-⍨2×` - [Swap](https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant) ⍨ - Preserves the right to left order. - parsed as `(2×⍳5)-1`  
+3. Multiply the values by 2
+4. Subtract one from each of the array values.
+
+This solution works when APL is set to count from 1 by default (⎕IO←1). It's a straightforward approach that clearly shows the logic of generating odd numbers.
+
+### Solution G
+
+```APL
+G←(⍸1 0⍴⍨2×⊢)
 ```
 
-As you can see, by default, APL starts counting from one. However, some computer scientists and mathematicians prefer starting from zero, and APL allows you to choose that. You can set the index origin to zero:
+This tacit function solution uses a different approach, leveraging boolean masks and the Where (⍸) function.
 
-```apl
-⎕IO ← 0
+1. `(2×⊢)` - parses as (2×⍵) - [Identity](https://aplwiki.com/wiki/Identity) replaces `⍵` - () indicates tacit
+2. `1 0⍴⍨2×⊢` [Swap](https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant) ⍨ - parses as `((2×⍵)⍴1 0)` 
+3. `1 0⍴` [Reshape](https://aplwiki.com/wiki/Reshape) see above - returns the argument as boolean vector of ones and zeros
+4. `⍸` [Where](https://aplwiki.com/wiki/Identity) gives the indices of ones in a Boolean [vector](https://aplwiki.com/wiki/Vector "Vector")
+
+This solution is particularly clever as it creates a boolean mask of alternating 1s and 0s, and then uses the Where function to find the indices of the 1s, which correspond to odd numbers. It's designed to work when the index origin is set to 0 (⎕IO←0).
+
+### Solution H
+
+```APL
+H←{⍸2|⍳2×⍵} ⍝ Either Index Origin
 ```
 
-Now we count from zero instead. This has both upsides and downsides. The upside is flexibility for your problem context, while the downside is the potential for miscommunication when sharing code with others.
+This solution is notable for its flexibility, as it works with either setting of the index origin (⎕IO).
 
-### Handling Different Index Origins
+1. `⍳2×⍵` - multiplys the argument by two and returns the [Index](https://aplwiki.com/wiki/Index_Generator) 
+2. `2|` - [Modulus](https://aplwiki.com/wiki/Residue) 2 - returns 0 (even) and 1 (odd) see Parity
+3. `⍸` [Where](https://aplwiki.com/wiki/Identity) gives the indices of ones(true values) in a Boolean [vector](https://aplwiki.com/wiki/Vector "Vector")
 
-If you share code with others, you must make sure to manage the correct index origin; otherwise, you can end up with entirely wrong results. The corresponding function for an index origin of zero, instead of subtracting one, would require you to add one:
+It works by generating a sequence of numbers, checking their parity (odd or even), and then finding the indices of the odd numbers. The beauty of this solution is that the index generator (⍳) and the Where function (⍸) balance each other out, making it work correctly regardless of the index origin setting.
 
-```apl
-⍝ Index Origin Adjustment
-G ← (⍸ 1 0 ⍴ ⍨ 2 × ⊢)  ⍝ F will account for an index origin of zero
+### Solution I
+
+```APL
+I←{+\2-⍵↑1} ⍝ Works with ⎕IO←0 or 1
 ```
 
-Although the problem asks for a defined function, we can also write tested functions in APL. Here’s another approach using a tested function framework:
+This solution takes a mathematical approach, leveraging the property that odd numbers increase by 2 each time.
 
-```apl
-H ← {⍸ 2 | ⍳ 2 × ⍵} ⍝ Flexible for either Index Origin
+1. `⍵↑1` - [Overtake](https://xpqz.github.io/cultivations/Functions4.html?highlight=overtaking#take) 1 adds zeros to pad the array starting with 1 *ex* `5↑1` is 1 0 0 0 0
+2. subtract the result from 2 (1 2 2 2 2)
+3. `+\` - [Plus Scan](https://mastering.dyalog.com/Operators.html?highlight=scan#scan) returns the running sums from the vector in step two. (1 3 5 7 9)
+
+By using the cumulative sum (plus scan), it generates the sequence of odd numbers without relying on index-related functionality. This makes it immune to changes in the index origin, working correctly whether ⎕IO is 0 or 1.
+
+### Solution J
+
+```APL
+J←(⍳+⍳-≢) ⍝ {(⍳⍵)+((⍳⍵)-(≢⍵))}
 ```
 
-Now let's switch back to index origin one, but this might not work without adjustments. Instead, we just need to flip the zeros and ones.
+This tacit function solution is particularly clever in its use of APL's fork structure.
 
-### A Flexible Solution
+1. `⍳-≢` - [Indices](https://aplwiki.com/wiki/Indices) of argument, subtracted from the [Tally](https://aplwiki.com/wiki/Tally) of the argument (1 item) *ex* 1-⍨⍳5 (0 1 2 3 4)
+2. `⍳+⍳-≢` - [Indices](https://aplwiki.com/wiki/Indices) of argument added to the result from step 1. 
+*ex* `(⍳5)+(⍳5)-1` (1 3 5 7 9)
 
-What if we want to write a function that can work with either setting of the index origin? Here’s a clever solution:
+It works by subtracting the tally (which is always 1 for a scalar argument) from the indices, effectively subtracting 1 from each index. Then it adds this result to the original indices, producing the sequence of odd numbers. This solution demonstrates the power and conciseness of tacit programming in APL.
 
-```apl
-oddNumbers ← {⍸ 2 | ⍳ 2 × ⍵}  ⍝ A flexible solution that works regardless of index origin
-```
+## Glyphs Used
 
-In this function, we start by multiplying the argument by 2 and checking the parity, giving us the correct result regardless of the index origin.
+[Index](https://aplwiki.com/wiki/Index_Generator) - aka Iota - The notation `⍳N` where `N` is a natural number, describes a vector of the first `N` natural numbers. Starting from 0 or 1 depending on the [Index Origin](https://aplwiki.com/wiki/Index_origin) 
 
-The function works in both scenarios—when `⎕IO` is one and zero—because the index generator **iota** and the **where** function (for true values) cancel each other out.
+## Concepts Used
 
-### A Mathematical Approach
+- [Dfn](https://aplwiki.com/wiki/Dfn)
+- [Tacit Programming](https://aplwiki.com/wiki/Tacit_programming)
+- [https://tacit.help/](https://tacit.help/)
+- [Boolean Mask](https://aplwiki.com/wiki/Boolean)
+- [Parity - Modulous 2](https://xpqz.github.io/cultivations/Functions2.html#magnitude-residue)
+- [Fill Elements](https://aplwiki.com/wiki/Fill_element) - Padding with zeros
+- [Fork](https://aplwiki.com/wiki/Train#3-trains) - 3 Train
 
-Dealing with indices leads us to explore a mathematical approach. If we observe that we start with 1 and increase by 2 every time, we derive an interesting property:
+## Transcript
 
-```apl
-A ← 1 + 2 × ⍳ 10  ⍝ Generates the first 10 odd numbers
-```
+Welcome to the inaugural episode of "The APL Quest," where we will examine a different problem each week from past APL problem-solving competitions. In Phase One, please refer to the APL Wiki for details. Today, we will focus on the first problem from 2013, which asks us to write a DFN to generate odd numbers.
 
-Using the cumulative sum (plus scan) gives us all odd numbers without any index-related functionality, making it immune to index origin changes:
+Let us discuss the generation of numbers. Suppose we want to generate the first ten numbers. We can use iota to generate them however, the issue is that these are all consecutive integers.
 
-```apl
-I ← {+\2 - ⍵↑1} ⍝ Cumulative Sum to Generate Odd Numbers
-```
+To resolve this, we multiply by two to obtain every other number, which we can then offset by one. For example, we can subtract one from one.
 
-### Revisiting the Original Approach
+We can switch the arguments on the minus operation. There are other options available, such as adding negative one or using parentheses.
 
-Now, let's revert to our original formulation of generating odd numbers by adjusting how we handle the index origin. We can map our operations mathematically:
+We can construct our argument name omega to build this and try it out. As we can see, APL starts counting from one by default.
 
-```apl
-oddNumbers ← {2 × ⍵ + (¯1 × ⎕IO)}  ⍝ Adjusting for index origin
-```
+Many individuals, particularly computer scientists and some mathematicians, prefer starting from zero instead of one. APL allows you to choose this option. Therefore, we can set the index origin to zero, and we will now count from zero instead.
 
-By using negative one raised to the power of `⎕IO`, we can handle both cases without additional complexity.
+This has both advantages and disadvantages. The benefit is that you can choose whichever option fits your problem and personal preference. However, the disadvantage is that if you share your code with others, you must ensure that you obtain the correct index origin. You may need to set it yourself, and writing code that works with any index origin is a classic issue.
 
-### Another Clever Solution
+If we attempt to apply a function now, we will obtain an entirely incorrect result. The corresponding function for index origin zero would be to add one instead of subtracting one.
 
-Here's another clever solution using a tacit function:
+There are alternative methods for generating this output. Although the problem requests a DFN, we can also write tested functions in APL. Here is another approach.
 
-```apl
-oddNumbers ← {⍳ + ⍳ - ≢}  ⍝ Tacit function to generate odd numbers
-```
+We can begin by creating the framework for a tested function, and then multiply the argument by two to generate those integers. Next, we reshape a series of zeros and ones using the zero one reshape function, with the shape on the right and the content on the left. We must now determine the indices where the true or one values are located, which we can accomplish using the where function.
 
-This tacit function utilizes a **fork** structure, where we subtract the tally from the indices and use that to add to the **iota** applied to the argument.
+This was the index origin zero case. Let us now switch back to index origin one. Naturally, this will no longer work. Instead, we must merely switch the ones and zeros.
 
-### Conclusion
+However, suppose we wished to write a function that could function with either setting of quad I o, the index origin. In that case, there are numerous ways to accomplish this. Here are some fantastic ideas that were generated during the live event.
 
-And that's all for today! Thank you for following along in this APL Quest. We hope you enjoyed exploring how to generate odd numbers and the nuances of APL's index management.
+Suppose we start by multiplying the argument by two and generating those integers. Then we take the parity of that, or the two residue or modulus two of that. Finally, we determine where the ones are. This approach is beneficial because it works with either origin.
 
-For more about the problem and solutions, check out the original [problem set](https://problems.tryapl.org/psets/2013.html?goto=P1_Seems_a_Bit_Odd_To_Me). Watch the [video](https://youtu.be/Mj4wyLKrBho) for further elaboration and access the [source code](https://github.com/abrudz/apl_quest/blob/main/2013/1.apl) for hands-on learning.
+Let us name this argument, and what is occurring is that the index generator Iota and the where function's Iota underbar are counterbalancing one another. Therefore, quad io equals one, and this approach works. Similarly, quad io equals zero, and it still functions correctly. It is a clever solution because it does not matter which index origin you are employing.
+
+The reason we are encountering this issue is that we are dealing with indices. We have the index generator and the where function, which is the indices of the true values. However, we could approach this in a completely different manner, namely in a mathematical sense. If we observe that we begin with one and then increase by two each time, this is a fascinating property.
+
+Suppose we take overtaken here, and we are taking the first ten elements of a one. There are not ten elements in the one, so APL will pad with appropriate fill elements, which are zeros. We can then subtract this from two. Notice that we have the beginning element, the one, and then the offset to the next number repeatedly.
+
+This means that if we ask for the cumulative sum or the plus scan of that, we will obtain all the odd numbers. As we did not utilize any index-related functionality, there is no influence from the index origin. We can also put this into a function.
+
+Suppose we wanted to return to our original formulation, where we began with two times the indices. In that case, we would subtract one if quad io equals one and add one if quad io equals zero. How can we adjust this?
+
+Both subtraction and addition can be viewed as an addition. We simply need to add negative one or one. Therefore, if quad io equals one, we will subtract one, and if quad io equals zero, we will add one, which we can map mathematically. We can accomplish this by raising negative one to the power of quad io.
+
+This will take whatever global quad IO is currently in effect and add it to twice the indices. We can now test this for quad io equal to one and quad io equal to zero, and it will still function correctly.
+
+Allow me to demonstrate another clever solution. It is as follows: iota plus Iota minus the tally. This is a tacit function. We can apply it and see that it functions correctly.
+
+It is a fork where the right tie of the fork is a fork itself. We begin by subtracting the tally from the indices. The tally represents the number of major cells in the argument. A symbol number is just one, so this is a clever method of subtracting one from the indices.
+
+We use this as the right argument for plus. The left argument is Iota applied to the argument or the indices once more. If we add these together, we will obtain precisely what we desire. We can write all of this as indices plus indices minus the tally and give it a name to apply it.
+
+That concludes today's discussion. Thank you for following along.

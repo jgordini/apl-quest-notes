@@ -1,5 +1,5 @@
 
-# APL Quest: Solving Linear Equations
+# Solution Salvation 2013-10
 
 Hello and welcome to this APL quest! In today's episode, we're tackling the last problem from the 2013 round of the APL problem-solving competition. The objective is straightforward: we are given a set of linear equations and their corresponding results, and we need to find the values of the variables.
 

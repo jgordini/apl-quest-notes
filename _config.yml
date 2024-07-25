@@ -3,99 +3,63 @@ title: "APL Quest Notes"
 author: "jgordini"
 logo: ""  # No logo
 
-# Book theme
-theme:
-  name: "sphinx_book_theme"
-  options:
-    logo_only: false
-    home_page_in_toc: true
-    show_navbar_depth: 2
-
 # Repository information
 repository:
   url: "https://github.com/jgordini/apl-quest-notes"
   path_to_book: ""
-  branch: "main"  # Use the default branch name
-
-# Options for HTML output
-html:
-  favicon: ""
-  use_edit_page_button: true
-
-# Custom sidebar TOC
-sphinx:
-  config:
-    html_sidebars:
-      "**": [
-        "search-field.html",
-        "sbt-sidebar-nav.html",
-      ]
-
-# Extensions
-sphinx:
-  extra_extensions:
-    - sphinx.ext.mathjax  # Add MathJax extension for LaTeX rendering
+  branch: "main"
 
 # Execution options
-jupyter_execute_notebooks: "off"  # Change to "auto" if you want to execute notebooks during build
+execute:
+  execute_notebooks: off
 
-# HTML metadata
+# HTML output options
 html:
-  title: "APL Quest Notes"
-  description: "Notes and documents for APL Quest"
-  author: "jgordini"
-  language: "en"
-
-# Additional configuration options
-extra:
-  navbar_title: "APL Quest Notes"
-  home_page_in_navbar: true
-  footer: |
-    <p>© 2024 jgordini. All rights reserved.</p>
-
-# Paths for content
-path_html: "_build/html"
-path_downloads: "_build/downloads"
-
-# Search configuration
-search:
-  exclude_patterns:
-    - "path/to/exclude"
-  searchbar_position: "sidebar"
-
-# Config for MyST markdown parser
-myst:
-  enable_extensions:
-    - dollarmath
-    - colon_fence
-    - amsmath  # Add amsmath for enhanced LaTeX support
-  heading_anchors: 3
-
-# GitHub integration
-html:
+  theme:
+    light: true
+    dark: false
+  use_repository_button: true
+  use_issues_button: true
   use_edit_page_button: true
-  edit_page_url_template: "https://github.com/jgordini/apl-quest-notes/edit/main/{path}"
+  favicon: ""
+  google_analytics_id: ""
+  home_page_in_navbar: true
+  baseurl: ""
+  extra_navbar: |
+    <p>© 2024 jgordini. All rights reserved.</p>
+  sidebar:
+    collapse_inactive_chapters: true
+    collapse_inactive_sections: true
+    collapse_on_load: true
+
+# LaTeX options
+latex:
+  latex_engine: pdflatex
+
+# Sphinx configuration
+sphinx:
+  config:
+    html_theme: "sphinx_book_theme"
+    html_theme_options:
+      show_navbar_depth: 2
+    html_sidebars:
+      "**": ["search-field.html", "sbt-sidebar-nav.html"]
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# MyST-Parser options
+parse:
+  myst_enable_extensions:
+    - dollarmath
+    - amsmath
+    - colon_fence
+  myst_heading_anchors: 3
 
 # Launch buttons
 launch_buttons:
   binderhub_url: "https://mybinder.org"
   thebe: true
 
-# MathJax configuration
-mathjax:
-  config: {
-    "tex": {
-      "inlineMath": [["$", "$"], ["\\(", "\\)"]],
-      "displayMath": [["$$", "$$"], ["\\[", "\\]"]]
-    },
-    "options": {
-      "skipHtmlTags": ["script", "noscript", "style", "textarea", "pre"]
-    }
-  }
-
-# Custom CSS for APL fonts
+# Extra CSS for APL fonts
 html:
-  css_files: [
-    "_static/custom.css"
-  ]
-
+  extra_css:
+    - _static/custom.css

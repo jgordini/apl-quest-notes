@@ -1,0 +1,769 @@
+.
+├── _build
+│   └── html
+│       ├── _sources
+│       │   ├── apl-quest
+│       │   │   ├── 2013
+│       │   │   │   ├── Float-Your-Boat-APLQuest-2013-7.md
+│       │   │   │   ├── Go-Forth-And-Multiply-APLQuest-2013-8.md
+│       │   │   │   ├── Home-On-The-Range-APLQuest-2013-6.md
+│       │   │   │   ├── Identity-Crisis-APLQuest-2013-5.md
+│       │   │   │   ├── It-Isa-Moving-Experience-APLQuest-2013-9.md
+│       │   │   │   ├── Keeping-Things-In-Balance-APLQuest-2013-4.md
+│       │   │   │   ├── Making-The-Grade-APLQuest-2013-2.md
+│       │   │   │   ├── Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.md
+│       │   │   │   ├── Solution-Salvation-APLQuest-2013-10.md
+│       │   │   │   ├── What-Is-Ina-Word-APLQuest-2013-3.md
+│       │   │   │   └── old
+│       │   │   │       ├── 1.md
+│       │   │   │       ├── 2.md
+│       │   │   │       ├── 3.md
+│       │   │   │       ├── 4.md
+│       │   │   │       ├── 5.md
+│       │   │   │       ├── 6.md
+│       │   │   │       ├── 7.md
+│       │   │   │       └── 8.md
+│       │   │   ├── 2014
+│       │   │   │   ├── Go-The-Distance-APLQuest-2014-8.md
+│       │   │   │   ├── Going-Ballistic-APLQuest-2014-9.md
+│       │   │   │   ├── How-Tweet-It-Is-APLQuest-2014-2.md
+│       │   │   │   ├── It-Is-All-Right-APLQuest-2014-1.md
+│       │   │   │   ├── Mirror-Mirror-APLQuest-2014-5.md
+│       │   │   │   ├── Revolutionary-Thinking-APLQuest-2014-7.md
+│       │   │   │   ├── Sales-Are-Up-APLQuest-2014-10.md
+│       │   │   │   ├── Space-The-Final-Frontier-APLQuest-2014-4.md
+│       │   │   │   └── Tell-a-Fib-APLQuest-2014-3.md
+│       │   │   ├── 2015
+│       │   │   │   ├── Blazing-A-Trail-APLQuest-2015-10.md
+│       │   │   │   ├── Farey-Tales-APLQuest-2015-3.md
+│       │   │   │   ├── Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.md
+│       │   │   │   ├── Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.md
+│       │   │   │   ├── Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.md
+│       │   │   │   ├── Justin-Upper-Case-APLQuest-2015-7.md
+│       │   │   │   ├── Longest-Streak-APLQuest-2015-2.md
+│       │   │   │   ├── Nag-A-Ram-APLQuest-2015-1.md
+│       │   │   │   └── Progessive-Dyadic-Iota-APLQuest-2015-4.md
+│       │   │   ├── 2016
+│       │   │   │   ├── 3-sand-5-s-APLQuest-2016-7.md
+│       │   │   │   ├── Delimited-Text-APLQuest-2016-9.md
+│       │   │   │   ├── Order-Total-APLQuest-2016-10.md
+│       │   │   │   ├── Separating-Outthe-Negative-APLQuest-2016-8.md
+│       │   │   │   ├── Shorter-Onestothe-Front-APLQuest-2016-6.md
+│       │   │   │   ├── Statistics-Mean-APLQuest-2016-1.md
+│       │   │   │   ├── Statistics-Median-APLQuest-2016-2.md
+│       │   │   │   ├── Statistics-Mode-APLQuest-2016-3.md
+│       │   │   │   └── Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.md
+│       │   │   ├── 2017
+│       │   │   │   ├── Be-the-First-1-APLQuest-2017-8.md
+│       │   │   │   ├── Counting-DNANucleotides-APLQuest-2017-7.md
+│       │   │   │   ├── DNA-APLQuest-2017-5.md
+│       │   │   │   ├── Double-Trouble-APLQuest-2017-9.md
+│       │   │   │   ├── Good-Evening-APLQuest-2017-2.md
+│       │   │   │   ├── Miss-Quoted-APLQuest-2017-3.md
+│       │   │   │   ├── Slices-of-Pies-APLQuest-2017-4.md
+│       │   │   │   ├── Squaring-Off-APLQuest-2017-10.md
+│       │   │   │   ├── What-an-Odd-Bunch-APLQuest-2017-1.md
+│       │   │   │   └── k-mers-APLQuest-2017-6.md
+│       │   │   ├── 2018
+│       │   │   │   ├── Anagrammatically-Correct-APLQuest-2018-10.md
+│       │   │   │   ├── Earlier-Later-or-the-Same-APLQuest-2018-9.md
+│       │   │   │   ├── Makinga-Good-Argument-APLQuest-2018-8.md
+│       │   │   │   ├── Number-Splitting-APLQuest-2018-2.md
+│       │   │   │   ├── Oh-Say-Can-You-See-APLQuest-2018-1.md
+│       │   │   │   ├── Rolling-Along-APLQuest-2018-3.md
+│       │   │   │   ├── Unconditionally-Shifty-APLQuest-2018-7.md
+│       │   │   │   ├── Whats-Your-Angle-APLQuest-2018-6.md
+│       │   │   │   ├── Whats-Your-Sign-APLQuest-2018-4.md
+│       │   │   │   └── Whats-Your-Sign-Revisited-APLQuest-2018-5.md
+│       │   │   ├── 2019
+│       │   │   │   ├── Area-Code-Gauss-APLQuest-2019-9.md
+│       │   │   │   ├── Chunky-Monkey-APLQuest-2019-1.md
+│       │   │   │   ├── Doubling-Up-APLQuest-2019-5.md
+│       │   │   │   ├── Goingthe-Distance-APLQuest-2019-8.md
+│       │   │   │   ├── Grade-Distribution-APLQuest-2019-3.md
+│       │   │   │   ├── In-the-Center-of-it-All-APLQuest-2019-7.md
+│       │   │   │   ├── Knight-Moves-APLQuest-2019-4.md
+│       │   │   │   ├── Makingthe-Grade-APLQuest-2019-2.md
+│       │   │   │   ├── Odds-Evens-APLQuest-2019-10.md
+│       │   │   │   └── Telephone-Names-APLQuest-2019-6.md
+│       │   │   ├── 2020
+│       │   │   │   ├── Character-Building-APLQuest-2020-2.md
+│       │   │   │   ├── Excel-lent-Columns-APLQuest-2020-3.md
+│       │   │   │   ├── Lets-Split-APLQuest-2020-1.md
+│       │   │   │   ├── Movetothe-Front-APLQuest-2020-6.md
+│       │   │   │   ├── Riseand-Fall-APLQuest-2020-9.md
+│       │   │   │   ├── See-Youina-Bit-APLQuest-2020-7.md
+│       │   │   │   ├── Stacking-It-Up-APLQuest-2020-10.md
+│       │   │   │   ├── Steppinginthe-Proper-Direction-APLQuest-2020-5.md
+│       │   │   │   ├── Takea-Leap-APLQuest-2020-4.md
+│       │   │   │   └── Zigzag-Numbers-APLQuest-2020-8.md
+│       │   │   ├── 2021
+│       │   │   │   ├── Are-You-a--Bacteria-APLQuest-2021-1.md
+│       │   │   │   ├── Can-You-Feelthe-Magic-APLQuest-2021-7.md
+│       │   │   │   ├── Fischer-Random-Chess-APLQuest-2021-6.md
+│       │   │   │   ├── Index-Of-Modified-APLQuest-2021-2.md
+│       │   │   │   ├── Inthe-Long-Run-APLQuest-2021-9.md
+│       │   │   │   ├── Multiplicity-APLQuest-2021-3.md
+│       │   │   │   ├── Onthe-Right-Side-APLQuest-2021-10.md
+│       │   │   │   ├── Rect-ify-APLQuest-2021-5.md
+│       │   │   │   ├── Square-Peg-Round-Hole-APLQuest-2021-4.md
+│       │   │   │   └── Timeto-Makea-Difference-APLQuest-2021-8.md
+│       │   │   ├── 2022
+│       │   │   │   ├── An-Average-Windowora-Windowed-Average-APLQuest-2022-9.md
+│       │   │   │   ├── Attackofthe-Mutations-APLQuest-2022-2.md
+│       │   │   │   ├── Counting-DNA-Nucleotides-APLQuest-2022-1.md
+│       │   │   │   ├── Inthe-Long-One-APLQuest-2022-4.md
+│       │   │   │   ├── Just-Golfing-Around-APLQuest-2022-7.md
+│       │   │   │   ├── Lets-Split-APLQuest-2022-8.md
+│       │   │   │   ├── Pyramid-Scheme-APLQuest-2022-6.md
+│       │   │   │   ├── Separation-Anxiety-APLQuest-2022-10.md
+│       │   │   │   ├── Stairwayto-Heaven-APLQuest-2022-5.md
+│       │   │   │   └── Uniquely-Qualified-APLQuest-2022-3.md
+│       │   │   └── 2023
+│       │   │       ├── Caesar-Salad-APLQuest-2023-3.md
+│       │   │       ├── Critical-Thinking-APLQuest-2023-8.md
+│       │   │       ├── EXTENDEDFlipping-Pairs-APLQuest-2023-9.md
+│       │   │       ├── Elimination-Sort-APLQuest-2023-1.md
+│       │   │       ├── Flipping-Pairs-APLQuest-2023-9.md
+│       │   │       ├── Key-Value-Pairs-APLQuest-2023-6.md
+│       │   │       ├── Lets-Be-Rational-APLQuest-2023-7.md
+│       │   │       ├── Like-a-Version-APLQuest-2023-4.md
+│       │   │       ├── Partition-witha-Twist-APLQuest-2023-10.md
+│       │   │       ├── Put-It-In-Reverse-APLQuest-2023-2.md
+│       │   │       └── Risky-Business-APLQuest-2023-5.md
+│       │   └── intro.md
+│       ├── _sphinx_design_static
+│       │   ├── design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css
+│       │   └── design-tabs.js
+│       ├── _static
+│       │   ├── basic.css
+│       │   ├── check-solid.svg
+│       │   ├── clipboard.min.js
+│       │   ├── copy-button.svg
+│       │   ├── copybutton.css
+│       │   ├── copybutton.js
+│       │   ├── copybutton_funcs.js
+│       │   ├── custom.css
+│       │   ├── design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css
+│       │   ├── design-tabs.js
+│       │   ├── doctools.js
+│       │   ├── documentation_options.js
+│       │   ├── file.png
+│       │   ├── images
+│       │   │   ├── logo_binder.svg
+│       │   │   ├── logo_colab.png
+│       │   │   ├── logo_deepnote.svg
+│       │   │   └── logo_jupyterhub.svg
+│       │   ├── language_data.js
+│       │   ├── locales
+│       │   │   ├── ar
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── bg
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── bn
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── ca
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── cs
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── da
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── de
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── el
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── eo
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── es
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── et
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── fi
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── fr
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── hr
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── id
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── it
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── iw
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── ja
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── ko
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── lt
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── lv
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── ml
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── mr
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── ms
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── nl
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── no
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── pl
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── pt
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── ro
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── ru
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── sk
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── sl
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── sr
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── sv
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── ta
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── te
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── tg
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── th
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── tl
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── tr
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── uk
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── ur
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── vi
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   ├── zh_CN
+│       │   │   │   └── LC_MESSAGES
+│       │   │   │       ├── booktheme.mo
+│       │   │   │       └── booktheme.po
+│       │   │   └── zh_TW
+│       │   │       └── LC_MESSAGES
+│       │   │           ├── booktheme.mo
+│       │   │           └── booktheme.po
+│       │   ├── minus.png
+│       │   ├── mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css
+│       │   ├── play-solid.svg
+│       │   ├── plus.png
+│       │   ├── pygments.css
+│       │   ├── sbt-webpack-macros.html
+│       │   ├── scripts
+│       │   │   ├── bootstrap.js
+│       │   │   ├── bootstrap.js.LICENSE.txt
+│       │   │   ├── bootstrap.js.map
+│       │   │   ├── pydata-sphinx-theme.js
+│       │   │   ├── pydata-sphinx-theme.js.map
+│       │   │   ├── sphinx-book-theme.js
+│       │   │   └── sphinx-book-theme.js.map
+│       │   ├── searchtools.js
+│       │   ├── sphinx-thebe.css
+│       │   ├── sphinx-thebe.js
+│       │   ├── sphinx_highlight.js
+│       │   ├── styles
+│       │   │   ├── bootstrap.css
+│       │   │   ├── bootstrap.css.map
+│       │   │   ├── pydata-sphinx-theme.css
+│       │   │   ├── pydata-sphinx-theme.css.map
+│       │   │   ├── sphinx-book-theme.css
+│       │   │   ├── sphinx-book-theme.css.map
+│       │   │   └── theme.css
+│       │   ├── togglebutton.css
+│       │   ├── togglebutton.js
+│       │   ├── vendor
+│       │   │   └── fontawesome
+│       │   │       └── 6.5.1
+│       │   │           ├── LICENSE.txt
+│       │   │           ├── css
+│       │   │           │   └── all.min.css
+│       │   │           ├── js
+│       │   │           │   ├── all.min.js
+│       │   │           │   └── all.min.js.LICENSE.txt
+│       │   │           └── webfonts
+│       │   │               ├── fa-brands-400.ttf
+│       │   │               ├── fa-brands-400.woff2
+│       │   │               ├── fa-regular-400.ttf
+│       │   │               ├── fa-regular-400.woff2
+│       │   │               ├── fa-solid-900.ttf
+│       │   │               ├── fa-solid-900.woff2
+│       │   │               ├── fa-v4compatibility.ttf
+│       │   │               └── fa-v4compatibility.woff2
+│       │   └── webpack-macros.html
+│       ├── apl-quest
+│       │   ├── 2013
+│       │   │   ├── Float-Your-Boat-APLQuest-2013-7.html
+│       │   │   ├── Go-Forth-And-Multiply-APLQuest-2013-8.html
+│       │   │   ├── Home-On-The-Range-APLQuest-2013-6.html
+│       │   │   ├── Identity-Crisis-APLQuest-2013-5.html
+│       │   │   ├── It-Isa-Moving-Experience-APLQuest-2013-9.html
+│       │   │   ├── Keeping-Things-In-Balance-APLQuest-2013-4.html
+│       │   │   ├── Making-The-Grade-APLQuest-2013-2.html
+│       │   │   ├── Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html
+│       │   │   ├── Solution-Salvation-APLQuest-2013-10.html
+│       │   │   ├── What-Is-Ina-Word-APLQuest-2013-3.html
+│       │   │   └── old
+│       │   │       ├── 1.html
+│       │   │       ├── 2.html
+│       │   │       ├── 3.html
+│       │   │       ├── 4.html
+│       │   │       ├── 5.html
+│       │   │       ├── 6.html
+│       │   │       ├── 7.html
+│       │   │       └── 8.html
+│       │   ├── 2014
+│       │   │   ├── Go-The-Distance-APLQuest-2014-8.html
+│       │   │   ├── Going-Ballistic-APLQuest-2014-9.html
+│       │   │   ├── How-Tweet-It-Is-APLQuest-2014-2.html
+│       │   │   ├── It-Is-All-Right-APLQuest-2014-1.html
+│       │   │   ├── Mirror-Mirror-APLQuest-2014-5.html
+│       │   │   ├── Revolutionary-Thinking-APLQuest-2014-7.html
+│       │   │   ├── Sales-Are-Up-APLQuest-2014-10.html
+│       │   │   ├── Space-The-Final-Frontier-APLQuest-2014-4.html
+│       │   │   └── Tell-a-Fib-APLQuest-2014-3.html
+│       │   ├── 2015
+│       │   │   ├── Blazing-A-Trail-APLQuest-2015-10.html
+│       │   │   ├── Farey-Tales-APLQuest-2015-3.html
+│       │   │   ├── Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.html
+│       │   │   ├── Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.html
+│       │   │   ├── Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html
+│       │   │   ├── Justin-Upper-Case-APLQuest-2015-7.html
+│       │   │   ├── Longest-Streak-APLQuest-2015-2.html
+│       │   │   ├── Nag-A-Ram-APLQuest-2015-1.html
+│       │   │   └── Progessive-Dyadic-Iota-APLQuest-2015-4.html
+│       │   ├── 2016
+│       │   │   ├── 3-sand-5-s-APLQuest-2016-7.html
+│       │   │   ├── Delimited-Text-APLQuest-2016-9.html
+│       │   │   ├── Order-Total-APLQuest-2016-10.html
+│       │   │   ├── Separating-Outthe-Negative-APLQuest-2016-8.html
+│       │   │   ├── Shorter-Onestothe-Front-APLQuest-2016-6.html
+│       │   │   ├── Statistics-Mean-APLQuest-2016-1.html
+│       │   │   ├── Statistics-Median-APLQuest-2016-2.html
+│       │   │   ├── Statistics-Mode-APLQuest-2016-3.html
+│       │   │   └── Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.html
+│       │   ├── 2017
+│       │   │   ├── Be-the-First-1-APLQuest-2017-8.html
+│       │   │   ├── Counting-DNANucleotides-APLQuest-2017-7.html
+│       │   │   ├── DNA-APLQuest-2017-5.html
+│       │   │   ├── Double-Trouble-APLQuest-2017-9.html
+│       │   │   ├── Good-Evening-APLQuest-2017-2.html
+│       │   │   ├── Miss-Quoted-APLQuest-2017-3.html
+│       │   │   ├── Slices-of-Pies-APLQuest-2017-4.html
+│       │   │   ├── Squaring-Off-APLQuest-2017-10.html
+│       │   │   ├── What-an-Odd-Bunch-APLQuest-2017-1.html
+│       │   │   └── k-mers-APLQuest-2017-6.html
+│       │   ├── 2018
+│       │   │   ├── Anagrammatically-Correct-APLQuest-2018-10.html
+│       │   │   ├── Earlier-Later-or-the-Same-APLQuest-2018-9.html
+│       │   │   ├── Makinga-Good-Argument-APLQuest-2018-8.html
+│       │   │   ├── Number-Splitting-APLQuest-2018-2.html
+│       │   │   ├── Oh-Say-Can-You-See-APLQuest-2018-1.html
+│       │   │   ├── Rolling-Along-APLQuest-2018-3.html
+│       │   │   ├── Unconditionally-Shifty-APLQuest-2018-7.html
+│       │   │   ├── Whats-Your-Angle-APLQuest-2018-6.html
+│       │   │   ├── Whats-Your-Sign-APLQuest-2018-4.html
+│       │   │   └── Whats-Your-Sign-Revisited-APLQuest-2018-5.html
+│       │   ├── 2019
+│       │   │   ├── Area-Code-Gauss-APLQuest-2019-9.html
+│       │   │   ├── Chunky-Monkey-APLQuest-2019-1.html
+│       │   │   ├── Doubling-Up-APLQuest-2019-5.html
+│       │   │   ├── Goingthe-Distance-APLQuest-2019-8.html
+│       │   │   ├── Grade-Distribution-APLQuest-2019-3.html
+│       │   │   ├── In-the-Center-of-it-All-APLQuest-2019-7.html
+│       │   │   ├── Knight-Moves-APLQuest-2019-4.html
+│       │   │   ├── Makingthe-Grade-APLQuest-2019-2.html
+│       │   │   ├── Odds-Evens-APLQuest-2019-10.html
+│       │   │   └── Telephone-Names-APLQuest-2019-6.html
+│       │   ├── 2020
+│       │   │   ├── Character-Building-APLQuest-2020-2.html
+│       │   │   ├── Excel-lent-Columns-APLQuest-2020-3.html
+│       │   │   ├── Lets-Split-APLQuest-2020-1.html
+│       │   │   ├── Movetothe-Front-APLQuest-2020-6.html
+│       │   │   ├── Riseand-Fall-APLQuest-2020-9.html
+│       │   │   ├── See-Youina-Bit-APLQuest-2020-7.html
+│       │   │   ├── Stacking-It-Up-APLQuest-2020-10.html
+│       │   │   ├── Steppinginthe-Proper-Direction-APLQuest-2020-5.html
+│       │   │   ├── Takea-Leap-APLQuest-2020-4.html
+│       │   │   └── Zigzag-Numbers-APLQuest-2020-8.html
+│       │   ├── 2021
+│       │   │   ├── Are-You-a--Bacteria-APLQuest-2021-1.html
+│       │   │   ├── Can-You-Feelthe-Magic-APLQuest-2021-7.html
+│       │   │   ├── Fischer-Random-Chess-APLQuest-2021-6.html
+│       │   │   ├── Index-Of-Modified-APLQuest-2021-2.html
+│       │   │   ├── Inthe-Long-Run-APLQuest-2021-9.html
+│       │   │   ├── Multiplicity-APLQuest-2021-3.html
+│       │   │   ├── Onthe-Right-Side-APLQuest-2021-10.html
+│       │   │   ├── Rect-ify-APLQuest-2021-5.html
+│       │   │   ├── Square-Peg-Round-Hole-APLQuest-2021-4.html
+│       │   │   └── Timeto-Makea-Difference-APLQuest-2021-8.html
+│       │   ├── 2022
+│       │   │   ├── An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html
+│       │   │   ├── Attackofthe-Mutations-APLQuest-2022-2.html
+│       │   │   ├── Counting-DNA-Nucleotides-APLQuest-2022-1.html
+│       │   │   ├── Inthe-Long-One-APLQuest-2022-4.html
+│       │   │   ├── Just-Golfing-Around-APLQuest-2022-7.html
+│       │   │   ├── Lets-Split-APLQuest-2022-8.html
+│       │   │   ├── Pyramid-Scheme-APLQuest-2022-6.html
+│       │   │   ├── Separation-Anxiety-APLQuest-2022-10.html
+│       │   │   ├── Stairwayto-Heaven-APLQuest-2022-5.html
+│       │   │   └── Uniquely-Qualified-APLQuest-2022-3.html
+│       │   └── 2023
+│       │       ├── Caesar-Salad-APLQuest-2023-3.html
+│       │       ├── Critical-Thinking-APLQuest-2023-8.html
+│       │       ├── EXTENDEDFlipping-Pairs-APLQuest-2023-9.html
+│       │       ├── Elimination-Sort-APLQuest-2023-1.html
+│       │       ├── Flipping-Pairs-APLQuest-2023-9.html
+│       │       ├── Key-Value-Pairs-APLQuest-2023-6.html
+│       │       ├── Lets-Be-Rational-APLQuest-2023-7.html
+│       │       ├── Like-a-Version-APLQuest-2023-4.html
+│       │       ├── Partition-witha-Twist-APLQuest-2023-10.html
+│       │       ├── Put-It-In-Reverse-APLQuest-2023-2.html
+│       │       └── Risky-Business-APLQuest-2023-5.html
+│       ├── genindex.html
+│       ├── index.html
+│       ├── intro.html
+│       ├── objects.inv
+│       ├── search.html
+│       └── searchindex.js
+├── _config.yml
+├── _static
+│   └── custom.css
+├── _toc.yml
+├── _toc.yml.bak
+├── apl-quest
+│   ├── 2013
+│   │   ├── 1.apl
+│   │   ├── 10.apl
+│   │   ├── 2.apl
+│   │   ├── 3.apl
+│   │   ├── 4.apl
+│   │   ├── 5.apl
+│   │   ├── 6.apl
+│   │   ├── 7.apl
+│   │   ├── 8.apl
+│   │   ├── 9.apl
+│   │   ├── Float-Your-Boat-APLQuest-2013-7.md
+│   │   ├── Go-Forth-And-Multiply-APLQuest-2013-8.md
+│   │   ├── Home-On-The-Range-APLQuest-2013-6.md
+│   │   ├── Identity-Crisis-APLQuest-2013-5.md
+│   │   ├── It-Isa-Moving-Experience-APLQuest-2013-9.md
+│   │   ├── Keeping-Things-In-Balance-APLQuest-2013-4.md
+│   │   ├── Making-The-Grade-APLQuest-2013-2.md
+│   │   ├── Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.md
+│   │   ├── Solution-Salvation-APLQuest-2013-10.md
+│   │   ├── What-Is-Ina-Word-APLQuest-2013-3.md
+│   │   └── old
+│   │       ├── 1.md
+│   │       ├── 2.md
+│   │       ├── 3.md
+│   │       ├── 4.md
+│   │       ├── 5.md
+│   │       ├── 6.md
+│   │       ├── 7.md
+│   │       └── 8.md
+│   ├── 2014
+│   │   ├── 1.apl
+│   │   ├── 10.apl
+│   │   ├── 2.apl
+│   │   ├── 3.apl
+│   │   ├── 4.apl
+│   │   ├── 5.apl
+│   │   ├── 6.apl
+│   │   ├── 7.apl
+│   │   ├── 8.apl
+│   │   ├── 9.apl
+│   │   ├── Go-The-Distance-APLQuest-2014-8.md
+│   │   ├── Going-Ballistic-APLQuest-2014-9.md
+│   │   ├── How-Tweet-It-Is-APLQuest-2014-2.md
+│   │   ├── It-Is-All-Right-APLQuest-2014-1.md
+│   │   ├── Mirror-Mirror-APLQuest-2014-5.md
+│   │   ├── Revolutionary-Thinking-APLQuest-2014-7.md
+│   │   ├── Sales-Are-Up-APLQuest-2014-10.md
+│   │   ├── Space-The-Final-Frontier-APLQuest-2014-4.md
+│   │   └── Tell-a-Fib-APLQuest-2014-3.md
+│   ├── 2015
+│   │   ├── 1.apl
+│   │   ├── 10.apl
+│   │   ├── 2.apl
+│   │   ├── 3.apl
+│   │   ├── 4.apl
+│   │   ├── 5.apl
+│   │   ├── 6.apl
+│   │   ├── 7.apl
+│   │   ├── 8.apl
+│   │   ├── 9.apl
+│   │   ├── Blazing-A-Trail-APLQuest-2015-10.md
+│   │   ├── Farey-Tales-APLQuest-2015-3.md
+│   │   ├── Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.md
+│   │   ├── Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.md
+│   │   ├── Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.md
+│   │   ├── Justin-Upper-Case-APLQuest-2015-7.md
+│   │   ├── Longest-Streak-APLQuest-2015-2.md
+│   │   ├── Nag-A-Ram-APLQuest-2015-1.md
+│   │   └── Progessive-Dyadic-Iota-APLQuest-2015-4.md
+│   ├── 2016
+│   │   ├── 1.apl
+│   │   ├── 10.apl
+│   │   ├── 2.apl
+│   │   ├── 3-sand-5-s-APLQuest-2016-7.md
+│   │   ├── 3.apl
+│   │   ├── 4.apl
+│   │   ├── 5.apl
+│   │   ├── 6.apl
+│   │   ├── 7.apl
+│   │   ├── 8.apl
+│   │   ├── 9.apl
+│   │   ├── Delimited-Text-APLQuest-2016-9.md
+│   │   ├── Order-Total-APLQuest-2016-10.md
+│   │   ├── Separating-Outthe-Negative-APLQuest-2016-8.md
+│   │   ├── Shorter-Onestothe-Front-APLQuest-2016-6.md
+│   │   ├── Statistics-Mean-APLQuest-2016-1.md
+│   │   ├── Statistics-Median-APLQuest-2016-2.md
+│   │   ├── Statistics-Mode-APLQuest-2016-3.md
+│   │   └── Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.md
+│   ├── 2017
+│   │   ├── 1.apl
+│   │   ├── 10.apl
+│   │   ├── 2.apl
+│   │   ├── 3.apl
+│   │   ├── 4.apl
+│   │   ├── 5.apl
+│   │   ├── 6.apl
+│   │   ├── 7.apl
+│   │   ├── 8.apl
+│   │   ├── 9.apl
+│   │   ├── Be-the-First-1-APLQuest-2017-8.md
+│   │   ├── Counting-DNANucleotides-APLQuest-2017-7.md
+│   │   ├── DNA-APLQuest-2017-5.md
+│   │   ├── Double-Trouble-APLQuest-2017-9.md
+│   │   ├── Good-Evening-APLQuest-2017-2.md
+│   │   ├── Miss-Quoted-APLQuest-2017-3.md
+│   │   ├── Slices-of-Pies-APLQuest-2017-4.md
+│   │   ├── Squaring-Off-APLQuest-2017-10.md
+│   │   ├── What-an-Odd-Bunch-APLQuest-2017-1.md
+│   │   └── k-mers-APLQuest-2017-6.md
+│   ├── 2018
+│   │   ├── 1.apl
+│   │   ├── 10.apl
+│   │   ├── 2.apl
+│   │   ├── 3.apl
+│   │   ├── 4.apl
+│   │   ├── 5.apl
+│   │   ├── 6.apl
+│   │   ├── 7.apl
+│   │   ├── 8.apl
+│   │   ├── 9.apl
+│   │   ├── Anagrammatically-Correct-APLQuest-2018-10.md
+│   │   ├── Earlier-Later-or-the-Same-APLQuest-2018-9.md
+│   │   ├── Makinga-Good-Argument-APLQuest-2018-8.md
+│   │   ├── Number-Splitting-APLQuest-2018-2.md
+│   │   ├── Oh-Say-Can-You-See-APLQuest-2018-1.md
+│   │   ├── Rolling-Along-APLQuest-2018-3.md
+│   │   ├── Unconditionally-Shifty-APLQuest-2018-7.md
+│   │   ├── Whats-Your-Angle-APLQuest-2018-6.md
+│   │   ├── Whats-Your-Sign-APLQuest-2018-4.md
+│   │   └── Whats-Your-Sign-Revisited-APLQuest-2018-5.md
+│   ├── 2019
+│   │   ├── 1.apl
+│   │   ├── 10.apl
+│   │   ├── 2.apl
+│   │   ├── 3.apl
+│   │   ├── 4.apl
+│   │   ├── 5.apl
+│   │   ├── 6.apl
+│   │   ├── 7.apl
+│   │   ├── 8.apl
+│   │   ├── 9.apl
+│   │   ├── Area-Code-Gauss-APLQuest-2019-9.md
+│   │   ├── Chunky-Monkey-APLQuest-2019-1.md
+│   │   ├── Doubling-Up-APLQuest-2019-5.md
+│   │   ├── Goingthe-Distance-APLQuest-2019-8.md
+│   │   ├── Grade-Distribution-APLQuest-2019-3.md
+│   │   ├── In-the-Center-of-it-All-APLQuest-2019-7.md
+│   │   ├── Knight-Moves-APLQuest-2019-4.md
+│   │   ├── Makingthe-Grade-APLQuest-2019-2.md
+│   │   ├── Odds-Evens-APLQuest-2019-10.md
+│   │   └── Telephone-Names-APLQuest-2019-6.md
+│   ├── 2020
+│   │   ├── 1.apl
+│   │   ├── 10.apl
+│   │   ├── 2.apl
+│   │   ├── 3.apl
+│   │   ├── 4.apl
+│   │   ├── 5.apl
+│   │   ├── 6.apl
+│   │   ├── 7.apl
+│   │   ├── 8.apl
+│   │   ├── 9.apl
+│   │   ├── Character-Building-APLQuest-2020-2.md
+│   │   ├── Excel-lent-Columns-APLQuest-2020-3.md
+│   │   ├── Lets-Split-APLQuest-2020-1.md
+│   │   ├── Movetothe-Front-APLQuest-2020-6.md
+│   │   ├── Riseand-Fall-APLQuest-2020-9.md
+│   │   ├── See-Youina-Bit-APLQuest-2020-7.md
+│   │   ├── Stacking-It-Up-APLQuest-2020-10.md
+│   │   ├── Steppinginthe-Proper-Direction-APLQuest-2020-5.md
+│   │   ├── Takea-Leap-APLQuest-2020-4.md
+│   │   └── Zigzag-Numbers-APLQuest-2020-8.md
+│   ├── 2021
+│   │   ├── 1.apl
+│   │   ├── 10.apl
+│   │   ├── 2.apl
+│   │   ├── 3.apl
+│   │   ├── 4.apl
+│   │   ├── 5.apl
+│   │   ├── 6.apl
+│   │   ├── 7.apl
+│   │   ├── 8.apl
+│   │   ├── 9.apl
+│   │   ├── Are-You-a--Bacteria-APLQuest-2021-1.md
+│   │   ├── Can-You-Feelthe-Magic-APLQuest-2021-7.md
+│   │   ├── Fischer-Random-Chess-APLQuest-2021-6.md
+│   │   ├── Index-Of-Modified-APLQuest-2021-2.md
+│   │   ├── Inthe-Long-Run-APLQuest-2021-9.md
+│   │   ├── Multiplicity-APLQuest-2021-3.md
+│   │   ├── Onthe-Right-Side-APLQuest-2021-10.md
+│   │   ├── Rect-ify-APLQuest-2021-5.md
+│   │   ├── Square-Peg-Round-Hole-APLQuest-2021-4.md
+│   │   └── Timeto-Makea-Difference-APLQuest-2021-8.md
+│   ├── 2022
+│   │   ├── 1.apl
+│   │   ├── 10.apl
+│   │   ├── 2.apl
+│   │   ├── 3.apl
+│   │   ├── 4.apl
+│   │   ├── 5.apl
+│   │   ├── 6.apl
+│   │   ├── 7.apl
+│   │   ├── 8.apl
+│   │   ├── 9.apl
+│   │   ├── An-Average-Windowora-Windowed-Average-APLQuest-2022-9.md
+│   │   ├── Attackofthe-Mutations-APLQuest-2022-2.md
+│   │   ├── Counting-DNA-Nucleotides-APLQuest-2022-1.md
+│   │   ├── Inthe-Long-One-APLQuest-2022-4.md
+│   │   ├── Just-Golfing-Around-APLQuest-2022-7.md
+│   │   ├── Lets-Split-APLQuest-2022-8.md
+│   │   ├── Pyramid-Scheme-APLQuest-2022-6.md
+│   │   ├── Separation-Anxiety-APLQuest-2022-10.md
+│   │   ├── Stairwayto-Heaven-APLQuest-2022-5.md
+│   │   └── Uniquely-Qualified-APLQuest-2022-3.md
+│   └── 2023
+│       ├── 1.apl
+│       ├── 10.apl
+│       ├── 2.apl
+│       ├── 3.apl
+│       ├── 4.apl
+│       ├── 5.apl
+│       ├── 6.apl
+│       ├── 7.apl
+│       ├── 8.apl
+│       ├── 9.apl
+│       ├── Caesar-Salad-APLQuest-2023-3.md
+│       ├── Critical-Thinking-APLQuest-2023-8.md
+│       ├── EXTENDEDFlipping-Pairs-APLQuest-2023-9.md
+│       ├── Elimination-Sort-APLQuest-2023-1.md
+│       ├── Flipping-Pairs-APLQuest-2023-9.md
+│       ├── Key-Value-Pairs-APLQuest-2023-6.md
+│       ├── Lets-Be-Rational-APLQuest-2023-7.md
+│       ├── Like-a-Version-APLQuest-2023-4.md
+│       ├── Partition-witha-Twist-APLQuest-2023-10.md
+│       ├── Put-It-In-Reverse-APLQuest-2023-2.md
+│       └── Risky-Business-APLQuest-2023-5.md
+├── intro.md
+├── requirements.txt
+└── tree.txt
+
+145 directories, 621 files
