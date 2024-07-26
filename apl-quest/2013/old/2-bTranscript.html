@@ -58,7 +58,7 @@
     <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/old/2';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/old/2-bTranscript';</script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -351,7 +351,7 @@
       
       
       
-      <li><a href="../../../_sources/apl-quest/2013/old/2.md" target="_blank"
+      <li><a href="../../../_sources/apl-quest/2013/old/2-bTranscript.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -489,6 +489,7 @@ document.write(`
 </section>
 <section id="advanced-solutions">
 <h2>Advanced Solutions<a class="headerlink" href="#advanced-solutions" title="Link to this heading">#</a></h2>
+<p>Now, let’s look at some more advanced solutions:</p>
 <p>We are dealing with a scaler (65) and a vector (Scores). We should notice this pattern. We have a sum over a comparison of vectors. When we have that, we should think, <a class="reference external" href="https://aplwiki.com/wiki/Inner_Product">Inner Product</a>.</p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">100</span><span class="o">×+</span><span class="na">.</span><span class="o">≥</span><span class="na">∘</span><span class="m">65</span><span class="o">÷≢</span><span class="w"> </span><span class="c1">⍝ Tacit</span>
 </pre></div>
@@ -503,7 +504,7 @@ document.write(`
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">K</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">100</span><span class="o">×+</span><span class="na">.</span><span class="o">≤÷≢</span><span class="na">⍤</span><span class="o">⊢</span>
 </pre></div>
 </div>
-<p><strong>Generalization:</strong> Adding the cutoff point as an additional argument</p>
+<p><strong>Generalization:</strong> This solution generalizes the problem by allowing the passing grade threshold to be specified as a left argument.</p>
 <ol class="arabic simple">
 <li><p>K is parsed as <code class="docutils literal notranslate"><span class="pre">{100×((⍺(+.≤)⍵)÷(≢⍵))}</span></code></p></li>
 <li><p>We are reversing the <code class="docutils literal notranslate"><span class="pre">≥</span></code> so that the Cuttoff Point (65) can be taken as the left argument. Represented by <code class="docutils literal notranslate"><span class="pre">⍺</span></code> in step 1.</p></li>
@@ -513,10 +514,9 @@ document.write(`
 <section id="performance">
 <h2>Performance:<a class="headerlink" href="#performance" title="Link to this heading">#</a></h2>
 <p>When dealing with large datasets, the order of operations can significantly impact performance. Consider the following variations:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>F ← {100×(+/⍵≥65)÷≢⍵}    ⍝ Best performance
-G ← {100×+/(⍵≥65)÷≢⍵}    ⍝ Lower performance
-H ← {+/100×(⍵≥65)÷≢⍵}    ⍝ Lowest performance
-
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>F ← {100×(+/⍵≥65)÷≢⍵}    ⍝ Best performance
+G ← {100×+/(⍵≥65)÷≢⍵}    ⍝ Lower performance
+H ← {+/100×(⍵≥65)÷≢⍵}    ⍝ Lowest performance
 </pre></div>
 </div>
 <p>The performance differences arise from the number and order of operations performed on the entire vector:</p>

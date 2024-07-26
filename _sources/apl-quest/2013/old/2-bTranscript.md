@@ -1,3 +1,5 @@
+
+
 ## [Making the Grade](https://problems.tryapl.org/psets/2013.html?goto=P2_Making_The_Grade)
 
 **Problem:** Write a dfn which returns the percent (from 0 to 100) of passing (65 or higher) grades in a vector of grades.
@@ -31,6 +33,8 @@ Let's break down F:
 
 ### Advanced Solutions
 
+Now, let's look at some more advanced solutions:
+
 We are dealing with a scaler (65) and a vector (Scores). We should notice this pattern. We have a sum over a comparison of vectors. When we have that, we should think, [Inner Product](https://aplwiki.com/wiki/Inner_Product). 
 
 ```apl
@@ -39,16 +43,16 @@ J ← 100×+.≥∘65÷≢ ⍝ Tacit
 
 J is a tacit version where 65 is bound to the right argument of `≥`.
 
-1. `+.≥∘65` is an inner product that combines summation and comparison. It's equivalent to `+/⍵≥65` in F.
-2. `÷≢` divides by the total count.
-3. The whole expression is multiplied by 100 at the start.
-4. Equivalent to `{100×(⍵+.≥65)÷≢⍵}`
+1.  `+.≥∘65` is an inner product that combines summation and comparison. It's equivalent to `+/⍵≥65` in F.
+2.  `÷≢` divides by the total count.
+3.  The whole expression is multiplied by 100 at the start.
+4.  Equivalent to `{100×(⍵+.≥65)÷≢⍵}`
 
 ```apl
 K ← 100×+.≤÷≢⍤⊢
 ```
 
-**Generalization:** Adding the cutoff point as an additional argument
+**Generalization:** This solution generalizes the problem by allowing the passing grade threshold to be specified as a left argument.
 
 1. K is parsed as `{100×((⍺(+.≤)⍵)÷(≢⍵))}` 
 2. We are reversing the `≥` so that the Cuttoff Point (65) can be taken as the left argument. Represented by `⍺` in step 1. 
@@ -59,10 +63,9 @@ K ← 100×+.≤÷≢⍤⊢
 When dealing with large datasets, the order of operations can significantly impact performance. Consider the following variations:
 
 ```
-F ← {100×(+/⍵≥65)÷≢⍵}    ⍝ Best performance
-G ← {100×+/(⍵≥65)÷≢⍵}    ⍝ Lower performance
-H ← {+/100×(⍵≥65)÷≢⍵}    ⍝ Lowest performance
-
+F ← {100×(+/⍵≥65)÷≢⍵}    ⍝ Best performance
+G ← {100×+/(⍵≥65)÷≢⍵}    ⍝ Lower performance
+H ← {+/100×(⍵≥65)÷≢⍵}    ⍝ Lowest performance
 ```
 
 The performance differences arise from the number and order of operations performed on the entire vector:
@@ -82,14 +85,13 @@ cmpx'F s' 'G s' 'H s'
 ⍝ F s → 6.6E¯5 | 0%
 ⍝ G s → 2.4E¯3 | +3451%
 ⍝ H s → 2.8E¯3 | +4126% 
-
 ```
 
 We can evalute the performance of each function by importing the [CMPX](http://dfns.dyalog.com/n_cmpx.htm) function from the [DFNS](http://dfns.dyalog.com/n_contents.htm) library. 
 
-1. We [Roll](https://aplwiki.com/wiki/Roll)1 million `1e6` random numbers between 1 and 100
-2. We [copy](http://help.dyalog.com/latest/Content/Language/System%20Functions/cy.htm) `⎕cy` CMPX from the DFNS library into our workspace
-3. We use cmpx to evalute the performance of each function. With the first function as our baseline. 
+1.  We [Roll](https://aplwiki.com/wiki/Roll)1 million `1e6` random numbers between 1 and 100
+2.  We [copy](http://help.dyalog.com/latest/Content/Language/System%20Functions/cy.htm) `⎕cy` CMPX from the DFNS library into our workspace
+3.  We use cmpx to evalute the performance of each function. With the first function as our baseline. 
 
 This demonstrates that F is significantly faster than G and H.
 
@@ -97,7 +99,6 @@ This demonstrates that F is significantly faster than G and H.
 
 ```apl
 0,⍳64 ⍝ Raveld with zero becuase ⎕IO←1
-
 ```
 
 ### Glyphs Used
