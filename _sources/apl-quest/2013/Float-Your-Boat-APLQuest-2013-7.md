@@ -1,4 +1,3 @@
-
 # [Float your Boat 2013-7](https://problems.tryapl.org/psets/2013.html?goto=P7_Float_Your_Boat)
 
 **Problem:** Write a [Dfn](https://aplwiki.com/wiki/Dfn) which selects the floating point (non-integer) numbers from a numeric vector.
