@@ -1,8 +1,6 @@
-# Seems a Bit Odd To Me 2013-1
+# [Seems a Bit Odd To Me 2013-1](https://problems.tryapl.org/psets/2013.html?goto=P1_Seems_a_Bit_Odd_To_Me)
 
-## [Problem Description](https://problems.tryapl.org/psets/2013.html?goto=P1_Seems_a_Bit_Odd_To_Me)
-
-**Problem:** Write a dfn to produce a vector of the first n odd numbers.
+**Problem:** Write a [Dfn](https://aplwiki.com/wiki/Dfn) to produce a vector of the first n odd numbers.
 
 **Video:** [https://youtu.be/Mj4wyLKrBho](https://youtu.be/Mj4wyLKrBho)
 
