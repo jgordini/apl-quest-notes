@@ -50,9 +50,9 @@ J is a tacit version where 65 is bound to the right argument of `≥`.
 K ← 100×+.≤÷≢⍤⊢
 ```
 
-1. K is parsed as `{100×((⍺(+.≤)⍵)÷(≢⍵))}` 
-2. We are reversing the `≥` so that the Cuttoff Point (65) can be taken as the left argument. Represented by `⍺` in step 1. 
-3. `≢⍤⊢` We use Atop so that we can apply [Tally](https://aplwiki.com/wiki/Tally) monadically. (Dyadic Tally is [Not Match](https://aplwiki.com/wiki/Not_Match)) We could also use Jot `≢∘⊢` in this case and achieve the same result. 
+1. We are reversing the `≥` so that the Cuttoff Point (65) can be taken as the left argument. Represented by `⍺` in step 1. 
+2. `≢⍤⊢` We use Atop so that we can apply [Tally](https://aplwiki.com/wiki/Tally) monadically. (Dyadic Tally is [Not Match](https://aplwiki.com/wiki/Not_Match)) We could also use Jot `≢∘⊢` in this case and achieve the same result. 
+3. K is parsed as `{100×((⍺(+.≤)⍵)÷(≢⍵))}` 
 
 ### Performance:
 
