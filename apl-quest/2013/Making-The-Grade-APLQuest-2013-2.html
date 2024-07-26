@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Making the Grade &#8212; APL Quest Notes</title>
+    <title>Making the Grade 2013-2 &#8212; APL Quest Notes</title>
   
   
   
@@ -159,7 +159,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">APL Quest 2013</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Making the Grade</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Making the Grade 2013-2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="What-Is-Ina-Word-APLQuest-2013-3.html">What is in a Word? 2013-3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping things in balance 2013-4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
@@ -435,7 +435,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Making the Grade</h1>
+    <h1>Making the Grade 2013-2</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -463,8 +463,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="making-the-grade">
-<h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P2_Making_The_Grade">Making the Grade</a><a class="headerlink" href="#making-the-grade" title="Link to this heading">#</a></h1>
+  <section id="making-the-grade-2013-2">
+<h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P2_Making_The_Grade">Making the Grade 2013-2</a><a class="headerlink" href="#making-the-grade-2013-2" title="Link to this heading">#</a></h1>
 <p><strong>Problem:</strong> Write a dfn which returns the percent (from 0 to 100) of passing (65 or higher) grades in a vector of grades.</p>
 <p><strong>Video:</strong> <a class="reference external" href="https://youtu.be/pxo2BtoMxP4">https://youtu.be/pxo2BtoMxP4</a></p>
 <p><strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2013/2.apl">abrudz/apl_quest</a></p>
@@ -589,7 +589,6 @@ H ← {+/100×(⍵≥65)÷≢⍵}    ⍝ Lowest performance
 </section>
 <section id="transcript">
 <h2>Transcript<a class="headerlink" href="#transcript" title="Link to this heading">#</a></h2>
-<p><strong>Transcript:</strong></p>
 <p>Welcome to this second episode of the APL Quest! Check out the APL Wiki for details. Today’s quest is called “Making the Grade” and it’s the second problem from the 2013 APL Problem Solving Competition’s Phase 1. Here we are to write a function which takes a list of numbers representing the points that people scored on some type of test. If they scored 65 or higher, then they’ve passed in the test, and we are to compute the percentage of people who passed.</p>
 <p>Let’s start off by generating some test data. So here are 10 scores between 1 and 100, and those that have succeeded in the test had scores 69 and 72. So we know how many scores there are in total and we can compare all these scores with 65, so if the test scores are greater than or equal to 65, then they have succeeded and this gives us a boolean vector indicating the ones and zeros, the ones that have succeeded. Then we can sum the boolean vector to find out how many have succeeded and then we can divide that by the total number so this gives us a fraction and we can multiply that by 100 to get a percentage.</p>
 <p>Putting all this together, we have the function f, and we take 100 multiplied by the sum of the scores that are larger than 65, divided by the total tally of scores. That’s the argument here, not the variable t, and we can try this on t and that gives us the correct thing.</p>
