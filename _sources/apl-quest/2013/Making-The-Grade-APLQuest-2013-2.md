@@ -48,7 +48,7 @@ J is a tacit version where 65 is bound to the right argument of `≥`.
 K ← 100×+.≤÷≢⍤⊢
 ```
 
-**Generalization:** Adding the cutoff point as an additional argument
+**Generalization:** This solution generalizes the problem by allowing the passing grade threshold to be specified as a left argument.
 
 1. K is parsed as `{100×((⍺(+.≤)⍵)÷(≢⍵))}` 
 2. We are reversing the `≥` so that the Cuttoff Point (65) can be taken as the left argument. Represented by `⍺` in step 1. 
