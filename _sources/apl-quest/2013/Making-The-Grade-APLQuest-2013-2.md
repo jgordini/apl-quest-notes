@@ -44,8 +44,6 @@ J is a tacit version where 65 is bound to the right argument of `≥`.
 3. The whole expression is multiplied by 100 at the start.
 4. Equivalent to `{100×(⍵+.≥65)÷≢⍵}`
 
-
-
 **Generalization:** This solution generalizes the problem by allowing the passing grade threshold to be specified as a left argument.
 
 ```apl
@@ -99,7 +97,6 @@ This demonstrates that F is significantly faster than G and H.
 
 ```apl
 0,⍳64 ⍝ Raveld with zero becuase ⎕IO←1
-
 ```
 
 ### Glyphs Used
