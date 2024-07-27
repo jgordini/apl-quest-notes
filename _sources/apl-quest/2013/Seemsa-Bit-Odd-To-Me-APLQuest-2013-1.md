@@ -24,14 +24,14 @@ J←(⍳+⍳-≢) ⍝ Tacit
 F←{1-⍨2×⍳⍵}
 ```
 
-This solution demonstrates the basic approach to generating odd numbers. It uses the index generator (⍳) to create a sequence of integers, multiplies them by 2 to get even numbers, and then subtracts 1 to obtain odd numbers.
+This solution demonstrates the basic approach to generating odd numbers. It uses the index generator (⍳) to create a sequence of integers, multiplies them by 2 to get even numbers, and then subtracts 1 from each result to obtain odd numbers.
 
 1. `⍳⍵` - Use [Iota](https://aplwiki.com/wiki/Index_Generator) to generate the first `⍵` natural numbers (1, 2, 3, 4 etc.)
-2. `1-⍨2×` - [Swap](https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant) ⍨ - Preserves the right to left order. - parsed as `(2×⍳5)-1`  
-3. Multiply the values by 2
-4. Subtract one from each of the array values.
+2. `2×⍳⍵` Multiply the values by 2
+3. `1-⍨2×⍳⍵` - [Swap](https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant) ⍨ - new expression is parsed as `(2×⍳⍵)-1`  The expression changes from subtracting the result from 1, to subtracting 1 from the result.  
+4. Subtract one from each of the results in step 2.
 
-This solution works when APL is set to count from 1 by default (⎕IO←1). It's a straightforward approach that clearly shows the logic of generating odd numbers.
+This solution works when APL is set to count from 1 by default (⎕IO←1).
 
 ### Solution G
 
@@ -43,10 +43,10 @@ This tacit function solution uses a different approach, leveraging boolean masks
 
 1. `(2×⊢)` - parses as (2×⍵) - [Identity](https://aplwiki.com/wiki/Identity) replaces `⍵` - () indicates tacit
 2. `1 0⍴⍨2×⊢` [Swap](https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant) ⍨ - parses as `((2×⍵)⍴1 0)` 
-3. `1 0⍴` [Reshape](https://aplwiki.com/wiki/Reshape) see above - returns the argument as boolean vector of ones and zeros
+3. `1 0⍴` [Reshape](https://aplwiki.com/wiki/Reshape) see above - This creates a boolean vector by repeating [1 0] as many times as needed to reach a length of 2×⍵.
 4. `⍸` [Where](https://aplwiki.com/wiki/Identity) gives the indices of ones in a Boolean [vector](https://aplwiki.com/wiki/Vector "Vector")
 
-This solution is particularly clever as it creates a boolean mask of alternating 1s and 0s, and then uses the Where function to find the indices of the 1s, which correspond to odd numbers. It's designed to work when the index origin is set to 0 (⎕IO←0).
+This solution creates a boolean mask of alternating 1s and 0s, and then uses the Where function to find the indices of the 1s, which correspond to odd numbers. It's designed to work when the index origin is set to 0 (⎕IO←0).
 
 ### Solution H
 

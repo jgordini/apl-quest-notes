@@ -160,7 +160,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">APL Quest 2013</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Seems a Bit Odd To Me 2013-1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="What-Is-Ina-Word-APLQuest-2013-3.html">What is in a Word? 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping things in balance 2013-4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
@@ -490,14 +490,14 @@ document.write(`
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="kd">←</span><span class="kt">{</span><span class="m">1</span><span class="o">-</span><span class="na">⍨</span><span class="m">2</span><span class="o">×⍳</span><span class="bp">⍵</span><span class="kt">}</span>
 </pre></div>
 </div>
-<p>This solution demonstrates the basic approach to generating odd numbers. It uses the index generator (⍳) to create a sequence of integers, multiplies them by 2 to get even numbers, and then subtracts 1 to obtain odd numbers.</p>
+<p>This solution demonstrates the basic approach to generating odd numbers. It uses the index generator (⍳) to create a sequence of integers, multiplies them by 2 to get even numbers, and then subtracts 1 from each result to obtain odd numbers.</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">⍳⍵</span></code> - Use <a class="reference external" href="https://aplwiki.com/wiki/Index_Generator">Iota</a> to generate the first <code class="docutils literal notranslate"><span class="pre">⍵</span></code> natural numbers (1, 2, 3, 4 etc.)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">1-⍨2×</span></code> - <a class="reference external" href="https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant">Swap</a> ⍨ - Preserves the right to left order. - parsed as <code class="docutils literal notranslate"><span class="pre">(2×⍳5)-1</span></code></p></li>
-<li><p>Multiply the values by 2</p></li>
-<li><p>Subtract one from each of the array values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2×⍳⍵</span></code> Multiply the values by 2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1-⍨2×⍳⍵</span></code> - <a class="reference external" href="https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant">Swap</a> ⍨ - new expression is parsed as <code class="docutils literal notranslate"><span class="pre">(2×⍳⍵)-1</span></code>  The expression changes from subtracting the result from 1, to subtracting 1 from the result.</p></li>
+<li><p>Subtract one from each of the results in step 2.</p></li>
 </ol>
-<p>This solution works when APL is set to count from 1 by default (⎕IO←1). It’s a straightforward approach that clearly shows the logic of generating odd numbers.</p>
+<p>This solution works when APL is set to count from 1 by default (⎕IO←1).</p>
 </section>
 <section id="solution-g">
 <h3>Solution G<a class="headerlink" href="#solution-g" title="Link to this heading">#</a></h3>
@@ -508,10 +508,10 @@ document.write(`
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">(2×⊢)</span></code> - parses as (2×⍵) - <a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity</a> replaces <code class="docutils literal notranslate"><span class="pre">⍵</span></code> - () indicates tacit</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">0⍴⍨2×⊢</span></code> <a class="reference external" href="https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant">Swap</a> ⍨ - parses as <code class="docutils literal notranslate"><span class="pre">((2×⍵)⍴1</span> <span class="pre">0)</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">0⍴</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshape</a> see above - returns the argument as boolean vector of ones and zeros</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">0⍴</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshape</a> see above - This creates a boolean vector by repeating [1 0] as many times as needed to reach a length of 2×⍵.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍸</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Identity">Where</a> gives the indices of ones in a Boolean <a class="reference external" href="https://aplwiki.com/wiki/Vector" title="Vector">vector</a></p></li>
 </ol>
-<p>This solution is particularly clever as it creates a boolean mask of alternating 1s and 0s, and then uses the Where function to find the indices of the 1s, which correspond to odd numbers. It’s designed to work when the index origin is set to 0 (⎕IO←0).</p>
+<p>This solution creates a boolean mask of alternating 1s and 0s, and then uses the Where function to find the indices of the 1s, which correspond to odd numbers. It’s designed to work when the index origin is set to 0 (⎕IO←0).</p>
 </section>
 <section id="solution-h">
 <h3>Solution H<a class="headerlink" href="#solution-h" title="Link to this heading">#</a></h3>
