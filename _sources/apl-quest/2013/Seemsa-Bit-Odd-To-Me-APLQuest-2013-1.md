@@ -41,9 +41,9 @@ G←(⍸1 0⍴⍨2×⊢)
 
 This tacit function solution uses a different approach, leveraging boolean masks and the Where (⍸) function.
 
-1. `(2×⊢)` - parses as (2×⍵) - [Identity](https://aplwiki.com/wiki/Identity) replaces `⍵` - () indicates tacit
+1. `(2×⊢)` - parses as (2×⍵) - [Identity](https://aplwiki.com/wiki/Identity) `⊢` replaces `⍵` 
 2. `1 0⍴⍨2×⊢` [Swap](https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant) ⍨ - parses as `((2×⍵)⍴1 0)` 
-3. `1 0⍴` [Reshape](https://aplwiki.com/wiki/Reshape) see above - This creates a boolean vector by repeating [1 0] as many times as needed to reach a length of 2×⍵.
+3. `(2×⍵)⍴1 0` [Reshape](https://aplwiki.com/wiki/Reshape) `⍴` see above - This creates a boolean vector by repeating [1 0] as many times as needed to reach a length of 2×⍵.
 4. `⍸` [Where](https://aplwiki.com/wiki/Identity) gives the indices of ones in a Boolean [vector](https://aplwiki.com/wiki/Vector "Vector")
 
 This solution creates a boolean mask of alternating 1s and 0s, and then uses the Where function to find the indices of the 1s, which correspond to odd numbers. It's designed to work when the index origin is set to 0 (⎕IO←0).
