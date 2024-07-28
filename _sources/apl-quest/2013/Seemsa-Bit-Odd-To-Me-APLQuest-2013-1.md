@@ -82,13 +82,13 @@ By using the cumulative sum (plus scan), it generates the sequence of odd number
 J←(⍳+⍳-≢) ⍝ {(⍳⍵)+((⍳⍵)-(≢⍵))}
 ```
 
-This tacit function solution is particularly clever in its use of APL's fork structure.
+This tacit function solution uses of APL's fork structure.
 
-1. `⍳-≢` - [Indices](https://aplwiki.com/wiki/Indices) of argument, subtracted from the [Tally](https://aplwiki.com/wiki/Tally) of the argument (1 item) *ex* 1-⍨⍳5 (0 1 2 3 4)
+1. `⍳-≢` - [Indices](https://aplwiki.com/wiki/Indices) of argument, minus the [Tally](https://aplwiki.com/wiki/Tally) of the argument (1 item) *ex* 1-⍨⍳5 (0 1 2 3 4)
 2. `⍳+⍳-≢` - [Indices](https://aplwiki.com/wiki/Indices) of argument added to the result from step 1. 
 *ex* `(⍳5)+(⍳5)-1` (1 3 5 7 9)
 
-It works by subtracting the tally (which is always 1 for a scalar argument) from the indices, effectively subtracting 1 from each index. Then it adds this result to the original indices, producing the sequence of odd numbers. This solution demonstrates the power and conciseness of tacit programming in APL.
+It works by subtracting the tally (which is always 1 for a scalar argument) from the indices, effectively subtracting 1 from each index. Then it adds this result to the original indices, producing the sequence of odd numbers. Works with `⎕IO←1`
 
 ## Glyphs Used
 

@@ -61,7 +61,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/Making-The-Grade-APLQuest-2013-2';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="What is in a Word? 2013-3" href="What-Is-Ina-Word-APLQuest-2013-3.html" />
+    <link rel="next" title="What’s in a Word 2013-3" href="What-Is-Ina-Word-APLQuest-2013-3.html" />
     <link rel="prev" title="Seems a Bit Odd To Me 2013-1" href="Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -160,7 +160,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">APL Quest 2013</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Making the Grade 2013-2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="What-Is-Ina-Word-APLQuest-2013-3.html">What is in a Word? 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping things in balance 2013-4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
@@ -495,9 +495,9 @@ document.write(`
 </div>
 <p>J is a tacit version where 65 is bound to the right argument of <code class="docutils literal notranslate"><span class="pre">≥</span></code>.</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">+.≥∘65</span></code> is an inner product that combines summation and comparison. It’s equivalent to <code class="docutils literal notranslate"><span class="pre">+/⍵≥65</span></code> in F.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">÷≢</span></code> divides by the total count.</p></li>
-<li><p>The whole expression is multiplied by 100 at the start.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">÷≢</span></code> waits for a left argument (result of 2) and divides it by the <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> .</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">+.≥∘65</span></code> is an <a class="reference external" href="https://aplwiki.com/wiki/Inner_Product">Inner Product</a> that combines summation and comparison.  The <code class="docutils literal notranslate"><span class="pre">∘65</span></code> part binds 65 as the right argument of <code class="docutils literal notranslate"><span class="pre">≥</span></code>. It’s equivalent to <code class="docutils literal notranslate"><span class="pre">+/⍵≥65</span></code> in F.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">100×</span></code> The result of  <code class="docutils literal notranslate"><span class="pre">+.≥∘65÷≢</span></code> is multiplied by 100.</p></li>
 <li><p>Equivalent to <code class="docutils literal notranslate"><span class="pre">{100×(⍵+.≥65)÷≢⍵}</span></code></p></li>
 </ol>
 <p><strong>Generalization:</strong> This solution generalizes the problem by allowing the passing grade threshold to be specified as a left argument.</p>
@@ -649,7 +649,7 @@ H ← {+/100×(⍵≥65)÷≢⍵}    ⍝ Lowest performance
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">What is in a Word? 2013-3</p>
+        <p class="prev-next-title">What’s in a Word 2013-3</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
