@@ -6,7 +6,7 @@
 
 **Code:** [https://github.com/abrudz/apl_quest/blob/main/2013/2.apl](https://github.com/abrudz/apl_quest/blob/main/2013/2.apl)
 
-Welcome to this second episode of the APL Quest! Check out the APL Wiki for details. Today's quest is called "Making the Grade" and it's the second problem from the 2013 APL Problem Solving Competition's Phase 1. Here we are to write a function which takes a list of numbers representing the points that people scored on some type of test. If they scored 65 or higher, then they've passed in the test, and we are to compute the percentage of people who passed. 
+Welcome to this second episode of the APL Quest! Check out the APL Wiki for details. Today's quest is called "Making the Grade" and it's the second problem from the 2013 APL Problem Solving Competition's Phase 1. Here we are to create a function that accepts a list of test scores. It should calculate the percentage of scores that are 65 or above, representing the pass rate.
 
 Let's start off by generating some test data. So here are 10 scores between 1 and 100, and those that have succeeded in the test had scores 69 and 72. 
 
