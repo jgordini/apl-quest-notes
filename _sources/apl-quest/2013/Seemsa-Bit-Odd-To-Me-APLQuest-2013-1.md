@@ -71,7 +71,7 @@ I←{+\2-⍵↑1} ⍝ Works with ⎕IO←0 or 1
 This solution takes a mathematical approach, leveraging the property that odd numbers increase by 2 each time.
 
 1. `⍵↑1` - [Overtake](https://xpqz.github.io/cultivations/Functions4.html?highlight=overtaking#take) 1 adds zeros to pad the array starting with 1 *ex* `5↑1` is 1 0 0 0 0
-2. subtract the result from 2 (1 2 2 2 2)
+2. `2-⍵↑1` 2 minus  (1 0 0 0 0) is (1 2 2 2 2)
 3. `+\` - [Plus Scan](https://mastering.dyalog.com/Operators.html?highlight=scan#scan) returns the running sums from the vector in step two. (1 3 5 7 9)
 
 By using the cumulative sum (plus scan), it generates the sequence of odd numbers without relying on index-related functionality. This makes it immune to changes in the index origin, working correctly whether ⎕IO is 0 or 1.
@@ -82,21 +82,31 @@ By using the cumulative sum (plus scan), it generates the sequence of odd number
 J←(⍳+⍳-≢) ⍝ {(⍳⍵)+((⍳⍵)-(≢⍵))}
 ```
 
-This tacit function solution uses of APL's fork structure.
+This tacit function solution uses of APL's fork structure. The function can be read as `(f g h)`, where `f` is `⍳`, `g` is `+`, and `h` is `(⍳-≢)`.
 
-1. `⍳-≢` - [Indices](https://aplwiki.com/wiki/Indices) of argument, minus the [Tally](https://aplwiki.com/wiki/Tally) of the argument (1 item) *ex* 1-⍨⍳5 (0 1 2 3 4)
-2. `⍳+⍳-≢` - [Indices](https://aplwiki.com/wiki/Indices) of argument added to the result from step 1. 
-*ex* `(⍳5)+(⍳5)-1` (1 3 5 7 9)
-
-It works by subtracting the tally (which is always 1 for a scalar argument) from the indices, effectively subtracting 1 from each index. Then it adds this result to the original indices, producing the sequence of odd numbers. Works with `⎕IO←1`
+1. `⍳-≢` -  Create a vector of consecutive integers ([Indices](https://aplwiki.com/wiki/Indices) from 1 to ⍵), then decrement each by 1. The [Tally](https://aplwiki.com/wiki/Tally) of a scaler will always be 1. `((⍳⍵)-(≢⍵))`
+2. `⍳+⍳-≢` - Add the original indices `⍳⍵` to the result from step 1. This effectively doubles each index and subtracts 1, producing odd numbers. Example: `(⍳5)+(⍳5)-1` results in (1 3 5 7 9)
 
 ## Glyphs Used
 
-[Index](https://aplwiki.com/wiki/Index_Generator) - aka Iota - The notation `⍳N` where `N` is a natural number, describes a vector of the first `N` natural numbers. Starting from 0 or 1 depending on the [Index Origin](https://aplwiki.com/wiki/Index_origin) 
+[Index](https://aplwiki.com/wiki/Index_Generator) - aka Iota - The notation `⍳N` where `N` is a natural number, describes a vector of the first `N` natural numbers. Starting from 0 or 1 depending on the 
+
+- `⍳` (Iota) - [Index Generator](https://aplwiki.com/wiki/Index_Generator)
+- `×` (Times) - [Multiply](https://aplwiki.com/wiki/Times)
+- `-` (Minus) - [Subtract](https://aplwiki.com/wiki/Minus)
+- `⍨` (Swap) - [Commute](https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant)
+- `⊢` (Right Tack) - [Identity](https://aplwiki.com/wiki/Identity)
+- `⍴` (Rho) - [Reshape](https://aplwiki.com/wiki/Reshape)
+- `⍸` (Where) - [Where](https://aplwiki.com/wiki/Where)
+- `|` (Modulus) - [Residue/Modulus](https://aplwiki.com/wiki/Residue)
+- `+\` (Plus Scan) - [Plus Scan](https://mastering.dyalog.com/Operators.html?highlight=scan#scan)
+- `↑` (Take) - [Take/Overtake](https://xpqz.github.io/cultivations/Functions4.html?highlight=overtaking#take)
+- `≢` (Tally) - [Tally](https://aplwiki.com/wiki/Tally)
 
 ## Concepts Used
 
 - [Dfn](https://aplwiki.com/wiki/Dfn)
+- [Index Origin](https://aplwiki.com/wiki/Index_origin) 
 - [Tacit Programming](https://aplwiki.com/wiki/Tacit_programming)
 - [https://tacit.help/](https://tacit.help/)
 - [Boolean Mask](https://aplwiki.com/wiki/Boolean)
