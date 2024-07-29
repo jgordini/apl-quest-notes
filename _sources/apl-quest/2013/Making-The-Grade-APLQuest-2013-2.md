@@ -16,15 +16,15 @@ t ← ?10⍴100
 
 ### Example Solutions
 
-We know how many scores there are in total and we can compare all these scores with 65, so if the test scores are greater than or equal to 65, then they have succeeded and this gives us a boolean vector indicating the ones and zeros, the ones that have succeeded. Then we can sum the boolean vector to find out how many have succeeded and then we can divide that by the total number so this gives us a fraction and we can multiply that by 100 to get a percentage. 
+First we compare all scores to 65, creating a boolean vector (1 for pass, 0 for fail). Then we sum this vector to get the number of passing grades. Finally, we divide by the total number of scores and multiply by 100 for the success percentage. In APL this looks like F. 
 
 ```APL
 F ← {100×(+/⍵≥65)÷≢⍵}
 ```
 
-Let's break down F:
+Let's break it down:
 
-1. `(+/⍵≥65)` use [greater than or equal to](https://aplwiki.com/wiki/Greater_than_or_Equal_to) as a [Comparison Function](https://aplwiki.com/wiki/Comparison_function) returning a boolean vector of 1 if true and 0 if false. 
+1. `(+/⍵≥65)` Use [greater than or equal to](https://aplwiki.com/wiki/Greater_than_or_Equal_to) as a [Comparison Function](https://aplwiki.com/wiki/Comparison_function) returning a boolean vector of 1 if true and 0 if false. 
 2. Then [sum](https://aplwiki.com/wiki/Reduce) the result - `+/`. 
 3. `÷≢⍵`  [Tally](https://aplwiki.com/wiki/Tally) the length of your argument and divde that by the result in step 1. 
 4. Multiply this by 100 to get your percentage of passing grades. 
