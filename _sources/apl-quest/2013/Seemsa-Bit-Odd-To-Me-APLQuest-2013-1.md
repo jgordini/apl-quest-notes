@@ -89,8 +89,6 @@ This tacit function solution uses of APL's fork structure. The function can be r
 
 ## Glyphs Used
 
-[Index](https://aplwiki.com/wiki/Index_Generator) - aka Iota - The notation `⍳N` where `N` is a natural number, describes a vector of the first `N` natural numbers. Starting from 0 or 1 depending on the 
-
 - `⍳` (Iota) - [Index Generator](https://aplwiki.com/wiki/Index_Generator)
 - `×` (Times) - [Multiply](https://aplwiki.com/wiki/Times)
 - `-` (Minus) - [Subtract](https://aplwiki.com/wiki/Minus)
