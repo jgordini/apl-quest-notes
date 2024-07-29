@@ -26,7 +26,7 @@ Let's break it down:
 
 1. `(+/⍵≥65)` Use [greater than or equal to](https://aplwiki.com/wiki/Greater_than_or_Equal_to) as a [Comparison Function](https://aplwiki.com/wiki/Comparison_function) returning a boolean vector of 1 if true and 0 if false. 
 2. Then [sum](https://aplwiki.com/wiki/Reduce) the result - `+/`. 
-3. `÷≢⍵`  [Tally](https://aplwiki.com/wiki/Tally) the length of your argument and divde that by the result in step 1. 
+3. `÷≢⍵`  [Tally](https://aplwiki.com/wiki/Tally) the length of your argument and divde that into the result in step 1. 
 4. Multiply this by 100 to get your percentage of passing grades. 
 
 ### Advanced Solutions
@@ -39,7 +39,7 @@ J ← 100×+.≥∘65÷≢ ⍝ Tacit
 
 J is a tacit version where 65 is bound to the right argument of `≥`.
 
-1. `÷≢`  [Tally](https://aplwiki.com/wiki/Tally) the length of your array and divde it by the result of step 2.
+1. `÷≢`  [Tally](https://aplwiki.com/wiki/Tally) the length of your array and divde it into the result of step 2.
 2. `+.≥∘65` is an [Inner Product](https://aplwiki.com/wiki/Inner_Product) that combines summation and comparison.  The `∘65` part binds 65 as the right argument of `≥`. It's equivalent to `+/⍵≥65` in F.  
 3. `100×` The result of  `+.≥∘65÷≢` is multiplied by 100.
 4. Equivalent to `{100×(⍵+.≥65)÷≢⍵}`
