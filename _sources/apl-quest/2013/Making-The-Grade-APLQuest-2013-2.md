@@ -39,7 +39,7 @@ J ← 100×+.≥∘65÷≢ ⍝ Tacit
 
 J is a tacit version where 65 is bound to the right argument of `≥`.
 
-1. `÷≢` waits for a left argument (result of 2) and divides it by the [Tally](https://aplwiki.com/wiki/Tally) .
+1. `÷≢`  [Tally](https://aplwiki.com/wiki/Tally) the length of your array and divde it by the result of step 2.
 2. `+.≥∘65` is an [Inner Product](https://aplwiki.com/wiki/Inner_Product) that combines summation and comparison.  The `∘65` part binds 65 as the right argument of `≥`. It's equivalent to `+/⍵≥65` in F.  
 3. `100×` The result of  `+.≥∘65÷≢` is multiplied by 100.
 4. Equivalent to `{100×(⍵+.≥65)÷≢⍵}`
