@@ -161,6 +161,12 @@
 <li class="toctree-l2"><a class="reference internal" href="Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">What’s in a Word 2013-3</a></li>
+
+
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping things in balance 2013-4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
@@ -445,14 +451,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-solutions">Example Solutions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-solutions">Advanced Solutions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizations">Optimizations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">What’s in a Word 2013-3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#test-data">Test Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-f-splitting-on-sequences-of-spaces">Solution F: Splitting on Sequences of Spaces</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-g-using-regular-expressions">Solution G: Using Regular Expressions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-h-using-verify-and-fix-input">Solution H: Using Verify and Fix Input</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions-i-j-k-l-using-boolean-masks">Solutions I, J, K, L: Using Boolean Masks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-comparison">Performance Comparison</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript:</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -469,105 +481,86 @@ document.write(`
 <p><strong>Video:</strong> <a class="reference external" href="https://youtu.be/MgkM2qCPWas">https://youtu.be/MgkM2qCPWas</a></p>
 <p><strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2013/3.apl">abrudz/apl_quest</a></p>
 <p>This problem is based on the third challenge from the 2013 round of the APL Problem Solving Competition. The task is to create a function that can accurately count the number of words in a given text, where a word is defined as being space-delimited. The function should handle various edge cases, including multiple spaces between words, leading and trailing spaces, single-character inputs, and empty inputs.</p>
-<p><strong>Test Data:</strong></p>
+</section>
+<section id="test-data">
+<h1>Test Data<a class="headerlink" href="#test-data" title="Link to this heading">#</a></h1>
+<p>Let’s begin by creating some test data. We’ll use a normal text with a dash to ensure we’re splitting on the right thing, a single letter, an empty input, and a text with more spaces to test leading and trailing spaces.</p>
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">s</span><span class="kd">←</span><span class="s1">&#39;hyphen-dash string&#39;</span>
 <span class="nv">l</span><span class="kd">←</span><span class="s1">&#39;x&#39;</span>
 <span class="nv">e</span><span class="kd">←</span><span class="s1">&#39;&#39;</span>
 <span class="nv">m</span><span class="kd">←</span><span class="s1">&#39;  more spaces   go here &#39;</span>
 </pre></div>
 </div>
-<section id="example-solutions">
-<h2>Example Solutions<a class="headerlink" href="#example-solutions" title="Link to this heading">#</a></h2>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≢</span><span class="s1">&#39; &#39;</span><span class="na">∘</span><span class="o">≠⊆,</span><span class="w"> </span><span class="c1">⍝ Tacit - binding the space to the not equal to make monadic. </span>
+</section>
+<section id="solution-f-splitting-on-sequences-of-spaces">
+<h1>Solution F: Splitting on Sequences of Spaces<a class="headerlink" href="#solution-f-splitting-on-sequences-of-spaces" title="Link to this heading">#</a></h1>
+<p>Let’s start by comparing an input string with a space. This gives us a Boolean vector indicating where the spaces are. The <a class="reference external" href="https://aplwiki.com/wiki/Partition">Partition</a> function groups runs of ones or elements corresponding to runs of one. We want to invert this and then use it to split. By using Partition on the string itself, we get the individual words, which we can then count.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≢</span><span class="s1">&#39; &#39;</span><span class="na">∘</span><span class="o">≠⊆,</span><span class="w"> </span><span class="c1">⍝ Tacit - binding the space to the not equal to make monadic.</span>
 </pre></div>
 </div>
-<p>This tacit function splits the input on sequences of spaces and counts the resulting partitions.</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'∘≠</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a> space to <a class="reference external" href="https://aplwiki.com/wiki/Not_Equal_to">Not equal to</a>, creating a monadic function.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">⊆,</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Partition">Partition</a> the <a class="reference external" href="https://aplwiki.com/wiki/Ravel">Ravel</a> of the input.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">≢</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> the resulting partitions.</p></li>
+<li><p>Split on sequences of spaces</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'=s</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Equal_to">Equal To</a> compares arrays one <a class="reference external" href="https://aplwiki.com/wiki/Element">element</a> at a time. Returns a boolean vector of 1 for match and 0 for no-match.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⊆</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Partition">Partition</a> splits on the 0s when the left argument is boolean. So we use <a class="reference external" href="https://aplwiki.com/wiki/Not_Equal_to">Not equal to</a> <code class="docutils literal notranslate"><span class="pre">≠⊆</span></code> to create runs of 1s.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⊆</span></code> Partition also requires an axis. So to use a <a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Function</a> on a scalar, we must <a class="reference external" href="https://aplwiki.com/wiki/Ravel">Ravel</a> <code class="docutils literal notranslate"><span class="pre">⊆,</span></code> first.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'∘≠</span></code> We <a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a> the space to the Not equal to to achieve a monadic function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">≢</span></code> Lastly, we <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> to count the number of major cells or items.</p></li>
 </ol>
 </section>
-<section id="advanced-solutions">
-<h2>Advanced Solutions<a class="headerlink" href="#advanced-solutions" title="Link to this heading">#</a></h2>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">G</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≢</span><span class="s1">&#39;[^ ]+&#39;</span><span class="nf">⎕S</span><span class="w"> </span><span class="m">3</span>
+<section id="solution-g-using-regular-expressions">
+<h1>Solution G: Using Regular Expressions<a class="headerlink" href="#solution-g-using-regular-expressions" title="Link to this heading">#</a></h1>
+<p>If you come from other programming language backgrounds, especially Perl, you might reach for regular expressions for this task.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">G</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≢</span><span class="s1">&#39;[^ ]+&#39;</span><span class="nf">⎕S</span><span class="w"> </span><span class="m">3</span>
 </pre></div>
 </div>
-<p>This function uses a regular expression to match non-space sequences and counts them. For those familiar with other programming languages, particularly Perl, this solution might feel more intuitive.</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">'[^</span> <span class="pre">]+'</span></code>: Regular expression matching one or more non-space characters.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">⎕S</span> <span class="pre">3</span></code>: <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm">String Search</a> with transformation code 3 (pattern number).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">≢</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> the matches.</p></li>
+<li><p>Use <a class="reference external" href="https://xpqz.github.io/cultivations/Regex.html">Regular Expressions</a>. You can use <a class="reference external" href="https://regexr.com/">regexr.com</a> to evaluate.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕S</span></code> <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm">String Search</a> - regex enclosed in single quotes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[^</span> <span class="pre">]+</span></code> Matches anything that is not a space</p></li>
+<li><p><a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm">Transformation Codes</a> for each match in the input document, a numeric scalar or vector of the same shape as the transformation codes is created.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> - Pattern number which matched the input document, origin Zero</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> to count the number of patterns</p></li>
 </ol>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">H</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≢</span><span class="na">∘</span><span class="o">⊃</span><span class="nf">⎕VFI</span>
+</section>
+<section id="solution-h-using-verify-and-fix-input">
+<h1>Solution H: Using Verify and Fix Input<a class="headerlink" href="#solution-h-using-verify-and-fix-input" title="Link to this heading">#</a></h1>
+<p>Here’s an interesting solution that abuses a built-in functionality, a system function called VFI (Verify and Fix Input).</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">H</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≢</span><span class="na">∘</span><span class="o">⊃</span><span class="nf">⎕VFI</span>
 </pre></div>
 </div>
-<p>This solution showcases APL’s versatility by creatively using a function typically meant for numeric input parsing. This function utilizes the Verify and Fix Input system function to parse the input as if it were numeric fields. The Verify and Fix Input function (⎕VFI) is repurposed here to tokenize the input string and count the resulting tokens.</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">⎕VFI</span></code>: <a class="reference external" href="https://xpqz.github.io/cultivations/Constants.html?highlight=fix%20input#verify-and-fix-input-vfi">Verify and Fix Input</a> parses the input.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">⊃</span></code>: <a class="reference external" href="https://xpqz.github.io/learnapl/indexing.html?highlight=first#pick">Pick</a> the first element (success flags).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">≢∘⊃</span></code>: <a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=bind#binding">Bind</a> <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> to the result.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕VFI</span></code> - <a class="reference external" href="https://xpqz.github.io/cultivations/Constants.html?highlight=fix%20input#verify-and-fix-input-vfi">Verify and Fix Input</a> - takes a string and returns two lists. It cuts the string into space-separated fields. Then it attempts to convert each field to a number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⊃</span></code> - Monadic <a class="reference external" href="https://xpqz.github.io/learnapl/indexing.html?highlight=first#pick">Pick</a> picks the first element. In this case, the first vector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">≢∘⊃</span></code> - <a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=bind#binding">Bind</a> When we use the operator <em>bind</em>, we create a single derived function that is monadic. That way, we can give it a name.</p></li>
 </ol>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">+</span><span class="na">/</span><span class="m">2</span><span class="o">&lt;</span><span class="na">/</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="s1">&#39; &#39;</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span>
+</section>
+<section id="solutions-i-j-k-l-using-boolean-masks">
+<h1>Solutions I, J, K, L: Using Boolean Masks<a class="headerlink" href="#solutions-i-j-k-l-using-boolean-masks" title="Link to this heading">#</a></h1>
+<p>For better performance in APL, we often work with boolean masks. We compare a scalar with a vector to create a mask.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">+</span><span class="na">/</span><span class="m">2</span><span class="o">&lt;</span><span class="na">/</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="s1">&#39; &#39;</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span>
 <span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">+</span><span class="na">/</span><span class="m">2</span><span class="o">&lt;</span><span class="na">/</span><span class="m">0</span><span class="o">,</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span>
 <span class="nv">K</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="p">(</span><span class="o">⊃</span><span class="nv">m</span><span class="p">)</span><span class="o">++</span><span class="na">/</span><span class="m">2</span><span class="o">&lt;</span><span class="na">/</span><span class="nv">m</span><span class="kd">←</span><span class="s1">&#39; &#39;</span><span class="o">≠,</span><span class="bp">⍵</span><span class="kt">}</span>
 <span class="nv">L</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">+</span><span class="na">/</span><span class="m">2</span><span class="o">&lt;</span><span class="na">/</span><span class="m">1</span><span class="o">,</span><span class="na">⍨</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="bp">⍵</span><span class="kt">}</span>
 </pre></div>
 </div>
-</section>
-<section id="optimizations">
-<h2>Optimizations<a class="headerlink" href="#optimizations" title="Link to this heading">#</a></h2>
-<p>These solutions represent increasingly optimized approaches to the problem. They use boolean masks and pairwise comparisons to efficiently identify word boundaries, avoiding the overhead of string manipulation or regex engines.</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">+</span><span class="na">/</span><span class="m">2</span><span class="o">&lt;</span><span class="na">/</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="s1">&#39; &#39;</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span>
-</pre></div>
-</div>
-<p>Function I:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'≠'</span> <span class="pre">',⍵</span></code>: Create a <a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a> by prepending a space and comparing.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">2&lt;/</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduce</a> comparing adjacent pairs.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">+/</span></code>: Sum the results to get the word count.</p></li>
-</ol>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">+</span><span class="na">/</span><span class="m">2</span><span class="o">&lt;</span><span class="na">/</span><span class="m">0</span><span class="o">,</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span>
-</pre></div>
-</div>
-<p>Function J (optimized version of I):</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'≠⍵</span></code>: Create a <a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">0,</span></code>: Prepend a 0 instead of adding a space.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">2&lt;/</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduce</a> comparing adjacent pairs.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">+/</span></code>: Sum the results.</p></li>
-</ol>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">K</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="p">(</span><span class="o">⊃</span><span class="nv">m</span><span class="p">)</span><span class="o">++</span><span class="na">/</span><span class="m">2</span><span class="o">&lt;</span><span class="na">/</span><span class="nv">m</span><span class="kd">←</span><span class="s1">&#39; &#39;</span><span class="o">≠,</span><span class="bp">⍵</span><span class="kt">}</span>
-</pre></div>
-</div>
-<p>Function K (further optimized):</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'≠,⍵</span></code>: Create a <a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a> of the raveled input.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">m←</span></code>: Assign the mask to a variable.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">(⊃m)</span></code>: Get the <a class="reference external" href="https://aplwiki.com/wiki/First">First</a> element of the mask.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">2&lt;/m</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduce</a> comparing adjacent pairs.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">+/</span></code>: Sum the results.</p></li>
-<li><p>Add the first element to the sum.</p></li>
-</ol>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">L</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">+</span><span class="na">/</span><span class="m">2</span><span class="o">&lt;</span><span class="na">/</span><span class="m">1</span><span class="o">,</span><span class="na">⍨</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="bp">⍵</span><span class="kt">}</span>
-</pre></div>
-</div>
-<p>Function L (optimized by appending instead of prepending):</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'=⍵</span></code>: Create an inverted <a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">1,⍨</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Commute">Append</a> 1 using <a class="reference external" href="https://aplwiki.com/wiki/Commute">Swap</a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">2&lt;/</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduce</a> comparing adjacent pairs.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">+/</span></code>: Sum the results.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'≠</span></code> - <a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a> showing a 1 (true) when we don’t have a space.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2&lt;/</span></code> - N-wise <a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduce</a> comparing adjacent elements in pairs of two. Only true when 0 on left and 1 on right.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">',</span></code> - Inserting a space at the beginning using <a class="reference external" href="https://xpqz.github.io/cultivations/Functions7.html#catenate">Catenate</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">+/</span></code> - Plus <a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduction</a> on the result of Step 3 returns the number of words.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0,</span></code> - In J, for performance, instead of adding a space at the beginning, we are adding a zero to the result of the comparison.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⊃m)</span></code> - In K, we are taking the <a class="reference external" href="https://aplwiki.com/wiki/first">First Element</a> ⊃ of the mask and adding that to the sum. This avoids rewriting the array for a performance benefit. If <code class="docutils literal notranslate"><span class="pre">m</span></code> is 0, there are leading spaces; if <code class="docutils literal notranslate"><span class="pre">m</span></code> is 1, there is a word.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1,⍨'</span> <span class="pre">'=⍵</span></code> - In L, we are appending a 1 instead of prepending for performance. <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'=⍵</span></code> here a 1 indicates a space, and going from 0 to 1 is the end of a word. We are doing a flipped concatenation using <a class="reference external" href="https://aplwiki.com/wiki/Commute">Swap</a> to add a 1 to the end instead of the beginning.</p></li>
 </ol>
 </section>
-<section id="performance">
-<h2>Performance<a class="headerlink" href="#performance" title="Link to this heading">#</a></h2>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="kd">←</span><span class="s1">&#39;abc &#39;</span><span class="sr">[</span><span class="o">?</span><span class="m">1e6</span><span class="o">⍴</span><span class="m">4</span><span class="sr">]</span><span class="w"> </span><span class="c1">⍝ Interesting use of bracket index to generate random words array</span>
+<section id="performance-comparison">
+<h1>Performance Comparison<a class="headerlink" href="#performance-comparison" title="Link to this heading">#</a></h1>
+<p>We can evaluate the performance of each function by importing the <a class="reference external" href="http://dfns.dyalog.com/n_cmpx.htm">CMPX</a> function from the <a class="reference external" href="http://dfns.dyalog.com/n_contents.htm">DFNS</a> library.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="kd">←</span><span class="s1">&#39;abc &#39;</span><span class="sr">[</span><span class="o">?</span><span class="m">1e6</span><span class="o">⍴</span><span class="m">4</span><span class="sr">]</span><span class="w"> </span><span class="c1">⍝ Interesting use of bracket index to generate random words array</span>
 <span class="s1">&#39;cmpx&#39;</span><span class="nf">⎕cy</span><span class="s1">&#39;dfns&#39;</span>
 <span class="nv">cmpx</span><span class="s1">&#39;F t&#39;</span><span class="w"> </span><span class="s1">&#39;G t&#39;</span><span class="w"> </span><span class="s1">&#39;H t&#39;</span><span class="w"> </span><span class="s1">&#39;I t&#39;</span>
 </pre></div>
 </div>
-<p>We can evaluate the performance of each function by importing the <a class="reference external" href="http://dfns.dyalog.com/n_cmpx.htm">CMPX</a> function from the <a class="reference external" href="http://dfns.dyalog.com/n_contents.htm">DFNS</a> library.</p>
 <ol class="arabic simple">
 <li><p>Using the 4 characters <code class="docutils literal notranslate"><span class="pre">'abc</span> <span class="pre">'</span></code> (abc and space).</p></li>
 <li><p>We use <a class="reference external" href="https://xpqz.github.io/learnapl/indexing.html#bracket-indexing">Bracket Indexing</a> <code class="docutils literal notranslate"><span class="pre">[]</span></code> to randomly <code class="docutils literal notranslate"><span class="pre">?</span></code> pick one of the 4 characters a million <code class="docutils literal notranslate"><span class="pre">1e6</span></code> times.</p></li>
@@ -575,7 +568,6 @@ document.write(`
 <li><p>We can then <a class="reference external" href="http://help.dyalog.com/latest/Content/Language/System%20Functions/cy.htm">copy</a> <code class="docutils literal notranslate"><span class="pre">⎕cy</span></code> CMPX from the DFNS library into our workspace.</p></li>
 <li><p>We use cmpx to evaluate the performance of each function, with the first function as our baseline.</p></li>
 </ol>
-</section>
 <section id="glyphs-used">
 <h2>Glyphs Used:<a class="headerlink" href="#glyphs-used" title="Link to this heading">#</a></h2>
 <ul class="simple">
@@ -708,14 +700,20 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-solutions">Example Solutions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-solutions">Advanced Solutions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizations">Optimizations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">What’s in a Word 2013-3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#test-data">Test Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-f-splitting-on-sequences-of-spaces">Solution F: Splitting on Sequences of Spaces</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-g-using-regular-expressions">Solution G: Using Regular Expressions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-h-using-verify-and-fix-input">Solution H: Using Verify and Fix Input</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions-i-j-k-l-using-boolean-masks">Solutions I, J, K, L: Using Boolean Masks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-comparison">Performance Comparison</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript:</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
