@@ -27,12 +27,11 @@ Let's start by comparing an input string with a space. This gives us a Boolean v
 F ← ≢' '∘≠⊆, ⍝ Tacit - binding the space to the not equal to make monadic.
 ```
 
-1. Split on sequences of spaces
-2. `' '=s` [Equal To](https://aplwiki.com/wiki/Equal_to) compares arrays one [element](https://aplwiki.com/wiki/Element) at a time. Returns a boolean vector of 1 for match and 0 for no-match.
-3. `⊆` [Partition](https://aplwiki.com/wiki/Partition) splits on the 0s when the left argument is boolean. So we use [Not equal to](https://aplwiki.com/wiki/Not_Equal_to) `≠⊆` to create runs of 1s.
-4. `⊆` Partition also requires an axis. So to use a [Comparison Function](https://aplwiki.com/wiki/Comparison_function) on a scalar, we must [Ravel](https://aplwiki.com/wiki/Ravel) `⊆,` first.
-5. `' '∘≠` We [Bind](https://aplwiki.com/wiki/Bind) the space to the Not equal to to achieve a monadic function.
-6. `≢` Lastly, we [Tally](https://aplwiki.com/wiki/Tally) to count the number of major cells or items.
+1. `' '=s` [Equal To](https://aplwiki.com/wiki/Equal_to) compares arrays one [element](https://aplwiki.com/wiki/Element) at a time. Returns a boolean vector of 1 for match and 0 for no-match.
+2. `⊆` [Partition](https://aplwiki.com/wiki/Partition) splits on the 0s when the left argument is boolean. So we use [Not equal to](https://aplwiki.com/wiki/Not_Equal_to) `≠⊆` to create runs of 1s.
+3. `⊆` Partition also requires an axis. So to use a [Comparison Function](https://aplwiki.com/wiki/Comparison_function) on a scalar, we must [Ravel](https://aplwiki.com/wiki/Ravel) `⊆,` first.
+4. `' '∘≠` We [Bind](https://aplwiki.com/wiki/Bind) the space to the Not equal to to achieve a monadic function.
+5. `≢` Lastly, we [Tally](https://aplwiki.com/wiki/Tally) to count the number of major cells or items.
 
 ## Solution G: Using Regular Expressions
 
@@ -43,11 +42,30 @@ G ← ≢'[^ ]+'⎕S 3
 ```
 
 1. Use [Regular Expressions](https://xpqz.github.io/cultivations/Regex.html). You can use [regexr.com](https://regexr.com/) to evaluate.
-2. `⎕S` [String Search](http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm) - regex enclosed in single quotes
-3. `[^ ]+` Matches anything that is not a space
-4. [Transformation Codes](http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm) for each match in the input document, a numeric scalar or vector of the same shape as the transformation codes is created.
-5. `3` - Pattern number which matched the input document, origin Zero
-6. [Tally](https://aplwiki.com/wiki/Tally) to count the number of patterns
+
+2. `⎕S` [String Search](http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm) - The Regex will be enclosed in single quotes
+
+3. `[^ ]+`  Regex matches anything that is not a space
+
+4. The `3` option is a [Transformation Code](http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm) and  tells `⎕S` to return a zero for each pattern which matched the regex (always 0 in this case, as there's only one regex). 
+
+5. ```APL
+   ⍝ Our Example
+   ('[^ ]+'⎕S 3) 'hello 123 world'
+   0 0 0
+   ⍝ Returns a 0 for each patern match (word).
+   
+   ⍝ Example with two Regex
+   ('[aeiou]' '[0-9]' ⎕S 3) 'hello 123 world' 
+   0 0 1 1 1 0
+   ⍝ e and o match in hello
+   ⍝ 123 match in 123
+   ⍝ o matches in world. 
+   ```
+   
+6. In our case this produces a vector of 0s, one for each word in the input.
+
+7. [Tally](https://aplwiki.com/wiki/Tally) to count the number of 0s (words)
 
 ## Solution H: Using Verify and Fix Input
 

@@ -499,7 +499,6 @@ document.write(`
 </pre></div>
 </div>
 <ol class="arabic simple">
-<li><p>Split on sequences of spaces</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'=s</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Equal_to">Equal To</a> compares arrays one <a class="reference external" href="https://aplwiki.com/wiki/Element">element</a> at a time. Returns a boolean vector of 1 for match and 0 for no-match.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⊆</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Partition">Partition</a> splits on the 0s when the left argument is boolean. So we use <a class="reference external" href="https://aplwiki.com/wiki/Not_Equal_to">Not equal to</a> <code class="docutils literal notranslate"><span class="pre">≠⊆</span></code> to create runs of 1s.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⊆</span></code> Partition also requires an axis. So to use a <a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Function</a> on a scalar, we must <a class="reference external" href="https://aplwiki.com/wiki/Ravel">Ravel</a> <code class="docutils literal notranslate"><span class="pre">⊆,</span></code> first.</p></li>
@@ -513,13 +512,27 @@ document.write(`
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">G</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≢</span><span class="s1">&#39;[^ ]+&#39;</span><span class="nf">⎕S</span><span class="w"> </span><span class="m">3</span>
 </pre></div>
 </div>
-<ol class="arabic simple">
+<ol class="arabic">
 <li><p>Use <a class="reference external" href="https://xpqz.github.io/cultivations/Regex.html">Regular Expressions</a>. You can use <a class="reference external" href="https://regexr.com/">regexr.com</a> to evaluate.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">⎕S</span></code> <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm">String Search</a> - regex enclosed in single quotes</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">[^</span> <span class="pre">]+</span></code> Matches anything that is not a space</p></li>
-<li><p><a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm">Transformation Codes</a> for each match in the input document, a numeric scalar or vector of the same shape as the transformation codes is created.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> - Pattern number which matched the input document, origin Zero</p></li>
-<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> to count the number of patterns</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕S</span></code> <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm">String Search</a> - The Regex will be enclosed in single quotes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[^</span> <span class="pre">]+</span></code>  Regex matches anything that is not a space</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">3</span></code> option is a <a class="reference external" href="http://help.dyalog.com/18.0/index.htm#Language/System%20Functions/r.htm">Transformation Code</a> and  tells <code class="docutils literal notranslate"><span class="pre">⎕S</span></code> to return a zero for each pattern which matched the regex (always 0 in this case, as there’s only one regex).</p></li>
+<li><div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Our Example</span>
+<span class="p">(</span><span class="s1">&#39;[^ ]+&#39;</span><span class="nf">⎕S</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;hello 123 world&#39;</span>
+<span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+<span class="c1">⍝ Returns a 0 for each patern match (word).</span>
+
+<span class="c1">⍝ Example with two Regex</span>
+<span class="p">(</span><span class="s1">&#39;[aeiou]&#39;</span><span class="w"> </span><span class="s1">&#39;[0-9]&#39;</span><span class="w"> </span><span class="nf">⎕S</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;hello 123 world&#39;</span><span class="w"> </span>
+<span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+<span class="c1">⍝ e and o match in hello</span>
+<span class="c1">⍝ 123 match in 123</span>
+<span class="c1">⍝ o matches in world. </span>
+</pre></div>
+</div>
+</li>
+<li><p>In our case this produces a vector of 0s, one for each word in the input.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> to count the number of 0s (words)</p></li>
 </ol>
 </section>
 <section id="solution-h-using-verify-and-fix-input">
