@@ -28,10 +28,19 @@ F ← ≢' '∘≠⊆, ⍝ Tacit - binding the space to the not equal to make mo
 ```
 
 1. `' '=s` [Equal To](https://aplwiki.com/wiki/Equal_to) compares arrays one [element](https://aplwiki.com/wiki/Element) at a time. Returns a boolean vector of 1 for match and 0 for no-match.
-2. `⊆` [Partition](https://aplwiki.com/wiki/Partition) splits on the 0s when the left argument is boolean. So we use [Not equal to](https://aplwiki.com/wiki/Not_Equal_to) `≠⊆` to create runs of 1s.
-3. `⊆` Partition also requires an axis. So to use a [Comparison Function](https://aplwiki.com/wiki/Comparison_function) on a scalar, we must [Ravel](https://aplwiki.com/wiki/Ravel) `⊆,` first.
-4. `' '∘≠` We [Bind](https://aplwiki.com/wiki/Bind) the space to the Not equal to to achieve a monadic function.
-5. `≢` Lastly, we [Tally](https://aplwiki.com/wiki/Tally) to count the number of major cells or items.
+
+2. ```APL
+   ' '=s ⍝ 'hyphen-dash string'
+   0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0
+   ```
+
+3. `⊆` [Partition](https://aplwiki.com/wiki/Partition) splits on the 0s when the left argument is boolean. So we use [Not equal to](https://aplwiki.com/wiki/Not_Equal_to) `≠⊆` to create runs of 1s.
+
+4. `⊆` Partition also requires an axis. So to use a [Comparison Function](https://aplwiki.com/wiki/Comparison_function) on a scalar, we must [Ravel](https://aplwiki.com/wiki/Ravel) `⊆,` first.
+
+5. `' '∘≠` We [Bind](https://aplwiki.com/wiki/Bind) the space to the Not equal to to achieve a monadic function.
+
+6. `≢` Lastly, we [Tally](https://aplwiki.com/wiki/Tally) to count the number of major cells or items.
 
 ## Solution G: Using Regular Expressions
 
