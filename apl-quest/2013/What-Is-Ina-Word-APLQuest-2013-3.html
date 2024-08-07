@@ -495,7 +495,7 @@ document.write(`
 <section id="solution-f-splitting-on-sequences-of-spaces">
 <h1>Solution F: Splitting on Sequences of Spaces<a class="headerlink" href="#solution-f-splitting-on-sequences-of-spaces" title="Link to this heading">#</a></h1>
 <p>Let’s start by comparing an input string with a space. This gives us a Boolean vector indicating where the spaces are. The <a class="reference external" href="https://aplwiki.com/wiki/Partition">Partition</a> function groups runs of ones or elements corresponding to runs of one. We want to invert this and then use it to split. By using Partition on the string itself, we get the individual words, which we can then count.</p>
-<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≢</span><span class="s1">&#39; &#39;</span><span class="na">∘</span><span class="o">≠⊆,</span><span class="w"> </span><span class="c1">⍝ Tacit - binding the space to the not equal to make monadic.</span>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≢</span><span class="s1">&#39; &#39;</span><span class="na">∘</span><span class="o">≠⊆,</span><span class="w"> </span><span class="c1">⍝ Tacit - binding the space to the not equal to make monadic. {≢((&#39; &#39;≠⍵)⊆(,⍵))}</span>
 </pre></div>
 </div>
 <ol class="arabic simple">

@@ -24,7 +24,7 @@ m←'  more spaces   go here '
 Let's start by comparing an input string with a space. This gives us a Boolean vector indicating where the spaces are. The [Partition](https://aplwiki.com/wiki/Partition) function groups runs of ones or elements corresponding to runs of one. We want to invert this and then use it to split. By using Partition on the string itself, we get the individual words, which we can then count.
 
 ```apl
-F ← ≢' '∘≠⊆, ⍝ Tacit - binding the space to the not equal to make monadic.
+F ← ≢' '∘≠⊆, ⍝ Tacit - binding the space to the not equal to make monadic. {≢((' '≠⍵)⊆(,⍵))}
 ```
 
 1. `' '=s` [Equal To](https://aplwiki.com/wiki/Equal_to) compares arrays one [element](https://aplwiki.com/wiki/Element) at a time. Returns a boolean vector of 1 for match and 0 for no-match.
