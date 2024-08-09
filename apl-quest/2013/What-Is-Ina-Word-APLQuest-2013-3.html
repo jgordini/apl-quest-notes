@@ -546,8 +546,15 @@ document.write(`
 <div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">H</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≢</span><span class="na">∘</span><span class="o">⊃</span><span class="nf">⎕VFI</span>
 </pre></div>
 </div>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">⎕VFI</span></code> - <a class="reference external" href="https://xpqz.github.io/cultivations/Constants.html?highlight=fix%20input#verify-and-fix-input-vfi">Verify and Fix Input</a> - takes a string and returns two lists. It cuts the string into space-separated fields. Then it attempts to convert each field to a number.</p></li>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕VFI</span></code> - <a class="reference external" href="https://xpqz.github.io/cultivations/Constants.html?highlight=fix%20input#verify-and-fix-input-vfi">Verify and Fix Input</a> - takes a string and returns two lists. It cuts the string into space-separated fields. Then it attempts to convert each field to a number. The first vector is a boolean success or failure. The second is  the converted values with 0 for failed conversions.</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕VFI</span><span class="w"> </span><span class="s1">&#39;1e3 three 2.5 2..5&#39;</span>
+<span class="err">┌───────┬────────────┐</span>
+<span class="err">│</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="err">│</span><span class="m">1000</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2.5</span><span class="w"> </span><span class="m">0</span><span class="err">│</span>
+<span class="err">└───────┴────────────┘</span>
+</pre></div>
+</div>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⊃</span></code> - Monadic <a class="reference external" href="https://xpqz.github.io/learnapl/indexing.html?highlight=first#pick">Pick</a> picks the first element. In this case, the first vector.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">≢∘⊃</span></code> - <a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=bind#binding">Bind</a> When we use the operator <em>bind</em>, we create a single derived function that is monadic. That way, we can give it a name.</p></li>
 </ol>

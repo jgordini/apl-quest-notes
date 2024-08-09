@@ -84,7 +84,16 @@ Here's an interesting solution that abuses a built-in functionality, a system fu
 H ← ≢∘⊃⎕VFI
 ```
 
-1. `⎕VFI` - [Verify and Fix Input](https://xpqz.github.io/cultivations/Constants.html?highlight=fix%20input#verify-and-fix-input-vfi) - takes a string and returns two lists. It cuts the string into space-separated fields. Then it attempts to convert each field to a number.
+1. `⎕VFI` - [Verify and Fix Input](https://xpqz.github.io/cultivations/Constants.html?highlight=fix%20input#verify-and-fix-input-vfi) - takes a string and returns two lists. It cuts the string into space-separated fields. Then it attempts to convert each field to a number. The first vector is a boolean success or failure. The second is  the converted values with 0 for failed conversions. 
+
+   ```APL
+   ⎕VFI '1e3 three 2.5 2..5'
+   ┌───────┬────────────┐
+   │1 0 1 0│1000 0 2.5 0│
+   └───────┴────────────┘
+   ```
+
+   
 2. `⊃` - Monadic [Pick](https://xpqz.github.io/learnapl/indexing.html?highlight=first#pick) picks the first element. In this case, the first vector.
 3. `≢∘⊃` - [Bind](https://mastering.dyalog.com/Tacit-Programming.html?highlight=bind#binding) When we use the operator _bind_, we create a single derived function that is monadic. That way, we can give it a name.
 
