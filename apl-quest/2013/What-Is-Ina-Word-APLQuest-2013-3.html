@@ -547,7 +547,13 @@ document.write(`
 </pre></div>
 </div>
 <ol class="arabic">
-<li><p><code class="docutils literal notranslate"><span class="pre">⎕VFI</span></code> - <a class="reference external" href="https://xpqz.github.io/cultivations/Constants.html?highlight=fix%20input#verify-and-fix-input-vfi">Verify and Fix Input</a> - takes a string and returns two lists. It cuts the string into space-separated fields. Then it attempts to convert each field to a number. The first vector is a boolean success or failure. The second is  the converted values with 0 for failed conversions.</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕VFI</span></code> - <a class="reference external" href="https://xpqz.github.io/cultivations/Constants.html?highlight=fix%20input#verify-and-fix-input-vfi">Verify and Fix Input</a> - attempts to convert each of these string fields into a number, producing two vectors as output:</p>
+<ul class="simple">
+<li><p>A boolean vector indicating success or failure of conversion for each field.</p></li>
+<li><p>A numeric vector containing the converted values (or 0 for failed conversions).</p></li>
+</ul>
+</li>
+<li><p>Example:</p>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕VFI</span><span class="w"> </span><span class="s1">&#39;1e3 three 2.5 2..5&#39;</span>
 <span class="err">┌───────┬────────────┐</span>
 <span class="err">│</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="err">│</span><span class="m">1000</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2.5</span><span class="w"> </span><span class="m">0</span><span class="err">│</span>
