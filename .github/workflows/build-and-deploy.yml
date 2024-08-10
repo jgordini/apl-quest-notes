@@ -13,20 +13,16 @@ jobs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.x'
-
     - name: Install dependencies
       run: |
         pip install jupyter-book ghp-import
-
     - name: Build the book
       run: |
         jupyter-book build .
-
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
@@ -34,10 +30,3 @@ jobs:
         publish_dir: ./_build/html
         force_orphan: true
         commit_message: "Deploy to GitHub Pages"
-
-    - name: Commit and push if changed
-      run: |
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
-        git add .
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Update source files" && git push)
