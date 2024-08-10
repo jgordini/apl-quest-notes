@@ -14,7 +14,7 @@ Let's start off by generating some test data. So here are 10 scores between 1 an
 t ← ?10⍴100
 ```
 
-## Example Solutions
+## Example Solution
 
 ### Solution F
 
