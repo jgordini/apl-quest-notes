@@ -2,8 +2,9 @@
 
 **Problem:** Write an APL dfn which returns a 1 if the opening and closing parentheses in a character vector are balanced, or a zero otherwise.
 
-**Video:** https://youtu.be/El0_RB4TTPA
-**Code:** https://github.com/abrudz/apl_quest/blob/main/2013/4.apl
+**Video:** [https://youtu.be/El0_RB4TTPA](https://youtu.be/El0_RB4TTPA)
+
+**Code:** [https://github.com/abrudz/apl_quest/blob/main/2013/4.apl](https://github.com/abrudz/apl_quest/blob/main/2013/4.apl)
 
 ## **Example Solutions:**
 
