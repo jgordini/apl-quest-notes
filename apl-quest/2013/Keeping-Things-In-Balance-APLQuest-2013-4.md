@@ -8,10 +8,10 @@
 ## **Example Solutions:**
 
 ```APL
-	Di ← {1 ¯1 0['()'⍳⍵]} ⍝ Indexing into an array, 1 is left paren, ¯1 is Right and 0 is all other characters. 
-	Df ← '('∘= - =∘')' ⍝ Tacit, subtracts the comparisons to get the depth changes. 
-	Bn ← (¯1∊+\)⍱0≠+/ ⍝ checks for no ¯1 and no 0 in scan
-	F ← (¯1∘∊⍱0≠⊢/)'('∘=+\⍤-=∘')' ⍝ Moves scan to be atop on comparisons +\⍤ 
+Di ← {1 ¯1 0['()'⍳⍵]} ⍝ Indexing into an array, 1 is left paren, ¯1 is Right and 0 is all other characters. 
+Df ← '('∘= - =∘')' ⍝ Tacit, subtracts the comparisons to get the depth changes. 
+Bn ← (¯1∊+\)⍱0≠+/ ⍝ checks for no ¯1 and no 0 in scan
+F ← (¯1∘∊⍱0≠⊢/)'('∘=+\⍤-=∘')' ⍝ Moves scan to be atop on comparisons +\⍤ 
 ```
 
 ## **Parenthesis depth changes**
@@ -71,13 +71,10 @@ We can evalute the performance of each function by importing the [CMPX](http://d
 7.  Every function begins with a D. We [Concatenate](https://aplwiki.com/wiki/Catenate)  [Each](https://aplwiki.com/wiki/Each) `,¨` of the suffixes 'iof' and then  [Concatenate](https://aplwiki.com/wiki/Catenate)  [Each](https://aplwiki.com/wiki/Each) `,¨` to the entire function ' y' using [Enclose](https://aplwiki.com/wiki/Enclose) `⊂` - An enclosed array is a [scalar](https://aplwiki.com/wiki/Scalar "Scalar"), which is subject to [scalar extension](https://aplwiki.com/wiki/Scalar_extension "Scalar extension").
 
 ## **Balanced?**
-
-```
 We are checking if two condtions are realized. 
 1. Our final parenthesis level needs to be zero. 
 2. As our function proceeds our parenthesis level should not drop below zero. 
 3. Both expressions are then evaluted for performance using simlar steps to above
-```
 
 ### BA
 
@@ -124,11 +121,7 @@ F ← (¯1∘∊⍱0≠⊢/)'('∘=+\⍤-=∘')'
 
 ## **Find and Replace** - Regular Expressions
 
-```
-Find all the parenthesis and eliminate pairs of parenthesis until none are found. 
-If we have an empty set Parenthesis are matched.
-Any parenthesis that are left means they are unbalanced.
-```
+Find all the parenthesis and eliminate pairs of parenthesis until none are found. If we have an empty set Parenthesis are matched. Any parenthesis that are left means they are unbalanced.
 
 ### RE
 
@@ -169,9 +162,7 @@ Fi ← {''≡(({(('()'⍷⍵)⍱(¯1⌽('()'⍷⍵)))/⍵}⍣≡)(⍵∩'()'))}
 
 ## **Abusing APL's Parser** 
 
-```
-The APL interpreter can parse paired and unpaired parenthesis and braces and will return an error if unpaired. We can use this in our expressions.  
-```
+The APL interpreter can parse paired and unpaired parenthesis and braces and will return an error if unpaired. We can use this in our expressions. 
 
 ### ND
 
