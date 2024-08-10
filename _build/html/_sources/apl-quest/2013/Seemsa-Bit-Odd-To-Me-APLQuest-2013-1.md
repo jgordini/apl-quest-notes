@@ -1,8 +1,6 @@
-# Seems a Bit Odd To Me 2013-1
+# [Seems a Bit Odd To Me 2013-1](https://problems.tryapl.org/psets/2013.html?goto=P1_Seems_a_Bit_Odd_To_Me)
 
-## [Problem Description](https://problems.tryapl.org/psets/2013.html?goto=P1_Seems_a_Bit_Odd_To_Me)
-
-**Problem:** Write a dfn to produce a vector of the first n odd numbers.
+**Problem:** Write a [Dfn](https://aplwiki.com/wiki/Dfn) to produce a vector of the first n odd numbers.
 
 **Video:** [https://youtu.be/Mj4wyLKrBho](https://youtu.be/Mj4wyLKrBho)
 
@@ -18,22 +16,20 @@ I←{+\2-⍵↑1} ⍝ Works with ⎕IO←0 or 1
 J←(⍳+⍳-≢) ⍝ Tacit
 ```
 
-## Detailed Explanations
-
 ### Solution F
 
 ```APL
 F←{1-⍨2×⍳⍵}
 ```
 
-This solution demonstrates the basic approach to generating odd numbers. It uses the index generator (⍳) to create a sequence of integers, multiplies them by 2 to get even numbers, and then subtracts 1 to obtain odd numbers.
+This solution demonstrates the basic approach to generating odd numbers. It uses the index generator (⍳) to create a sequence of integers, multiplies them by 2 to get even numbers, and then subtracts 1 from each result to obtain odd numbers.
 
 1. `⍳⍵` - Use [Iota](https://aplwiki.com/wiki/Index_Generator) to generate the first `⍵` natural numbers (1, 2, 3, 4 etc.)
-2. `1-⍨2×` - [Swap](https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant) ⍨ - Preserves the right to left order. - parsed as `(2×⍳5)-1`  
-3. Multiply the values by 2
-4. Subtract one from each of the array values.
+2. `2×⍳⍵` Multiply the values by 2
+3. `1-⍨2×⍳⍵` - [Swap](https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant) ⍨ - new expression is parsed as `(2×⍳⍵)-1`  The expression changes from subtracting the result from 1, to subtracting 1 from the result.  
+4. Subtract one from each of the results in step 2.
 
-This solution works when APL is set to count from 1 by default (⎕IO←1). It's a straightforward approach that clearly shows the logic of generating odd numbers.
+This solution works when APL is set to count from 1 by default (⎕IO←1).
 
 ### Solution G
 
@@ -43,12 +39,12 @@ G←(⍸1 0⍴⍨2×⊢)
 
 This tacit function solution uses a different approach, leveraging boolean masks and the Where (⍸) function.
 
-1. `(2×⊢)` - parses as (2×⍵) - [Identity](https://aplwiki.com/wiki/Identity) replaces `⍵` - () indicates tacit
+1. `(2×⊢)` - parses as (2×⍵) - [Identity](https://aplwiki.com/wiki/Identity) `⊢` replaces `⍵` 
 2. `1 0⍴⍨2×⊢` [Swap](https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant) ⍨ - parses as `((2×⍵)⍴1 0)` 
-3. `1 0⍴` [Reshape](https://aplwiki.com/wiki/Reshape) see above - returns the argument as boolean vector of ones and zeros
+3. `(2×⍵)⍴1 0` [Reshape](https://aplwiki.com/wiki/Reshape) `⍴` see above - This creates a boolean vector by repeating [1 0] as many times as needed to reach a length of 2×⍵.
 4. `⍸` [Where](https://aplwiki.com/wiki/Identity) gives the indices of ones in a Boolean [vector](https://aplwiki.com/wiki/Vector "Vector")
 
-This solution is particularly clever as it creates a boolean mask of alternating 1s and 0s, and then uses the Where function to find the indices of the 1s, which correspond to odd numbers. It's designed to work when the index origin is set to 0 (⎕IO←0).
+This solution creates a boolean mask of alternating 1s and 0s, and then uses the Where function to find the indices of the 1s, which correspond to odd numbers. It's designed to work when the index origin is set to 0 (⎕IO←0).
 
 ### Solution H
 
@@ -73,7 +69,7 @@ I←{+\2-⍵↑1} ⍝ Works with ⎕IO←0 or 1
 This solution takes a mathematical approach, leveraging the property that odd numbers increase by 2 each time.
 
 1. `⍵↑1` - [Overtake](https://xpqz.github.io/cultivations/Functions4.html?highlight=overtaking#take) 1 adds zeros to pad the array starting with 1 *ex* `5↑1` is 1 0 0 0 0
-2. subtract the result from 2 (1 2 2 2 2)
+2. `2-⍵↑1` 2 minus  (1 0 0 0 0) is (1 2 2 2 2)
 3. `+\` - [Plus Scan](https://mastering.dyalog.com/Operators.html?highlight=scan#scan) returns the running sums from the vector in step two. (1 3 5 7 9)
 
 By using the cumulative sum (plus scan), it generates the sequence of odd numbers without relying on index-related functionality. This makes it immune to changes in the index origin, working correctly whether ⎕IO is 0 or 1.
@@ -84,21 +80,50 @@ By using the cumulative sum (plus scan), it generates the sequence of odd number
 J←(⍳+⍳-≢) ⍝ {(⍳⍵)+((⍳⍵)-(≢⍵))}
 ```
 
-This tacit function solution is particularly clever in its use of APL's fork structure.
+This tacit function solution uses of APL's [Fork](https://aplwiki.com/wiki/Train#3-trains) structure. 
 
-1. `⍳-≢` - [Indices](https://aplwiki.com/wiki/Indices) of argument, subtracted from the [Tally](https://aplwiki.com/wiki/Tally) of the argument (1 item) *ex* 1-⍨⍳5 (0 1 2 3 4)
-2. `⍳+⍳-≢` - [Indices](https://aplwiki.com/wiki/Indices) of argument added to the result from step 1. 
-*ex* `(⍳5)+(⍳5)-1` (1 3 5 7 9)
+The function can be read as `(f g h)` or `(f ⍵) g (h ⍵)`
 
-It works by subtracting the tally (which is always 1 for a scalar argument) from the indices, effectively subtracting 1 from each index. Then it adds this result to the original indices, producing the sequence of odd numbers. This solution demonstrates the power and conciseness of tacit programming in APL.
+ `f` is `⍳⍵`
+
+`g` is `+`
+
+ `h` is `(⍳-≢)⍵`. 
+
+In a 3 Train the two outer functions `f` and `h` are applied to the argument `⍵` first, and then their results are used as the left and right arguments to the middle function `g`. 
+
+`(⍳ ⍵) + ((⍳-≢) ⍵)` 
+
+**Note:** `⍳-≢` is also a 3 train and evaluates as (⍳ ⍵) - (≢ ⍵)  
+
+`⍳⍵` [Index Generator](https://aplwiki.com/wiki/Index_Generator) creates a vector of integers from 1 to the value of ⍵.
+
+`≢⍵` calculates the [Tally](https://aplwiki.com/wiki/Tally) (length) of ⍵.
+
+We then subtract the Tally of ⍵ from each element in the vector of integers generated by ⍳⍵.
+
+The [Tally](https://aplwiki.com/wiki/Tally) of a scaler will always be 1. 
+
+*ex.* `(⍳5)+(⍳5)-1` is (1 3 5 7 9)
 
 ## Glyphs Used
 
-[Index](https://aplwiki.com/wiki/Index_Generator) - aka Iota - The notation `⍳N` where `N` is a natural number, describes a vector of the first `N` natural numbers. Starting from 0 or 1 depending on the [Index Origin](https://aplwiki.com/wiki/Index_origin) 
+- `⍳` (Iota) - [Index Generator](https://aplwiki.com/wiki/Index_Generator)
+- `×` (Times) - [Multiply](https://aplwiki.com/wiki/Times)
+- `-` (Minus) - [Subtract](https://aplwiki.com/wiki/Minus)
+- `⍨` (Swap) - [Commute](https://xpqz.github.io/learnapl/manip.html?#selfie-commute-constant)
+- `⊢` (Right Tack) - [Identity](https://aplwiki.com/wiki/Identity)
+- `⍴` (Rho) - [Reshape](https://aplwiki.com/wiki/Reshape)
+- `⍸` (Where) - [Where](https://aplwiki.com/wiki/Where)
+- `|` (Modulus) - [Residue/Modulus](https://aplwiki.com/wiki/Residue)
+- `+\` (Plus Scan) - [Plus Scan](https://mastering.dyalog.com/Operators.html?highlight=scan#scan)
+- `↑` (Take) - [Take/Overtake](https://xpqz.github.io/cultivations/Functions4.html?highlight=overtaking#take)
+- `≢` (Tally) - [Tally](https://aplwiki.com/wiki/Tally)
 
 ## Concepts Used
 
 - [Dfn](https://aplwiki.com/wiki/Dfn)
+- [Index Origin](https://aplwiki.com/wiki/Index_origin) 
 - [Tacit Programming](https://aplwiki.com/wiki/Tacit_programming)
 - [https://tacit.help/](https://tacit.help/)
 - [Boolean Mask](https://aplwiki.com/wiki/Boolean)

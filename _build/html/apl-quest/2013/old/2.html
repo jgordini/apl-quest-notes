@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=2f532779" />
@@ -158,16 +158,16 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">APL Quest 2013</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">APL Quest: Generating Odd Numbers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Making-The-Grade-APLQuest-2013-2.html">APL Quest Episode 2: Making the Grade</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../What-Is-Ina-Word-APLQuest-2013-3.html">APL Quest: What is in a Word?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Keeping-Things-In-Balance-APLQuest-2013-4.html">Maintaining Balanced Parentheses in APL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Identity-Crisis-APLQuest-2013-5.html">Welcome to This Episode of the APL Quest</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Home-On-The-Range-APLQuest-2013-6.html">APL Quest: Understanding Numeric Range Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Making-The-Grade-APLQuest-2013-2.html">Making the Grade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../What-Is-Ina-Word-APLQuest-2013-3.html">What is in a Word? 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping things in balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Go-Forth-And-Multiply-APLQuest-2013-8.html">Welcome to the APL Quest</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../It-Isa-Moving-Experience-APLQuest-2013-9.html">APL Quest: Average Calculation Over Sub-Periods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Solution-Salvation-APLQuest-2013-10.html">APL Quest: Solving Linear Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Go-Forth-And-Multiply-APLQuest-2013-8.html">Go forth and Multiply 2013-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Solution-Salvation-APLQuest-2013-10.html">Solution Salvation 2013-10</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../2014/index.html">APL Quest 2014</a><input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -422,7 +422,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -438,6 +440,20 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-solutions">Example Solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-solutions">Advanced Solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comment">Comment:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -450,31 +466,67 @@ document.write(`
   <section id="making-the-grade">
 <h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P2_Making_The_Grade">Making the Grade</a><a class="headerlink" href="#making-the-grade" title="Link to this heading">#</a></h1>
 <p><strong>Problem:</strong> Write a dfn which returns the percent (from 0 to 100) of passing (65 or higher) grades in a vector of grades.</p>
-<p><strong>Video:</strong> https://youtu.be/pxo2BtoMxP4
-<strong>Code:</strong> https://github.com/abrudz/apl_quest/blob/main/2013/2.apl</p>
-<p><strong>Example Solutions:</strong>
-2 Scaler functions and a reduction over a vectorized operation.</p>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span>
-<span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">100</span><span class="o">×+</span><span class="na">.</span><span class="o">≥</span><span class="na">∘</span><span class="m">65</span><span class="o">÷≢</span><span class="w"> </span><span class="c1">⍝ Tacit</span>
+<p><strong>Video:</strong> https://youtu.be/pxo2BtoMxP4</p>
+<p><strong>Code:</strong> https://github.com/abrudz/apl_quest/blob/main/2013/2.apl</p>
+<p>Welcome to this second episode of the APL Quest! Check out the APL Wiki for details. Today’s quest is called “Making the Grade” and it’s the second problem from the 2013 APL Problem Solving Competition’s Phase 1. Here we are to write a function which takes a list of numbers representing the points that people scored on some type of test. If they scored 65 or higher, then they’ve passed in the test, and we are to compute the percentage of people who passed.</p>
+<p>Let’s start off by generating some test data. So here are 10 scores between 1 and 100, and those that have succeeded in the test had scores 69 and 72.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">?</span><span class="m">10</span><span class="o">⍴</span><span class="m">100</span>
 </pre></div>
 </div>
-<p><strong>Explanation:</strong></p>
+<section id="example-solutions">
+<h2>Example Solutions<a class="headerlink" href="#example-solutions" title="Link to this heading">#</a></h2>
+<p>We know how many scores there are in total and we can compare all these scores with 65, so if the test scores are greater than or equal to 65, then they have succeeded and this gives us a boolean vector indicating the ones and zeros, the ones that have succeeded. Then we can sum the boolean vector to find out how many have succeeded and then we can divide that by the total number so this gives us a fraction and we can multiply that by 100 to get a percentage.</p>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span>
 </pre></div>
 </div>
+<p>Let’s break down F:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">(+/⍵≥65)</span></code> use <a class="reference external" href="https://aplwiki.com/wiki/Greater_than_or_Equal_to">greater than or equal to</a> as a <a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Function</a> returning a boolean vector of 1 if true and 0 if false.</p></li>
 <li><p>Then <a class="reference external" href="https://aplwiki.com/wiki/Reduce">sum</a> the result - <code class="docutils literal notranslate"><span class="pre">+/</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">÷≢⍵</span></code>  <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> the length of your argument and divde that by the result in step 1.</p></li>
 <li><p>Multiply this by 100 to get your percentage of passing grades.</p></li>
 </ol>
-<p><strong>Performance:</strong></p>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ n:≥ n-1:+ 1:÷ 1:×</span>
-<span class="nv">G</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×+</span><span class="na">/</span><span class="p">(</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ n:≥ n-1:+ n:÷ 1:×</span>
-<span class="nv">H</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">+</span><span class="na">/</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ n:≥ n-1:+ n:÷ n:×</span>
+</section>
+<section id="advanced-solutions">
+<h2>Advanced Solutions<a class="headerlink" href="#advanced-solutions" title="Link to this heading">#</a></h2>
+<p>We are dealing with a scaler (65) and a vector (Scores). We should notice this pattern. We have a sum over a comparison of vectors. When we have that, we should think, <a class="reference external" href="https://aplwiki.com/wiki/Inner_Product">Inner Product</a>.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">100</span><span class="o">×+</span><span class="na">.</span><span class="o">≥</span><span class="na">∘</span><span class="m">65</span><span class="o">÷≢</span><span class="w"> </span><span class="c1">⍝ Tacit</span>
 </pre></div>
 </div>
-<p>Note that it does not matter where we do the sum mathmatically. However there are siginificant performance penalties for summing after the division.</p>
+<p>J is a tacit version where 65 is bound to the right argument of <code class="docutils literal notranslate"><span class="pre">≥</span></code>.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">+.≥∘65</span></code> is an inner product that combines summation and comparison. It’s equivalent to <code class="docutils literal notranslate"><span class="pre">+/⍵≥65</span></code> in F.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">÷≢</span></code> divides by the total count.</p></li>
+<li><p>The whole expression is multiplied by 100 at the start.</p></li>
+<li><p>Equivalent to <code class="docutils literal notranslate"><span class="pre">{100×(⍵+.≥65)÷≢⍵}</span></code></p></li>
+</ol>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">K</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">100</span><span class="o">×+</span><span class="na">.</span><span class="o">≤÷≢</span><span class="na">⍤</span><span class="o">⊢</span>
+</pre></div>
+</div>
+<p><strong>Generalization:</strong> Adding the cutoff point as an additional argument</p>
+<ol class="arabic simple">
+<li><p>K is parsed as <code class="docutils literal notranslate"><span class="pre">{100×((⍺(+.≤)⍵)÷(≢⍵))}</span></code></p></li>
+<li><p>We are reversing the <code class="docutils literal notranslate"><span class="pre">≥</span></code> so that the Cuttoff Point (65) can be taken as the left argument. Represented by <code class="docutils literal notranslate"><span class="pre">⍺</span></code> in step 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">≢⍤⊢</span></code> We use Atop so that we can apply <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> monadically. (Dyadic Tally is <a class="reference external" href="https://aplwiki.com/wiki/Not_Match">Not Match</a>) We could also use Jot <code class="docutils literal notranslate"><span class="pre">≢∘⊢</span></code> in this case and achieve the same result.</p></li>
+</ol>
+</section>
+<section id="performance">
+<h2>Performance:<a class="headerlink" href="#performance" title="Link to this heading">#</a></h2>
+<p>When dealing with large datasets, the order of operations can significantly impact performance. Consider the following variations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>F ← {100×(+/⍵≥65)÷≢⍵}    ⍝ Best performance
+G ← {100×+/(⍵≥65)÷≢⍵}    ⍝ Lower performance
+H ← {+/100×(⍵≥65)÷≢⍵}    ⍝ Lowest performance
+
+</pre></div>
+</div>
+<p>The performance differences arise from the number and order of operations performed on the entire vector:</p>
+<ul class="simple">
+<li><p>F: n comparisons, n-1 additions, 1 division, 1 multiplication</p></li>
+<li><p>G: n comparisons, n divisions, n-1 additions, 1 multiplication</p></li>
+<li><p>H: n comparisons, n divisions, n multiplications, n-1 additions</p></li>
+</ul>
+<p>For large datasets, minimizing operations on the entire vector (as in F) leads to better performance.</p>
+<p>Let’s generate a bunch of test data to compare their performance:</p>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">s</span><span class="kd">←</span><span class="o">?</span><span class="m">1e6</span><span class="o">⍴</span><span class="m">100</span>
 <span class="s1">&#39;cmpx&#39;</span><span class="nf">⎕cy</span><span class="s1">&#39;dfns&#39;</span>
 <span class="nv">cmpx</span><span class="s1">&#39;F s&#39;</span><span class="w"> </span><span class="s1">&#39;G s&#39;</span><span class="w"> </span><span class="s1">&#39;H s&#39;</span>
@@ -489,62 +541,54 @@ document.write(`
 <li><p>We <a class="reference external" href="http://help.dyalog.com/latest/Content/Language/System%20Functions/cy.htm">copy</a> <code class="docutils literal notranslate"><span class="pre">⎕cy</span></code> CMPX from the DFNS library into our workspace</p></li>
 <li><p>We use cmpx to evalute the performance of each function. With the first function as our baseline.</p></li>
 </ol>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span>
-<span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="bp">⍵</span><span class="o">+</span><span class="na">.</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span>
-<span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">100</span><span class="o">×+</span><span class="na">.</span><span class="o">≥</span><span class="na">∘</span><span class="m">65</span><span class="o">÷≢</span><span class="w"> </span><span class="c1">⍝ Tacit</span>
-<span class="nv">K</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">100</span><span class="o">×+</span><span class="na">.</span><span class="o">≤÷≢</span><span class="na">⍤</span><span class="o">⊢</span>
+<p>This demonstrates that F is significantly faster than G and H.</p>
+</section>
+<section id="comment">
+<h2>Comment:<a class="headerlink" href="#comment" title="Link to this heading">#</a></h2>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">,⍳</span><span class="m">64</span><span class="w"> </span><span class="c1">⍝ Raveld with zero becuase ⎕IO←1</span>
 </pre></div>
 </div>
-<p>We are dealing with a scaler (65) and a vector (Scores). We should notice this pattern. We have a sum over a comparison of vectors. When we have that, we should think, <a class="reference external" href="https://aplwiki.com/wiki/Inner_Product">Inner Product</a>.</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">+.≥</span></code>  Replace reduce in <code class="docutils literal notranslate"><span class="pre">+/</span></code> with inner product</p></li>
-<li><p>(J) 65 is a <a class="reference external" href="https://aplwiki.com/wiki/Bind">Bound</a> constant to the inner product allowing us to remove the parenthesis.</p></li>
-<li><p>J is parsed as <code class="docutils literal notranslate"><span class="pre">{100×((⍵(+.≥)65)÷(≢⍵))}</span></code></p></li>
-</ol>
-<p><strong>Generalization:</strong> Adding the cutoff point as an additional argument</p>
-<ol class="arabic simple">
-<li><p>K is parsed as <code class="docutils literal notranslate"><span class="pre">{100×((⍺(+.≤)⍵)÷(≢⍵))}</span></code></p></li>
-<li><p>We are reversing the <code class="docutils literal notranslate"><span class="pre">≥</span></code> so that the Cuttoff Point (65) can be taken as the left argument. Represented by <code class="docutils literal notranslate"><span class="pre">⍺</span></code> in step 1.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">≢⍤⊢</span></code> We use Atop so that we can apply <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> monadically. (Dyadic Tally is <a class="reference external" href="https://aplwiki.com/wiki/Not_Match">Not Match</a>) We could also use Jot <code class="docutils literal notranslate"><span class="pre">≢∘⊢</span></code> in this case and achieve the same result.</p></li>
-</ol>
-<p><strong>Comment:</strong></p>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">,⍳</span><span class="m">64</span><span class="w"> </span><span class="c1">⍝ Raveld with zero becuase ⎕IO←1</span>
-</pre></div>
-</div>
-<p><strong>Glyphs Used:</strong>
-<a class="reference external" href="https://aplwiki.com/wiki/Roll">Roll</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshape</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Greater_than_or_Equal_to">Greater than or Equal to</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Scan">Scan</a> - Plus Scan
-<a class="reference external" href="https://aplwiki.com/wiki/Quad_name">Quad</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Statement_Separator">Diamond</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Ravel">Ravel</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Index_Generator">Iota</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Without">Without</a> aka not
-<a class="reference external" href="https://aplwiki.com/wiki/Over">Over</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Indices">Indices</a> aka Where</p>
-<p><strong>Concepts Used:</strong>
-<a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Function</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Dfns_workspace">Dfns Workspace</a>
-<a class="reference external" href="https://mastering.dyalog.com/Data-and-Variables.html#data-and-variables-representation-of-numbers">Scientific Notation</a>
-<a class="reference external" href="http://dfns.dyalog.com/n_cmpx.htm">CMPX</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Scalar_function">Scalar Function</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduction</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Inner_Product">Inner Product</a>
-<a class="reference external" href="https://en.wikipedia.org/wiki/Dot_product">Dot Product</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a>
-<a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=atop#function-atop-tack">Function Atop Tack</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Dfn#Default_left_arguments">Default Left Arguments</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Train#2-trains">Fork</a> - 2 Train
-<a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a>
-<a class="reference external" href="https://en.wikipedia.org/wiki/Code_reuse">Code Reuse</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Scalar_extension">Scalar Extension</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Conformability">Conformability</a></p>
+</section>
+<section id="glyphs-used">
+<h2>Glyphs Used<a class="headerlink" href="#glyphs-used" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Roll">Roll</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshape</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Greater_than_or_Equal_to">Greater than or Equal to</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Scan">Scan</a> - Plus Scan</p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Quad_name">Quad</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Statement_Separator">Diamond</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Ravel">Ravel</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Index_Generator">Iota</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Without">Without</a> aka not</p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Over">Over</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Indices">Indices</a> aka Where</p>
+</section>
+<section id="concepts-used">
+<h2>Concepts Used<a class="headerlink" href="#concepts-used" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Function</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Dfns_workspace">Dfns Workspace</a></p>
+<p><a class="reference external" href="https://mastering.dyalog.com/Data-and-Variables.html#data-and-variables-representation-of-numbers">Scientific Notation</a></p>
+<p><a class="reference external" href="http://dfns.dyalog.com/n_cmpx.htm">CMPX</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Scalar_function">Scalar Function</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduction</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Inner_Product">Inner Product</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Dot_product">Dot Product</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a></p>
+<p><a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=atop#function-atop-tack">Function Atop Tack</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Dfn#Default_left_arguments">Default Left Arguments</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Train#2-trains">Fork</a> - 2 Train</p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Code_reuse">Code Reuse</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Scalar_extension">Scalar Extension</a></p>
+<p><a class="reference external" href="https://aplwiki.com/wiki/Conformability">Conformability</a></p>
+</section>
+<section id="transcript">
+<h2>Transcript<a class="headerlink" href="#transcript" title="Link to this heading">#</a></h2>
 <p><strong>Transcript:</strong></p>
 <p>Welcome to this second episode of the APL Quest! Check out the APL Wiki for details. Today’s quest is called “Making the Grade” and it’s the second problem from the 2013 APL Problem Solving Competition’s Phase 1. Here we are to write a function which takes a list of numbers representing the points that people scored on some type of test. If they scored 65 or higher, then they’ve passed in the test, and we are to compute the percentage of people who passed.</p>
 <p>Let’s start off by generating some test data. So here are 10 scores between 1 and 100, and those that have succeeded in the test had scores 69 and 72. So we know how many scores there are in total and we can compare all these scores with 65, so if the test scores are greater than or equal to 65, then they have succeeded and this gives us a boolean vector indicating the ones and zeros, the ones that have succeeded. Then we can sum the boolean vector to find out how many have succeeded and then we can divide that by the total number so this gives us a fraction and we can multiply that by 100 to get a percentage.</p>
@@ -559,6 +603,7 @@ document.write(`
 <p>Now we can use the same method as we did above, where we take this result and divide it by the tallies of the original. Then we add the last thing. This is using “where” and the interval index, so we can say it’s 100 times this. Of course, for both S and T, we could modify them to take an optional or required left argument.</p>
 <p>Here are all the definitions that we did today. Compare them, and don’t forget to check out what the performance looks like on the kind of data that you’re running with.</p>
 <p>Thank you so much for watching.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -598,7 +643,26 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-solutions">Example Solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-solutions">Advanced Solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance">Performance:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comment">Comment:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
