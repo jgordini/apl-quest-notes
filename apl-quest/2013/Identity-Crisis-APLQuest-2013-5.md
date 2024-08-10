@@ -172,12 +172,12 @@ C ←{(?((⍵,⍵)⍴(≡⍵)))⌹(?((⍵,⍵)⍴(≡⍵)))} ⍝ tacit.help
 
 ## Base conversion
 
+### A
+
 ```APL
 A ← (⍴∘2⊤2*⊢-⍳) ⍝ powers of two are 1 0 0 …
 B ← {(⍵⍴2)⊤(2*(⍵-(⍳⍵)))} ⍝ tacit.help
 ```
-
-### A
 
 1.  Looking at our identiry matrix we can see that each column is a power of two spelled out in binary. 
 2.  `2*⊢-⍳` We can generate these numbers by subtracting the initial [Identity](https://aplwiki.com/wiki/Identity) `⊢` from the  [Index Generator](https://aplwiki.com/wiki/Index_Generator)`⍳` of the argument and raising the result to the [power of](https://aplwiki.com/wiki/Exponential) 2. 
@@ -237,12 +237,12 @@ B←(⍸⍣¯1⍤⊢⌸⍳) ⍝ {({(⍸⍣¯1)⍵}⌸)(⍳⍵)}
 
 ## [Complex Numbers](https://aplwiki.com/wiki/Complex_number)
 
+### A
+
 ```APL
 A ← {4=○÷12○⍵∘.+0j1×⍵}⍳ ⍝ π÷4 = arg(a+ai)
 B ← {0=(2*÷2)||⍵∘.+0j1×⍵}⍳ ⍝ |a+ai| = 0 mod √2
 ```
-
-### A
 
 1. `⍵∘.+0j1×⍵` Using [Outer Product](https://aplwiki.com/wiki/Outer_Product) `∘.+` of the real part plus the imaginary part `+0j1` and Multiplying the imaginary part `0j1×⍵` by the Index `⍳` to create a table.  
 2. `○÷12○` The [Circular](https://aplwiki.com/wiki/Circular)  `12○` function is the [Phase](https://en.wikipedia.org/wiki/Phase_(waves)) of ⍵. This determines the magnitude and the direction fo a complex number.  
