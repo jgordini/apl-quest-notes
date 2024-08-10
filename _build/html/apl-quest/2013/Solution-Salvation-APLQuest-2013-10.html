@@ -14,36 +14,36 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=2f532779" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
@@ -74,27 +74,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -116,8 +112,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -159,10 +160,10 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">APL Quest 2013</a><input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">APL Quest 2013</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="What-Is-Ina-Word-APLQuest-2013-3.html">What is in a Word? 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping things in balance 2013-4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
@@ -171,8 +172,8 @@
 <li class="toctree-l2"><a class="reference internal" href="It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Solution Salvation 2013-10</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2014/index.html">APL Quest 2014</a><input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2014/index.html">APL Quest 2014</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../2014/It-Is-All-Right-APLQuest-2014-1.html">Welcome to the APL Quest</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2014/How-Tweet-It-Is-APLQuest-2014-2.html">APL Quest: Problem Solving and Performance of Text Processing Techniques</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2014/Tell-a-Fib-APLQuest-2014-3.html">Computing the Fibonacci Sequence</a></li>
@@ -183,8 +184,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../2014/Going-Ballistic-APLQuest-2014-9.html">APL Quest</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2014/Sales-Are-Up-APLQuest-2014-10.html">APL Quest: Analyzing the Largest Percentage Increase</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2015/index.html">APL Quest 2015</a><input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2015/index.html">APL Quest 2015</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../2015/Nag-A-Ram-APLQuest-2015-1.html">APL Quest: Anagrams Problem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2015/Longest-Streak-APLQuest-2015-2.html">APL Quest</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2015/Farey-Tales-APLQuest-2015-3.html">Welcome to the APL Quest</a></li>
@@ -195,8 +196,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../2015/Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html">APL Quest: Swapping Interior Letters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2015/Blazing-A-Trail-APLQuest-2015-10.html">API Quest: Generating a Centered Pascal’s Triangle</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2016/index.html">APL Quest 2016</a><input checked class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2016/index.html">APL Quest 2016</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mean-APLQuest-2016-1.html">Welcome to the APL Quest</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Median-APLQuest-2016-2.html">Welcome to the APL Quest</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mode-APLQuest-2016-3.html">Welcome to APL Quest</a></li>
@@ -207,8 +208,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../2016/Delimited-Text-APLQuest-2016-9.html">APL Quest: Delimiter Splitting Challenge</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2016/Order-Total-APLQuest-2016-10.html">Welcome to the APL Quest</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2017/index.html">APL Quest 2017</a><input checked class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2017/index.html">APL Quest 2017</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../2017/What-an-Odd-Bunch-APLQuest-2017-1.html">Welcome to the APL Quest</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2017/Good-Evening-APLQuest-2017-2.html">Ensure Odd Numbers Become Even Using APL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2017/Miss-Quoted-APLQuest-2017-3.html">Removing Text Between Double Quotes Using Regular Expressions</a></li>
@@ -220,8 +221,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../2017/Double-Trouble-APLQuest-2017-9.html">Finding Locations of Identical Characters in Text</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2017/Squaring-Off-APLQuest-2017-10.html">Fitting Elements into a Square Array</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2018/index.html">APL Quest 2018</a><input checked class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2018/index.html">APL Quest 2018</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../2018/Oh-Say-Can-You-See-APLQuest-2018-1.html">Counting Visible Buildings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2018/Number-Splitting-APLQuest-2018-2.html">Splitting Numbers into Integer and Fractional Parts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2018/Rolling-Along-APLQuest-2018-3.html">Simulating Dice Rolls and Analyzing Outcomes</a></li>
@@ -233,8 +234,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../2018/Earlier-Later-or-the-Same-APLQuest-2018-9.html">Comparing Dates in APL: A Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2018/Anagrammatically-Correct-APLQuest-2018-10.html">Comparing Two Character Vectors: An Anagram Checker</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2019/index.html">APL Quest 2019</a><input checked class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2019/index.html">APL Quest 2019</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../2019/Chunky-Monkey-APLQuest-2019-1.html">Chunking a List into Segments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2019/Makingthe-Grade-APLQuest-2019-2.html">Converting Scores into Letter Grades</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2019/Grade-Distribution-APLQuest-2019-3.html">Compiling Simple Statistics on Grades</a></li>
@@ -246,8 +247,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../2019/Area-Code-Gauss-APLQuest-2019-9.html">Calculating the Area of a Polygon Using the Shoelace Formula</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2019/Odds-Evens-APLQuest-2019-10.html">Splitting a List of Words by Length</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2020/index.html">APL Quest 2020</a><input checked class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2020/index.html">APL Quest 2020</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../2020/Lets-Split-APLQuest-2020-1.html">Understanding Vector Partitioning in APL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2020/Character-Building-APLQuest-2020-2.html">Understanding Byte Sequences and UTF-8 Encoding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2020/Excel-lent-Columns-APLQuest-2020-3.html">Understanding Column Label Conversion in Spreadsheet Software</a></li>
@@ -259,8 +260,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../2020/Riseand-Fall-APLQuest-2020-9.html">Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2020/Stacking-It-Up-APLQuest-2020-10.html">Emulating APL Array Printing Behavior</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2021/index.html">APL Quest 2021</a><input checked class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2021/index.html">APL Quest 2021</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../2021/Are-You-a--Bacteria-APLQuest-2021-1.html">Calculating Percentage of Characters in a DNA String</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2021/Index-Of-Modified-APLQuest-2021-2.html">Creating a Cover for the Dyadic Iota in APL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2021/Multiplicity-APLQuest-2021-3.html">Grouping Integers by Divisibility</a></li>
@@ -272,8 +273,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../2021/Inthe-Long-Run-APLQuest-2021-9.html">Finding the Longest Consecutive Sequence in a List of Numbers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2021/Onthe-Right-Side-APLQuest-2021-10.html">Justified Text Transformation in APL</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2022/index.html">APL Quest 2022</a><input checked class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2022/index.html">APL Quest 2022</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../2022/Counting-DNA-Nucleotides-APLQuest-2022-1.html">Counting DNA Letters in a Character Vector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2022/Attackofthe-Mutations-APLQuest-2022-2.html">Comparing DNA Strings: A Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2022/Uniquely-Qualified-APLQuest-2022-3.html">Finding the Symmetric Difference Between Two Sets</a></li>
@@ -285,8 +286,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../2022/An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html">Calculating the Window Average of a List of Numbers in APL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2022/Separation-Anxiety-APLQuest-2022-10.html">Inserting Separators in Large Integers</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2023/index.html">APL Quest 2023</a><input checked class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2023/index.html">APL Quest 2023</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../2023/Elimination-Sort-APLQuest-2023-1.html">Removing Non-Decreasing Elements from a List</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023/Put-It-In-Reverse-APLQuest-2023-2.html">Finding End Points of One Array in Another</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023/Caesar-Salad-APLQuest-2023-3.html">Implementing a Simple Caesar Cipher for Uppercase Characters and Spaces</a></li>
@@ -298,7 +299,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../2023/Flipping-Pairs-APLQuest-2023-9.html">Interchanging Adjacent Elements in a Multi-Dimensional Array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../2023/Partition-witha-Twist-APLQuest-2023-10.html">APL Quest: Splitting Text on Spaces</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -314,7 +315,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -323,7 +324,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -408,10 +409,10 @@
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
@@ -419,7 +420,7 @@ document.write(`
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
@@ -584,7 +585,7 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -674,8 +675,8 @@ By jgordini
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
