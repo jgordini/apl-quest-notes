@@ -2,8 +2,11 @@
 
 **Problem:** Write a dfn which returns the magnitude of the range (i.e. the difference between the lowest and highest values) of a numeric array.
 
-**Video:** https://youtu.be/36HlHsEjUIQ
-**Code:** https://github.com/abrudz/apl_quest/blob/main/2013/6.apl
+**Video:** [https://youtu.be/36HlHsEjUIQ](https://youtu.be/36HlHsEjUIQ)
+
+**Code:** [https://github.com/abrudz/apl_quest/blob/main/2013/6.apl](https://github.com/abrudz/apl_quest/blob/main/2013/6.apl)
+
+
 
 ## **Example Solutions:**
 
