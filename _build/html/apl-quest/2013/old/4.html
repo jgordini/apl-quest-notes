@@ -162,7 +162,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping things in balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping Things In Balance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
@@ -423,7 +423,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -434,11 +436,49 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1> Keeping Things In Balance</h1>
+    <h1>Keeping Things In Balance</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-solutions"><strong>Example Solutions:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parenthesis-depth-changes"><strong>Parenthesis depth changes</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#di"><strong>Di</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do"><strong>Do</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#df"><strong>Df</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance"><strong>Performance</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#balanced"><strong>Balanced?</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ba">BA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bn">BN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bns">BNS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f">F</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-and-replace-regular-expressions"><strong>Find and Replace</strong> - Regular Expressions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#re">RE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#re0">RE0</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fi">FI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abusing-apl-s-parser"><strong>Abusing APL’s Parser</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nd">ND</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#np">NP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used"><strong>Glyphs Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions">Regular Expressions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used"><strong>Concepts Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference"><strong>Reference:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript"><strong>Transcript:</strong></a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -448,33 +488,38 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="keeping-things-in-balance">
-<h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P4_Keeping_Things_In_Balance"> Keeping Things In Balance</a><a class="headerlink" href="#keeping-things-in-balance" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="keeping-things-in-balance">
+<h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P4_Keeping_Things_In_Balance">Keeping Things In Balance</a><a class="headerlink" href="#keeping-things-in-balance" title="Link to this heading">#</a></h1>
 <p><strong>Problem:</strong> Write an APL dfn which returns a 1 if the opening and closing parentheses in a character vector are balanced, or a zero otherwise.</p>
 <p><strong>Video:</strong> https://youtu.be/El0_RB4TTPA
 <strong>Code:</strong> https://github.com/abrudz/apl_quest/blob/main/2013/4.apl</p>
-<p><strong>Example Solutions:</strong></p>
+<section id="example-solutions">
+<h2><strong>Example Solutions:</strong><a class="headerlink" href="#example-solutions" title="Link to this heading">#</a></h2>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="w">	</span><span class="nv">Di</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">1</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="m">0</span><span class="sr">[</span><span class="s1">&#39;()&#39;</span><span class="o">⍳</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Indexing into an array, 1 is left paren, ¯1 is Right and 0 is all other characters. </span>
 <span class="w">	</span><span class="nv">Df</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;(&#39;</span><span class="na">∘</span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">=</span><span class="na">∘</span><span class="s1">&#39;)&#39;</span><span class="w"> </span><span class="c1">⍝ Tacit, subtracts the comparisons to get the depth changes. </span>
 <span class="w">	</span><span class="nv">Bn</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">¯1</span><span class="o">∊+</span><span class="na">\</span><span class="p">)</span><span class="o">⍱</span><span class="m">0</span><span class="o">≠+</span><span class="na">/</span><span class="w"> </span><span class="c1">⍝ checks for no ¯1 and no 0 in scan</span>
 <span class="w">	</span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">¯1</span><span class="na">∘</span><span class="o">∊⍱</span><span class="m">0</span><span class="o">≠⊢</span><span class="na">/</span><span class="p">)</span><span class="s1">&#39;(&#39;</span><span class="na">∘</span><span class="o">=+</span><span class="na">\⍤</span><span class="o">-=</span><span class="na">∘</span><span class="s1">&#39;)&#39;</span><span class="w"> </span><span class="c1">⍝ Moves scan to be atop on comparisons +\⍤ </span>
-<span class="w">	</span><span class="err">```</span>
-
-<span class="o">**</span><span class="nv">Parenthesis</span><span class="w"> </span><span class="nv">depth</span><span class="w"> </span><span class="nv">changes</span><span class="o">**</span>
-<span class="nv">Examples</span><span class="bp">:</span>
-<span class="err">```</span><span class="nv">APL</span>
-<span class="nv">Di</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="w"> </span><span class="o">↑</span><span class="na">⍤</span><span class="o">,</span><span class="na">⍥</span><span class="o">⊂</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="m">0</span><span class="sr">[</span><span class="s1">&#39;()&#39;</span><span class="o">⍳</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Convert the data to norrmalized form. </span>
-<span class="nv">Do</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">-</span><span class="na">⌿</span><span class="s1">&#39;()&#39;</span><span class="na">∘.</span><span class="o">=⊢</span>
-<span class="nv">Df</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;(&#39;</span><span class="na">∘</span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">=</span><span class="na">∘</span><span class="s1">&#39;)&#39;</span>
 </pre></div>
 </div>
-<p><strong>Di</strong></p>
+</section>
+<section id="parenthesis-depth-changes">
+<h2><strong>Parenthesis depth changes</strong><a class="headerlink" href="#parenthesis-depth-changes" title="Link to this heading">#</a></h2>
+<section id="di">
+<h3><strong>Di</strong><a class="headerlink" href="#di" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Di</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍵</span><span class="w"> </span><span class="o">↑</span><span class="na">⍤</span><span class="o">,</span><span class="na">⍥</span><span class="o">⊂</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="m">0</span><span class="sr">[</span><span class="s1">&#39;()&#39;</span><span class="o">⍳</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Convert the data to norrmalized form. </span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">['()'⍳⍵]</span></code> - <a class="reference external" href="https://aplwiki.com/wiki/Index_Of">Index of</a> <code class="docutils literal notranslate"><span class="pre">⍳</span></code> shows a 1 if left paren, 2 if right paren, and 3 if not found.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">¯1</span> <span class="pre">0</span></code> - map the result of step 1  to (1 left,  -1 right, 0 not found)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">↑⍤,⍥⊂</span></code> -  <a class="reference external" href="https://aplwiki.com/wiki/Enclose">Enclose</a> <code class="docutils literal notranslate"><span class="pre">⊂</span></code>  - Create a nested scaler  <a class="reference external" href="https://aplwiki.com/wiki/Over">Over</a>  <code class="docutils literal notranslate"><span class="pre">⍥</span></code> -  Preprocess the right argument  <a class="reference external" href="https://aplwiki.com/wiki/Rank_(operator)#Merge_axes">Merge Axis</a> -  <code class="docutils literal notranslate"><span class="pre">⍤,</span></code> concatenate the two axis  <a class="reference external" href="https://aplwiki.com/wiki/Mix">Mix</a>  <code class="docutils literal notranslate"><span class="pre">↑</span></code> - trades one level of <a class="reference external" href="https://aplwiki.com/wiki/Depth">depth</a> (nesting) into one level of <a class="reference external" href="https://aplwiki.com/wiki/Rank">rank</a>.</p></li>
 </ol>
-<p><strong>Do</strong></p>
+</section>
+<section id="do">
+<h3><strong>Do</strong><a class="headerlink" href="#do" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Do</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">-</span><span class="na">⌿</span><span class="s1">&#39;()&#39;</span><span class="na">∘.</span><span class="o">=⊢</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">'()'∘.=⊢</span></code> Applying an <a class="reference external" href="https://mastering.dyalog.com/Operators.html?highlight=outer%20product#outer-product">Outer Product</a> using a comparison <code class="docutils literal notranslate"><span class="pre">=</span></code> Because this is a tacit function <a class="reference external" href="https://aplwiki.com/wiki/Identity">Right Tack</a> acts as omega <code class="docutils literal notranslate"><span class="pre">⍵</span></code> and just returns the function it is pointing to.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'()'∘.=⊢</span></code> The <code class="docutils literal notranslate"><span class="pre">'()'</span></code> is the comparison that the outer product is applying against the identity. This creates a table.</p></li>
@@ -483,7 +528,12 @@ document.write(`
 <li><p>The result of step 2 is already a matrix. So we can use <a class="reference external" href="https://xpqz.github.io/cultivations/Functions7.html#table">Table</a> <code class="docutils literal notranslate"><span class="pre">⍪</span></code>  - to ravel the major cells of the array and make each one of them into a row with the identity on top. This is just explanatory.</p></li>
 <li><p>-⌿ Subtracting the bottom row from step 2 from the top row in step 2 using a vertical minus <a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduction</a> gives us the  depth changes.</p></li>
 </ol>
-<p><strong>Df</strong></p>
+</section>
+<section id="df">
+<h3><strong>Df</strong><a class="headerlink" href="#df" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Df</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;(&#39;</span><span class="na">∘</span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">=</span><span class="na">∘</span><span class="s1">&#39;)&#39;</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p>We can do the two <a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Functions</a> independently</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'('∘=</span></code> Making a boolean mask of the left parenthesis.</p></li>
@@ -492,8 +542,10 @@ document.write(`
 <li><p><a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a> <code class="docutils literal notranslate"><span class="pre">∘</span></code> is used to create a derived function with a single constant argument for each comparison.</p></li>
 <li><p>This creates a <a class="reference external" href="https://aplwiki.com/wiki/Train#3-trains">3-train Fork</a> where the two outer functions are applied first, and their results are used as arguments to the middle function in this case subtract <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p></li>
 </ol>
-<p><strong>Performance</strong>
-Examples:</p>
+</section>
+</section>
+<section id="performance">
+<h2><strong>Performance</strong><a class="headerlink" href="#performance" title="Link to this heading">#</a></h2>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;turtle&#39;</span><span class="w"> </span><span class="s1">&#39;joy&#39;</span><span class="w"> </span><span class="s1">&#39;cmpx&#39;</span><span class="nf">⎕cy</span><span class="s1">&#39;dfns&#39;</span>
 <span class="p">(</span><span class="nv">y</span><span class="w"> </span><span class="nv">n</span><span class="p">)</span><span class="kd">←</span><span class="p">(</span><span class="o">⊢⍴</span><span class="na">⍨</span><span class="m">100</span><span class="o">×⍴</span><span class="p">)</span><span class="na">⍤</span><span class="nf">⎕VR</span><span class="na">¨</span><span class="s1">&#39;turtle&#39;</span><span class="w"> </span><span class="s1">&#39;joy&#39;</span>
 <span class="nv">cmpx</span><span class="s1">&#39;D&#39;</span><span class="o">,</span><span class="na">¨</span><span class="s1">&#39;iof&#39;</span><span class="o">,</span><span class="na">¨</span><span class="o">⊂</span><span class="s1">&#39; y&#39;</span>
@@ -509,63 +561,76 @@ Examples:</p>
 <li><p>In the next line we are doing some meta programming to use cmpx to evalute the performance of each function.</p></li>
 <li><p>Every function begins with a D. We <a class="reference external" href="https://aplwiki.com/wiki/Catenate">Concatenate</a>  <a class="reference external" href="https://aplwiki.com/wiki/Each">Each</a> <code class="docutils literal notranslate"><span class="pre">,¨</span></code> of the suffixes ‘iof’ and then  <a class="reference external" href="https://aplwiki.com/wiki/Catenate">Concatenate</a>  <a class="reference external" href="https://aplwiki.com/wiki/Each">Each</a> <code class="docutils literal notranslate"><span class="pre">,¨</span></code> to the entire function ‘ y’ using <a class="reference external" href="https://aplwiki.com/wiki/Enclose">Enclose</a> <code class="docutils literal notranslate"><span class="pre">⊂</span></code> - An enclosed array is a <a class="reference external" href="https://aplwiki.com/wiki/Scalar" title="Scalar">scalar</a>, which is subject to <a class="reference external" href="https://aplwiki.com/wiki/Scalar_extension" title="Scalar extension">scalar extension</a>.</p></li>
 </ol>
-<p><strong>Balanced?</strong>
-Comment:</p>
+</section>
+<section id="balanced">
+<h2><strong>Balanced?</strong><a class="headerlink" href="#balanced" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">We</span> <span class="n">are</span> <span class="n">checking</span> <span class="k">if</span> <span class="n">two</span> <span class="n">condtions</span> <span class="n">are</span> <span class="n">realized</span><span class="o">.</span> 
 <span class="mf">1.</span> <span class="n">Our</span> <span class="n">final</span> <span class="n">parenthesis</span> <span class="n">level</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">zero</span><span class="o">.</span> 
 <span class="mf">2.</span> <span class="n">As</span> <span class="n">our</span> <span class="n">function</span> <span class="n">proceeds</span> <span class="n">our</span> <span class="n">parenthesis</span> <span class="n">level</span> <span class="n">should</span> <span class="ow">not</span> <span class="n">drop</span> <span class="n">below</span> <span class="n">zero</span><span class="o">.</span> 
 <span class="mf">3.</span> <span class="n">Both</span> <span class="n">expressions</span> <span class="n">are</span> <span class="n">then</span> <span class="n">evaluted</span> <span class="k">for</span> <span class="n">performance</span> <span class="n">using</span> <span class="n">simlar</span> <span class="n">steps</span> <span class="n">to</span> <span class="n">above</span>
 </pre></div>
 </div>
-<p>Examples:</p>
+<section id="ba">
+<h3>BA<a class="headerlink" href="#ba" title="Link to this heading">#</a></h3>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Ba</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">∧</span><span class="na">/</span><span class="m">0</span><span class="o">≤+</span><span class="na">\</span><span class="p">)</span><span class="o">∧</span><span class="m">0</span><span class="o">=+</span><span class="na">/</span>
-<span class="nv">Bn</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">¯1</span><span class="o">∊+</span><span class="na">\</span><span class="p">)</span><span class="o">⍱</span><span class="m">0</span><span class="o">≠+</span><span class="na">/</span>
-<span class="nv">Bns</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">¯1</span><span class="na">∘</span><span class="o">∊⍱</span><span class="m">0</span><span class="o">≠⊢</span><span class="na">/</span><span class="p">)</span><span class="o">+</span><span class="na">\</span>
-<span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">¯1</span><span class="na">∘</span><span class="o">∊⍱</span><span class="m">0</span><span class="o">≠⊢</span><span class="na">/</span><span class="p">)</span><span class="s1">&#39;(&#39;</span><span class="na">∘</span><span class="o">=+</span><span class="na">\⍤</span><span class="o">-=</span><span class="na">∘</span><span class="s1">&#39;)&#39;</span>
 </pre></div>
 </div>
-<p>BA</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">∧/</span></code> <a class="reference external" href="https://aplwiki.com/wiki/And">And</a> <a class="reference external" href="https://aplwiki.com/wiki/Reduction" title="Reduction">Reduction</a>  tests if it is true for ALL that the parenthesis depth is greater than or equal to zero.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">0≤+\</span></code> Plus <a class="reference external" href="https://aplwiki.com/wiki/Scan">Scan</a> <code class="docutils literal notranslate"><span class="pre">+\</span></code> gives us the parenthesis depth. The <a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Function</a> <code class="docutils literal notranslate"><span class="pre">0≤</span></code> checks if zero is less than or equal to the running sum.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">∧0=+/</span></code> <a class="reference external" href="https://aplwiki.com/wiki/And">And</a>  also checking if it is true that zero = the full sum <code class="docutils literal notranslate"><span class="pre">0=+/</span></code>.</p></li>
 <li><p>Both conditions must be true for BA to return 1 (for true).</p></li>
 </ol>
-<p>BN</p>
+</section>
+<section id="bn">
+<h3>BN<a class="headerlink" href="#bn" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Bn</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">¯1</span><span class="o">∊+</span><span class="na">\</span><span class="p">)</span><span class="o">⍱</span><span class="m">0</span><span class="o">≠+</span><span class="na">/</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">¯1∊+\</span></code> Checks if -1 is a <a class="reference external" href="https://aplwiki.com/wiki/Membership">member</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> of the running sum or <a class="reference external" href="https://aplwiki.com/wiki/Scan">Scan</a> <code class="docutils literal notranslate"><span class="pre">+\</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">0≠+/</span></code> Checks if zero is not equal to the total.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍱</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Nor">Nor</a> tests if neither argument (Step 1 or 2) is true: it returns 1 if both are false (0) and 0 if at least one is true (1)</p></li>
 </ol>
-<p>BNS</p>
+</section>
+<section id="bns">
+<h3>BNS<a class="headerlink" href="#bns" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Bns</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">¯1</span><span class="na">∘</span><span class="o">∊⍱</span><span class="m">0</span><span class="o">≠⊢</span><span class="na">/</span><span class="p">)</span><span class="o">+</span><span class="na">\</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p>Move the Scan to outside the parenthesis</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">∘</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a> the enclose to the scaler. Tacit so the identity element is implied.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⊢/</span></code> Right Reduction picks the last element of the Scan we moved in step 1.</p></li>
 <li><p>Evaluate for performance.</p></li>
 </ol>
-<p>F</p>
+</section>
+<section id="f">
+<h3>F<a class="headerlink" href="#f" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">¯1</span><span class="na">∘</span><span class="o">∊⍱</span><span class="m">0</span><span class="o">≠⊢</span><span class="na">/</span><span class="p">)</span><span class="s1">&#39;(&#39;</span><span class="na">∘</span><span class="o">=+</span><span class="na">\⍤</span><span class="o">-=</span><span class="na">∘</span><span class="s1">&#39;)&#39;</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p>Take our BNS solution which is an <a class="reference external" href="https://aplwiki.com/wiki/Train#2-trains">Atop</a> or 2-train. The left function is applied <a class="reference external" href="https://aplwiki.com/wiki/Monadic_function" title="Monadic function">monadically</a> on the result of the right function.</p></li>
 <li><p>Take our Df Solution which is a <a class="reference external" href="https://aplwiki.com/wiki/Train#3-trains">Fork</a> or 3-Train. The two outer functions are applied first, and their results are used as arguments to the middle function.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">+\⍤-</span></code> To combine these solutions we use an <a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a> <code class="docutils literal notranslate"><span class="pre">⍤</span></code> operator  on Df to post process the result of the subtraction using a scan <code class="docutils literal notranslate"><span class="pre">+\</span></code>.</p></li>
 <li><p>The depth change in Step 3 is then passed to BNS.</p></li>
 </ol>
-<p><strong>Find and Replace</strong> - Regular Expressions
-Comment:</p>
+</section>
+</section>
+<section id="find-and-replace-regular-expressions">
+<h2><strong>Find and Replace</strong> - Regular Expressions<a class="headerlink" href="#find-and-replace-regular-expressions" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Find</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">parenthesis</span> <span class="ow">and</span> <span class="n">eliminate</span> <span class="n">pairs</span> <span class="n">of</span> <span class="n">parenthesis</span> <span class="n">until</span> <span class="n">none</span> <span class="n">are</span> <span class="n">found</span><span class="o">.</span> 
 <span class="n">If</span> <span class="n">we</span> <span class="n">have</span> <span class="n">an</span> <span class="n">empty</span> <span class="nb">set</span> <span class="n">Parenthesis</span> <span class="n">are</span> <span class="n">matched</span><span class="o">.</span>
 <span class="n">Any</span> <span class="n">parenthesis</span> <span class="n">that</span> <span class="n">are</span> <span class="n">left</span> <span class="n">means</span> <span class="n">they</span> <span class="n">are</span> <span class="n">unbalanced</span><span class="o">.</span>
 </pre></div>
 </div>
-<p>Examples:</p>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="kd">←</span><span class="s1">&#39;(1 2)×(3+(3÷4))×(1+2)÷8&#39;</span>
+<section id="re">
+<h3>RE<a class="headerlink" href="#re" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="kd">←</span><span class="s1">&#39;(1 2)×(3+(3÷4))×(1+2)÷8&#39;</span><span class="w"> </span><span class="c1">⍝ Test Data</span>
 <span class="nv">Re</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="o">≡</span><span class="s1">&#39;\(\)&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&#39;</span><span class="na">⍣</span><span class="o">≡</span><span class="na">⍤</span><span class="o">∩</span><span class="na">∘</span><span class="s1">&#39;()&#39;</span>
-<span class="nv">Re0</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="o">≡</span><span class="s1">&#39;()&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&#39;</span><span class="na">⍠</span><span class="s1">&#39;Regex&#39;</span><span class="m">0</span><span class="na">⍣</span><span class="o">≡</span><span class="na">⍤</span><span class="o">∩</span><span class="na">∘</span><span class="s1">&#39;()&#39;</span>
-<span class="nv">Fi</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="o">≡</span><span class="p">(</span><span class="o">⊢</span><span class="p">(</span><span class="na">/⍨</span><span class="p">)</span><span class="m">¯1</span><span class="p">(</span><span class="o">⊢⍱⌽</span><span class="p">)</span><span class="s1">&#39;()&#39;</span><span class="na">∘</span><span class="o">⍷</span><span class="p">)</span><span class="na">⍣</span><span class="o">≡</span><span class="na">⍤</span><span class="o">∩</span><span class="na">∘</span><span class="s1">&#39;()&#39;</span>
 </pre></div>
 </div>
-<p>RE</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">∩∘'()'</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Intersection">Intersection</a> <code class="docutils literal notranslate"><span class="pre">∩</span></code> removes elements from the left which are not present in the right. In this case we remove everything but the parenthesis.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'\(\)'⎕R''</span></code> <a class="reference external" href="https://xpqz.github.io/cultivations/Regex.html?highlight=regular%20expressions">Regular Expression</a> using <code class="docutils literal notranslate"><span class="pre">⎕R</span></code> to find parenthesis and replace with an empty string. Each parenthesis is escaped using <code class="docutils literal notranslate"><span class="pre">\</span></code> Performs this operation one time.</p></li>
@@ -573,100 +638,138 @@ Comment:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍣≡</span></code>  <a class="reference external" href="https://xpqz.github.io/cultivations/ConditionControlledLoops.html?highlight=power">Power Match</a>  <code class="docutils literal notranslate"><span class="pre">⍣≡</span></code> - Iterating until a fixed point is reached. In this case when no more parens are found.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⍤</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop Operator</a> takes the two monadic functions and glues them together.</p></li>
 </ol>
-<p>RE0</p>
+</section>
+<section id="re0">
+<h3>RE0<a class="headerlink" href="#re0" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Re0</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="o">≡</span><span class="s1">&#39;()&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&#39;</span><span class="na">⍠</span><span class="s1">&#39;Regex&#39;</span><span class="m">0</span><span class="na">⍣</span><span class="o">≡</span><span class="na">⍤</span><span class="o">∩</span><span class="na">∘</span><span class="s1">&#39;()&#39;</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="https://aplwiki.com/wiki/Variant">Variant</a> <code class="docutils literal notranslate"><span class="pre">⍠</span></code> - Switch Regex to plain text using <code class="docutils literal notranslate"><span class="pre">'Regex'0</span></code></p></li>
 <li><p>This allows us to use <code class="docutils literal notranslate"><span class="pre">⎕R</span></code> to search and replace parenthesis without escaping them</p></li>
 <li><p>The same function is then applied.</p></li>
 </ol>
-<p>FI</p>
+</section>
+<section id="fi">
+<h3>FI<a class="headerlink" href="#fi" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Fi</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="o">≡</span><span class="p">(</span><span class="o">⊢</span><span class="p">(</span><span class="na">/⍨</span><span class="p">)</span><span class="m">¯1</span><span class="p">(</span><span class="o">⊢⍱⌽</span><span class="p">)</span><span class="s1">&#39;()&#39;</span><span class="na">∘</span><span class="o">⍷</span><span class="p">)</span><span class="na">⍣</span><span class="o">≡</span><span class="na">⍤</span><span class="o">∩</span><span class="na">∘</span><span class="s1">&#39;()&#39;</span><span class="w"> </span><span class="c1">⍝ Tacit Version</span>
+<span class="nv">Fi</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="s1">&#39;&#39;</span><span class="o">≡</span><span class="p">((</span><span class="kt">{</span><span class="p">((</span><span class="s1">&#39;()&#39;</span><span class="o">⍷</span><span class="bp">⍵</span><span class="p">)</span><span class="o">⍱</span><span class="p">(</span><span class="m">¯1</span><span class="o">⌽</span><span class="p">(</span><span class="s1">&#39;()&#39;</span><span class="o">⍷</span><span class="bp">⍵</span><span class="p">)))</span><span class="na">/</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⍣</span><span class="o">≡</span><span class="p">)(</span><span class="bp">⍵</span><span class="o">∩</span><span class="s1">&#39;()&#39;</span><span class="p">))</span><span class="kt">}</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">⍣≡⍤∩∘'()'</span></code> Step 1,4,5 from RE</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'()'∘⍷</span></code> Using the <a class="reference external" href="https://aplwiki.com/wiki/find">Find</a> <code class="docutils literal notranslate"><span class="pre">⍷</span></code> function returns a boolean mask where 1 indicates the start of an set of open and closed parens.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">¯1(⊢⍱⌽)</span></code>  Takes the [mask](<a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a>) generated in Step 2 <code class="docutils literal notranslate"><span class="pre">⊢</span></code> and <a class="reference external" href="https://mastering.dyalog.com/Working-on-Data-Shape.html?highlight=rotate#rotate-vectors">Rotates</a> <code class="docutils literal notranslate"><span class="pre">⌽</span></code> it one step <code class="docutils literal notranslate"><span class="pre">¯1</span></code>.  This indicates where the closed parens are.  We want to remove parens with the mask so we are using  <a class="reference external" href="https://aplwiki.com/wiki/Nor">Nor</a> <code class="docutils literal notranslate"><span class="pre">⍱</span></code>. To retain parens we would use <a class="reference external" href="https://aplwiki.com/wiki/Or">Or</a></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⊢(/⍨)</span></code>  Use the result of Step 3 to <a class="reference external" href="https://en.wikipedia.org/wiki/filter_(higher-order_function)" title="wikipedia:filter (higher-order function)">Filter</a>  the string <strong>t</strong> using <a class="reference external" href="https://aplwiki.com/wiki/Replicate">Compress</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> We use <a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code>  and the <a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity</a> <code class="docutils literal notranslate"><span class="pre">⊢</span></code> to maintain right to left evaluation becuase this expression is <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit</a>.  This will be more clear if we look at the Dfn version generated by <a class="reference external" href="https://tacit.help/">tacit.help</a></p></li>
-</ol>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Fi</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="s1">&#39;&#39;</span><span class="o">≡</span><span class="p">((</span><span class="kt">{</span><span class="p">((</span><span class="s1">&#39;()&#39;</span><span class="o">⍷</span><span class="bp">⍵</span><span class="p">)</span><span class="o">⍱</span><span class="p">(</span><span class="m">¯1</span><span class="o">⌽</span><span class="p">(</span><span class="s1">&#39;()&#39;</span><span class="o">⍷</span><span class="bp">⍵</span><span class="p">)))</span><span class="na">/</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⍣</span><span class="o">≡</span><span class="p">)(</span><span class="bp">⍵</span><span class="o">∩</span><span class="s1">&#39;()&#39;</span><span class="p">))</span><span class="kt">}</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="7">
 <li><p><code class="docutils literal notranslate"><span class="pre">''≡</span></code>  Step 3 from RE</p></li>
 </ol>
-<p><strong>Abusing APL’s Parser</strong>
-Comment:</p>
+</section>
+</section>
+<section id="abusing-apl-s-parser">
+<h2><strong>Abusing APL’s Parser</strong><a class="headerlink" href="#abusing-apl-s-parser" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">APL</span> <span class="n">interpreter</span> <span class="n">can</span> <span class="n">parse</span> <span class="n">paired</span> <span class="ow">and</span> <span class="n">unpaired</span> <span class="n">parenthesis</span> <span class="ow">and</span> <span class="n">braces</span> <span class="ow">and</span> <span class="n">will</span> <span class="k">return</span> <span class="n">an</span> <span class="n">error</span> <span class="k">if</span> <span class="n">unpaired</span><span class="o">.</span> <span class="n">We</span> <span class="n">can</span> <span class="n">use</span> <span class="n">this</span> <span class="ow">in</span> <span class="n">our</span> <span class="n">expressions</span><span class="o">.</span>  
 </pre></div>
 </div>
-<p>Examples</p>
-<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="kd">←</span><span class="s1">&#39;(1 2)×(3+(3÷4))×(1+2)÷8&#39;</span>
+<section id="nd">
+<h3>ND<a class="headerlink" href="#nd" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="kd">←</span><span class="s1">&#39;(1 2)×(3+(3÷4))×(1+2)÷8&#39;</span><span class="w"> </span><span class="c1">⍝ Test Data</span>
 <span class="nv">Nd</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">0</span><span class="bp">::</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="p">(</span><span class="o">⍎</span><span class="s1">&#39;{} &#39;</span><span class="sr">[</span><span class="s1">&#39;()&#39;</span><span class="o">⍳</span><span class="bp">⍵</span><span class="sr">]</span><span class="p">)</span><span class="na">/</span><span class="m">1</span><span class="kt">}</span>
-<span class="nv">Np</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">0</span><span class="bp">::</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="o">⊃∊⍎⍕</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="na">¨</span><span class="bp">⍵</span><span class="o">∩</span><span class="s1">&#39;()&#39;</span><span class="kt">}</span>
 </pre></div>
 </div>
-<p>ND</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">⍎'{}</span> <span class="pre">'['()'⍳t]</span></code>  This is the same process as Step 1 of Di. We are getting the <a class="reference external" href="https://aplwiki.com/wiki/Index_Of">Index of</a> <code class="docutils literal notranslate"><span class="pre">⍳</span></code> our string <strong>t</strong> and then <a class="reference external" href="https://xpqz.github.io/learnapl/indexing.html#bracket-indexing">Mapping</a>  the result to open and closed brace <code class="docutils literal notranslate"><span class="pre">{}</span></code> and a blank space.  We then <a class="reference external" href="https://aplwiki.com/wiki/execute">Execute</a> ⍎ this function.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">/1</span></code>  <a class="reference external" href="https://aplwiki.com/wiki/Reduction" title="Reduction">Reduction</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> over a scaler. Applying a function to a scaler doesn’t change the function and will let APL evaluate it. It will return the 1 if it does not error.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">0::0⋄</span></code>  <a class="reference external" href="https://help.dyalog.com/latest/#Language/Defined%20Functions%20and%20Operators/DynamicFunctions/Error%20Guards.htm#ErrorGuards">Error Guard</a> <code class="docutils literal notranslate"><span class="pre">::</span></code> Error numbers 0 and 1000 are catch-alls for synchronous errors and interrupts respectively. <a class="reference external" href="https://aplwiki.com/wiki/Statement_separator">Diamond</a> <code class="docutils literal notranslate"><span class="pre">⋄</span></code> is a statement Seperator. If the expression from Step 1 and 2 generates an error, its immediately preceding: <code class="docutils literal notranslate"><span class="pre">0::0</span></code> catches it and returns 0.</p></li>
 <li><p>Evaluted on the <a class="reference external" href="https://xpqz.github.io/cultivations/CodeManagement.html?highlight=vr#visual-representation-vr">Vector Representation</a> - ⎕VR of two Dfns ‘turtle’ and ‘joy’.</p></li>
 </ol>
-<p>NP</p>
+</section>
+<section id="np">
+<h3>NP<a class="headerlink" href="#np" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Np</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">0</span><span class="bp">::</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="o">⊃∊⍎⍕</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="na">¨</span><span class="bp">⍵</span><span class="o">∩</span><span class="s1">&#39;()&#39;</span><span class="kt">}</span>
+</pre></div>
+</div>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">1,1,¨t∩'()'</span></code> We evaulate the set <a class="reference external" href="https://aplwiki.com/wiki/Intersection">Intersection</a>  <code class="docutils literal notranslate"><span class="pre">∩</span></code> of our string against open and closed parens <code class="docutils literal notranslate"><span class="pre">()</span></code> Then we <a class="reference external" href="https://aplwiki.com/wiki/Catenate">Concatenate</a> a 1 in front of  <a class="reference external" href="https://aplwiki.com/wiki/Each">Each</a> <code class="docutils literal notranslate"><span class="pre">1,¨</span></code> character. Then we concatenate a 1 in front of the entire expression.  <code class="docutils literal notranslate"><span class="pre">1,</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">⊃∊⍎⍕</span></code> We then <a class="reference external" href="https://mastering.dyalog.com/Execute-and-Format-Control.html#the-format-primitive">Format</a> ⍕  the result into a character array. Numeric and nested arrays are converted into vectors or matrices of characters and <a class="reference external" href="https://aplwiki.com/wiki/execute">Execute</a> ⍎ it. <a class="reference external" href="https://xpqz.github.io/learnapl/manip.html?highlight=enlist#ravel-catenate-enlist-member">Flattening</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> any nested arrays and <a class="reference external" href="https://aplwiki.com/wiki/first">Picking</a> ⊃ the first element which should be the 1 we concatenated to the front in Step 1.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">0::0⋄</span></code> we use the same Error Guard as in Step 3 of ND to check for unpaired parenthesis.</p></li>
 </ol>
-<p><strong>Glyphs Used:</strong>
-<a class="reference external" href="https://aplwiki.com/wiki/Index_Of">Index of</a> <code class="docutils literal notranslate"><span class="pre">⍳</span></code>
-<a class="reference external" href="https://xpqz.github.io/learnapl/indexing.html#bracket-indexing">Bracket Indexing</a>  [ ]  - Mapping
-<a class="reference external" href="https://aplwiki.com/wiki/Mix">Mix</a>  <code class="docutils literal notranslate"><span class="pre">↑</span></code>
-<a class="reference external" href="https://aplwiki.com/wiki/Rank_(operator)#Merge_axes">Merge Axis</a>  ,⍤
-<a class="reference external" href="https://aplwiki.com/wiki/Over">Over</a>  <code class="docutils literal notranslate"><span class="pre">⍥</span></code>
-<a class="reference external" href="https://aplwiki.com/wiki/Enclose">Enclose</a> <code class="docutils literal notranslate"><span class="pre">⊂</span></code> - creates a nested scalar by wrapping its argument under one level of nesting
-<a class="reference external" href="https://aplwiki.com/wiki/Outer_Product">Outer Product</a> <code class="docutils literal notranslate"><span class="pre">∘.</span></code>  - using a comparison <code class="docutils literal notranslate"><span class="pre">∘.=</span></code>
-<a class="reference external" href="https://aplwiki.com/wiki/Catenate">Laminate</a>  <code class="docutils literal notranslate"><span class="pre">⍪</span></code> Catenate First - Add a line to a matrix
-<a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduce</a> <code class="docutils literal notranslate"><span class="pre">⌿</span></code> Vertical Minus Reduction
-<a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a> <code class="docutils literal notranslate"><span class="pre">∘</span></code>
-<a class="reference external" href="https://xpqz.github.io/cultivations/CodeManagement.html?highlight=vr#visual-representation-vr">Vector Representation</a> - ⎕VR<code class="docutils literal notranslate"><span class="pre">[Rank](https://aplwiki.com/wiki/Rank_(operator))</span> </code>⍤<code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">applies</span> <span class="pre">its</span> <span class="pre">left</span> <span class="pre">operand</span> <span class="pre">function</span> <span class="pre">to</span> <span class="pre">cells</span> <span class="pre">of</span> <span class="pre">its</span> <span class="pre">arguments</span> <span class="pre">specified</span> <span class="pre">by</span> <span class="pre">its</span> <span class="pre">right</span> <span class="pre">operand</span> <span class="pre">array.</span>&#160; <span class="pre">[Identity](https://aplwiki.com/wiki/Identity)</span></code>⊢<code class="docutils literal notranslate"><span class="pre">[Reshape](https://aplwiki.com/wiki/Reshape)</span></code>⍴<code class="docutils literal notranslate"><span class="pre">[Commute](https://aplwiki.com/wiki/Commute)</span></code>⍨<code class="docutils literal notranslate"> <span class="pre">-</span> <span class="pre">aka</span> <span class="pre">Selfie</span> <span class="pre">or</span> <span class="pre">Swap</span> <span class="pre">[Tally](https://aplwiki.com/wiki/Tally)</span></code>≢<code class="docutils literal notranslate"><span class="pre">[Each](https://aplwiki.com/wiki/Each)</span></code>¨<code class="docutils literal notranslate"><span class="pre">[Scan](https://aplwiki.com/wiki/Scan)</span></code>+`  - Plus Scan
-<a class="reference external" href="https://aplwiki.com/wiki/Add#Reduction">Sum</a> <code class="docutils literal notranslate"><span class="pre">+/</span></code> - <a class="reference external" href="https://aplwiki.com/wiki/Reduction" title="Reduction">Reduction</a> with Add gives the sum of the whole list.
-<a class="reference external" href="https://aplwiki.com/wiki/And">And</a> <code class="docutils literal notranslate"><span class="pre">∧</span></code> - tests if both arguments are true: it returns 1 if both are true (1) and 0 if one or both are false (0)
-<a class="reference external" href="https://aplwiki.com/wiki/Nor">Nor</a> <code class="docutils literal notranslate"><span class="pre">⍱</span></code> - tests if neither argument is true: it returns 1 if both are false (0) and 0 if at least one is true (1)
-<a class="reference external" href="https://aplwiki.com/wiki/Enlist">Enlist</a>  <code class="docutils literal notranslate"><span class="pre">∊</span></code> - Enlist flattens over all layers of nesting
-<a class="reference external" href="https://aplwiki.com/wiki/Intersection">Intersection</a>  <code class="docutils literal notranslate"><span class="pre">∩</span></code>
-<a class="reference external" href="https://aplwiki.com/wiki/match">Match</a> <code class="docutils literal notranslate"><span class="pre">≡</span></code>
-<a class="reference external" href="https://aplwiki.com/wiki/Power_(operator)">Power Match</a>  <code class="docutils literal notranslate"><span class="pre">⍣≡</span></code> - Iterating until a fixed point is reached.
-<a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a> <code class="docutils literal notranslate"><span class="pre">⍤</span></code> - takes two (monadic) functions and glues them together.  Uses the left operand to process the right</p>
-<p><mark style="background: #BBFABBA6;">Regular Expressions</mark>
-<a class="reference external" href="https://aplwiki.com/wiki/Variant">Variant</a> <code class="docutils literal notranslate"><span class="pre">⍠</span></code> - Switch Regex to plain text
-<a class="reference external" href="https://aplwiki.com/wiki/find">Find</a> <code class="docutils literal notranslate"><span class="pre">⍷</span></code>
-<a class="reference external" href="https://aplwiki.com/wiki/rotate">Rotate</a> <code class="docutils literal notranslate"><span class="pre">⌽</span></code>
-<a class="reference external" href="https://aplwiki.com/wiki/or">Or</a> <code class="docutils literal notranslate"><span class="pre">∨</span></code>
-<a class="reference external" href="https://aplwiki.com/wiki/Replicate">Compress</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> -  Outside of APL, <a class="reference external" href="https://en.wikipedia.org/wiki/filter_(higher-order_function)" title="wikipedia:filter (higher-order function)">filter</a> typically provides the functionality of Compress
-<a class="reference external" href="https://aplwiki.com/wiki/execute">Execute</a> ⍎
-<a class="reference external" href="https://aplwiki.com/wiki/Statement_separator">Diamond</a> ⋄ - Statement Seperator
-<a class="reference external" href="https://aplwiki.com/wiki/format">Format</a> ⍕ - Flatten
-<a class="reference external" href="https://aplwiki.com/wiki/first">First</a> ⊃</p>
-<p><strong>Concepts Used:</strong>
-<a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Function</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduction</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Train#3-trains">Fork</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Dfns_workspace">Dfns Workspace</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Boolean#Boolean_functions">Boolean Functions</a>
-<a class="reference external" href="https://en.wikipedia.org/wiki/Logical_conjunction">Logical Conjunction</a>
-<a class="reference external" href="https://en.wikipedia.org/wiki/Logical_NOR">Logical Nor</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Train#Problems_caused_by_function-operator_overloading">Fork and Atop Problem</a>
-<a class="reference external" href="https://xpqz.github.io/cultivations/Regex.html">Regular Expressions</a>
-<a class="reference external" href="https://en.wikipedia.org/wiki/Intersection_(set_theory)">Intersection</a>
-<a class="reference external" href="https://aplwiki.com/wiki/Dfn#Error-guards">Error Guard</a> <code class="docutils literal notranslate"><span class="pre">::</span></code>
-<a class="reference external" href="https://aplwiki.com/wiki/Performance#Performant_usage">Performance</a>
-<a class="reference external" href="http://dfns.dyalog.com/n_cmpx.htm">CMPX</a></p>
-<p><strong>Reference:</strong>
-<a class="reference external" href="http://archive.vector.org.uk/art10501480">Sixteen APL Amuse-Bouches</a> - #5
-<a class="reference external" href="https://www.regular-expressions.info/">Learn Regular Expressions</a></p>
-<p><strong>Transcript:</strong></p>
+</section>
+</section>
+<section id="glyphs-used">
+<h2><strong>Glyphs Used:</strong><a class="headerlink" href="#glyphs-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Index_Of">Index of</a> <code class="docutils literal notranslate"><span class="pre">⍳</span></code></p></li>
+<li><p><a class="reference external" href="https://xpqz.github.io/learnapl/indexing.html#bracket-indexing">Bracket Indexing</a>  [ ]  - Mapping</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Mix">Mix</a>  <code class="docutils literal notranslate"><span class="pre">↑</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Rank_(operator)#Merge_axes">Merge Axis</a>  ,⍤</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Over">Over</a>  <code class="docutils literal notranslate"><span class="pre">⍥</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Enclose">Enclose</a> <code class="docutils literal notranslate"><span class="pre">⊂</span></code> - creates a nested scalar by wrapping its argument under one level of nesting</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Outer_Product">Outer Product</a> <code class="docutils literal notranslate"><span class="pre">∘.</span></code>  - using a comparison <code class="docutils literal notranslate"><span class="pre">∘.=</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Catenate">Laminate</a>  <code class="docutils literal notranslate"><span class="pre">⍪</span></code> Catenate First - Add a line to a matrix</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduce</a> <code class="docutils literal notranslate"><span class="pre">⌿</span></code> Vertical Minus Reduction</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a> <code class="docutils literal notranslate"><span class="pre">∘</span></code></p></li>
+<li><p><a class="reference external" href="https://xpqz.github.io/cultivations/CodeManagement.html?highlight=vr#visual-representation-vr">Vector Representation</a> -<code class="docutils literal notranslate"><span class="pre">⎕VR</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Rank_(operator)">Rank</a>  <code class="docutils literal notranslate"><span class="pre">⍤</span></code> - applies its left operand function to cells of its arguments specified by its right operand array.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity</a> <code class="docutils literal notranslate"><span class="pre">⊢</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code>  - aka Selfie or Swap</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> <code class="docutils literal notranslate"><span class="pre">≢</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Each">Each</a> <code class="docutils literal notranslate"><span class="pre">¨</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Scan">Scan</a> <code class="docutils literal notranslate"><span class="pre">+\</span></code>  - Plus Scan</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Add#Reduction">Sum</a> <code class="docutils literal notranslate"><span class="pre">+/</span></code> - <a class="reference external" href="https://aplwiki.com/wiki/Reduction" title="Reduction">Reduction</a> with Add gives the sum of the whole list.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/And">And</a> <code class="docutils literal notranslate"><span class="pre">∧</span></code> - tests if both arguments are true: it returns 1 if both are true (1) and 0 if one or both are false (0)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Nor">Nor</a> <code class="docutils literal notranslate"><span class="pre">⍱</span></code> - tests if neither argument is true: it returns 1 if both are false (0) and 0 if at least one is true (1)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Enlist">Enlist</a>  <code class="docutils literal notranslate"><span class="pre">∊</span></code> - Enlist flattens over all layers of nesting</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Intersection">Intersection</a>  <code class="docutils literal notranslate"><span class="pre">∩</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/match">Match</a> <code class="docutils literal notranslate"><span class="pre">≡</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Power_(operator)">Power Match</a>  <code class="docutils literal notranslate"><span class="pre">⍣≡</span></code> - Iterating until a fixed point is reached.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a> <code class="docutils literal notranslate"><span class="pre">⍤</span></code> - takes two (monadic) functions and glues them together.  Uses the left operand to process the right</p></li>
+</ul>
+</section>
+<section id="regular-expressions">
+<h2>Regular Expressions<a class="headerlink" href="#regular-expressions" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Variant">Variant</a> <code class="docutils literal notranslate"><span class="pre">⍠</span></code> - Switch Regex to plain text</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/find">Find</a> <code class="docutils literal notranslate"><span class="pre">⍷</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/rotate">Rotate</a> <code class="docutils literal notranslate"><span class="pre">⌽</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/or">Or</a> <code class="docutils literal notranslate"><span class="pre">∨</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Replicate">Compress</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> -  Outside of APL, <a class="reference external" href="https://en.wikipedia.org/wiki/filter_(higher-order_function)" title="wikipedia:filter (higher-order function)">filter</a> typically provides the functionality of Compress</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/execute">Execute</a> ⍎</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Statement_separator">Diamond</a> ⋄ - Statement Seperator</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/format">Format</a> ⍕ - Flatten</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/first">First</a> ⊃</p></li>
+</ul>
+</section>
+<section id="concepts-used">
+<h2><strong>Concepts Used:</strong><a class="headerlink" href="#concepts-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Function</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduction</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Train#3-trains">Fork</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfns_workspace">Dfns Workspace</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Boolean#Boolean_functions">Boolean Functions</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Logical_conjunction">Logical Conjunction</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Logical_NOR">Logical Nor</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Train#Problems_caused_by_function-operator_overloading">Fork and Atop Problem</a></p></li>
+<li><p><a class="reference external" href="https://xpqz.github.io/cultivations/Regex.html">Regular Expressions</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Intersection_(set_theory)">Intersection</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfn#Error-guards">Error Guard</a> <code class="docutils literal notranslate"><span class="pre">::</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Performance#Performant_usage">Performance</a></p></li>
+<li><p><a class="reference external" href="http://dfns.dyalog.com/n_cmpx.htm">CMPX</a></p></li>
+</ul>
+</section>
+<section id="reference">
+<h2><strong>Reference:</strong><a class="headerlink" href="#reference" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://archive.vector.org.uk/art10501480">Sixteen APL Amuse-Bouches</a> - #5</p></li>
+<li><p><a class="reference external" href="https://www.regular-expressions.info/">Learn Regular Expressions</a></p></li>
+</ul>
+</section>
+<section id="transcript">
+<h2><strong>Transcript:</strong><a class="headerlink" href="#transcript" title="Link to this heading">#</a></h2>
 <p>Hello and welcome to this fourth APL Quest. Check APL Wiki for details. Today’s Quest is called ‘Keeping Things in Balance’. Here, we take a character vector and it has parentheses in it. We need to check whether the parentheses are balanced, so it looks like a normal mathematical expression, or whether things are wrong. Say we begin with closing parentheses that aren’t there, or we end with some open parenthesis.</p>
 <p>Let’s get started. Let’s start by having a test data just to see how this works. So, we create a character vector, and let’s put in some expression there. For example, something like this: okay this is a balanced one.</p>
 <p>And the approach we’re going to start off with today is that we’re going to find out where the depth of the parenthesis nesting changes, and there are a few different ways we can do that. Then later, we’ll move on to actually finding out whether or not the parentheses are balanced or not.</p>
@@ -703,6 +806,7 @@ Comment:</p>
 <p>Finally, we can use the nesting depth of parentheses and use a stranding of parenthesis to try and parse the expression. We can flatten it in case it’s nested, and see whether or not that works.</p>
 <p>These are just some fun solutions of abusing the system.</p>
 <p>Thank you very much for watching</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -741,6 +845,51 @@ Comment:</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-solutions"><strong>Example Solutions:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parenthesis-depth-changes"><strong>Parenthesis depth changes</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#di"><strong>Di</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do"><strong>Do</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#df"><strong>Df</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance"><strong>Performance</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#balanced"><strong>Balanced?</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ba">BA</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bn">BN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bns">BNS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f">F</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#find-and-replace-regular-expressions"><strong>Find and Replace</strong> - Regular Expressions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#re">RE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#re0">RE0</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fi">FI</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abusing-apl-s-parser"><strong>Abusing APL’s Parser</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nd">ND</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#np">NP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used"><strong>Glyphs Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions">Regular Expressions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used"><strong>Concepts Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reference"><strong>Reference:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript"><strong>Transcript:</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
