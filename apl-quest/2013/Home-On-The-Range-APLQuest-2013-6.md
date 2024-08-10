@@ -1,99 +1,239 @@
+# [Home on the range 2013-6](https://problems.tryapl.org/psets/2013.html?goto=P6_Home_On_The_Range)
 
-# Home on the range 2013-6
+**Problem:** Write a dfn which returns the magnitude of the range (i.e. the difference between the lowest and highest values) of a numeric array.
 
-Welcome to the APL Quest! Today's discussion revolves around a problem from the [2013 round of the APL Problem Solving Competition](https://problems.tryapl.org/psets/2013.html?goto=P6_Home_On_The_Range). The task is straightforward: finding the numeric range of an array, defined as the highest value minus the lowest value. However, there's a specific edge case we need to address, and we'll explore some generalizations along the way.
+**Video:** https://youtu.be/36HlHsEjUIQ
+**Code:** https://github.com/abrudz/apl_quest/blob/main/2013/6.apl
 
-## Generating Sample Data
+## **Example Solutions:**
 
-Let’s start by generating some sample data in the form of a numeric vector. The highest value in this vector is determined using the maximum reduction function, while the lowest value is found using the minimum reduction function.
 
-```apl
-vector ← 1 3 5 7 9
-highest ← ⌈/ vector   ⍝ Maximum value
-lowest ← ⌊/ vector    ⍝ Minimum value
-numeric_range ← highest - lowest
+
+## Non empty Vectors
+
+### A
+
+```APL
+V ←¯1 4 1 5 9 2 6 ⍝ Test Data
+A ← (⌈/-⌊/), ⍝ Tacit - ravel the array and the take the difference of the max and min {(⌈/,⍵)-(⌊/,⍵)}
 ```
 
-This gives us the basic numeric range calculation.
+1. `,` We [Ravel](https://aplwiki.com/wiki/Ravel) `,` the array first to convert it into a [vector](https://aplwiki.com/wiki/Vector)  so that it works on a [Matrix](https://aplwiki.com/wiki/Rank), a two dimensional array.  
+2. Then we apply a [fork](https://aplwiki.com/wiki/Train#3-trains) The two outer functions are applied first, and their results are used as arguments to the middle function.
+3. `⌈/-⌊/` The two outer arguments are [Maximum Reduce](https://aplwiki.com/wiki/Maximum) `⌈/`  returns the largest element of a vector and [Minimum Reduce](https://aplwiki.com/wiki/Minimum) `⌊/` returns the smallest element of a vector. 
+4. `-` The middle function is [Subtract](https://aplwiki.com/wiki/Subtract). 
 
-## Implementing the Function
+### B
 
-Next, we’ll encapsulate this logic within a function. The function will compute the numeric range using the maximum and minimum reductions:
-
-```apl
-numeric_range_function ← { (⌈/⍵) - (⌊/⍵) }  ⍝ Function for non-empty vectors
+```APL
+B ← (⌈/∘,∘.-⍨) ⍝ {(⌈/)(,(⍵(∘.-)⍵))}
 ```
 
-With this function, we can easily find the numeric range for our vector, and it seems to work well. However, we soon encounter a limitation:
+1.  `∘.-` Using our vector we create a Subtraction Table ([Outer Product](https://aplwiki.com/wiki/Outer_Product) `∘.`). This will give us all the possible differences between values.
+2.  `⌈/,⍵∘.-⍵` We then ravel this and [Maximum Reduce](https://aplwiki.com/wiki/Maximum) `⌈/,` returning the largest value in our table. 
+3.  To make this [Tacit](https://aplwiki.com/wiki/Tacit_programming) we [Bind](https://aplwiki.com/wiki/Bind) `∘` the Maximum Reduce with the Ravel `⌈∘,` and use [Commute](https://aplwiki.com/wiki/Commute) `∘.-⍨`  to put our argument on either side of the Outer Product. 
 
-### Handling Matrices
+## Empty Arrays
 
-The function we created needs to work on any array, including matrices. For example, if we construct a matrix that has two rows and four columns filled with the same numbers as our vector:
+### Comments
 
-```apl
-matrix ← 1 3 5 7 9
-matrix ← 1 3 5 7 9  ⍝ Create a matrix
+```APL
+⌈/⍬ ⍝ Maximum of empty vector is smallest representable number. Minimum reduction produces the opposite value.
+1⌈≢ ⍝ is the length larger than one. Using this as a check to make sure it is not an empty array. Taking this result returns the entire array or zero if empty. 
 ```
 
-When we apply our function on the matrix, it returns the numeric range for each row, but we want the range for the entire array. We can resolve this by raveling the array first:
+### C
 
-```apl
-numeric_range_function ← { (⌈/-⌊/),⍵ }  ⍝ Full range for the entire array
+```APL
+C ←{0∊⍴⍵:0 ⋄ (⌈/-⌊/),⍵} ⍝ If zero is a member of the shape of the array return zero. Otherwise find the range.
 ```
 
-This ensures our function will give us the full range.
+1.  [Membership](https://aplwiki.com/wiki/Membership) `∊` - tests if each of the elements of the left [argument](https://aplwiki.com/wiki/Argument "Argument") appears as an element of the right argument. 
+2.  [Shape](https://aplwiki.com/wiki/Shape) `⍴` - returns the _shape_ of its argument array
+3.  `0∊⍴⍵` So we are testing if 0 is a member of the shape of the array `⍵`. 
+4.  The [Guard](https://aplwiki.com/wiki/Dfn#Guards) :  Returns 0 if the left argument is true. 
+5.  [Diamond](https://aplwiki.com/wiki/Statement_separator) ⋄ - Statement Seperator divides the two statements. The left one (with the guard) is evaluated first. 
+6.  `(⌈/-⌊/),⍵` Once we have confirmed that the vector is not an empty array we then move on to Solution A. It's details are above. 
 
-### Edge Case: Empty Arrays
+### D
 
-A critical requirement is that our function must also work with empty arrays. When the function is applied to an empty vector, it raises a domain error instead of returning zero. This is because the maximum of an empty vector is treated as the smallest representable number in the numeric system.
-
-To rectify this, we can modify our function to check if the array is empty by examining its shape:
-
-```apl
-numeric_range_function ← {
-    0∊⍴⍵:0 ⋄ (⌈/-⌊/),⍵  ⍝ Return zero for empty arrays
-}
+```APL
+D ←(⊃⍤⌽-⊃){⍵[⍋⍵]}⍤, ⍝ {(⊃(⌽⍵))-(⊃⍵)} ⍵ is the sorted array. 
 ```
 
-Additionally, we could emphasize that:
+1. `⍵[⍋⍵]` Uses [Grade Up](https://aplwiki.com/wiki/Grade) `⍋` to generate an index from lowest to highest. We can then [Sort](https://xpqz.github.io/learnapl/manip.html?highlight=sort#grade-up-down) `data[⍋data]` the array using that [index](https://xpqz.github.io/learnapl/indexing.html#bracket-indexing). 
+2. `(⊃⍤⌽-⊃)` Now that it's been sorted we can subtract the first element from the last. Here we use [First](https://aplwiki.com/wiki/First) `⊃`  to grab the first element. We then use [Atop](https://aplwiki.com/wiki/Atop_(operator)) `⍤`  to apply [First](https://aplwiki.com/wiki/First) `⊃` to the result of the [Rotate](https://aplwiki.com/wiki/Rotate) `⌽`  See the [Dfn](https://aplwiki.com/wiki/Dfn) in the comment for more details. 
 
-```apl
-⌈/⍬ ⍝ Maximum of empty vector is the smallest representable number. Minimum reduction produces the opposite value.
-1⌈≢ ⍝ Check if the length is larger than one. 
+### E
+
+```APL 
+E ←((⌈/-⌊/)⊢↑⍨1⌈≢), ⍝ {(1⌈(≢(,⍵)))↑(,⍵)}
 ```
 
-This guarantees that if the array's shape includes a zero, the function will return a range of zero.
+1. `1⌈≢,` [Tally](https://aplwiki.com/wiki/Tally) `≢`  the [Raveled](https://aplwiki.com/wiki/Ravel) `,` array. Then do a [Maximum](https://aplwiki.com/wiki/Maximum) `⌈`  with 1 as the left argument. If the array is length zero we get 1. Otherwise we get the tally of the array.
+2. `⊢↑⍨` [Take](https://aplwiki.com/wiki/Take) `↑` the result. If the array is empty it [Overtakes](https://aplwiki.com/wiki/Take#Overtaking) `↑`  (pads with a zero) otherwise it just returns the array. We use [Identity ](https://aplwiki.com/wiki/Identity)`⊢` and [Commute](https://aplwiki.com/wiki/Commute) `⍨` to make the solution Tacit. See the Dfn in the comments. 
+3. `(⌈/-⌊/)` We then move on to Solution A passing it the result of take. It's details are above. 
 
-## Further Optimizations
+## Using Reshape
 
-There are several more clever methods to achieve the same results efficiently:
+### F
 
-1. **Sorting Method**: By sorting the array after raveling, we can easily access the last and first elements to calculate the range:
-
-```apl
-numeric_range_function ← { (⊃⍵[⍋⍵]) - (⊃⍵) }  ⍝ Last element minus First element
+```APL
+,, ⍝ Catenate the ravel
+F ← (⌈/-⌊/)⊢⍴⍨1⌈×/⍤⍴ 
+⍝ {((⌈/)((1⌈((×/)(⍴⍵)))⍴⍵))-((⌊/)((1⌈((×/)(⍴⍵)))⍴⍵))}
 ```
 
-2. **Appending a Default Value**: Instead of checking the shape and then appending a zero, we can simply append a conditionally generated zero based on the array’s emptiness:
+1. `1⌈×/⍤⍴` [Shape](https://aplwiki.com/wiki/Shape) `⍴` returns the _shape_ of its argument array. [Times Reduction](https://aplwiki.com/wiki/Reduce)  `×/`  [Maximum](https://aplwiki.com/wiki/Maximum) `⌈`  with 1 as the left argument. If the array is length zero we get 1. 
+2. `⊢⍴⍨` [Shape](https://aplwiki.com/wiki/Shape) `⍴` returns the _shape_ of its argument array. 
+3. `(⌈/-⌊/)` We then move on to Solution A passing it the result of Shape. It's details are above. 
+4. We use [Identity ](https://aplwiki.com/wiki/Identity)`⊢`  [Commute](https://aplwiki.com/wiki/Commute) `⍨` and [Atop](https://aplwiki.com/wiki/Atop_(operator)) `⍤` to make the solution Tacit. See the Dfn in the comments. 
 
-```apl
-numeric_range_function ← {
-    (0∊⍴⍵:0 ⋄ (⌈/-⌊/),,0/⍨0∊⍴) ⍝ Appending default value
-}
+### G
+
+```APL
+G ← (⌈/-⌊/),,0/⍨0∊⍴ 
+⍝ {((⌈/)((,⍵),((0∊(⍴⍵))/0)))-((⌊/)((,⍵),((0∊(⍴⍵))/0)))}
 ```
 
-3. **Using Enlist**: When dealing with complex arrays, the `enlist` function can flatten them. This can help prevent structural issues that may arise with nested vectors.
+1. `0/⍨0∊⍴` [Shape](https://aplwiki.com/wiki/Shape) `⍴` returns a [vector](https://aplwiki.com/wiki/Vector "Vector") of lengths of the array along each [axis](https://aplwiki.com/wiki/Axis "Axis"). 
+2. [Membership]([Membership - APL Wiki](https://aplwiki.com/wiki/Membership) `∊` Tests if each of the elements of the left argument appears in the right argument.  If 0 appears in the shape of the array this returns a 1 for true.
+3. [Replicate ](https://aplwiki.com/wiki/Replicate) `/` will then add a zero 1 time. If membership is false it returns a 0 so replicate does not add a zero. 
+4. `,,0/` [Catenate](https://aplwiki.com/wiki/Catenate) `,`  add the zero (or nothing) to the [Ravel](https://aplwiki.com/wiki/Ravel) `,`  of the array. 
+5. `(⌈/-⌊/)` We then move on to Solution A passing it the result of Shape. It's details are above. 
 
-```apl
-numeric_range_function ← {
-    ((⌈/-⌊/)⊢↑⍨1⌈≢)∊ ⍝ Handle nested arrays
-}
+### H
+
+```APL
+H ← (⌈/-⌊/),,0∩⍴ 
+⍝ {((⌈/)((,⍵),(0∩(⍴⍵))))-((⌊/)((,⍵),(0∩(⍴⍵))))}
 ```
 
-This way, we can leverage all potential numeric arrays while ensuring consistent output.
+1. `0∩⍴` [Intersection](https://aplwiki.com/wiki/Intersection) `∩` -For each element to the left, keep it if it’s also in the right. So if there is a zero in the [Shape](https://aplwiki.com/wiki/Shape) `⍴` we keep it and Catentate it to ravel of the array. 
 
-## Conclusion
+## Nested Arrays
 
-Through exploring various methods to calculate numeric range, we’ve tackled edge cases and considered a diverse range of inputs. Thank you for joining today’s APL quest. I look forward to seeing you next week for more exploration into the world of APL!
+### Examples
 
-For further study, you can refer to the [video explanation](https://youtu.be/36HlHsEjUIQ) and the complete code for this example available on [GitHub](https://github.com/abrudz/apl_quest/blob/main/2013/6.apl).
+```APL 
+I ← ((⌈/-⌊/)⊢↑⍨1⌈≢ )∊ ⍝ adds enlist to solution E
+J ← ((⌈/-⌊/)⊢,0/⍨⍬≡⊢)∊ ⍝ Checks if zero matches the Identity
+K ← ((⌈/-⌊/)⊢,0∩⍴)∊ ⍝ adds enlist to solution H
+```
+
+### I
+
+1. [Enlist](https://aplwiki.com/wiki/enlist) `∊` - Flattens over all levels of nesting
+2. [Match](https://aplwiki.com/wiki/match) `≡` - indicates whether the left and right [argument](https://aplwiki.com/wiki/Argument "Argument") arrays are identical
+
+## **Comment:** 
+
+```APL
+⌈/⍬ ⍝ Maximum of empty vector is smallest representable number. Minimum reduction produces the opposite value.
+⊃⍤⌽ ⍝ Choose the last element of a vector
+1⌈≢ ⍝ is the length larger than one. Using this as a check to make sure it is not an empty array. Taking this result returns the entire array or zero if empty. 
+,, ⍝ Catenate the ravel
+
+	I←(⌈/-⌊/), ⍝ Tacit - ravel the array and the take the difference of the max and min
+	J←{0∊⍴⍵:0 ⋄ (⌈/-⌊/),⍵} ⍝ If zero is a member of the shape of the array return zero. Otherwise find the range. 
+	K←(⌈/-⌊/),,42/⍨0∊⍴ ⍝ If zero is a member of the shape of the array return 42. Otherwise return nothing. Catenate the result with the ravel of the array (See I). Take the difference of the max and min.  
+
+```
+
+## **Glyphs Used:**
+
+- [Maximum Reduce](https://aplwiki.com/wiki/Maximum) `⌈/` - returns the largest element of a [vector](https://aplwiki.com/wiki/Vector "Vector")
+- [Minimum Reduce](https://aplwiki.com/wiki/Minimum) `⌊/` - returns the smallest element of a [vector](https://aplwiki.com/wiki/Vector "Vector")
+- [Ravel](https://aplwiki.com/wiki/Ravel) `,` - an array's ravel is the [vector](https://aplwiki.com/wiki/Vector "Vector") containing all its [elements](https://aplwiki.com/wiki/Elements "Elements") in [ravel order](https://aplwiki.com/wiki/Ravel_order "Ravel order").
+- [Over](https://aplwiki.com/wiki/over) `⍥` - both arguments are pre-processed using the right operand
+- [Commute](https://aplwiki.com/wiki/Commute) `⍨`  - aka Selfie or Swap
+- [Membership](https://aplwiki.com/wiki/Membership) `∊` - tests if each of the elements of the left [argument](https://aplwiki.com/wiki/Argument "Argument") appears as an element of the right argument.
+- [Shape](https://aplwiki.com/wiki/Shape) `⍴` - returns the _shape_ of its argument array
+- [Guards](https://aplwiki.com/wiki/Dfn#Guards) : - Return result
+- [Diamond](https://aplwiki.com/wiki/Statement_separator) ⋄ - Statement Seperator
+- [Each](https://aplwiki.com/wiki/Each) `¨` - Apply to each element
+- [Grade ](https://aplwiki.com/wiki/Grade) `⍋ ⍒`  - ⍋ 'foo' 'bar' 'baz'  - **Example** resulting in 2 3 1 means( the second item is first, The 3rd item is second, The first item is third.) This can then be used to index into the array and alphabeticlaly Sort it. 
+- [Pick](https://mastering.dyalog.com/Nested-Arrays-Continued.html?highlight=pick#pick) `⊃` - Left argument is path, right argument is data. 
+- [Atop](https://aplwiki.com/wiki/Atop_(operator)) `⍤` - Uses the left argument to process the result of the right. 
+- [Tally](https://aplwiki.com/wiki/Tally) `≢` - Length of the array
+- [Take](https://aplwiki.com/wiki/Take) `↑` - used to get the first few, or last few, elements of a vector
+- [Identity ](https://aplwiki.com/wiki/Identity)`⊢` functions and operators rather than names are used to direct the flow of arguments
+- [Replicate](https://xpqz.github.io/cultivations/Functions7.html?#replicate) `/` - copies each [element](https://aplwiki.com/wiki/Element "Element") of the right [argument](https://aplwiki.com/wiki/Argument "Argument") a given number of times
+- [Catenate](https://aplwiki.com/wiki/Catenate) `,` - combines two arrays along a shared [axis](https://aplwiki.com/wiki/Axis "Axis"), left to right
+- [Intersection](https://aplwiki.com/wiki/Intersection) `∩` - removes elements from the left which are not present in the right. Duplicates in the right do not matter.
+- [Enlist](https://aplwiki.com/wiki/enlist) `∊` - Flattens over all levels of nesting
+- [Match](https://aplwiki.com/wiki/match) `≡` - indicates whether the left and right [argument](https://aplwiki.com/wiki/Argument "Argument") arrays are identical
+
+## **Concepts Used:**
+
+- [Ravel Order](https://aplwiki.com/wiki/Ravel_order)
+- [Dfn](https://aplwiki.com/wiki/Dfn)
+- [Tacit Programming](https://aplwiki.com/wiki/Tacit_programming)
+- [Outer Product](https://aplwiki.com/wiki/Outer_Product) `∘.`
+- [Sort](https://xpqz.github.io/learnapl/manip.html?highlight=sort#grade-up-down) `data[⍋data]` 
+- [Overtake](https://aplwiki.com/wiki/Take#Overtaking) `↑` - A length larger than the argument length causes [fills](https://aplwiki.com/wiki/Fill_element "Fill element") to be inserted
+- [Fork](https://aplwiki.com/wiki/Train#3-trains)
+
+## **Transcript:**
+
+Hi and welcome to the APL Quest-C APL Wiki. Today's quest is the sixth problem from the 2013 round of the APL Problem Solving Competition. It's a very simple problem of just finding out the numeric range of an array, that is, the highest value minus the lowest value. But we'll see that there is a special edge case that we need to take action for, and we'll look into some generalization as well.
+
+Without further ado, let's generate some data we can work on. Here's a numeric vector, and the highest value is the maximum reduction of that vector, and the lowest value is the minimum reduction over the vector. Then we can take those two values and subtract the smaller from the larger, and we get the full numeric range. So that's really all there is to the basic problem.
+
+Let's put this into a function, and we can write the max reduction of omega minus the min reduction of omega. There's a redundant parenthesis here, but that's mostly just for clarity and to make the expression symmetric. We can try this on v, and that works great.
+
+Now, there are a couple of problems with this. One is that it has to work on any array. So let's make a matrix which is two rows and four columns containing the same numbers as v. It looks like this. Now if we were to apply our function here on m instead, then it doesn't work because it gives us the numeric range for every row. We want the numeric range for the entire array, and we can solve that by raveling the array first. So we revel it here, remember it here, and this gives us the full range as we can see here. We are reveling twice, which is quite unnecessary, and we can actually in a neat way break this reveling out of the parenthesis.
+
+So let's get rid of the ravel from here and the rev from here, and we can actually switch to a tested form quite easily. So we just say the max minus the min off the ravel of the array. Here we go. 
+
+We can get this even further because now we can observe that we actually have a full tested function and a top simply wrapped in a different wrapper so we can completely get rid of that syntax and it still works. We can give this a name then see how that works. Of course, it still works on our vector. It also works on a scalar where the range is zero because we revel in the largest minus the smallest is and it's the same number so it gives zero.
+
+So this is a good method, and one method that isn't so good but it's kind of fun to look at if we take our vector and do an outer product but instead of multiplication we're doing an outer subtraction so that means it's a subtraction table that gives all the possible differences between values and then the full range is then the largest number in this table. So we can take the maximum of the level of that and that gives us also the range. Not a good way to do it, but it works.
+
+So we could make a function out of this by saying the maximum over and ravel of the outer and subtraction selfie, and in fact, this will work on our matrix as well. It just generates an even higher rank array as an intermediary step, but there's a catch. According to the example cases in the problem specification, the function also has to work on empty arrays, and that doesn't work. Why doesn't it work?
+
+Well, we can try our original function. 
+
+Let's go up and define that again. We have it right here, this was this one. If you try that on say the empty vector, we get a domain error and we're supposed to get a zero instead, as it is to say, there is no range. The problem is that the maximum over an empty vector is the smallest representable number in the current numeric system. So these are 64-bit floats and this is the smallest representable 64-bit float.
+
+Why is that? That is because the reduction over an empty axis gives the identity element for that operation. So for plus, identity element is the value that you can plus with without changing anything, that would be zero. For multiplication, what you can multiply with is a one and for max, the only number that you can do a max with and make sure that your original numbers becomes the result so it's an identity operation, nothing changes, is the smallest representable number or a negative infinity if that's available. Similarly, if we do a minimum reduction, we get the max representable number. Trying to subtract this very small number from this very large number goes beyond the range of the floating point system that we are using and we get the domain error. So, this system doesn't quite work.
+
+How can we solve it? Well, one simple way to do it is simply to say, is our array empty? Now we can't just compare to the empty vector because there might be multiple x's, say we could have a zero row two column matrix of numbers which isn't visible but it sure exists. What we can do is that we can take its shape and there is a zero there. If there is a zero anywhere in the shape of an array, it's called an empty array and then the range has to be zero. So, we can write this function as: if zero is a member of the shape of the array then return zero, otherwise we take the maximum minus the minimum of the ravel of the array.
+
+Now we can apply this on each of our arrays: the vector, the matrix, the empty vector, and why not our zero by two matrix as well, and now it works. So, this is a valid solution and it's very clear. It's probably the clearest solution that there is.
+
+We can be a bit more clever about this. First, for a fun solution but not an efficient one, we can sort the array first. Let's say we start with our matrix and then we revel the matrix and then we sort it. Then we know that the range is the last element minus the first element. So the last element can be written as the pick atop reverse minus the first element which is just a first pick, and that works. The reason I'm using this method for getting the first and last element is that if we try to pick the first element of an empty vector, then it coerces out a number. So that means that both of these terms would become zero, so we get zero minus zero, which is zero, and that's the correct result for the empty array. Even of course, if we have something like this, a matrix, because we revel first, it will work the same way.
+
+This is a solution, but not a very good one. In order to make it a full function, there are a couple of different ways we could do it. We could take this tested function here and put it inside the parenthesis, but as you can see, the color changes. That is because it ceases to use the sorting idiom, so things will run a bit slower but it works. If you want to preserve the speed of it, then we can just string things together using in the top. Either way, it could be in the top here or you could be in the top over here, or we can use all three of them. All of that works. All three are topped together.
+
+There are clever ways that we could do this, and for that, we need to think a little bit. Okay, so we have a matrix, and we need to ravel it and then we want to have a zero if the array is empty. Okay, how could we do that? So we can tally the reveled array, and then we can have a maximum with one. If the array is length zero, then we get one. Otherwise, we just get the length of the array. And then we can use this to take from the reveled array again.
+
+So now here it doesn't make a difference of course we can see that that gives our data as we expected if we do it on an empty vector then we end up overtaking by one and that pads with another zero at the end and then the rest of the procedure will be the same so we can say the maximum minus the minimum of the revel let's say we can write take this whole expression here we can write it like this and then we can go and simplify things a bit.
+
+We can turn all of this tested actually so we could ravel first and then we could apply a function to that where we use this value which is the length except it becomes one and we can take from that same thing so this is a possibility and now we don't need the braces anymore but we have three functions here so we need to atop at least one place so now we can this works and it works on empty arrays as well.  
+
+There's actually more we could we could do firstly for the syntax here and we instead of since we have three functions that we want to avoid we because of we have to do the explicit at the top we can take this which is a magnetic function and put inside the parenthesis as a left carriage on the strain so here is the original function we're applying it becomes a fork right here and then another fork and then finally in the top with this function here so that works as well and it gives us our results as we expect.
+
+What else can we do well observe that the ravel of an array gives us all the elements in a single vector how many elements well that's the product over the length of all the x's in that array so for our matrix the shape is this and that means that the product is how many elements we have very good so if we say that there are none so if there's any zero inside the shape then the product is going to be zero so we can take that the maximum of that will one and then we can simply use that to reshape their array itself so here when the array is empty.
+
+We reshape the empty array into a one element vector giving us just a one element vector with a zero, and if we used it on say our matrix, then this would be equivalent to reveling it. So we can put all this together and again say the maximum minus the minimum of the array itself reshaped by the maximum of one and the tally of the array when that entire thing is reveled, and this works.
+
+Another thing we can do is, since we're raveling anyway, then we can selectively append a zero, which will then be picked up by the maximum minimum, or it could actually be any other number that we add because it will be that same number minus itself, and then that the range is zero. How do we do this? Well, we have the condition zero is a member of the shape of this array, and you can see that here, and then we can use this to replicate a zero or any other number. So here we get a zero, but if the array isn't empty, then we get nothing, and we can then append that to the ravel of the array.
+
+So now we can write the revel over the array concatenated with this as a tested function. So here we do not add any zeros, but in an empty array, we do add it to the revel. So now we selectively add a zero when we need it or any other number it would be. We can use any other number as well, and then we can say the maximum minus the minimum of that, and then that gives us zero. Let's put this vector right here. There's no reason to find any other number, so this is another solution.
+
+Can we be even clever? Yes, because think about it. We want to add a zero if there is a zero in the shape, and any other number in the shape, we're not interested in only zeros. We could even be multiple zeros; it wouldn't matter because the maximum and minimum are not going to change, just a bunch of zeros, or actually any other number, but the important thing is that we add a number or more numbers when there's a zero in the shape. So how about just adding all the zeros from the shape?
+
+Okay, let's say we have this array two zero zero two, reshape zero. This is this invisible matrix, and then we take the intersection of zero with the shape of this. That gives us the zero. If our array wasn't empty, then there would be nothing there. If our array had multiple zeros in its shape, then we have the intersection of and of a single zero with all these numbers here, including the zeros, and so we get that single zero. So we can use this and concatenate this intersection.
+
+So we can write the maximum minus the minimum of the ravel concatenated with zero intersection of the shape, and that works. This is probably the most concise and way and a tested way of writing it.
+
+Now for going a little bit beyond the original question, which was just in a given numeric array, we could choose to understand it as giving any array that consists eventually of atomic numbers. How would that look? Well, we could split our matrix into a vector of vectors, and our method is not going to work anymore. We're going to get something completely unrelated to what we're looking for, and because our function just travels it and that doesn't open up the structure.
+
+But we do have a function called enlist, which is just like gravel but more powerful in that it completely takes any array and flattens it out to be a simple vector. So if we take our old solution of the maximum minus the minimum of the argument and we overtake with one maximum of the length and all of this applied not on the rebel but rather on the list, now it will work.
+
+And we can do exactly the same thing with our function up here that uses the intersection. The only important thing is that instead of just using the shape directly, we get rid of this ravel and move outside the whole expression this in list. So this is in list: if there is any zero in the intersection with the shape of that in list, then we concatenate that to the argument which is the enlisted argument, and then we compute the range as normal.
+
+However, at this point, when we've already made the enlist, we don't need to take the shape at all because we already know that this is a vector. And if it's a vector and it's empty, then it must be the empty numeric vector. So we can actually say that if the argument is the empty vector, then we add another number.
+
+So this is another way to do it, and of course, it works just fine to say the intersection with the shape or even with the tally would be just fine as well. And that's it. Thank you so much, and see you next week.
