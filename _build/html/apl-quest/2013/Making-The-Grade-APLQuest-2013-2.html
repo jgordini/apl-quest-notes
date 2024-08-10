@@ -487,7 +487,7 @@ document.write(`
 <h2>Example Solution<a class="headerlink" href="#example-solution" title="Link to this heading">#</a></h2>
 <section id="solution-f">
 <h3>Solution F<a class="headerlink" href="#solution-f" title="Link to this heading">#</a></h3>
-<p>First we compare all scores to 65, creating a boolean vector (1 for pass, 0 for fail). Then we sum this vector to get the number of passing grades. Finally, we divide by the total number of scores and multiply by 100 for the success percentage. In APL this looks like F.</p>
+<p>First we will compare all scores to 65, creating a boolean vector (1 for pass, 0 for fail). Then we sum this vector to get the number of passing grades. Finally, we divide by the total number of scores and multiply by 100 for the success percentage. In APL this looks like F.</p>
 <div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">100</span><span class="o">×</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍵</span><span class="o">≥</span><span class="m">65</span><span class="p">)</span><span class="o">÷≢</span><span class="bp">⍵</span><span class="kt">}</span>
 </pre></div>
 </div>
