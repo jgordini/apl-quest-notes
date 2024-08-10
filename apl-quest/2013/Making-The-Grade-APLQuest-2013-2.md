@@ -18,7 +18,7 @@ t ← ?10⍴100
 
 ### Solution F
 
-First we will compare all scores to 65, creating a boolean vector (1 for pass, 0 for fail). Then we sum this vector to get the number of passing grades. Finally, we divide by the total number of scores and multiply by 100 for the success percentage. In APL this looks like F. 
+First we compare all scores to 65, creating a boolean vector (1 for pass, 0 for fail). Then we sum this vector to get the number of passing grades. Finally, we divide by the total number of scores and multiply by 100 for the success percentage. In APL this looks like F. 
 
 ```APL
 F ← {100×(+/⍵≥65)÷≢⍵}
