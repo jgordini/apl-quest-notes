@@ -9,7 +9,9 @@
 
 Hello and welcome to this APL quest! In today's episode, we're tackling the last problem from the 2013 round of the APL problem-solving competition. The objective is straightforward: we are given a set of linear equations and their corresponding results, and we need to find the values of the variables.
 
-## Setting Up the Equation System
+## Intro
+
+### Setting Up the Equation System
 
 Let's start by creating a simple example of a system of equations with three variables:
 
@@ -33,7 +35,7 @@ The equations simplify to:
 
 Indeed, these yield the correct outcomes.
 
-## Finding the Missing Values
+### Finding the Missing Values
 
 The next step is to compute the values of \(x, y,\) and \(z\) without knowing them a priori. We know the results \(2, 6,\) and \(4\), and we can express our goal as finding a vector \(v\) such that:
 
@@ -41,100 +43,119 @@ $[ M \cdot v = R ]$
 
 Where \(M\) represents the matrix of coefficients and \(R\) represents our results.
 
-In APL, we can represent the [system of linear equations](https://en.wikipedia.org/wiki/System_of_linear_equations) and the results as follows:
+## **Basic Solutions**
 
 ```apl
-M ← 3 3⍴ 4 1 3 2 2 2 6 3 1  ⍝ Coefficient matrix
-r ← 2 6 4                  ⍝ Results vector
-v ← ¯1 3 1                  ⍝ Initial guess for the solution
+M←3 3⍴4 1 3 2 2 2 6 3 1
+r←2 6 4
+v←¯1 3 1
+
+v ≡ r +.×⍣¯1⍨ M
+v ≡ r +.×⍨∘⌹ M
+v ≡ r ⌹ M
 ```
 
-We can also check if \(v\) satisfies the equation with the following expressions:
+These are three equivalent primitive APL solutions for solving a set of linear equations:
+
+1. `v ≡ r +.×⍣¯1⍨ M`: This uses the inverse of matrix multiplication.
+   - `+.×` is the inner product (matrix multiplication)
+   - `⍣¯1` applies the inverse of the function
+   - `⍨` swaps the arguments
+
+2. `v ≡ r +.×⍨∘⌹ M`: This uses explicit matrix inversion.
+   - `⌹` is the matrix inverse operator
+   - `∘` composes the matrix multiplication with the inverse
+   - `⍨` swaps the arguments
+
+3. `v ≡ r ⌹ M`: This uses the built-in linear equation solver.
+   - `⌹` when used dyadically solves the system of linear equations
+
+
+
+## Advanced Solutions
+
+### **Hotelling-Bodewig Scheme**
 
 ```apl
-v ≡ r +.×⍣¯1⍨ M           ⍝ Iteratively solve for v
-v ≡ r +.×⍨∘⌹ M           ⍝ Check if v satisfies the system
-v ≡ r ⌹ M                  ⍝ Another method to verify
+⍝ Hotelling-Bodewig scheme:
+⍝ Vᵢ₊₁ = Vᵢ(2I−AVᵢ)
+⍝ Vᵢ₊₁ = 2Vᵢ−VᵢAVᵢ
+⍝ Vᵢ₊₁ = Vᵢ+Vᵢ−VᵢAVᵢ
+⍝ Vi+Vi-Vi+.×A+.×Vi
+⍝ A(⊢+⊢-⊢+.×+.×)Vi
+⍝ ⊢(⊢+⊢-⊢+.×+.×)⍣≡
 ```
 
-These commands utilize APL's powerful [array manipulation](https://aplwiki.com/wiki/Array_programming) capabilities to find \(v\).
+This shows the derivation of the Hotelling-Bodewig scheme for iterative matrix inversion:
+1. Start with the mathematical formula
+2. Rearrange terms
+3. Express in APL notation
+4. Create a tacit function using trains
+5. Apply the power operator `⍣≡` to iterate until convergence
 
-## Iterative Techniques
-
-While APL makes solving this problem elegant, we can also explore iterative methods to approximate the inverse of a matrix. One such technique is known as the [**Hotelling-Bodewig Scheme**](https://en.wikipedia.org/wiki/Hotelling%27s_iteration). The iterative relationship looks like this:
-
-$v_{n+1} = v_n \cdot (2I - M \cdot v_n)$ 
-
-Where:
-
-- \(I\) is the identity matrix
-- \(M\) is our original matrix of coefficients
-
-Here is how we can define the Hotelling-Bodewig scheme in APL:
+### **Soleymani Initial Guess**
 
 ```apl
-⍝ Hotelling-Bodewig iterations
-vᵢ₊₁ = vᵢ(2I−M vᵢ)
-vᵢ₊₁ = 2vᵢ−vᵢ A vᵢ
-vᵢ₊₁ = vᵢ + vᵢ − vᵢ A vᵢ
+⍝ Soleymani V₀:
+⍝ Mᵀ÷tr(MMᵀ)
++/1 1⍉+.×∘⍉⍨M ⍝ tr(MMᵀ)
+1 1⍉{⍺'+'⍵}.{⍺'×'⍵}∘⍉⍨3 3⍴⍳9
++/×⍨,M
++.×⍨,M
+(,+.×,)M
+(⍉÷,+.×,)M
 ```
 
-To implement this in APL, we would set up a function that computes the next estimate until we reach a stable solution, using something like the following notation:
+This demonstrates different ways to compute the trace of MMᵀ and the initial guess for Soleymani's method:
+1. Explicit matrix multiplication and diagonal sum
+2. Symbolic representation of the operation
+3. Sum of squared elements
+4. Inner product of raveled matrix with itself
+5. Compressed notation for the same operation
+6. Complete initial guess calculation
+
+## **Combined Hotelling-Bodewig and Soleymani Method**
 
 ```apl
-v ← {r +.×⍨ ∘(⊢(⊢ + ⊢ - ⊢ +.× +.×)⍣≡ ⍉ ÷,+.×,) M}⍤0 ⍳ 11   ⍝ show steps
+⍝ Hotelling-Bodewig + Soleymani:
+(⊢(⊢+⊢-⊢+.×+.×)⍣≡⍉÷,+.×,)M              ⍝ ⌹M
+r(+.×⍨∘⊢(⊢+⊢-⊢+.×+.×)⍣≡⍉÷,+.×,)M        ⍝ v⌹M
+{r+.×⍨∘(⊢(⊢+⊢-⊢+.×+.×)⍣⍵⍉÷,+.×,)M}⍤0⍳11 ⍝ show steps
 ```
 
-## Finding an Initial Guess
+These lines combine the Hotelling-Bodewig scheme with Soleymani's initial guess:
+1. Matrix inversion
+2. Solving the linear system
+3. Showing intermediate steps of the iteration
 
-An important aspect of the iterative method is selecting a good initial guess for the values of \(x, y,\) and \(z\). Recently, a method proposed by Solemani suggests that the initial guess can be obtained using:
-
-$frac{M^T}{\text{trace}(M \cdot M^T)}$ 
-
-In APL, we can calculate this with the following code:
-
-```apl
-+/1 1⍉+.×∘⍉⍨ M          ⍝ Calculate the trace of MMᵀ
-```
-
-This gives us a systematic approach to finding a starting point that can be utilized within our iterative procedure.
-
-## Gauss-Jordan Elimination
-
-Another classical method for solving systems of linear equations is the [Gauss-Jordan elimination](https://en.wikipedia.org/wiki/Gaussian_elimination). Here's an APL implementation of this method:
+## **Gauss-Jordan Elimination**
 
 ```apl
-GaussJordan ← {⎕IO ⎕ML←0 1              ⍝ Gauss-Jordan elimination
-    Elim ← {                           ⍝ elimination of row/col ⍺
-        p ← ⍺ + {⍵⍳⌈/⍵}|⍺↓⍵[;⍺]       ⍝ index of pivot row
-        swap ← ⊖@⍺ p⊢⍵                 ⍝ swap ⍺th and pth rows
-        mat ← swap[⍺;⍺]÷⍨@⍺⊢swap      ⍝ col diag red to 1
-        mat - (mat[;⍺]×⍺≠⍳≢⍵)∘.×mat[⍺;] ⍝ col off-diag red to 0
+⍝ Adapted from https://dfns.dyalog.com/n_gauss_jordan.htm
+GaussJordan←{⎕IO ⎕ML←0 1               ⍝ Gauss-Jordan elimination
+    Elim←{                            ⍝ elimination of row/col ⍺
+        p←⍺+{⍵⍳⌈/⍵}|⍺↓⍵[;⍺]           ⍝ index of pivot row
+        swap←⊖@⍺ p⊢⍵                  ⍝ swap ⍺th and pth rows
+        mat←swap[⍺;⍺]÷⍨@⍺⊢swap        ⍝ col diag red to 1
+        mat-(mat[;⍺]×⍺≠⍳≢⍵)∘.×mat[⍺;] ⍝ col off-diag red to 0
     }
     (⍴⍺)⍴(0 1×⍴⍵)↓↑Elim/(⌽⍳⌊/⍴⍵),⊂⍵,⍺ ⍝ Elim/ … 2 1 0 (⍵,⍺)
 }
-```
-
-This function performs the following steps:
-
-1. Finds the pivot element in each column
-2. Swaps rows to bring the pivot to the diagonal
-3. Normalizes the pivot row
-4. Eliminates the elements above and below the pivot
-5. Repeats this process for each column
-
-We can use this function to solve our system of equations:
-
-```apl
 r GaussJordan M
 ```
 
-## Old-style APL Matrix Inversion
+This is an implementation of the Gauss-Jordan elimination method:
+1. Define the main function and an inner elimination function
+2. Find the pivot row
+3. Swap rows and normalize the pivot element
+4. Eliminate other elements in the column
+5. Apply the elimination process iteratively
 
-For historical interest, here's an old-style APL implementation of [matrix inversion](https://aplwiki.com/wiki/Matrix_inverse):
+## **Old-style APL Matrix Inversion**
 
 ```apl
-∇  b←rec a;p;k;i;j;s
+⍝ Adapted from https://www.jsoftware.com/papers/APL360TerminalSystem1.htm#fig4
+    ∇  b←rec a;p;k;i;j;s
 [1]    →3×⍳(2=⍴⍴a)∧=/⍴a
 [2]    →0=⍴⎕←'no inverse found'
 [3]    p←⍳k←s←1⍴⍴a
@@ -150,14 +171,24 @@ For historical interest, here's an old-style APL implementation of [matrix inver
 [13]   p←1⌽p
 [14]   →5×⍳0<k←k-1
 [15]   b←a[;p⍳⍳s]
-∇
+    ∇
 A←{⍺↑⍵⍴1}
 r +.×⍨rec M
 ```
 
-This implementation follows a similar process to the Gauss-Jordan elimination but uses older APL conventions and [control structures](https://aplwiki.com/wiki/Control_structure).
+This is an old-style APL implementation of matrix inversion:
+1. Check input validity
+2. Initialize variables
+3. Augment the matrix
+4. Find the pivot element
+5. Swap rows
+6. Normalize the pivot row
+7. Eliminate other elements in the column
+8. Rotate the matrix and continue the process
+9. Rearrange the result
 
 ## Glyphs Used:
+
 - [Shape](https://aplwiki.com/wiki/Shape) `⍴` - Create array with specified shape
 - [Multiply](https://aplwiki.com/wiki/Times) `×` - Multiplication
 - [Matrix Inverse](https://aplwiki.com/wiki/Matrix_inverse) `⌹` - Matrix division
