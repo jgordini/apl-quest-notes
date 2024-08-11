@@ -194,9 +194,7 @@ This extracts the board numbers and parses the coordinate data separately.
 
 ## Transcript
 
-Hi, I'd like to show you how to use Dyalog APL to parse the contents of text files that contain data in 
-
-unusual formats. First off, we're going to have a regular comma-separated file. Luckily, Dyalog APL has quad CSV, which can easily do this job. The first element of the argument is the file name or the content itself. Next is a specification of what type of content it is, but that can usually be inferred, so we can give it an empty vector. Finally, there's a code for conversion. This is because comma-separated files do not distinguish between numbers and text. However, code number four uses a heuristic: if something looks like a number, then we'll convert it to a number; otherwise, we'll just leave it as text. And here we go, here's our numeric matrix.
+Hi, I'd like to show you how to use Dyalog APL to parse the contents of text files that contain data in unusual formats. First off, we're going to have a regular comma-separated file. Luckily, Dyalog APL has quad CSV, which can easily do this job. The first element of the argument is the file name or the content itself. Next is a specification of what type of content it is, but that can usually be inferred, so we can give it an empty vector. Finally, there's a code for conversion. This is because comma-separated files do not distinguish between numbers and text. However, code number four uses a heuristic: if something looks like a number, then we'll convert it to a number; otherwise, we'll just leave it as text. And here we go, here's our numeric matrix.
 
 Next up is something that's a list of numbers, and you might not think of this as a comma-separated file, but you can actually parse it as such, and you will just have a single column. In order to get a vector that we can work with, we simply ravel it.
 
