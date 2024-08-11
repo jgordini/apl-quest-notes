@@ -57,7 +57,7 @@ K ← 100×+.≤÷≢⍤⊢
 ```
 
 1. We are reversing the `≥` so that the Cuttoff Point (65) can be taken as the left argument. Represented by `⍺` in step 1. 
-2. `≢⍤⊢` We use [Atop](https://aplwiki.com/wiki/Atop_(operator)) so that we can apply [Tally](https://aplwiki.com/wiki/Tally) monadically. (Dyadic Tally is [Not Match](https://aplwiki.com/wiki/Not_Match)) We could also use Jot `≢∘⊢` in this case and achieve the same result. 
+2. `≢⍤⊢` We use [Atop](https://aplwiki.com/wiki/Atop_(operator)) so that we can apply [Tally](https://aplwiki.com/wiki/Tally) [monadically](https://mastering.dyalog.com/Some-Primitive-Functions.html). ([Dyadic](https://mastering.dyalog.com/Some-Primitive-Functions.html) Tally is [Not Match](https://aplwiki.com/wiki/Not_Match)) We could also use Jot `≢∘⊢` in this case and achieve the same result. 
 3. K is parsed as `{100×((⍺(+.≤)⍵)÷(≢⍵))}` 
 
 ## Performance:
@@ -135,6 +135,7 @@ This demonstrates that F is significantly faster than G and H.
 
 ## Concepts Used
 
+- [Monadic and Dyadic Functions](https://mastering.dyalog.com/Some-Primitive-Functions.html)
 - [Comparison Function](https://aplwiki.com/wiki/Comparison_function)
 - [Dfn](https://aplwiki.com/wiki/Dfn)
 
