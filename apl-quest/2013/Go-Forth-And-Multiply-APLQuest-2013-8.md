@@ -9,7 +9,7 @@
 
 Today's quest is called **Go forth and Multiply**. It's really simple; we just need to create a multiplication table. This task is the eighth problem from the [2013 APL Problem Solving Competition](https://problems.tryapl.org/psets/2013.html?goto=P8_Go_Forth_And_Multiply).
 
-## Examples
+## Examples:
 
 ## **Outer Product**
 
