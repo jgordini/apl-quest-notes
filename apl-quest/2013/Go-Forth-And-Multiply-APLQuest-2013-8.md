@@ -24,7 +24,20 @@ A ← ∘.×⍨⍳ ⍝ for n=4 : same as 1 2 3 4 ∘.× 1 2 3 4
 1. `⍨⍳` [Index of](https://aplwiki.com/wiki/Index_Of) `⍳` generates the integers 1 through n.
 2. `∘.×`  [Outer Product](https://mastering.dyalog.com/Operators.html?highlight=outer%20product#outer-product) builds a "times table". It has no left argument so [Selfie](https://aplwiki.com/wiki/Commute) `⍨`  puts the index from Step one on both sides. 
 
+
+
 ## **Without Outer Product**
+
+```APL
+B ← {×/¨⍳⍵ ⍵}
+C ← ×⍤0 1⍨⍳
+D ← {+⍀⍵ ⍵⍴⍳⍵}
+E ← +⍀,⍨⍴⍳
+F ← +⍀,⍨⍴+⍀⍤⍴∘1
+G ← +⍀,⍨+\⍤⍴≢
+```
+
+
 
 ### B
 
@@ -89,6 +102,8 @@ G ← +⍀,⍨+\⍤⍴≢
 
 16. Recognizes that a scaler has a total count of elements of 1 so we can replace 1 with [tally](https://aplwiki.com/wiki/Tally) and then using a horizontal and vertical sum scan to create the table. 
 
+
+
 ## **Without Operators (Functions only)**
 
 ```APL
@@ -98,8 +113,6 @@ J ← {↑(⍳⍵)×⊂⍳⍵}
 K ← ↑⍳×(⊂⍳)
 L ← (↑⊢×⊂)⍳
 ```
-
-
 
 ### H
 
