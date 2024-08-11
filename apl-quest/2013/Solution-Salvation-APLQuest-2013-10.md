@@ -81,38 +81,86 @@ These are three equivalent primitive APL solutions for solving a set of linear e
 ⍝ Vᵢ₊₁ = Vᵢ(2I−AVᵢ)
 ⍝ Vᵢ₊₁ = 2Vᵢ−VᵢAVᵢ
 ⍝ Vᵢ₊₁ = Vᵢ+Vᵢ−VᵢAVᵢ
-⍝ Vi+Vi-Vi+.×A+.×Vi
-⍝ A(⊢+⊢-⊢+.×+.×)Vi
-⍝ ⊢(⊢+⊢-⊢+.×+.×)⍣≡
+ Vi+Vi-Vi+.×A+.×Vi
+ A(⊢+⊢-⊢+.×+.×)Vi
+ ⊢(⊢+⊢-⊢+.×+.×)⍣≡
+⍝ https://codegolf.stackexchange.com/a/213953
 ```
 
-This shows the derivation of the Hotelling-Bodewig scheme for iterative matrix inversion:
+**Overview**
+
+The Hotelling-Bodewig algorithm is an iterative method for refining an initial approximation of a matrix's inverse. The method is defined by the iteration formula:
+
+$𝑉𝑖+1 = 𝑉𝑖(2𝐼 − 𝐴𝑉𝑖)$
+
+where:
+
+- $𝑉𝑖$ is the current approximation of the inverse of matrix 𝐴
+- $𝑉𝑖+1$ is the next approximation
+- $𝐼$ is the identity matrix
+
+The process continues iteratively until $𝑉𝑖$ converges to $𝐴⁻¹$, the true inverse of the matrix 𝐴.
+
+This formulation is equivalent to the previously given formula, but expressed in a more compact form. It directly shows how each iteration refines the approximation by multiplying the current estimate 𝑉𝑖 with a correction term ($2𝐼 − 𝐴𝑉𝑖$).
+
 1. Start with the mathematical formula
 2. Rearrange terms
 3. Express in APL notation
 4. Create a tacit function using trains
-5. Apply the power operator `⍣≡` to iterate until convergence
+5. `⍣≡` applies the function on its left until the result doesn't change. Because of the way [equality testing works](https://help.dyalog.com/18.0/Content/Language/System Functions/ct.htm) in Dyalog APL, this terminates.
 
-### **Soleymani Initial Guess**
+## 
 
-```apl
+### Soleymani method
+
+```APL
 ⍝ Soleymani V₀:
 ⍝ Mᵀ÷tr(MMᵀ)
-+/1 1⍉+.×∘⍉⍨M ⍝ tr(MMᵀ)
-1 1⍉{⍺'+'⍵}.{⍺'×'⍵}∘⍉⍨3 3⍴⍳9
-+/×⍨,M
-+.×⍨,M
-(,+.×,)M
-(⍉÷,+.×,)M
++/1 1⍉+.×∘⍉⍨M ⍝ tr(MMᵀ) Explicit matrix multiplication and diagonal sum
+1 1⍉{⍺'+'⍵}.{⍺'×'⍵}∘⍉⍨3 3⍴⍳9 ⍝ Symbolic representation of the operation
++/×⍨,M ⍝ Sum of squared elements
++.×⍨,M ⍝ Inner product of raveled matrix with itself
+(,+.×,)M ⍝ Compressed notation for the same operation
+(⍉÷,+.×,)M ⍝ Complete initial guess calculation
+⍝ https://www.opuscula.agh.edu.pl/vol33/2/art/opuscula_math_3322.pdf
 ```
 
-This demonstrates different ways to compute the trace of MMᵀ and the initial guess for Soleymani's method:
-1. Explicit matrix multiplication and diagonal sum
-2. Symbolic representation of the operation
-3. Sum of squared elements
-4. Inner product of raveled matrix with itself
-5. Compressed notation for the same operation
-6. Complete initial guess calculation
+The Soleymani method is an advanced iterative technique designed to solve ill-conditioned linear systems of equations. These systems are challenging because small changes in the input can lead to large changes in the output, making traditional methods less reliable.
+
+**Problem Statement**
+
+Consider the linear system:
+
+$Ax = b$
+
+Where:
+- A is an n × n ill-conditioned matrix
+- x is the unknown vector
+- b is the known right-hand side vector
+
+**Iterative Formula**
+
+The Soleymani method uses the following iterative formula:
+
+$x_{k+1} = x_k - (2I - AA^T)A^T(Ax_k - b)$
+
+Where:
+- $x_k$ is the kth iteration approximation of the solution
+- $I$ is the identity matrix
+- $A^T$ is the transpose of A
+
+**Initialization and Convergence**
+
+1. Start with an initial guess $x_0$ (often the zero vector or another reasonable starting point)
+2. Iterate until a convergence criterion is met, e.g., $||Ax_k - b|| < ε$ for some small $ε > 0$
+
+**APL Implementation of Initial Guess**
+
+The initial guess for the Soleymani method, V₀, is given by:
+
+$V₀ = M^T ÷ tr(MM^T)$
+
+Where $M^T$ is the transpose of $M$, and $tr(MM^T)$ is the trace of $MM^T$.
 
 ## **Combined Hotelling-Bodewig and Soleymani Method**
 
@@ -123,10 +171,43 @@ r(+.×⍨∘⊢(⊢+⊢-⊢+.×+.×)⍣≡⍉÷,+.×,)M        ⍝ v⌹M
 {r+.×⍨∘(⊢(⊢+⊢-⊢+.×+.×)⍣⍵⍉÷,+.×,)M}⍤0⍳11 ⍝ show steps
 ```
 
-These lines combine the Hotelling-Bodewig scheme with Soleymani's initial guess:
-1. Matrix inversion
-2. Solving the linear system
-3. Showing intermediate steps of the iteration
+**Matrix Inversion:**
+
+```apl
+(⊢(⊢+⊢-⊢+.×+.×)⍣≡⍉÷,+.×,)M
+```
+
+This line combines the Hotelling-Bodewig iteration with Soleymani's initial guess to compute the inverse of matrix M. Let's break it down from right to left:
+
+- `(⍉÷,+.×,)M`: This is Soleymani's initial guess $V₀ = M^T ÷ tr(MM^T)$.
+- `(⊢+⊢-⊢+.×+.×)`: This is the Hotelling-Bodewig iteration step.
+- `⍣≡`: This applies the iteration until convergence.
+- The outer `⊢` is used to make the function a monadic operator that takes M as its right argument.
+
+**Solving the Linear System:**
+
+```apl
+r(+.×⍨∘⊢(⊢+⊢-⊢+.×+.×)⍣≡⍉÷,+.×,)M
+```
+
+This line solves the linear system $Mx = r$, where r is the right-hand side vector. It's similar to the previous line, but with these changes:
+
+- `r` is prepended to multiply the result with the computed inverse.
+- `+.×⍨∘⊢` is inserted to perform the matrix-vector multiplication.
+
+**Showing Intermediate Steps:**
+
+```apl
+{r+.×⍨∘(⊢(⊢+⊢-⊢+.×+.×)⍣⍵⍉÷,+.×,)M}⍤0⍳11
+```
+
+This line shows the intermediate steps of the iteration:
+
+- `⍳11` generates a vector from 1 to 11.
+- `⍤0` applies the function to each element of this vector separately.
+- The function is similar to the previous line, but `⍣≡` (iterate until convergence) is replaced with `⍣⍵`, where ⍵ is the current iteration count.
+
+This implementation elegantly combines the Hotelling-Bodewig scheme with Soleymani's initial guess, providing an efficient method for matrix inversion and solving linear systems. The final line allows for visualization of the convergence process, which can be useful for understanding the algorithm's behavior and performance.
 
 ## **Gauss-Jordan Elimination**
 
