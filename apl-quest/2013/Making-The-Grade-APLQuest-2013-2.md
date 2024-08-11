@@ -64,7 +64,7 @@ K ← 100×+.≤÷≢⍤⊢
 
 When dealing with large datasets, the order of operations can significantly impact performance. Consider the following variations:
 
-```
+```APL
 F ← {100×(+/⍵≥65)÷≢⍵}    ⍝ Best performance
 G ← {100×+/(⍵≥65)÷≢⍵}    ⍝ Lower performance
 H ← {+/100×(⍵≥65)÷≢⍵}    ⍝ Lowest performance
