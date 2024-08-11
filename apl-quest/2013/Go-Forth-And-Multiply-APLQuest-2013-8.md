@@ -11,7 +11,7 @@ Today's quest is called **Go forth and Multiply**. It's really simple; we just n
 
 ## Examples
 
-### **Outer Product**
+## **Outer Product**
 
 For once, we are going to go straight to the obvious solution. We can generate the indices from **1** to a certain target number. Then, we simply need to provide the [outer product](https://mastering.dyalog.com/Operators.html?highlight=outer%20product#outer-product) using that argument, both on the left and the right side—so, vertically and horizontally in our table. This gives us our solution.
 
@@ -24,7 +24,7 @@ A ← ∘.×⍨⍳ ⍝ for n=4 : same as 1 2 3 4 ∘.× 1 2 3 4
 1. `⍨⍳` [Index of](https://aplwiki.com/wiki/Index_Of) `⍳` generates the integers 1 through n.
 2. `∘.×`  [Outer Product](https://mastering.dyalog.com/Operators.html?highlight=outer%20product#outer-product) builds a "times table". It has no left argument so [Selfie](https://aplwiki.com/wiki/Commute) `⍨`  puts the index from Step one on both sides. 
 
-### **Without Outer Product**
+## **Without Outer Product**
 
 ### B
 
@@ -89,7 +89,7 @@ G ← +⍀,⍨+\⍤⍴≢
 
 16. Recognizes that a scaler has a total count of elements of 1 so we can replace 1 with [tally](https://aplwiki.com/wiki/Tally) and then using a horizontal and vertical sum scan to create the table. 
 
-### **Without Operators (Functions only)**
+## **Without Operators (Functions only)**
 
 ```APL
 H ← {⍵ ⍵⍴(⍵/⍳⍵)×(⍵×⍵)⍴⍳⍵}
@@ -165,7 +165,7 @@ L ← (↑⊢×⊂)⍳
 
 
 
-### **Without Arithmetic** 
+## **Without Arithmetic** 
 
 ```APL
 M ← {≢¨,¨⍳¨⍳⍵ ⍵}
