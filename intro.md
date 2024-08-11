@@ -26,20 +26,168 @@ This Jupyter Book is organized by year, from 2013 to 2023. Each year contains:
 
 You can navigate through the problems chronologically or jump to specific years or problems that interest you.
 
-## Getting Started
+# APL Data Parsing Techniques
 
-If you're new to APL, don't worry! Each problem comes with:
+## 1. Basic CSV Parsing
 
-- A clear problem statement
-- Input and output examples
-- Hints and tips to guide you
+Let's start with a simple comma-separated file (1.txt):
 
-Even if you're not familiar with APL, these problems can be a great way to start thinking in terms of array operations.
+```
+12,1,14,7,16
+2,2,5,11,14
+...
+```
 
-## Join the Quest!
+To parse this, we use Dyalog APL's `⎕CSV` function:
 
-Whether you're an APL expert or a curious beginner, APL Quest offers a unique opportunity to sharpen your skills, learn new techniques, and experience the joy of solving problems in one of the most fascinating programming languages ever created.
+```apl
+⎕CSV'/d/1.txt'⍬4
+```
 
-Ready to start your quest? Choose a year from the sidebar and dive in!
+The `⍬4` argument specifies automatic type inference, converting numeric-looking strings to numbers.
 
-Happy coding, and may the arrays be with you!
+## 2. Single-Column Number List
+
+For a file containing a single column of numbers (2.txt):
+
+```
+67
+121
+530
+...
+```
+
+We can still use `⎕CSV`, but we need to ravel the result:
+
+```apl
+,⎕CSV'/d/2.txt'⍬4
+```
+
+## 3. Bitmap Parsing
+
+For a bitmap represented as characters (3.txt):
+
+```
+11110111
+01000010
+...
+```
+
+We use the 'Widths' option of `⎕CSV`:
+
+```apl
+{⎕CSV⍠'Widths'(1⍨¨⊃⍵)⊢⍵⍬ 4}⊃⎕NGET'/d/3.txt'1
+```
+
+This automatically determines the number of columns and parses accordingly.
+
+## 4. Custom-Format Parsing
+
+For files with custom formats (4.txt):
+
+```
+IEH == K
+CFO == Q
+...
+```
+
+We can use 'Widths' again, but with specific column widths:
+
+```apl
+1 0 1/⎕CSV⍠'Widths'(3 4 1)⊢'/d/4.txt'
+```
+
+This extracts only the relevant columns.
+
+## 5. Coordinate Parsing
+
+For coordinate-like data (5.txt):
+
+```
+0;5 to 5;0
+4;4 to 0;6
+...
+```
+
+We use a combination of 'Widths' and partitioning:
+
+```apl
+1 0 1 0⊂⍤1⊢(7⍴1 0)/⎕CSV⍠'Widths'(1 1 1 4 1 1 1)⊢'/d/5.txt'⍬4
+```
+
+## 6. Space-Separated Words
+
+For space-separated words (6.txt):
+
+```
+IBEI MEJADO AQUEF UNUYE
+AEA PIGEIU EJO IQURI
+...
+```
+
+We can use `⎕CSV` with a space separator:
+
+```apl
+⎕CSV⍠'Separator' ' '⊢'/d/6.txt'
+```
+
+## 7. Direction and Distance
+
+For direction and distance data (7.txt):
+
+```
+North 4
+South 17
+...
+```
+
+We use the same space-separated technique:
+
+```apl
+⎕CSV⍠'Separator' ' '⊢'/d/7.txt'⍬4
+```
+
+## 8. Numeric Grids with Empty Lines
+
+For numeric grids separated by empty lines (8.txt):
+
+```
+ 4 53 58 39 86
+51 31 89 94 18
+              
+68 27 82 15 17
+...
+```
+
+We use a more complex approach:
+
+```apl
+↑↑((≢¨⊣/)⊆↓){⎕CSV⍠'Widths'(≢¨⊂⍨1@1∧⌿' '=↑⍵)⊢⍵⍬4}⊃⎕NGET'/d/8.txt' 1
+```
+
+This handles the empty lines and variable column widths.
+
+## 9. Multiple Boards with Headers
+
+For multiple boards with headers (9.txt):
+
+```
+## BOARD 14 ##
+8,9
+-7,-8
+6,1
+
+## BOARD 5 ##
+-5,6
+10,0
+-1,4
+...
+```
+
+We use a complex parsing strategy:
+
+```apl
+{(⌈⌿⊃⌽⎕VFI⊃⍵)(⎕CSV(1↓⍵)⍬4)}¨(×∘≢¨⊆⊢)⊃⎕NGET'/d/9.txt'1
+```
+
+This extracts the board numbers and parses the coordinate data separately.
