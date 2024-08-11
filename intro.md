@@ -28,7 +28,7 @@ You can navigate through the problems chronologically or jump to specific years 
 
 # APL Data Parsing Techniques
 
-## 1. Basic CSV Parsing
+## 1. Basic [CSV Parsing](https://help.dyalog.com/latest/Content/Language/System%20Functions/csv.htm)
 
 Let's start with a simple comma-separated file (1.txt):
 
