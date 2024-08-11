@@ -6,13 +6,15 @@
 
 **Code:** [https://github.com/abrudz/apl_quest/blob/main/2013/6.apl](https://github.com/abrudz/apl_quest/blob/main/2013/6.apl)
 
+Today's problem is a very simple problem of just finding out the numeric range of an array, that is, the highest value minus the lowest value. But we'll see that there is a special edge case that we need to take action for, and we'll look into some generalization as well.
 
-
-## **Example Solutions:**
-
-
+## **Examples:**
 
 ## Non empty Vectors
+
+Without further ado, let's generate some data we can work on. Here's a numeric vector, and the highest value is the maximum reduction of that vector, and the lowest value is the minimum reduction over the vector. Then we can take those two values and subtract the smaller from the larger, and we get the full numeric range. So that's really all there is to the basic problem.
+
+Let's put this into a function, and we can write the max reduction of omega minus the min reduction of omega. There's a redundant parenthesis here, but that's mostly just for clarity and to make the expression symmetric. We can try this on v, and that works great.
 
 ### A
 
