@@ -2,6 +2,10 @@
 
 **Problem:** Write a [dfn](https://aplwiki.com/wiki/Dfn) that takes the length of the legs of a triangle as its [left argument](https://aplwiki.com/wiki/Argument), and the length of the hypotenuse as its right argument and returns 1 if the triangle is a [right triangle](https://en.wikipedia.org/wiki/Right_triangle), 0 otherwise.
 
+**Video:** [https://www.youtube.com/watch?v=0SeHAg0q30w](https://www.youtube.com/watch?v=0SeHAg0q30w)
+
+**Code:** [https://github.com/abrudz/apl_quest/blob/main/2014/1.apl](https://github.com/abrudz/apl_quest/blob/main/2014/1.apl)
+
 ## Getting Started
 
 We are given the left argument, which consists of the two supposed shorter sides of a triangle, and the right argument, representing the longer side. Our task is to check if these three numbers can indeed form the lengths of a right-angled triangle.
