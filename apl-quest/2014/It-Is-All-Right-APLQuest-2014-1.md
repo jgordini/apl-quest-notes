@@ -208,6 +208,53 @@ This is derived from:
 {(+/⍺*2)=⍵*2}
 ```
 
+
+
+## **Glyphs Used**
+
+- [Plus Reduce](https://aplwiki.com/wiki/Plus_Reduce) (+/)
+- [Power](https://aplwiki.com/wiki/Power) (*)
+- [Equal](https://aplwiki.com/wiki/Equal) (=)
+- [Inner Product](https://aplwiki.com/wiki/Inner_Product) (+.×)
+- [Self-Reference](https://aplwiki.com/wiki/Self-Reference) (⍨)
+- [Commute](https://aplwiki.com/wiki/Commute) (⍨)
+- [Atop](https://aplwiki.com/wiki/Atop) (⍤)
+- [Left](https://aplwiki.com/wiki/Left) (⊣)
+- [Right](https://aplwiki.com/wiki/Right) (⊢)
+- [Over](https://aplwiki.com/wiki/Over) (⍥)
+- [First](https://aplwiki.com/wiki/First) (⊃)
+- [Multiply](https://aplwiki.com/wiki/Multiply) (×)
+- [Imaginary](https://aplwiki.com/wiki/Imaginary) (J)
+- [Magnitude](https://aplwiki.com/wiki/Magnitude) (|)
+- [Decode](https://aplwiki.com/wiki/Decode) (⊥)
+- [Reverse](https://aplwiki.com/wiki/Reverse) (⌽)
+- [Divide](https://aplwiki.com/wiki/Divide) (÷)
+- [Circle](https://aplwiki.com/wiki/Circle) (○)
+- [Matrix Inverse](https://aplwiki.com/wiki/Matrix_Inverse) (⌹)
+- [Match](https://aplwiki.com/wiki/Match) (≡)
+
+## **Concepts**
+
+- [Pythagorean Theorem](https://en.wikipedia.org/wiki/Pythagorean_theorem)
+- [Tacit Programming](https://aplwiki.com/wiki/Tacit_programming)
+- [Dfn](https://aplwiki.com/wiki/Dfn)
+- [Scalar Function](https://aplwiki.com/wiki/Scalar_function)
+- [Reduction](https://aplwiki.com/wiki/Reduce)
+- [Inner Product](https://aplwiki.com/wiki/Inner_Product)
+- [Complex Numbers](https://aplwiki.com/wiki/Complex_number)
+- [Commute](https://aplwiki.com/wiki/Commute)
+- [Atop](https://aplwiki.com/wiki/Atop)
+- [Over](https://aplwiki.com/wiki/Over)
+- [Right-angled Triangle](https://en.wikipedia.org/wiki/Right_triangle)
+- [Matrix Inverse](https://aplwiki.com/wiki/Matrix_Inverse)
+- [Point-free Style](https://aplwiki.com/wiki/Tacit_programming)
+- [Function Composition](https://aplwiki.com/wiki/Function_composition)
+- [Self-Reference](https://aplwiki.com/wiki/Self-Reference)
+- [Scalar Extension](https://aplwiki.com/wiki/Scalar_extension)
+- [Left and Right Arguments](https://aplwiki.com/wiki/Argument)
+- [Domino Function](https://aplwiki.com/wiki/Matrix_Inverse)
+- [4-circle Function](https://aplwiki.com/wiki/Circle)
+
 ## Transcript:
 
 Welcome to the APL quest! For details, refer to the APL Wiki. This is the first problem from the 2014 set of the APL problem-solving competition. We’re given the left argument, which represents the two supposed shorter sides of a triangle, and the right argument, which represents the longer side. Our task is to check if these three numbers together can work as the lengths of a right-angled triangle. Naturally, it’s appropriate to use the Pythagorean theorem here. Let’s put in some test cases: two shorter sides, 2 and 4; another case with shorter sides, 3 and 4. We’re going to try this with a longer side, 4.5 and 5. The first one is going to be false, and the second one is going to be true. The Pythagorean theorem states that the sum of the squares of the two shortest sides equals the square of the longer side.
