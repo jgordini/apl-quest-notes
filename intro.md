@@ -1,6 +1,8 @@
 # Welcome to APL Quest
 
-APL Quest is an annual programming challenge that focuses on Array Programming Language (APL). Since its inception in 2013, APL Quest has been offering a series of engaging and thought-provoking problems that challenge participants to think in terms of arrays and leverage the power of APL. No copyright intended all credit to [abrudz](https://github.com/abrudz/apl_quest) These notes are to improve my APL knowledge not intended as documentation. 
+APL Quest is an annual programming challenge that focuses on Array Programming Language (APL). Since its inception in 2013, APL Quest has been offering a series of engaging and thought-provoking problems that challenge participants to think in terms of arrays and leverage the power of APL. 
+
+No copyright intended all credit to [abrudz](https://github.com/abrudz/apl_quest) These notes are to improve my APL knowledge not intended as documentation. 
 
 ## What is APL?
 
