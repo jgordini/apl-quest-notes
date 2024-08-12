@@ -9,6 +9,6 @@ code, pre {
 
 @font-face {
 	font-family: APL;
-	src: local("APL385 Unicode"), url("../assets/apl385.ttf");
+	src: local("APL385 Unicode"), url("./assets/apl385.ttf");
 }
 
