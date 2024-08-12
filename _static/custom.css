@@ -11,4 +11,15 @@ code, pre {
 	font-family: APL;
 	src: local("APL385 Unicode"), url("./assets/Apl385.ttf");
 }
+.language-APL {
+	font-family: APL!important;
+	line-height: 1.2em!important;
+}
+code {
+	font-family: APL;
+	font-size: 1em!important;
+	padding-left: 0em!important;
+	padding-right: 0em!important;
+}
+
 
