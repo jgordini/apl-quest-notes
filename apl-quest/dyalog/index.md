@@ -11,3 +11,12 @@ A kernel for using these notebooks is available [here](https://github.com/Dyalog
 ## Contributing
 
 Feel free to contribute additional notebooks to our collection through emailing notebooks@dyalog.com or submitting [pull requests](https://help.github.com/articles/about-pull-requests/).
+
+## AOC 2024
+
+AOC1
+
+n←,⎕CSV'/Users/jeremy/Desktop/aoc-1.txt'⍬4
+
+aoc1←{(⊣/,⊢/)¨(∊∘⎕D¨⍵)/¨⍵}
+
