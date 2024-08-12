@@ -6,33 +6,33 @@ parts:
       - file: apl-quest/dyalog/index
         sections:
           - file: apl-quest/dyalog/2020-Problem-Solving-Competition-Phase-II-Highlights
-          - file: apl-quest/dyalog/hashtables
-          - file: apl-quest/dyalog/Your-First-Mandelbrot-Set
-          - file: apl-quest/dyalog/Using-the-TryAPL-Tutorials
-          - file: apl-quest/dyalog/Tacit-Techniques
-          - file: apl-quest/dyalog/Sudoku-Solver
-          - file: apl-quest/dyalog/Reduce-and-Scan
-          - file: apl-quest/dyalog/Random-Numbers
-          - file: apl-quest/dyalog/Plotting-with-SharpPlot
-          - file: apl-quest/dyalog/New-in-v17
-          - file: apl-quest/dyalog/New-in-v16
-          - file: apl-quest/dyalog/New-in-v15
-          - file: apl-quest/dyalog/New-in-v14
-          - file: apl-quest/dyalog/Modifying-Rank-and-Depth
-          - file: apl-quest/dyalog/Maths-versus-APL
-          - file: apl-quest/dyalog/Lookup-Without-Replacement
-          - file: apl-quest/dyalog/Linear-Fitting
-          - file: apl-quest/dyalog/Justifying-Text
-          - file: apl-quest/dyalog/Grading-and-Sorting
-          - file: apl-quest/dyalog/Functions
-          - file: apl-quest/dyalog/Conways-Game-of-Life
-          - file: apl-quest/dyalog/Comparison-Functions
-          - file: apl-quest/dyalog/Calculus
-          - file: apl-quest/dyalog/Boolean-Scans-and-Reductions
-          - file: apl-quest/dyalog/Boolean-Functions-and-Boolean-Algebra
-          - file: apl-quest/dyalog/Arrays
-          - file: apl-quest/dyalog/Arithmetic-Functions
           - file: apl-quest/dyalog/APL-Expressions
+          - file: apl-quest/dyalog/Arithmetic-Functions
+          - file: apl-quest/dyalog/Arrays
+          - file: apl-quest/dyalog/Boolean-Functions-and-Boolean-Algebra
+          - file: apl-quest/dyalog/Boolean-Scans-and-Reductions
+          - file: apl-quest/dyalog/Calculus
+          - file: apl-quest/dyalog/Comparison-Functions
+          - file: apl-quest/dyalog/Conways-Game-of-Life
+          - file: apl-quest/dyalog/Functions
+          - file: apl-quest/dyalog/Grading-and-Sorting
+          - file: apl-quest/dyalog/hashtables
+          - file: apl-quest/dyalog/Justifying-Text
+          - file: apl-quest/dyalog/Linear-Fitting
+          - file: apl-quest/dyalog/Lookup-Without-Replacement
+          - file: apl-quest/dyalog/Maths-versus-APL
+          - file: apl-quest/dyalog/Modifying-Rank-and-Depth
+          - file: apl-quest/dyalog/New-in-v14
+          - file: apl-quest/dyalog/New-in-v15
+          - file: apl-quest/dyalog/New-in-v16
+          - file: apl-quest/dyalog/New-in-v17
+          - file: apl-quest/dyalog/Plotting-with-SharpPlot
+          - file: apl-quest/dyalog/Random-Numbers
+          - file: apl-quest/dyalog/Reduce-and-Scan
+          - file: apl-quest/dyalog/Sudoku-Solver
+          - file: apl-quest/dyalog/Tacit-Techniques
+          - file: apl-quest/dyalog/Using-the-TryAPL-Tutorials
+          - file: apl-quest/dyalog/Your-First-Mandelbrot-Set
       - file: apl-quest/2013/index
         sections:
           - file: apl-quest/2013/Seemsa-Bit-Odd-To-Me-APLQuest-2013-1
