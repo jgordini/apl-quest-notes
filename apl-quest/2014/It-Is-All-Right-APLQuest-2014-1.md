@@ -3,7 +3,7 @@
 
 **Problem:** Write a dfn that takes the length of the legs of a triangle as its left argument, and the length of the hypotenuse as its right argument and returns 1 if the triangle is a right triangle, 0 otherwise.
 
-**Video:** [https://www.youtube.com/watch?v=0SeHAg0q30](https://www.youtube.com/watch?v=0SeHAg0q30)
+**Video:** [https://www.youtube.com/watch?v=0SeHAg0q30w](https://www.youtube.com/watch?v=0SeHAg0q30w)
 
 **Code:** [https://github.com/abrudz/apl_quest/blob/main/2014/1.apl](https://github.com/abrudz/apl_quest/blob/main/2014/1.apl)
 
