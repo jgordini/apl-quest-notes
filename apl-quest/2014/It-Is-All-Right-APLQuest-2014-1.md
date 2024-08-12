@@ -160,19 +160,21 @@ This solution uses i-base ([decode](https://aplwiki.com/wiki/Decode)) to combine
 
 We can also use the 4-circle function to calculate the hypotenuse:
 
+## Circle Function
+
 ### Solution I
 
 ```APL
 {⍵=(⊃⌽⍺)×4○÷/⍺}
 ```
 
-This solution uses the [4-circle function](https://aplwiki.com/wiki/Circle) to calculate the hypotenuse.
+This solution uses the [circle function](https://aplwiki.com/wiki/Circle) to calculate the hypotenuse.
 1. `÷/⍺` - Calculate the ratio of the legs using [divide](https://aplwiki.com/wiki/Divide)
 2. `4○÷/⍺` - Apply the 4-circle function to the ratio
 3. `(⊃⌽⍺)×4○÷/⍺` - Multiply by the second leg using [reverse](https://aplwiki.com/wiki/Reverse)
 4. `⍵=( ... )` - Compare the result to the right argument (hypotenuse)
 
-## **Final Solution Using Domain Concepts**
+## Domino Function
 
 We can solve this using the **Domino** function, which represents a ratio between the inversions of both arguments:
 
