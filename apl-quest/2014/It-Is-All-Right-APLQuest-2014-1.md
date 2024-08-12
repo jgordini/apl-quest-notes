@@ -1,25 +1,23 @@
 
 # [It Is All Right 2014-1](https://apl.quest/psets/2014.html?goto=P1_It_Is_All_Right)
 
-**Problem:** Write a dfn that takes the length of the legs of a triangle as its left argument, and the length of the hypotenuse as its right argument and returns 1 if the triangle is a right triangle, 0 otherwise.
+# APL Right Triangle Problem
 
-**Video:** [https://www.youtube.com/watch?v=0SeHAg0q30w](https://www.youtube.com/watch?v=0SeHAg0q30w)
+**Problem:** Write a [dfn](https://aplwiki.com/wiki/Dfn) that takes the length of the legs of a triangle as its left argument, and the length of the hypotenuse as its right argument and returns 1 if the triangle is a right triangle, 0 otherwise.
 
-**Code:** [https://github.com/abrudz/apl_quest/blob/main/2014/1.apl](https://github.com/abrudz/apl_quest/blob/main/2014/1.apl)
-
-## **Getting Started**
+## Getting Started
 
 We are given the left argument, which consists of the two supposed shorter sides of a triangle, and the right argument, representing the longer side. Our task is to check if these three numbers can indeed form the lengths of a right-angled triangle.
 
-### **Approach**
+### Approach
 
-It is natural to use the Pythagorean theorem to solve this problem. Let's examine some test cases:
+It is natural to use the [Pythagorean Theorem](https://en.wikipedia.org/wiki/Pythagorean_theorem) to solve this problem. Let's examine some test cases:
 
 1. Shorter sides: `2` and `4`. Longer side: `4.5` → Result: **False**
 2. Shorter sides: `3` and `4`. Longer side: `5` → Result: **True**
     According to the Pythagorean theorem, the sum of the squares of the two shorter sides must equal the square of the longer side. 
 
-## **Mathematical Representation**
+## Mathematical Representation
 
 We can express this mathematically using the concept of self-multiplication or squaring:
 
@@ -41,11 +39,11 @@ This leads us to our first solution:
 
 This solution implements the Pythagorean theorem directly. It squares the elements of the left argument (the legs), sums them, and compares the result to the square of the right argument (the hypotenuse).
 1. `⍺*2` - Square each element of the left argument (the legs)
-2. `+/⍺*2` - Sum the squared values
+2. [`+/`](https://aplwiki.com/wiki/Plus_Reduce)`⍺*2` - Sum the squared values
 3. `⍵*2` - Square the right argument (the hypotenuse)
 4. `(+/⍺*2)=⍵*2` - Compare the sum of squared legs to the squared hypotenuse
 
-We can also express this using an inner product:
+We can also express this using an [inner product](https://aplwiki.com/wiki/Inner_Product):
 
 ### Solution B
 
@@ -53,12 +51,12 @@ We can also express this using an inner product:
 {(+.×⍨⍺)=×⍨⍵} ⍝ inner product is equivalent for scalar functions on vectors
 ```
 
-This solution uses the inner product to calculate the sum of squares for the legs, making it equivalent to Solution A for scalar functions on vectors.
+This solution uses the inner product to calculate the sum of squares for the legs, making it equivalent to Solution A for [scalar functions](https://aplwiki.com/wiki/Scalar_function) on vectors.
 1. `+.×⍨⍺` - Use inner product to sum the squares of the left argument
 2. `×⍨⍵` - Square the right argument
 3. `(+.×⍨⍺)=×⍨⍵` - Compare the results
 
-## **Simplification**
+## Simplification
 
 We can preprocess both arguments with self-multiplication (squaring) and then sum the left argument:
 
@@ -74,7 +72,7 @@ This can be effectively represented in APL as:
 
 Alternatively, we could break out the multiplication:
 1. **Commuting Arguments**: We may preprocess one argument and then check for equality.
-2. **Reduction Over a Single Element**: Notably, a reduction of a single element doesn't change its value, allowing us to fold these operations effectively.
+2. **Reduction Over a Single Element**: Notably, a [reduction](https://aplwiki.com/wiki/Reduce) of a single element doesn't change its value, allowing us to fold these operations effectively.
 For a reduction, we can use:
 
 ```APL
@@ -89,10 +87,10 @@ These simplifications lead us to more concise solutions:
 +.×⍨⍤⊣=×⍨⍤⊢
 ```
 
-This is the tacit (point-free) equivalent of Solution B.
+This is the [tacit (point-free)](https://aplwiki.com/wiki/Tacit_programming) equivalent of Solution B.
 1. `+.×⍨⍤⊣` - Apply the sum of squares operation to the left argument
 2. `×⍨⍤⊢` - Apply squaring to the right argument
-3. `=` - Compare the results
+3. [`=`](https://aplwiki.com/wiki/Equal) - Compare the results
 
 ### Solution D
 
@@ -115,7 +113,7 @@ This solution combines the sum of squares operation into a single function appli
 1. `+.×⍨` - Calculate the sum of squares
 2. `=⍥(+.×⍨)` - Apply the sum of squares to both arguments and compare
 
-## **Complex Number Approach**
+## Complex Number Approach
 
 Another approach is to represent the two shorter sides as components in the complex plane. We can represent the sides as:
 
@@ -140,7 +138,7 @@ This leads to our next set of solutions:
 {⍵=|(⊃⍺)+0J1×⊢/⍺}
 ```
 
-This solution uses complex numbers to represent the triangle.
+This solution uses [complex numbers](https://aplwiki.com/wiki/Complex_number) to represent the triangle.
 1. `⊃⍺` - Take the first element of the left argument (one leg)
 2. `⊢/⍺` - Take the last element of the left argument (other leg)
 3. `(⊃⍺)+0J1×⊢/⍺` - Combine the legs into a complex number
@@ -189,7 +187,7 @@ This method of inversion can be represented in APL as:
 ÷⍥⌹≡÷
 ```
 
-This solution uses the matrix inverse (domino) function to check if the triangle is right-angled.
+This solution uses the [matrix inverse (domino) function](https://aplwiki.com/wiki/Matrix_Inverse) to check if the triangle is right-angled.
 1. `⌹` - Apply matrix inverse to both arguments
 2. `÷⍥⌹` - Divide the inversed arguments
 3. `≡÷` - Check if the result is identical to the regular division of the arguments
@@ -208,9 +206,7 @@ This is derived from:
 {(+/⍺*2)=⍵*2}
 ```
 
-
-
-## **Glyphs Used**
+## Glyphs Used
 
 - [Plus Reduce](https://aplwiki.com/wiki/Plus_Reduce) (+/)
 - [Power](https://aplwiki.com/wiki/Power) (*)
@@ -233,7 +229,7 @@ This is derived from:
 - [Matrix Inverse](https://aplwiki.com/wiki/Matrix_Inverse) (⌹)
 - [Match](https://aplwiki.com/wiki/Match) (≡)
 
-## **Concepts**
+## Concepts
 
 - [Pythagorean Theorem](https://en.wikipedia.org/wiki/Pythagorean_theorem)
 - [Tacit Programming](https://aplwiki.com/wiki/Tacit_programming)
