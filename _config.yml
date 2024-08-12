@@ -2,17 +2,14 @@
 title: "APL Quest Notes"
 author: "jgordini"
 logo: ""  # No logo
-
 # Repository information
 repository:
   url: "https://github.com/jgordini/apl-quest-notes"
   path_to_book: ""
   branch: "main"
-
 # Execution options
 execute:
   execute_notebooks: off
-
 # HTML output options
 html:
   theme:
@@ -31,11 +28,11 @@ html:
     collapse_inactive_chapters: true
     collapse_inactive_sections: true
     collapse_on_load: true
-
+  extra_css:
+    - _static/custom.css
 # LaTeX options
 latex:
   latex_engine: pdflatex
-
 # Sphinx configuration
 sphinx:
   config:
@@ -45,7 +42,6 @@ sphinx:
     html_sidebars:
       "**": ["search-field.html", "sbt-sidebar-nav.html"]
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
 # MyST-Parser options
 parse:
   myst_enable_extensions:
@@ -53,13 +49,7 @@ parse:
     - amsmath
     - colon_fence
   myst_heading_anchors: 3
-
 # Launch buttons
 launch_buttons:
   binderhub_url: "https://mybinder.org"
   thebe: true
-
-# Extra CSS for APL fonts
-html:
-  extra_css:
-    - _static/custom.css
