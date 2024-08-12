@@ -1,9 +1,6 @@
-
 # [It Is All Right 2014-1](https://apl.quest/psets/2014.html?goto=P1_It_Is_All_Right)
 
-# APL Right Triangle Problem
-
-**Problem:** Write a [dfn](https://aplwiki.com/wiki/Dfn) that takes the length of the legs of a triangle as its left argument, and the length of the hypotenuse as its right argument and returns 1 if the triangle is a right triangle, 0 otherwise.
+**Problem:** Write a [dfn](https://aplwiki.com/wiki/Dfn) that takes the length of the legs of a triangle as its [left argument](https://aplwiki.com/wiki/Argument), and the length of the hypotenuse as its right argument and returns 1 if the triangle is a [right triangle](https://en.wikipedia.org/wiki/Right_triangle), 0 otherwise.
 
 ## Getting Started
 
@@ -22,7 +19,7 @@ It is natural to use the [Pythagorean Theorem](https://en.wikipedia.org/wiki/Pyt
 We can express this mathematically using the concept of self-multiplication or squaring:
 
 1. The square of a number is the same as multiplying the number by itself.
-2. The sum of the squares can be represented as an inner product of the shorter sides.
+2. The sum of the squares can be represented as an [inner product](https://aplwiki.com/wiki/Inner_Product) of the shorter sides.
 Given this, we can rewrite our check as:
 
 ```APL
@@ -38,10 +35,10 @@ This leads us to our first solution:
 ```
 
 This solution implements the Pythagorean theorem directly. It squares the elements of the left argument (the legs), sums them, and compares the result to the square of the right argument (the hypotenuse).
-1. `⍺*2` - Square each element of the left argument (the legs)
-2. [`+/`](https://aplwiki.com/wiki/Plus_Reduce)`⍺*2` - Sum the squared values
+1. `⍺*2` - Square each element of the left argument (the legs) using the [power](https://aplwiki.com/wiki/Power) function
+2. [`+/`](https://aplwiki.com/wiki/Plus_Reduce)`⍺*2` - Sum the squared values using [reduction](https://aplwiki.com/wiki/Reduce)
 3. `⍵*2` - Square the right argument (the hypotenuse)
-4. `(+/⍺*2)=⍵*2` - Compare the sum of squared legs to the squared hypotenuse
+4. `(+/⍺*2)=⍵*2` - Compare the sum of squared legs to the squared hypotenuse using the [equal](https://aplwiki.com/wiki/Equal) function
 
 We can also express this using an [inner product](https://aplwiki.com/wiki/Inner_Product):
 
@@ -53,7 +50,7 @@ We can also express this using an [inner product](https://aplwiki.com/wiki/Inner
 
 This solution uses the inner product to calculate the sum of squares for the legs, making it equivalent to Solution A for [scalar functions](https://aplwiki.com/wiki/Scalar_function) on vectors.
 1. `+.×⍨⍺` - Use inner product to sum the squares of the left argument
-2. `×⍨⍵` - Square the right argument
+2. `×⍨⍵` - Square the right argument using [self-reference](https://aplwiki.com/wiki/Self-Reference)
 3. `(+.×⍨⍺)=×⍨⍵` - Compare the results
 
 ## Simplification
@@ -88,7 +85,7 @@ These simplifications lead us to more concise solutions:
 ```
 
 This is the [tacit (point-free)](https://aplwiki.com/wiki/Tacit_programming) equivalent of Solution B.
-1. `+.×⍨⍤⊣` - Apply the sum of squares operation to the left argument
+1. `+.×⍨⍤⊣` - Apply the sum of squares operation to the left argument using [atop](https://aplwiki.com/wiki/Atop)
 2. `×⍨⍤⊢` - Apply squaring to the right argument
 3. [`=`](https://aplwiki.com/wiki/Equal) - Compare the results
 
@@ -99,7 +96,7 @@ This is the [tacit (point-free)](https://aplwiki.com/wiki/Tacit_programming) equ
 ```
 
 This solution breaks out the squaring operation, applying it to both arguments before comparing.
-1. `⍥(×⍨)` - Apply squaring to both arguments
+1. `⍥(×⍨)` - Apply squaring to both arguments using [over](https://aplwiki.com/wiki/Over)
 2. `+/⍤⊣` - Sum the squared left argument
 3. `=⊢` - Compare with the squared right argument
 
@@ -122,8 +119,8 @@ z = a + bi
 ```
 
 Where `a` and `b` are the two shorter sides. The magnitude of the vector is given by the absolute value, which we can derive as follows:
-1. Multiply the last element of the left argument by the imaginary unit.
-2. Take the absolute value and compare it with the right argument.
+1. Multiply the last element of the left argument by the [imaginary unit](https://aplwiki.com/wiki/Imaginary).
+2. Take the [absolute value](https://aplwiki.com/wiki/Magnitude) and compare it with the right argument.
 In APL, we can calculate the magnitude of a complex number using:
 
 ```APL
@@ -139,7 +136,7 @@ This leads to our next set of solutions:
 ```
 
 This solution uses [complex numbers](https://aplwiki.com/wiki/Complex_number) to represent the triangle.
-1. `⊃⍺` - Take the first element of the left argument (one leg)
+1. `⊃⍺` - Take the [first](https://aplwiki.com/wiki/First) element of the left argument (one leg)
 2. `⊢/⍺` - Take the last element of the left argument (other leg)
 3. `(⊃⍺)+0J1×⊢/⍺` - Combine the legs into a complex number
 4. `|( ... )` - Calculate the magnitude of the complex number
@@ -159,7 +156,7 @@ This is the tacit equivalent of Solution F.
 ⊢=∘|0J1⊥⊣
 ```
 
-This solution uses i-base (0J1⊥) to combine the parts of the complex number.
+This solution uses i-base ([decode](https://aplwiki.com/wiki/Decode)) to combine the parts of the complex number.
 
 We can also use the 4-circle function to calculate the hypotenuse:
 
@@ -169,14 +166,16 @@ We can also use the 4-circle function to calculate the hypotenuse:
 {⍵=(⊃⌽⍺)×4○÷/⍺}
 ```
 
-This solution uses the 4-circle function to calculate the hypotenuse.
-1. `÷/⍺` - Calculate the ratio of the legs
+This solution uses the [4-circle function](https://aplwiki.com/wiki/Circle) to calculate the hypotenuse.
+1. `÷/⍺` - Calculate the ratio of the legs using [divide](https://aplwiki.com/wiki/Divide)
 2. `4○÷/⍺` - Apply the 4-circle function to the ratio
-3. `(⊃⌽⍺)×4○÷/⍺` - Multiply by the second leg
+3. `(⊃⌽⍺)×4○÷/⍺` - Multiply by the second leg using [reverse](https://aplwiki.com/wiki/Reverse)
 4. `⍵=( ... )` - Compare the result to the right argument (hypotenuse)
 
-**Final Solution Using Domain Concepts**
+## **Final Solution Using Domain Concepts**
+
 We can solve this using the **Domino** function, which represents a ratio between the inversions of both arguments:
+
 1. Apply the function to both arguments.
 2. Check if it matches the original ratio.
 This method of inversion can be represented in APL as:
@@ -190,7 +189,7 @@ This method of inversion can be represented in APL as:
 This solution uses the [matrix inverse (domino) function](https://aplwiki.com/wiki/Matrix_Inverse) to check if the triangle is right-angled.
 1. `⌹` - Apply matrix inverse to both arguments
 2. `÷⍥⌹` - Divide the inversed arguments
-3. `≡÷` - Check if the result is identical to the regular division of the arguments
+3. `≡÷` - Check if the result is identical to the regular division of the arguments using [match](https://aplwiki.com/wiki/Match)
 
 This is derived from:
 
