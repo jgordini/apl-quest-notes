@@ -1,5 +1,5 @@
 
-# [It is All Right 2014-1](https://apl.quest/psets/2014.html?goto=P1_It_Is_All_Right)
+# [It Is All Right 2014-1](https://apl.quest/psets/2014.html?goto=P1_It_Is_All_Right)
 
 **Problem:** Write a dfn that takes the length of the legs of a triangle as its left argument, and the length of the hypotenuse as its right argument and returns 1 if the triangle is a right triangle, 0 otherwise.
 
@@ -17,11 +17,7 @@ It is natural to use the Pythagorean theorem to solve this problem. Let's examin
 
 1. Shorter sides: `2` and `4`. Longer side: `4.5` → Result: **False**
 2. Shorter sides: `3` and `4`. Longer side: `5` → Result: **True**
-According to the Pythagorean theorem, the sum of the squares of the two shorter sides must equal the square of the longer side. We can express this as an APL function:
-
-```APL
-{(+/⍺*2)=⍵*2}
-```
+    According to the Pythagorean theorem, the sum of the squares of the two shorter sides must equal the square of the longer side. 
 
 ## **Mathematical Representation**
 
