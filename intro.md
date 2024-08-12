@@ -300,3 +300,45 @@ BetterJust text
 ```
 
 This APL implementation demonstrates the language's power in handling complex text operations with concise, array-oriented code. The `BetterJust` function efficiently justifies text while intelligently handling various edge cases.
+
+## Common Use Cases
+
+**Using first and reduction:**
+
+```
+∧/⊣=⊢
+```
+
+This checks if all elements are equal to the first element.
+
+**Using unique and tally:**
+
+```
+1≥≢∪
+```
+
+This checks if the count of unique elements is 1 or less.
+
+**Using 2-wise reduction:**
+
+```
+∧/2=⍨
+```
+
+This checks if each pair of adjacent elements is equal.
+
+**Using min and max:**
+
+```
+⌊/=⌈/
+```
+
+This checks if the minimum and maximum elements are equal.
+
+**Using key:**
+
+```
+1≥≢⊣⌸
+```
+
+This uses the key operator to get unique elements and checks their count.
