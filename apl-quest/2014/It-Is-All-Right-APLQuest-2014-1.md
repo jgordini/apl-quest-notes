@@ -256,7 +256,7 @@ This is derived from:
 - [Domino Function](https://aplwiki.com/wiki/Matrix_Inverse)
 - [4-circle Function](https://aplwiki.com/wiki/Circle)
 
-## **Transcript**
+## Transcript
 
 Welcome to the APL quest! For details, refer to the APL Wiki. This is the first problem from the 2014 set of the APL problem-solving competition. We’re given the left argument, which represents the two supposed shorter sides of a triangle, and the right argument, which represents the longer side. Our task is to check if these three numbers together can work as the lengths of a right-angled triangle. Naturally, it’s appropriate to use the Pythagorean theorem here. Let’s put in some test cases: two shorter sides, 2 and 4; another case with shorter sides, 3 and 4. We’re going to try this with a longer side, 4.5 and 5. The first one is going to be false, and the second one is going to be true. The Pythagorean theorem states that the sum of the squares of the two shortest sides equals the square of the longer side.
 
