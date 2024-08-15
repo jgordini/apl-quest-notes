@@ -2,7 +2,7 @@
 
 **Problem:** A palindrome is a word or phrase whose letters read the same forwards and backwards. Write a dfn which returns a 1 if its character vector argument is a palindrome, 0 otherwise. For simplicity’s sake, you may assume that the vector is all one case.
 
-**Video:** [https://www.youtube.com/watch?v=cPzQr2aJ7e](https://www.youtube.com/watch?v=cPzQr2aJ7e)
+**Video:** [https://www.youtube.com/watch?v=cPzQr2aJ7e4](https://www.youtube.com/watch?v=cPzQr2aJ7e4)
 
 **Code:** [https://github.com/abrudz/apl_quest/blob/main/2014/5.apl](https://github.com/abrudz/apl_quest/blob/main/2014/5.apl)
 
