@@ -1,8 +1,12 @@
-# Optimizing Space Normalization in APL: A Deep Dive
+# [Space The Final Frontier 2014-4](https://apl.quest/psets/2014.html?goto=P4_Space_The_Final_Frontier)
 
-In this article, we'll explore various methods to remove extraneous spaces (leading, trailing, and multiple) from a character vector in APL. We'll examine different approaches, compare their performance, and discuss the pros and cons of each method.
+**Problem:** Write a dfn that removes extraneous (leading, trailing, and multiple) spaces from a character vector.
 
-## Setting Up the Test Environment
+**Video:** [https://www.youtube.com/watch?v=aqfhItFpO2I](https://www.youtube.com/watch?v=aqfhItFpO2I)
+
+**Code:** [https://github.com/abrudz/apl_quest/blob/main/2014/4.apl](https://github.com/abrudz/apl_quest/blob/main/2014/4.apl)
+
+## Getting Started
 
 First, let's set up our test data and performance measurement tool:
 
@@ -13,7 +17,7 @@ t←∘.{⍺,(40↑⎕A)[?1,1,⍨1e3⍴40],⍵}⍨0 7↑¨' '
 
 This creates a test vector `t` with random characters and spaces, and imports the `cmpx` function for performance comparison.
 
-## Method 1: Comparing Adjacent Characters
+### Method 1: Comparing Adjacent Characters
 
 Our first approach compares adjacent characters:
 
@@ -39,7 +43,7 @@ cmpx 'A¨t' 'B¨t'
 ⍝  B¨t → 7.1E¯6 | +27% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
 ```
 
-## Method 2: Cyclic Rotation
+### Method 2: Cyclic Rotation
 
 Next, we explore methods using cyclic rotation:
 
@@ -75,7 +79,7 @@ cmpx ('C'iotag'I'),¨⊂'¨t'
 ⍝  I¨t → 6.0E¯6 | -20% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                   
 ```
 
-## Method 3: Regular Expressions
+### Method 3: Regular Expressions
 
 Now, let's explore solutions using regular expressions:
 
@@ -101,7 +105,7 @@ cmpx'J¨t' 'K¨t' 'L¨t'
 ⍝  L¨t → 3.1E¯3 | +459% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
 ```
 
-## Method 4: Split and Join
+### Method 4: Split and Join
 
 Next, we'll look at solutions that split the string and then join it back:
 
@@ -130,7 +134,7 @@ cmpx('M'iotag'P'),¨⊂'¨t'
 ⍝  P¨t → 2.3E¯4 | -65% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                          
 ```
 
-## Method 5: Using Find (⍷)
+### Method 5: Using Find (⍷)
 
 Lastly, we'll explore solutions using the find (`⍷`) primitive:
 
@@ -155,7 +159,7 @@ cmpx'Q¨t' 'R¨t' 'S¨t'
 ⍝  S¨t → 8.5E¯5 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
 ```
 
-## Final Comparison
+### Final Comparison
 
 Now, let's compare the best performers from each group
 
@@ -213,7 +217,7 @@ After comparing various methods for removing extraneous spaces in APL, we can dr
 
 5. The find (`⍷`) based methods (`Q`, `R`, `S`) show mixed results, with `R` performing well but still not matching the top two.
 
-Key takeaways:
+### Key takeaways:
 
 1. Simple, primitive-based operations tend to outperform more complex approaches like regex.
 2. Careful use of boolean operations and array manipulations can lead to highly efficient solutions.
