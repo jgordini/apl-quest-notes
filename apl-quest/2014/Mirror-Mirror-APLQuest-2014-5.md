@@ -102,6 +102,48 @@ We've explored several methods for palindrome detection in APL, ranging from sim
 
 When choosing a method, consider the trade-off between code simplicity and performance based on your specific use case. For small inputs or infrequent operations, the simpler methods may be sufficient. For large-scale or performance-critical applications, the code point method (D) might be the best choice.
 
+## Glyphs Used
+- [Case Fold](https://aplwiki.com/wiki/Case_Fold) (⎕C)
+- [Reverse](https://aplwiki.com/wiki/Reverse) (⌽)
+- [Match](https://aplwiki.com/wiki/Match) (≡)
+- [Intersection](https://aplwiki.com/wiki/Intersection) (∩)
+- [Self-Reference](https://aplwiki.com/wiki/Self-Reference) (⍨)
+- [Over](https://aplwiki.com/wiki/Over) (⍥)
+- [Alphabet](https://aplwiki.com/wiki/Alphabet) (⎕A)
+- [Replicate](https://aplwiki.com/wiki/Replicate) (/)
+- [Membership](https://aplwiki.com/wiki/Membership) (∊)
+- [Catenate](https://aplwiki.com/wiki/Catenate) (,)
+- [Interval Index](https://aplwiki.com/wiki/Interval_Index) (⍸)
+- [Residue](https://aplwiki.com/wiki/Residue) (|)
+- [Atop](https://aplwiki.com/wiki/Atop) (⍤)
+- [Right](https://aplwiki.com/wiki/Right) (⊢)
+- [Less Than or Equal To](https://aplwiki.com/wiki/Less_Than_or_Equal_To) (≤)
+- [And](https://aplwiki.com/wiki/And) (∧)
+- [Or](https://aplwiki.com/wiki/Or) (∨)
+- [Unicode Convert](https://aplwiki.com/wiki/Unicode_Convert) (⎕UCS)
+
+## Concepts
+- [Dfn](https://aplwiki.com/wiki/Dfn)
+- [Tacit Programming](https://aplwiki.com/wiki/Tacit_programming)
+- [Case Folding](https://aplwiki.com/wiki/Case_Fold)
+- [Set Operations](https://aplwiki.com/wiki/Set_theory)
+- [Character Ranges](https://aplwiki.com/wiki/Character)
+- [Unicode Code Points](https://aplwiki.com/wiki/Unicode)
+- [Function Composition](https://aplwiki.com/wiki/Function_composition)
+- [Self-Reference](https://aplwiki.com/wiki/Self-Reference)
+- [Scalar Function](https://aplwiki.com/wiki/Scalar_function)
+- [Reduction](https://aplwiki.com/wiki/Reduce)
+- [Scalar Extension](https://aplwiki.com/wiki/Scalar_extension)
+- [Left and Right Arguments](https://aplwiki.com/wiki/Argument)
+- [Performance Optimization](https://aplwiki.com/wiki/Performance)
+- [ASCII Ranges](https://en.wikipedia.org/wiki/ASCII)
+- [String Manipulation](https://aplwiki.com/wiki/String)
+- [Boolean Operations](https://aplwiki.com/wiki/Boolean_function)
+- [Character Set Manipulation](https://aplwiki.com/wiki/Character)
+- [Palindrome](https://en.wikipedia.org/wiki/Palindrome)
+- [Case-Insensitive Comparison](https://aplwiki.com/wiki/Case_Fold)
+
+
 # Transcript
 Welcome to the APL Quest CAPL wiki for details. Today's quest is the fifth problem from the 2014 round of the APL Problem Solving Competition. It's a pretty simple problem - we're just to find out whether a given text is a palindrome. A slight complication is that we need to make sure to ignore things like case and punctuation. Let's start with some test data.
 
