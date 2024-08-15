@@ -8,75 +8,85 @@
 
 In this article, we'll explore different methods to detect palindromes using APL (A Programming Language). We'll start with simple solutions and gradually optimize them for better performance. The goal is to create a function that returns 1 if the input character vector is a palindrome, and 0 otherwise.
 
-## 1. Basic Intersection Method
+Certainly, I'll provide a step-by-step explanation for each example in markdown format.
 
-Let's start with a simple approach using intersection:
+### 1. Basic Intersection Method
 
 ```apl
 A←{c←⎕C⍵ ⋄ l←c/⍨c∊⎕C⎕A ⋄ l≡⌽l}
 ```
 
-This function does the following:
-1. Case-folds the input (⎕C⍵)
-2. Keeps only the letters (c/⍨c∊⎕C⎕A)
-3. Compares the result with its reverse (l≡⌽l)
+1. `c←⎕C⍵`: Case-fold the input (convert to lowercase).
+2. `c/⍨c∊⎕C⎕A`: Filter out non-alphabetic characters.
+   - `⎕C⎕A`: Case-fold the alphabet.
+   - `c∊⎕C⎕A`: Check which characters in `c` are in the case-folded alphabet.
+   - `c/⍨`: Replicate `c` based on the boolean mask from the previous step.
+3. `l≡⌽l`: Check if the filtered string is equal to its reverse.
 
-We can simplify this into a tacit (point-free) function:
+ This is the initial solution that case-folds the input, filters out non-alphabetic characters, and then checks if the result is equal to its reverse. It's a straightforward approach that addresses both the case-insensitivity and non-alphabetic character removal requirements.
 
+Tacit version:
 ```apl
 A←≡∘⌽⍨∩⍥⎕C∘⎕A
 ```
 
-This version uses the intersection (∩) of the case-folded input with the case-folded alphabet.
+1. `∩⍥⎕C∘⎕A`: Intersection of case-folded input with case-folded alphabet.
+2. `≡∘⌽⍨`: Compare the result with its reverse.
 
-## 2. Optimized Intersection Method
+This is a more elegant, tacit (point-free) version of the basic intersection method. It uses the intersection of the case-folded input with the case-folded alphabet, then compares the result with its reverse. This version is more concise but may have performance issues with large inputs due to case-folding the entire argument.
 
-To avoid case-folding the entire input, which can be expensive for large strings, we can modify our approach:
+### 2. Optimized Intersection Method
 
 ```apl
 B←≡∘⌽⍨∩∘(⎕A,⎕C⎕A)
 ```
 
-This version intersects the input with both uppercase and lowercase alphabets, potentially saving time on large inputs.
+1. `⎕A,⎕C⎕A`: Concatenate uppercase and lowercase alphabets.
+2. `∩∘(⎕A,⎕C⎕A)`: Intersect input with the combined alphabet.
+3. `≡∘⌽⍨`: Compare the result with its reverse.
 
-## 3. Range-based Method
+ This optimized version addresses the performance issue of case-folding a potentially large input. Instead of case-folding both the input and the alphabet, it only case-folds the alphabet. It concatenates the uppercase and lowercase alphabets, then intersects this with the input. This approach can be significantly faster for large inputs.
 
-Another approach is to use character ranges instead of set operations:
+### 3. Range-based Method
 
 ```apl
 C←{≡∘⌽⍨⎕C⍵/⍨2|'A[a{'⍸⍵}
 ```
 
-This function:
-1. Uses interval index (⍸) to check if characters are in the ranges A-Z or a-z
-2. Uses division remainder (2|) to keep only letters
-3. Case-folds and compares with reverse
+1. `'A[a{'⍸⍵`: Use interval index to check if characters are in A-Z or a-z ranges.
+2. `2|`: Take the remainder when divided by 2 (keeps only letters).
+3. `⍵/⍨`: Filter the input based on the boolean mask from step 2.
+4. `⎕C`: Case-fold the filtered input.
+5. `≡∘⌽⍨`: Compare with its reverse.
 
-We can also write this as a tacit function:
+This method uses character ranges instead of set operations. It uses interval index to check if characters are in the A-Z or a-z ranges, then uses division remainder to keep only letters. This approach avoids the need for set operations and can be more efficient in some cases.
 
-```apl
-C←≡∘⌽⍨∘⎕C⊢⊢⍤/⍨2|'A[a{'∘⍸
-```
-
-Or even more concisely:
-
+Tacit version:
 ```apl
 C←⊢≡∘⌽⍨∘⎕C⍤/⍨2|'A[a{'∘⍸
 ```
 
-## 4. Unicode Code Point Method
+1. `'A[a{'∘⍸`: Interval index (bound to input).
+2. `2|`: Remainder when divided by 2.
+3. `⊢⍤/⍨`: Filter input based on boolean mask.
+4. `⎕C`: Case-fold the filtered input.
+5. `≡∘⌽⍨`: Compare with its reverse.
 
-For potentially better performance, we can work directly with Unicode code points:
+ This is the tacit version of the range-based method. It composes the same operations as the dfn version but in a point-free style. This version can be more efficient and is often preferred by experienced APL programmers.
+
+### 4. Unicode Code Point Method
 
 ```apl
 D←{≡∘⌽⍨32|u/⍨((65∘≤∧≤∘90)∨(97∘≤∧≤∘122))u←⎕UCS⍵}
 ```
 
-This function:
-1. Converts the input to code points (⎕UCS⍵)
-2. Keeps only the code points in the ranges 65-90 (A-Z) and 97-122 (a-z)
-3. Uses division remainder by 32 to normalize case
-4. Compares with reverse
+1. `u←⎕UCS⍵`: Convert input to Unicode code points.
+2. `(65∘≤∧≤∘90)∨(97∘≤∧≤∘122)`: Check if code points are in A-Z or a-z ranges.
+3. `u/⍨`: Filter code points based on the boolean mask from step 2.
+4. `32|`: Take remainder when divided by 32 (normalizes case).
+5. `≡∘⌽⍨`: Compare with its reverse.
+
+This method works directly with Unicode code points for potentially better performance. It converts the input to code points, keeps only the code points in the ranges 65-90 (A-Z) and 97-122 (a-z), uses division remainder by 32 to normalize case, and then compares with its reverse. This approach can be significantly faster, especially for large inputs, as it avoids expensive character-based operations.
 
 ## Performance Comparison
 
