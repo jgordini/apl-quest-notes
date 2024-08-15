@@ -8,6 +8,8 @@
 
 In this article, we'll explore different methods to detect palindromes using APL (A Programming Language). We'll start with simple solutions and gradually optimize them for better performance. The goal is to create a function that returns 1 if the input character vector is a palindrome, and 0 otherwise.
 
+## Examples
+
 ### 1. Basic Intersection Method
 
 ```apl
