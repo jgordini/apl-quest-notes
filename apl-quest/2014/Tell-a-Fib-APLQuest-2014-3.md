@@ -15,7 +15,9 @@ The Fibonacci sequence is typically defined recursively. We start with seed valu
 - For two elements, we want `[1, 1]`.
 - For more than two elements, each new element is the sum of the two preceding ones.
 
-## Basic Recursive Implementation
+## Examples
+
+### Basic Recursive Implementation
 
 We can express this in APL as follows:
 
@@ -34,7 +36,7 @@ Step-by-step explanation:
 
 This implementation computes the first 10 Fibonacci numbers. However, it's inefficient because it recomputes the same values multiple times for each element of the sequence.
 
-## Efficient Computation: Fundamental Fibonacci Function
+### Efficient Computation: Fundamental Fibonacci Function
 
 To improve efficiency, we'll compute the entire sequence at once using a fundamental Fibonacci transformation function, which we'll call `∆` (delta):
 
@@ -53,7 +55,7 @@ Step-by-step explanation:
 
 This function extends the current sequence by one element, summing the last two elements of the input.
 
-## Recursive Function with Tail-Call Optimization
+### Recursive Function with Tail-Call Optimization
 
 We can use this fundamental function in a recursive implementation:
 
@@ -74,7 +76,7 @@ Step-by-step explanation:
 2. `⍺∇∆⍵`: Otherwise, apply ∆ to extend the sequence and recurse.
 3. `∘1`: This [binds](https://aplwiki.com/wiki/Bind) 1 as the right argument, so the function starts with [1].
 
-## Power Operator Approach
+### Power Operator Approach
 
 We can also use the [power operator](https://aplwiki.com/wiki/Power_operator) to apply our fundamental function multiple times:
 
@@ -98,7 +100,7 @@ Step-by-step explanation for Ap0:
 2. `1⌈∘∆`: Apply ∆, but ensure at least one element (handles the case of 0).
 3. `⍣⍵`: Repeat this process ⍵ times.
 
-## Reduction as Iteration
+### Reduction as Iteration
 
 Another approach is to use [reduction](https://aplwiki.com/wiki/Reduce):
 
@@ -115,7 +117,7 @@ Step-by-step explanation:
 4. `⊃`: Extract the result from its enclosure.
 5. `⍵↑`: [Take](https://aplwiki.com/wiki/Take) the first ⍵ elements.
 
-## Pairwise Summation
+### Pairwise Summation
 
 We can also compute the sequence using pairwise summation:
 
@@ -132,7 +134,7 @@ Step-by-step explanation:
 4. `1⌈`: Ensure at least one element (handles the case of 0).
 5. `⍣⍵`: Repeat this process ⍵ times.
 
-## Matrix Multiplication Approach
+### Matrix Multiplication Approach
 
 Another interesting method uses a transformation matrix:
 
@@ -148,7 +150,7 @@ Step-by-step explanation:
 3. `+.×\`: Perform cumulative matrix multiplication.
 4. `1 2∘⌷¨`: Extract the [1,2] element from each resulting matrix.
 
-## Accumulation Using Pairs
+### Accumulation Using Pairs
 
 We can also generate the sequence by accumulating pairs:
 
