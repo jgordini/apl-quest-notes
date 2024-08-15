@@ -17,6 +17,8 @@ t←∘.{⍺,(40↑⎕A)[?1,1,⍨1e3⍴40],⍵}⍨0 7↑¨' '
 
 This creates a test vector `t` with random characters and spaces, and imports the `cmpx` function for performance comparison.
 
+## Examples
+
 ### Method 1: Comparing Adjacent Characters
 
 Our first approach compares adjacent characters:
