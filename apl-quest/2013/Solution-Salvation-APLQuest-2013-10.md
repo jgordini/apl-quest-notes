@@ -70,8 +70,6 @@ These are three equivalent primitive APL solutions for solving a set of linear e
 3. `v ≡ r ⌹ M`: This uses the built-in linear equation solver.
    - `⌹` when used dyadically solves the system of linear equations
 
-
-
 ## Advanced Solutions
 
 ### **Hotelling-Bodewig Scheme**
@@ -108,8 +106,6 @@ This formulation is equivalent to the previously given formula, but expressed in
 3. Express in APL notation
 4. Create a tacit function using trains
 5. `⍣≡` applies the function on its left until the result doesn't change. Because of the way [equality testing works](https://help.dyalog.com/18.0/Content/Language/System Functions/ct.htm) in Dyalog APL, this terminates.
-
-## 
 
 ### Soleymani method
 
