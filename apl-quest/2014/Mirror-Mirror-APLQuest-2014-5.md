@@ -81,9 +81,6 @@ Through this exploration, we learned various methods to detect palindromes, opti
 Thank you for reading!
 
 # Transcript
-
-Here is the content rewritten in paragraphs, without summarizing or truncating:
-
 Welcome to the APL Quest CAPL wiki for details. Today's quest is the fifth problem from the 2014 round of the APL Problem Solving Competition. It's a pretty simple problem - we're just to find out whether a given text is a palindrome. A slight complication is that we need to make sure to ignore things like case and punctuation. Let's start with some test data.
 
 Okay, so we need to get rid of case differences so that, for example, the first 'A' and the last 'a' in "Panama" match each other, and we can use ⍵C which is case fold for that now. And we just need to sort out the characters that we need to compare and get rid of those that we don't want to look at at all. One way we can do this is let's put this into a function so we can try this. This is the case folded one, and then we should look which characters are members of the case folded alphabet. Of course, it should be ⍵ here. There we go.
