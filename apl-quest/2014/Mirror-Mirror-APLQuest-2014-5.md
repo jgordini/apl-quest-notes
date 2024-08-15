@@ -6,79 +6,101 @@
 
 **Code:** [https://github.com/abrudz/apl_quest/blob/main/2014/5.apl](https://github.com/abrudz/apl_quest/blob/main/2014/5.apl)
 
-Today's quest is the fifth problem from the 2014 round of the APL Problem Solving Competition. The task is to determine whether a given text is a palindrome. A slight complication is that we need to ignore case differences and punctuation.
+In this article, we'll explore different methods to detect palindromes using APL (A Programming Language). We'll start with simple solutions and gradually optimize them for better performance. The goal is to create a function that returns 1 if the input character vector is a palindrome, and 0 otherwise.
 
-### Test Data
+## 1. Basic Intersection Method
 
-To illustrate our solution, we can start with some test data. We need to ensure that case differences are removed so that, for example, the first 'A' and the last 'A' in "Panama" match each other. To achieve this, we can use the `quad c`, which is case fold.
-
-Next, we will sort out the characters we need to compare and eliminate any that we do not wish to consider. Let's put this into a function to process the data. An example of such a function is:
+Let's start with a simple approach using intersection:
 
 ```apl
 A←{c←⎕C⍵ ⋄ l←c/⍨c∊⎕C⎕A ⋄ l≡⌽l}
 ```
 
-Here, we apply the process to ensure we filter by characters that are members of the case-folded alphabet.
+This function does the following:
+1. Case-folds the input (⎕C⍵)
+2. Keeps only the letters (c/⍨c∊⎕C⎕A)
+3. Compares the result with its reverse (l≡⌽l)
 
-The last step is to see if the letters match themselves when reversed. For example, "A man, a plan, a canal: Panama" is a palindrome, whereas "Hello World" is not.
-
-### Optimizing the Process
-
-While our initial method works, we can simplify the process with a few key observations.
-
-Firstly, filtering by membership is the same as performing an intersection. Therefore, instead of pre-processing both arguments with case folding, we can just case fold one—the alphabet.
-
-This helps avoid unnecessary case folding on potentially large arguments. However, we must be cautious, as this means we only get lowercase letters; thus, we can supplement our alphabet with uppercase letters as well. This is a one-time operation when defining the function and helps us optimize the intersection. An example of this optimized approach is:
+We can simplify this into a tacit (point-free) function:
 
 ```apl
-A←≡∘⌽⍨∩⍥⎕C∘⎕A      ⍝ tacit
-B←≡∘⌽⍨∩∘(⎕A,⎕C⎕A)  ⍝ avoid case folding argument
+A←≡∘⌽⍨∩⍥⎕C∘⎕A
 ```
 
-### Exploring Ranges
+This version uses the intersection (∩) of the case-folded input with the case-folded alphabet.
 
-Another approach we can take is to compare Unicode character ranges instead of calculating intersections. All uppercase letters in Unicode and ASCII are contiguous, as are lowercase letters. By examining the values at the beginning and end of both cases (65 to 90 for uppercase and 97 to 122 for lowercase), we can determine which characters fall within these intervals.
+## 2. Optimized Intersection Method
 
-We'll use an interval index to filter characters, and we can simplify this by utilizing the properties of character ranges. For instance, we can express this as:
+To avoid case-folding the entire input, which can be expensive for large strings, we can modify our approach:
+
+```apl
+B←≡∘⌽⍨∩∘(⎕A,⎕C⎕A)
+```
+
+This version intersects the input with both uppercase and lowercase alphabets, potentially saving time on large inputs.
+
+## 3. Range-based Method
+
+Another approach is to use character ranges instead of set operations:
+
+```apl
+C←{≡∘⌽⍨⎕C⍵/⍨2|'A[a{'⍸⍵}
+```
+
+This function:
+1. Uses interval index (⍸) to check if characters are in the ranges A-Z or a-z
+2. Uses division remainder (2|) to keep only letters
+3. Case-folds and compares with reverse
+
+We can also write this as a tacit function:
+
+```apl
+C←≡∘⌽⍨∘⎕C⊢⊢⍤/⍨2|'A[a{'∘⍸
+```
+
+Or even more concisely:
+
+```apl
+C←⊢≡∘⌽⍨∘⎕C⍤/⍨2|'A[a{'∘⍸
+```
+
+## 4. Unicode Code Point Method
+
+For potentially better performance, we can work directly with Unicode code points:
 
 ```apl
 D←{≡∘⌽⍨32|u/⍨((65∘≤∧≤∘90)∨(97∘≤∧≤∘122))u←⎕UCS⍵}
 ```
 
-Finally, we will proceed to test for palindromes as before, but with the added benefit of avoiding constant rechecking of case-folding characters.
+This function:
+1. Converts the input to code points (⎕UCS⍵)
+2. Keeps only the code points in the ranges 65-90 (A-Z) and 97-122 (a-z)
+3. Uses division remainder by 32 to normalize case
+4. Compares with reverse
 
-### Performance Considerations
+## Performance Comparison
 
-One important aspect to consider is the performance implications of our approach. By starting with raw code points, especially when all characters are ASCII, we can optimize our processing. We wouldn't need to check every character for case folding repeatedly, which can be expensive.
-
-Using ranges, we can efficiently filter the characters we are interested in and conduct our palindrome checks on these values. For performance testing, we can create larger test data sets like:
-
-```apl
-t←(70↑⎕A,⎕C⎕A,',.!?')[?1e5⍴70]
-```
-
-### Creating Test Data
-
-We need to create some test data similar to natural text, which might include uppercase and lowercase letters along with punctuation. For a palindrome, we can self-concatenate half of our data to create a valid example by reversing one half and attaching it to the other.
+To compare the performance of these methods, we can use the `cmpx` function from the `dfns` workspace:
 
 ```apl
-p←,∘⌽⍨(70↑⎕A,⎕C⎕A,',.!?')[?5e4⍴70]
+'cmpx'⎕CY'dfns'
+t←(70↑⎕A,⎕C⎕A,',.!?')[?1e5⍴70]  ⍝ Non-palindrome test data
+p←,∘⌽⍨(70↑⎕A,⎕C⎕A,',.!?')[?5e4⍴70]  ⍝ Palindrome test data
+
+cmpx 'ABCD',¨⊂' t'  ⍝ Test with non-palindrome
+cmpx 'ABCD',¨⊂' p'  ⍝ Test with palindrome
 ```
 
-And measure performance using:
+The results show that:
+1. Method B (optimized intersection) is faster than method A (basic intersection)
+2. Method C (range-based) doesn't offer significant improvement
+3. Method D (Unicode code point) provides the best performance in most cases
 
-```apl
-cmpx 'ABCD',¨⊂' t'
-cmpx 'ABCD',¨⊂' p'
-```
+## Conclusion
 
-### 
+We've explored several methods for palindrome detection in APL, ranging from simple set operations to more complex code point manipulations. While the simpler methods are easier to understand and implement, the more complex methods can offer significant performance improvements, especially for large inputs.
 
-### Conclusion
-
-Through this exploration, we learned various methods to detect palindromes, optimizing for performance and efficiency. By considering both case sensitivity and character ranges, we have developed a robust solution.
-
-Thank you for reading!
+When choosing a method, consider the trade-off between code simplicity and performance based on your specific use case. For small inputs or infrequent operations, the simpler methods may be sufficient. For large-scale or performance-critical applications, the code point method (D) might be the best choice.
 
 # Transcript
 Welcome to the APL Quest CAPL wiki for details. Today's quest is the fifth problem from the 2014 round of the APL Problem Solving Competition. It's a pretty simple problem - we're just to find out whether a given text is a palindrome. A slight complication is that we need to make sure to ignore things like case and punctuation. Let's start with some test data.
