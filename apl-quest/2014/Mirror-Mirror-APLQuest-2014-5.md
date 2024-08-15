@@ -1,5 +1,10 @@
+# [Mirror Mirror 2014-5](https://apl.quest/psets/2014.html?goto=P5_Mirror_Mirror)
 
-# Welcome to the APL Quest 
+**Problem:** A palindrome is a word or phrase whose letters read the same forwards and backwards. Write a dfn which returns a 1 if its character vector argument is a palindrome, 0 otherwise. For simplicity’s sake, you may assume that the vector is all one case.
+
+**Video:** [https://www.youtube.com/watch?v=cPzQr2aJ7e](https://www.youtube.com/watch?v=cPzQr2aJ7e)
+
+**Code:** [https://github.com/abrudz/apl_quest/blob/main/2014/5.apl](https://github.com/abrudz/apl_quest/blob/main/2014/5.apl)
 
 Today's quest is the fifth problem from the 2014 round of the APL Problem Solving Competition. The task is to determine whether a given text is a palindrome. A slight complication is that we need to ignore case differences and punctuation.
 
