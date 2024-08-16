@@ -135,7 +135,7 @@ When choosing a method, consider the trade-off between code simplicity and perfo
 ## Concepts
 - [Dfn](https://aplwiki.com/wiki/Dfn)
 - [Tacit Programming](https://aplwiki.com/wiki/Tacit_programming)
-- [Case Folding](https://aplwiki.com/wiki/Case_Fold)
+- [Case Folding](https://help.dyalog.com/latest/#Language/System%20Functions/c.htm?Highlight=Case%20Convert)
 - [Set Operations](https://aplwiki.com/wiki/Set_theory)
 - [Character Ranges](https://aplwiki.com/wiki/Character)
 - [Unicode Code Points](https://aplwiki.com/wiki/Unicode)
