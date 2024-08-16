@@ -8,7 +8,7 @@
 
 In this article, we'll explore different methods to detect palindromes using APL (A Programming Language). We'll start with simple solutions and gradually optimize them for better performance. The goal is to create a function that returns 1 if the input character vector is a palindrome, and 0 otherwise.
 
-## Examples
+## Basic Solutions
 
 ### 1. Basic Intersection Method
 
@@ -46,6 +46,8 @@ B←≡∘⌽⍨∩∘(⎕A,⎕C⎕A)
 3. `≡∘⌽⍨`: Compare the result with its reverse.
 
  This optimized version addresses the performance issue of case-folding a potentially large input. Instead of case-folding both the input and the alphabet, it only case-folds the alphabet. It concatenates the uppercase and lowercase alphabets, then intersects this with the input. This approach can be significantly faster for large inputs.
+
+## Advanced Solutions
 
 ### 3. Range-based Method
 
