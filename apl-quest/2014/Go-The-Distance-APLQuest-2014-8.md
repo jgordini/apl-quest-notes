@@ -1,5 +1,5 @@
 
-# Going The Distance 2014-8 
+# Go The Distance 2014-8 
 
 Today's quest is the eighth from the 2014 round of the APL problems of solving competition, where we are tasked with computing the distance between two points in n-dimensional space. 
 
