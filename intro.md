@@ -342,3 +342,125 @@ This checks if the minimum and maximum elements are equal.
 ```
 
 This uses the key operator to get unique elements and checks their count.
+
+# APL Idioms Categorized
+
+## Array Operations
+
+- Fast: Y sorted into ascending order: `{(⊂⍋⍵)⌷⍵}Y`
+- Fast: Y sorted into descending order: `{(⊂⍒⍵)⌷⍵}Y`
+- Fast: The subset of Yv in the index positions defined by M: `M⊃¨⊂Yv`
+- Fast: The positions in Yv corresponding to the 1s in Av: `Av/⍳⍴Yv`
+- Fast: A nested vector comprising vectors that each correspond to a position in the original vectors of Yv: `↓⍉↑Yv`
+- Fast: 'name' redefined to be its value with Y catenated along its last axis: `name,←Y`
+- Fast: 'name' redefined to be its value with Y catenated along its first axis: `name⍪←Y`
+- Fast: 'name' redefined to be its value without the -Js trailing major cells (only fast when Js is negative): `name↓⍨←Js`
+
+## Numeric Operations
+
+- Fast: Round to nearest integer: `⌊0.5+N`
+- Golden ratio (direct formula): `2÷¯1+5*÷2`
+- Arithmetic precision of the system (in decimals): `17×2-645=⎕FR`
+- Negative "infinity" (the smallest representable value): `⌈/⍬`
+- Positive "infinity" (the largest representable value): `⌊/⍬`
+
+## Boolean Operations
+
+- Fast: The number of leading 1s in each row of B: `+/∧\B`
+- Fast: A Boolean mask indicating the leading blank spaces in each row of D: `∧\' '=D`
+
+## Shape/Structure Testing
+
+- Fast: Is Y a Scalar?: `0=⍴⍴Y`
+- Fast: Is Y a Simple Array?: `1=≡,Y`
+- Fast: Does Y have an empty first dimension?: `0=⊃⍴Y`
+- Fast: Is Y non-empty?: `~0∊⍴Y`
+- Fast: Is Y a Simple Scalar?: `0=≡Y`
+- Fast: Is Y a Simple Non-scalar?: `1=≡Y`
+
+## Indexing/Selection
+
+- Fast: The item in the top right of Y: `⊃⌽Y`
+- Fast: The item in the bottom right of Y: `⊃⌽,Y`
+- Fast: The subset of ⍳Ns corresponding to the 1s in Bv: `Bv/⍳Ns`
+- Fast: The rank of Y as a scalar: `≢⍴Y`
+- Fast: The rank of Y as a 1-element vector: `⍴⍴Y`
+
+## Date/Time
+
+- Packing current date (YYMMDD): `100⊥100|3↑⎕TS`
+- Current UNIX time: `20⎕DT'Z'`
+- Current UTC date and time: `¯1⎕DT'Z'`
+- Current ISO timestamp: `'%ISO%'(1200⌶)1⎕DT'J'`
+- Current ISO day-of-year: `2⊃⊃¯10⎕DT'J'`
+- Current ISO week number: `2⊃⊃¯11⎕DT'J'`
+
+## System Information
+
+- Is this Dyalog APL Unicode?: `80=⎕DR''`
+- Is this Dyalog APL Classic?: `82=⎕DR''`
+- Current directory: `⊃1⎕NPARTS''`
+- Report interpreter version: `#⎕WG'APLVersion'`
+- Is interpreter a runtime?: `'R'∊4⊃#⎕WG'APLVersion'`
+- Current real screen resolution before scaling: `(⊃÷100÷⊢/)⎕WG'DevCaps'`
+- Report Operating System: `'-64'~⍨⊃#⎕WG'APLVersion'`
+- Report Interpreter bit-width: `32×1+'4'∊⊃#⎕WG'APLVersion'`
+- Report the command line that Dyalog was started with: `⊢2⎕NQ#'GetCommandLineArgs'`
+- Report current IP address (first if multiple): `⊢2⎕NQ#'TCPGetHostID'`
+
+## Function/Operator Behavior
+
+- Called Monadically? (tradfns/tradops only): `900⌶⍬`
+- Called Dyadically? (tradfns/tradops only): `~900⌶⍬`
+- Number of arguments used in call (tradfns/tradops only): `2-900⌶⍬`
+- Called Monadically? (dfns/dops only): `0=40⎕ATX'⍺'`
+- Called Dyadically? (dfns/dops only): `0≠40⎕ATX'⍺'`
+
+## Mathematical Constants
+
+- Euler's idiom (accurate when N is a multiple of 0J0.5): `*○N`
+- tau (2 pi): `○2`
+
+## Workspace Management
+
+- Clear active workspace: `)CLEAR`
+- Save active workspace as CONTINUE and terminate session: `)CONTINUE`
+- Terminate the session: `)OFF`
+- Load workspace ws without executing ⎕LX: `)XLOAD {ws}`
+- Replace active workspace with workspace ws: `)LOAD {ws}`
+- Set or report the name of the active workspace: `)WSID {ws}`
+
+## Error Handling
+
+- Re-signal last caught error to caller (works with any ⎕IO and ⎕ML): `⎕SIGNAL⊂⎕DMX.(('EN'EN)('EM'EM)('Message'(OSError{⍵,2⌽(×≢⊃⍬⍴2⌽⍺,⊂'')/'"") (""',⊃⍬⍴2⌽⍺}Message)))`
+- Construct first line of printed error message (works with any ⎕IO and ⎕ML): `⎕DMX.(OSError{⍵,2⌽(×≢⊃⍬⍴2⌽⍺,⊂'')/'"") (""',⊃⍬⍴2⌽⊆⍺}Message{⍵,⍺,⍨': '/⍨×≢⍺}⊃⍬⍴DM,⊂'')`
+
+## Input/Output
+
+- Output x to the session via stdout (with trailing line break): `⎕←x`
+- Evaluate user input (from stdin) and return result: `x←⎕`
+- Output x to session without trailing newline via stderr (without trailing line break): `⍞←x`
+- Return one line of user input from stdin: `charvec←⍞`
+- Assignment of character vector without needing to double quotes: `name←⍞`
+- Prompt and response on same line: `⍞↓⍨≢⍞←'What? '`
+
+## Random Number Generation
+
+- Randomising random numbers: `⎕RL←⍬`
+- Generate random ULID: `(⎕D,⎕A~'ILOU')[(1+(10⍴32)⊤12⎕DT'Z'),?16⍴32]`
+- Generate random UUIDv4: `'-'@(4+5×⍳4)⊢(⎕D,⎕C⎕A)[4(9+|)@20⊢5@15?36⍴16]`
+- Generate random UUIDv7: `{⎕IO←0 ⋄ (,~⊃)'  ----  ',8 4⍴(⎕D,⎕C⎕A)[((12⍴16)⊤12⎕DT'Z'),7,4(8+|)@3?19⍴16]}`
+
+## Miscellaneous
+
+- Meaning of life (short): `≢⍕!⍋⎕D`
+- Meaning of life (traditional): `⍎⊖⍕⊃⊂|⌊-*+○⌈×÷!⌽⍉⌹~⍴⍋⍒,⍟?⍳0`
+- An expression giving itself: `"1⌽,⍨9⍴'''1⌽,⍨9⍴'''"`
+- Quote character: `''''`
+- System setting for exact integer arithmetic up to 34 digits: `(⎕FR⎕PP)←1287 34`
+- Conditional Abort (cut stack back one frame if Bs): `⍎Bs⍴'→'`
+- Enable SALT when not in session file: `(⎕NS⍬).(_←enableSALT⊣⎕CY'salt')`
+- Import dfns workspace into a namespace called dfns so dfn can be called using dfns.name: `{(⍎⍵⎕NS⍬).⎕CY ⍵}'dfns'`
+- Call function "name" from the dfns workspace without polluting the current workspace: `({⍵⊣⍵.⎕CY'dfns'}⎕NS⍬).name`
+- Delete all loaded TypeLibs: `{2⎕NQ#'DeleteTypeLib'⍵}∘⊃¨2⎕NQ#'ListTypeLibs'`
+- Initialise session (Dyalog.Utils, Link, SALT, user commands, etc.) in runtime or shell script: `⎕SE.(⍎⊃2⎕FIX'/StartupSession.aplf',⍨2⎕NQ#'GetEnvironment' 'DYALOG')`
