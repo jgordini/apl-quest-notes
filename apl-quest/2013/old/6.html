@@ -1,0 +1,898 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Home on the range 2013-6 &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=ae78d91f" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/old/6';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">APL Quest 2013</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping Things In Balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Go-Forth-And-Multiply-APLQuest-2013-8.html">Go forth and Multiply 2013-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Solution-Salvation-APLQuest-2013-10.html">Solution Salvation 2013-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2014/index.html">APL Quest 2014</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/It-Is-All-Right-APLQuest-2014-1.html">It Is All Right 2014-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/How-Tweet-It-Is-APLQuest-2014-2.html">How Tweet It Is 2014-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Tell-a-Fib-APLQuest-2014-3.html">Tell A Fib 2014-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Space-The-Final-Frontier-APLQuest-2014-4.html">Space The Final Frontier 2014-4</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Mirror-Mirror-APLQuest-2014-5.html">Mirror Mirror 2014-5</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Revolutionary-Thinking-APLQuest-2014-7.html">Revolutionary Thinking 2014-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Go-The-Distance-APLQuest-2014-8.html">Go The Distance 2014-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Going-Ballistic-APLQuest-2014-9.html">Going Ballistic 2014-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Sales-Are-Up-APLQuest-2014-10.html">Sales Are Up 2014-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2015/index.html">APL Quest 2015</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Nag-A-Ram-APLQuest-2015-1.html">APL Quest: Anagrams Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Longest-Streak-APLQuest-2015-2.html">APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Farey-Tales-APLQuest-2015-3.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Progessive-Dyadic-Iota-APLQuest-2015-4.html">APL Quest Cap Wiki: Progressive Dyadic Iota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.html">APL Quest: Standard Deviation Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.html">APL Quest: Problem Six Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Justin-Upper-Case-APLQuest-2015-7.html">APL Quest: Problem 7 from the 2015 APL Problem Solver Competition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html">APL Quest: Swapping Interior Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Blazing-A-Trail-APLQuest-2015-10.html">API Quest: Generating a Centered Pascal’s Triangle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2016/index.html">APL Quest 2016</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Statistics-Mean-APLQuest-2016-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Statistics-Median-APLQuest-2016-2.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Statistics-Mode-APLQuest-2016-3.html">Welcome to APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.html">Welcome to the Appeal Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Shorter-Onestothe-Front-APLQuest-2016-6.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/3-sand-5-s-APLQuest-2016-7.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Separating-Outthe-Negative-APLQuest-2016-8.html">APL Quest: 8th Quest Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Delimited-Text-APLQuest-2016-9.html">APL Quest: Delimiter Splitting Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Order-Total-APLQuest-2016-10.html">Welcome to the APL Quest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2017/index.html">APL Quest 2017</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/What-an-Odd-Bunch-APLQuest-2017-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Good-Evening-APLQuest-2017-2.html">Ensure Odd Numbers Become Even Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Miss-Quoted-APLQuest-2017-3.html">Removing Text Between Double Quotes Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Slices-of-Pies-APLQuest-2017-4.html">Computing Areas of Circle Sectors Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/DNA-APLQuest-2017-5.html">Checking Character Vectors for Valid Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/k-mers-APLQuest-2017-6.html">Chopping Text into Sequences of a Given Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Counting-DNANucleotides-APLQuest-2017-7.html">Counting Letters in a String: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Be-the-First-1-APLQuest-2017-8.html">Understanding Boolean Vector Processing in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Double-Trouble-APLQuest-2017-9.html">Finding Locations of Identical Characters in Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Squaring-Off-APLQuest-2017-10.html">Fitting Elements into a Square Array</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2018/index.html">APL Quest 2018</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Oh-Say-Can-You-See-APLQuest-2018-1.html">Counting Visible Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Number-Splitting-APLQuest-2018-2.html">Splitting Numbers into Integer and Fractional Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Rolling-Along-APLQuest-2018-3.html">Simulating Dice Rolls and Analyzing Outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Whats-Your-Sign-APLQuest-2018-4.html">Converting Gregorian Year Numbers to Chinese Zodiac Animals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Whats-Your-Sign-Revisited-APLQuest-2018-5.html">Computing Zodiac Signs from Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Whats-Your-Angle-APLQuest-2018-6.html">A Simple Test for XML Validity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Unconditionally-Shifty-APLQuest-2018-7.html">Shifting Boolean Data: An Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Makinga-Good-Argument-APLQuest-2018-8.html">Validating Dyadic Transpose Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Earlier-Later-or-the-Same-APLQuest-2018-9.html">Comparing Dates in APL: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Anagrammatically-Correct-APLQuest-2018-10.html">Comparing Two Character Vectors: An Anagram Checker</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2019/index.html">APL Quest 2019</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Chunky-Monkey-APLQuest-2019-1.html">Chunking a List into Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Makingthe-Grade-APLQuest-2019-2.html">Converting Scores into Letter Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Grade-Distribution-APLQuest-2019-3.html">Compiling Simple Statistics on Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Knight-Moves-APLQuest-2019-4.html">Understanding the Movement of a Chess Knight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Doubling-Up-APLQuest-2019-5.html">Checking for Consecutive Identical Letters in Words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Telephone-Names-APLQuest-2019-6.html">Translating Telephone Numbers from Digits and Letters to Plain Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/In-the-Center-of-it-All-APLQuest-2019-7.html">Centering Words in a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Goingthe-Distance-APLQuest-2019-8.html">Computing the Distance Around a Path Defined by Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Area-Code-Gauss-APLQuest-2019-9.html">Calculating the Area of a Polygon Using the Shoelace Formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Odds-Evens-APLQuest-2019-10.html">Splitting a List of Words by Length</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2020/index.html">APL Quest 2020</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Lets-Split-APLQuest-2020-1.html">Understanding Vector Partitioning in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Character-Building-APLQuest-2020-2.html">Understanding Byte Sequences and UTF-8 Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Excel-lent-Columns-APLQuest-2020-3.html">Understanding Column Label Conversion in Spreadsheet Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Takea-Leap-APLQuest-2020-4.html">Understanding Leap Years: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Steppinginthe-Proper-Direction-APLQuest-2020-5.html">Generating Inclusive Integer Ranges in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Movetothe-Front-APLQuest-2020-6.html">Moving Elements in a Numeric Vector to the Front in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/See-Youina-Bit-APLQuest-2020-7.html">Checking Bit States in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Zigzag-Numbers-APLQuest-2020-8.html">Analyzing Alternating Digit Growth in Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Riseand-Fall-APLQuest-2020-9.html">Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Stacking-It-Up-APLQuest-2020-10.html">Emulating APL Array Printing Behavior</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2021/index.html">APL Quest 2021</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Are-You-a--Bacteria-APLQuest-2021-1.html">Calculating Percentage of Characters in a DNA String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Index-Of-Modified-APLQuest-2021-2.html">Creating a Cover for the Dyadic Iota in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Multiplicity-APLQuest-2021-3.html">Grouping Integers by Divisibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Square-Peg-Round-Hole-APLQuest-2021-4.html">Finding the Difference in Area Between an Inscribed Square and Its Circumscribing Circle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Rect-ify-APLQuest-2021-5.html">Finding Rectangle Dimensions with Given Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Fischer-Random-Chess-APLQuest-2021-6.html">Chess Setup Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Can-You-Feelthe-Magic-APLQuest-2021-7.html">Checking for Magic Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Timeto-Makea-Difference-APLQuest-2021-8.html">Calculating Absolute Time Difference in Minutes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Inthe-Long-Run-APLQuest-2021-9.html">Finding the Longest Consecutive Sequence in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Onthe-Right-Side-APLQuest-2021-10.html">Justified Text Transformation in APL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2022/index.html">APL Quest 2022</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Counting-DNA-Nucleotides-APLQuest-2022-1.html">Counting DNA Letters in a Character Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Attackofthe-Mutations-APLQuest-2022-2.html">Comparing DNA Strings: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Uniquely-Qualified-APLQuest-2022-3.html">Finding the Symmetric Difference Between Two Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Inthe-Long-One-APLQuest-2022-4.html">Finding the Longest Run of Ones in a Boolean Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Stairwayto-Heaven-APLQuest-2022-5.html">Building a Staircase in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Pyramid-Scheme-APLQuest-2022-6.html">Constructing Concentric Rings of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Just-Golfing-Around-APLQuest-2022-7.html">Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Lets-Split-APLQuest-2022-8.html">Splitting Text in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html">Calculating the Window Average of a List of Numbers in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Separation-Anxiety-APLQuest-2022-10.html">Inserting Separators in Large Integers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2023/index.html">APL Quest 2023</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Elimination-Sort-APLQuest-2023-1.html">Removing Non-Decreasing Elements from a List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Put-It-In-Reverse-APLQuest-2023-2.html">Finding End Points of One Array in Another</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Caesar-Salad-APLQuest-2023-3.html">Implementing a Simple Caesar Cipher for Uppercase Characters and Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Like-a-Version-APLQuest-2023-4.html">Comparing Version Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Risky-Business-APLQuest-2023-5.html">Understanding Dice Mechanics in Risk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Key-Value-Pairs-APLQuest-2023-6.html">Parsing Key-Value Pairs into a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Lets-Be-Rational-APLQuest-2023-7.html">Finding a Reduced Fraction for a Given Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Critical-Thinking-APLQuest-2023-8.html">Computing the Next Double Critical Day</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Flipping-Pairs-APLQuest-2023-9.html">Interchanging Adjacent Elements in a Multi-Dimensional Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Partition-witha-Twist-APLQuest-2023-10.html">APL Quest: Splitting Text on Spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dyalog/index.html">Jupyter notebooks for Dyalog APL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/APL-Expressions.html">APL Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Arithmetic-Functions.html">Arithmetic Fuctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Boolean-Functions-and-Boolean-Algebra.html">Boolean functions</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Boolean-Scans-and-Reductions.html">Boolean Scans and Reductions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Calculus.html">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Comparison-Functions.html">Comparison functions <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">≤</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> <code class="docutils literal notranslate"><span class="pre">≥</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">≠</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Grading-and-Sorting.html">Grading and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/hashtables.html">Hash tables in Dyalog APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Justifying-Text.html">Justifying Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Linear-Fitting.html">Linear Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Lookup-Without-Replacement.html">Lookup without Replacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Maths-versus-APL.html">Maths versus APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Modifying-Rank-and-Depth.html">Modifying rank and depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/New-in-v14.html">Tally <code class="docutils literal notranslate"><span class="pre">≢</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/New-in-v15.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪/</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/New-in-v16.html">Monadic function <code class="docutils literal notranslate"><span class="pre">⍸</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/New-in-v17.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Plotting-with-SharpPlot.html">Plotting with SharpPlot</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Random-Numbers.html">Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Reduce-and-Scan.html">Reduce and Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Sudoku-Solver.html">Sodoku Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Tacit-Techniques.html">Tacit Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Using-the-TryAPL-Tutorials.html">TryAPL tutorial system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Your-First-Mandelbrot-Set.html">Mandelbrot Set</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/apl-quest/2013/old/6.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Home on the range 2013-6</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-solutions"><strong>Example Solutions:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-empty-vectors">Non empty Vectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a">A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b">B</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empty-arrays">Empty Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c">C</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d">D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e">E</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-reshape">Using Reshape</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f">F</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g">G</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h">H</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-arrays">Nested Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i">I</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extras">Extras</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comment"><strong>Comment:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used"><strong>Glyphs Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used"><strong>Concepts Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript"><strong>Transcript:</strong></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="home-on-the-range-2013-6">
+<h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P6_Home_On_The_Range">Home on the range 2013-6</a><a class="headerlink" href="#home-on-the-range-2013-6" title="Link to this heading">#</a></h1>
+<p><strong>Problem:</strong> Write a dfn which returns the magnitude of the range (i.e. the difference between the lowest and highest values) of a numeric array.</p>
+<p><strong>Video:</strong> https://youtu.be/36HlHsEjUIQ
+<strong>Code:</strong> https://github.com/abrudz/apl_quest/blob/main/2013/6.apl</p>
+<section id="example-solutions">
+<h2><strong>Example Solutions:</strong><a class="headerlink" href="#example-solutions" title="Link to this heading">#</a></h2>
+</section>
+<section id="non-empty-vectors">
+<h2>Non empty Vectors<a class="headerlink" href="#non-empty-vectors" title="Link to this heading">#</a></h2>
+<section id="a">
+<h3>A<a class="headerlink" href="#a" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">V</span><span class="w"> </span><span class="kd">←</span><span class="m">¯1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="c1">⍝ Test Data</span>
+<span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="c1">⍝ Tacit - ravel the array and the take the difference of the max and min {(⌈/,⍵)-(⌊/,⍵)}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">,</span></code> We <a class="reference external" href="https://aplwiki.com/wiki/Ravel">Ravel</a> <code class="docutils literal notranslate"><span class="pre">,</span></code> the array first to convert it into a <a class="reference external" href="https://aplwiki.com/wiki/Vector">vector</a>  so that it works on a <a class="reference external" href="https://aplwiki.com/wiki/Rank">Matrix</a>, a two dimensional array.</p></li>
+<li><p>Then we apply a <a class="reference external" href="https://aplwiki.com/wiki/Train#3-trains">fork</a> The two outer functions are applied first, and their results are used as arguments to the middle function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⌈/-⌊/</span></code> The two outer arguments are <a class="reference external" href="https://aplwiki.com/wiki/Maximum">Maximum Reduce</a> <code class="docutils literal notranslate"><span class="pre">⌈/</span></code>  returns the largest element of a vector and <a class="reference external" href="https://aplwiki.com/wiki/Minimum">Minimum Reduce</a> <code class="docutils literal notranslate"><span class="pre">⌊/</span></code> returns the smallest element of a vector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-</span></code> The middle function is <a class="reference external" href="https://aplwiki.com/wiki/Subtract">Subtract</a>.</p></li>
+</ol>
+</section>
+<section id="b">
+<h3>B<a class="headerlink" href="#b" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/∘</span><span class="o">,</span><span class="na">∘.</span><span class="o">-</span><span class="na">⍨</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ {(⌈/)(,(⍵(∘.-)⍵))}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">∘.-</span></code> Using our vector we create a Subtraction Table (<a class="reference external" href="https://aplwiki.com/wiki/Outer_Product">Outer Product</a> <code class="docutils literal notranslate"><span class="pre">∘.</span></code>). This will give us all the possible differences between values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⌈/,⍵∘.-⍵</span></code> We then ravel this and <a class="reference external" href="https://aplwiki.com/wiki/Maximum">Maximum Reduce</a> <code class="docutils literal notranslate"><span class="pre">⌈/,</span></code> returning the largest value in our table.</p></li>
+<li><p>To make this <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit</a> we <a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a> <code class="docutils literal notranslate"><span class="pre">∘</span></code> the Maximum Reduce with the Ravel <code class="docutils literal notranslate"><span class="pre">⌈∘,</span></code> and use <a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">∘.-⍨</span></code>  to put our argument on either side of the Outer Product.</p></li>
+</ol>
+</section>
+</section>
+<section id="empty-arrays">
+<h2>Empty Arrays<a class="headerlink" href="#empty-arrays" title="Link to this heading">#</a></h2>
+<section id="comments">
+<h3>Comments<a class="headerlink" href="#comments" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌈</span><span class="na">/</span><span class="no">⍬</span><span class="w"> </span><span class="c1">⍝ Maximum of empty vector is smallest representable number. Minimum reduction produces the opposite value.</span>
+<span class="m">1</span><span class="o">⌈≢</span><span class="w"> </span><span class="c1">⍝ is the length larger than one. Using this as a check to make sure it is not an empty array. Taking this result returns the entire array or zero if empty. </span>
+</pre></div>
+</div>
+</section>
+<section id="c">
+<h3>C<a class="headerlink" href="#c" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="w"> </span><span class="kd">←</span><span class="kt">{</span><span class="m">0</span><span class="o">∊⍴</span><span class="bp">⍵:</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ If zero is a member of the shape of the array return zero. Otherwise find the range.</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Membership">Membership</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> - tests if each of the elements of the left <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> appears as an element of the right argument.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> - returns the <em>shape</em> of its argument array</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0∊⍴⍵</span></code> So we are testing if 0 is a member of the shape of the array <code class="docutils literal notranslate"><span class="pre">⍵</span></code>.</p></li>
+<li><p>The <a class="reference external" href="https://aplwiki.com/wiki/Dfn#Guards">Guard</a> :  Returns 0 if the left argument is true.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Statement_separator">Diamond</a> ⋄ - Statement Seperator divides the two statements. The left one (with the guard) is evaluated first.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⌈/-⌊/),⍵</span></code> Once we have confirmed that the vector is not an empty array we then move on to Solution A. It’s details are above.</p></li>
+</ol>
+</section>
+<section id="d">
+<h3>D<a class="headerlink" href="#d" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">D</span><span class="w"> </span><span class="kd">←</span><span class="p">(</span><span class="o">⊃</span><span class="na">⍤</span><span class="o">⌽-⊃</span><span class="p">)</span><span class="kt">{</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">⍋</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="na">⍤</span><span class="o">,</span><span class="w"> </span><span class="c1">⍝ {(⊃(⌽⍵))-(⊃⍵)} ⍵ is the sorted array. </span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵[⍋⍵]</span></code> Uses <a class="reference external" href="https://aplwiki.com/wiki/Grade">Grade Up</a> <code class="docutils literal notranslate"><span class="pre">⍋</span></code> to generate an index from lowest to highest. We can then <a class="reference external" href="https://xpqz.github.io/learnapl/manip.html?highlight=sort#grade-up-down">Sort</a> <code class="docutils literal notranslate"><span class="pre">data[⍋data]</span></code> the array using that <a class="reference external" href="https://xpqz.github.io/learnapl/indexing.html#bracket-indexing">index</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⊃⍤⌽-⊃)</span></code> Now that it’s been sorted we can subtract the first element from the last. Here we use <a class="reference external" href="https://aplwiki.com/wiki/First">First</a> <code class="docutils literal notranslate"><span class="pre">⊃</span></code>  to grab the first element. We then use <a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a> <code class="docutils literal notranslate"><span class="pre">⍤</span></code>  to apply <a class="reference external" href="https://aplwiki.com/wiki/First">First</a> <code class="docutils literal notranslate"><span class="pre">⊃</span></code> to the result of the <a class="reference external" href="https://aplwiki.com/wiki/Rotate">Rotate</a> <code class="docutils literal notranslate"><span class="pre">⌽</span></code>  See the <a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a> in the comment for more details.</p></li>
+</ol>
+</section>
+<section id="e">
+<h3>E<a class="headerlink" href="#e" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">E</span><span class="w"> </span><span class="kd">←</span><span class="p">((</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">⊢↑</span><span class="na">⍨</span><span class="m">1</span><span class="o">⌈≢</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="c1">⍝ {(1⌈(≢(,⍵)))↑(,⍵)}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1⌈≢,</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> <code class="docutils literal notranslate"><span class="pre">≢</span></code>  the <a class="reference external" href="https://aplwiki.com/wiki/Ravel">Raveled</a> <code class="docutils literal notranslate"><span class="pre">,</span></code> array. Then do a <a class="reference external" href="https://aplwiki.com/wiki/Maximum">Maximum</a> <code class="docutils literal notranslate"><span class="pre">⌈</span></code>  with 1 as the left argument. If the array is length zero we get 1. Otherwise we get the tally of the array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⊢↑⍨</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Take">Take</a> <code class="docutils literal notranslate"><span class="pre">↑</span></code> the result. If the array is empty it <a class="reference external" href="https://aplwiki.com/wiki/Take#Overtaking">Overtakes</a> <code class="docutils literal notranslate"><span class="pre">↑</span></code>  (pads with a zero) otherwise it just returns the array. We use <a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity </a><code class="docutils literal notranslate"><span class="pre">⊢</span></code> and <a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> to make the solution Tacit. See the Dfn in the comments.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⌈/-⌊/)</span></code> We then move on to Solution A passing it the result of take. It’s details are above.</p></li>
+</ol>
+</section>
+</section>
+<section id="using-reshape">
+<h2>Using Reshape<a class="headerlink" href="#using-reshape" title="Link to this heading">#</a></h2>
+<section id="f">
+<h3>F<a class="headerlink" href="#f" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">,,</span><span class="w"> </span><span class="c1">⍝ Catenate the ravel</span>
+<span class="nv">F</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">⊢⍴</span><span class="na">⍨</span><span class="m">1</span><span class="o">⌈×</span><span class="na">/⍤</span><span class="o">⍴</span><span class="w"> </span>
+<span class="c1">⍝ {((⌈/)((1⌈((×/)(⍴⍵)))⍴⍵))-((⌊/)((1⌈((×/)(⍴⍵)))⍴⍵))}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1⌈×/⍤⍴</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> returns the <em>shape</em> of its argument array. <a class="reference external" href="https://aplwiki.com/wiki/Reduce">Times Reduction</a>  <code class="docutils literal notranslate"><span class="pre">×/</span></code>  <a class="reference external" href="https://aplwiki.com/wiki/Maximum">Maximum</a> <code class="docutils literal notranslate"><span class="pre">⌈</span></code>  with 1 as the left argument. If the array is length zero we get 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⊢⍴⍨</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> returns the <em>shape</em> of its argument array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⌈/-⌊/)</span></code> We then move on to Solution A passing it the result of Shape. It’s details are above.</p></li>
+<li><p>We use <a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity </a><code class="docutils literal notranslate"><span class="pre">⊢</span></code>  <a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> and <a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a> <code class="docutils literal notranslate"><span class="pre">⍤</span></code> to make the solution Tacit. See the Dfn in the comments.</p></li>
+</ol>
+</section>
+<section id="g">
+<h3>G<a class="headerlink" href="#g" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">G</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,,</span><span class="m">0</span><span class="na">/⍨</span><span class="m">0</span><span class="o">∊⍴</span><span class="w"> </span>
+<span class="c1">⍝ {((⌈/)((,⍵),((0∊(⍴⍵))/0)))-((⌊/)((,⍵),((0∊(⍴⍵))/0)))}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0/⍨0∊⍴</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> returns a <a class="reference external" href="https://aplwiki.com/wiki/Vector" title="Vector">vector</a> of lengths of the array along each <a class="reference external" href="https://aplwiki.com/wiki/Axis" title="Axis">axis</a>.</p></li>
+<li><p>[Membership](<a class="reference external" href="https://aplwiki.com/wiki/Membership">Membership - APL Wiki</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> Tests if each of the elements of the left argument appears in the right argument.  If 0 appears in the shape of the array this returns a 1 for true.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Replicate">Replicate </a> <code class="docutils literal notranslate"><span class="pre">/</span></code> will then add a zero 1 time. If membership is false it returns a 0 so replicate does not add a zero.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">,,0/</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Catenate">Catenate</a> <code class="docutils literal notranslate"><span class="pre">,</span></code>  add the zero (or nothing) to the <a class="reference external" href="https://aplwiki.com/wiki/Ravel">Ravel</a> <code class="docutils literal notranslate"><span class="pre">,</span></code>  of the array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⌈/-⌊/)</span></code> We then move on to Solution A passing it the result of Shape. It’s details are above.</p></li>
+</ol>
+</section>
+<section id="h">
+<h3>H<a class="headerlink" href="#h" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">H</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,,</span><span class="m">0</span><span class="o">∩⍴</span><span class="w"> </span>
+<span class="c1">⍝ {((⌈/)((,⍵),(0∩(⍴⍵))))-((⌊/)((,⍵),(0∩(⍴⍵))))}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0∩⍴</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Intersection">Intersection</a> <code class="docutils literal notranslate"><span class="pre">∩</span></code> -For each element to the left, keep it if it’s also in the right. So if there is a zero in the <a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> we keep it and Catentate it to ravel of the array.</p></li>
+</ol>
+</section>
+</section>
+<section id="nested-arrays">
+<h2>Nested Arrays<a class="headerlink" href="#nested-arrays" title="Link to this heading">#</a></h2>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">((</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">⊢↑</span><span class="na">⍨</span><span class="m">1</span><span class="o">⌈≢</span><span class="w"> </span><span class="p">)</span><span class="o">∊</span><span class="w"> </span><span class="c1">⍝ adds enlist to solution E</span>
+<span class="nv">J</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">((</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">⊢,</span><span class="m">0</span><span class="na">/⍨</span><span class="no">⍬</span><span class="o">≡⊢</span><span class="p">)</span><span class="o">∊</span><span class="w"> </span><span class="c1">⍝ Checks if zero matches the Identity</span>
+<span class="nv">K</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">((</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">⊢,</span><span class="m">0</span><span class="o">∩⍴</span><span class="p">)</span><span class="o">∊</span><span class="w"> </span><span class="c1">⍝ adds enlist to solution H</span>
+</pre></div>
+</div>
+</section>
+<section id="i">
+<h3>I<a class="headerlink" href="#i" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/enlist">Enlist</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> - Flattens over all levels of nesting</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/match">Match</a> <code class="docutils literal notranslate"><span class="pre">≡</span></code> - indicates whether the left and right <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> arrays are identical</p></li>
+</ol>
+</section>
+<section id="extras">
+<h3>Extras<a class="headerlink" href="#extras" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="kd">←</span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,</span><span class="w"> </span><span class="c1">⍝ Tacit - ravel the array and the take the difference of the max and min</span>
+<span class="nv">J</span><span class="kd">←</span><span class="kt">{</span><span class="m">0</span><span class="o">∊⍴</span><span class="bp">⍵:</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ If zero is a member of the shape of the array return zero. Otherwise find the range. </span>
+<span class="nv">K</span><span class="kd">←</span><span class="p">(</span><span class="o">⌈</span><span class="na">/</span><span class="o">-⌊</span><span class="na">/</span><span class="p">)</span><span class="o">,,</span><span class="m">42</span><span class="na">/⍨</span><span class="m">0</span><span class="o">∊⍴</span><span class="w"> </span><span class="c1">⍝ If zero is a member of the shape of the array return 42. Otherwise return nothing. Catenate the result with the ravel of the array (See I). Take the difference of the max and min.  </span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="comment">
+<h2><strong>Comment:</strong><a class="headerlink" href="#comment" title="Link to this heading">#</a></h2>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌈</span><span class="na">/</span><span class="no">⍬</span><span class="w"> </span><span class="c1">⍝ Maximum of empty vector is smallest representable number. Minimum reduction produces the opposite value.</span>
+<span class="o">⊃</span><span class="na">⍤</span><span class="o">⌽</span><span class="w"> </span><span class="c1">⍝ Choose the last element of a vector</span>
+<span class="m">1</span><span class="o">⌈≢</span><span class="w"> </span><span class="c1">⍝ is the length larger than one. Using this as a check to make sure it is not an empty array. Taking this result returns the entire array or zero if empty. </span>
+<span class="o">,,</span><span class="w"> </span><span class="c1">⍝ Catenate the ravel</span>
+</pre></div>
+</div>
+</section>
+<section id="glyphs-used">
+<h2><strong>Glyphs Used:</strong><a class="headerlink" href="#glyphs-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Maximum">Maximum Reduce</a> <code class="docutils literal notranslate"><span class="pre">⌈/</span></code> - returns the largest element of a <a class="reference external" href="https://aplwiki.com/wiki/Vector" title="Vector">vector</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Minimum">Minimum Reduce</a> <code class="docutils literal notranslate"><span class="pre">⌊/</span></code> - returns the smallest element of a <a class="reference external" href="https://aplwiki.com/wiki/Vector" title="Vector">vector</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Ravel">Ravel</a> <code class="docutils literal notranslate"><span class="pre">,</span></code> - an array’s ravel is the <a class="reference external" href="https://aplwiki.com/wiki/Vector" title="Vector">vector</a> containing all its <a class="reference external" href="https://aplwiki.com/wiki/Elements" title="Elements">elements</a> in <a class="reference external" href="https://aplwiki.com/wiki/Ravel_order" title="Ravel order">ravel order</a>.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/over">Over</a> <code class="docutils literal notranslate"><span class="pre">⍥</span></code> - both arguments are pre-processed using the right operand</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code>  - aka Selfie or Swap</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Membership">Membership</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> - tests if each of the elements of the left <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> appears as an element of the right argument.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> - returns the <em>shape</em> of its argument array</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfn#Guards">Guards</a> : - Return result</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Statement_separator">Diamond</a> ⋄ - Statement Seperator</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Each">Each</a> <code class="docutils literal notranslate"><span class="pre">¨</span></code> - Apply to each element</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Grade">Grade </a> <code class="docutils literal notranslate"><span class="pre">⍋</span> <span class="pre">⍒</span></code>  - ⍋ ‘foo’ ‘bar’ ‘baz’  - <strong>Example</strong> resulting in 2 3 1 means( the second item is first, The 3rd item is second, The first item is third.) This can then be used to index into the array and alphabeticlaly Sort it.</p></li>
+<li><p><a class="reference external" href="https://mastering.dyalog.com/Nested-Arrays-Continued.html?highlight=pick#pick">Pick</a> <code class="docutils literal notranslate"><span class="pre">⊃</span></code> - Left argument is path, right argument is data.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a> <code class="docutils literal notranslate"><span class="pre">⍤</span></code> - Uses the left argument to process the result of the right.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> <code class="docutils literal notranslate"><span class="pre">≢</span></code> - Length of the array</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Take">Take</a> <code class="docutils literal notranslate"><span class="pre">↑</span></code> - used to get the first few, or last few, elements of a vector</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity </a><code class="docutils literal notranslate"><span class="pre">⊢</span></code> functions and operators rather than names are used to direct the flow of arguments</p></li>
+<li><p><a class="reference external" href="https://xpqz.github.io/cultivations/Functions7.html?#replicate">Replicate</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> - copies each <a class="reference external" href="https://aplwiki.com/wiki/Element" title="Element">element</a> of the right <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> a given number of times</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Catenate">Catenate</a> <code class="docutils literal notranslate"><span class="pre">,</span></code> - combines two arrays along a shared <a class="reference external" href="https://aplwiki.com/wiki/Axis" title="Axis">axis</a>, left to right</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Intersection">Intersection</a> <code class="docutils literal notranslate"><span class="pre">∩</span></code> - removes elements from the left which are not present in the right. Duplicates in the right do not matter.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/enlist">Enlist</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> - Flattens over all levels of nesting</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/match">Match</a> <code class="docutils literal notranslate"><span class="pre">≡</span></code> - indicates whether the left and right <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> arrays are identical</p></li>
+</ul>
+</section>
+<section id="concepts-used">
+<h2><strong>Concepts Used:</strong><a class="headerlink" href="#concepts-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Ravel_order">Ravel Order</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Outer_Product">Outer Product</a> <code class="docutils literal notranslate"><span class="pre">∘.</span></code></p></li>
+<li><p><a class="reference external" href="https://xpqz.github.io/learnapl/manip.html?highlight=sort#grade-up-down">Sort</a> <code class="docutils literal notranslate"><span class="pre">data[⍋data]</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Take#Overtaking">Overtake</a> <code class="docutils literal notranslate"><span class="pre">↑</span></code> - A length larger than the argument length causes <a class="reference external" href="https://aplwiki.com/wiki/Fill_element" title="Fill element">fills</a> to be inserted</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Train#3-trains">Fork</a></p></li>
+</ul>
+</section>
+<section id="transcript">
+<h2><strong>Transcript:</strong><a class="headerlink" href="#transcript" title="Link to this heading">#</a></h2>
+<p>Hi and welcome to the APL Quest-C APL Wiki. Today’s quest is the sixth problem from the 2013 round of the APL Problem Solving Competition. It’s a very simple problem of just finding out the numeric range of an array, that is, the highest value minus the lowest value. But we’ll see that there is a special edge case that we need to take action for, and we’ll look into some generalization as well.</p>
+<p>Without further ado, let’s generate some data we can work on. Here’s a numeric vector, and the highest value is the maximum reduction of that vector, and the lowest value is the minimum reduction over the vector. Then we can take those two values and subtract the smaller from the larger, and we get the full numeric range. So that’s really all there is to the basic problem.</p>
+<p>Let’s put this into a function, and we can write the max reduction of omega minus the min reduction of omega. There’s a redundant parenthesis here, but that’s mostly just for clarity and to make the expression symmetric. We can try this on v, and that works great.</p>
+<p>Now, there are a couple of problems with this. One is that it has to work on any array. So let’s make a matrix which is two rows and four columns containing the same numbers as v. It looks like this. Now if we were to apply our function here on m instead, then it doesn’t work because it gives us the numeric range for every row. We want the numeric range for the entire array, and we can solve that by raveling the array first. So we revel it here, remember it here, and this gives us the full range as we can see here. We are reveling twice, which is quite unnecessary, and we can actually in a neat way break this reveling out of the parenthesis.</p>
+<p>So let’s get rid of the ravel from here and the rev from here, and we can actually switch to a tested form quite easily. So we just say the max minus the min off the ravel of the array. Here we go.</p>
+<p>We can get this even further because now we can observe that we actually have a full tested function and a top simply wrapped in a different wrapper so we can completely get rid of that syntax and it still works. We can give this a name then see how that works. Of course, it still works on our vector. It also works on a scalar where the range is zero because we revel in the largest minus the smallest is and it’s the same number so it gives zero.</p>
+<p>So this is a good method, and one method that isn’t so good but it’s kind of fun to look at if we take our vector and do an outer product but instead of multiplication we’re doing an outer subtraction so that means it’s a subtraction table that gives all the possible differences between values and then the full range is then the largest number in this table. So we can take the maximum of the level of that and that gives us also the range. Not a good way to do it, but it works.</p>
+<p>So we could make a function out of this by saying the maximum over and ravel of the outer and subtraction selfie, and in fact, this will work on our matrix as well. It just generates an even higher rank array as an intermediary step, but there’s a catch. According to the example cases in the problem specification, the function also has to work on empty arrays, and that doesn’t work. Why doesn’t it work?</p>
+<p>Well, we can try our original function.</p>
+<p>Let’s go up and define that again. We have it right here, this was this one. If you try that on say the empty vector, we get a domain error and we’re supposed to get a zero instead, as it is to say, there is no range. The problem is that the maximum over an empty vector is the smallest representable number in the current numeric system. So these are 64-bit floats and this is the smallest representable 64-bit float.</p>
+<p>Why is that? That is because the reduction over an empty axis gives the identity element for that operation. So for plus, identity element is the value that you can plus with without changing anything, that would be zero. For multiplication, what you can multiply with is a one and for max, the only number that you can do a max with and make sure that your original numbers becomes the result so it’s an identity operation, nothing changes, is the smallest representable number or a negative infinity if that’s available. Similarly, if we do a minimum reduction, we get the max representable number. Trying to subtract this very small number from this very large number goes beyond the range of the floating point system that we are using and we get the domain error. So, this system doesn’t quite work.</p>
+<p>How can we solve it? Well, one simple way to do it is simply to say, is our array empty? Now we can’t just compare to the empty vector because there might be multiple x’s, say we could have a zero row two column matrix of numbers which isn’t visible but it sure exists. What we can do is that we can take its shape and there is a zero there. If there is a zero anywhere in the shape of an array, it’s called an empty array and then the range has to be zero. So, we can write this function as: if zero is a member of the shape of the array then return zero, otherwise we take the maximum minus the minimum of the ravel of the array.</p>
+<p>Now we can apply this on each of our arrays: the vector, the matrix, the empty vector, and why not our zero by two matrix as well, and now it works. So, this is a valid solution and it’s very clear. It’s probably the clearest solution that there is.</p>
+<p>We can be a bit more clever about this. First, for a fun solution but not an efficient one, we can sort the array first. Let’s say we start with our matrix and then we revel the matrix and then we sort it. Then we know that the range is the last element minus the first element. So the last element can be written as the pick atop reverse minus the first element which is just a first pick, and that works. The reason I’m using this method for getting the first and last element is that if we try to pick the first element of an empty vector, then it coerces out a number. So that means that both of these terms would become zero, so we get zero minus zero, which is zero, and that’s the correct result for the empty array. Even of course, if we have something like this, a matrix, because we revel first, it will work the same way.</p>
+<p>This is a solution, but not a very good one. In order to make it a full function, there are a couple of different ways we could do it. We could take this tested function here and put it inside the parenthesis, but as you can see, the color changes. That is because it ceases to use the sorting idiom, so things will run a bit slower but it works. If you want to preserve the speed of it, then we can just string things together using in the top. Either way, it could be in the top here or you could be in the top over here, or we can use all three of them. All of that works. All three are topped together.</p>
+<p>There are clever ways that we could do this, and for that, we need to think a little bit. Okay, so we have a matrix, and we need to ravel it and then we want to have a zero if the array is empty. Okay, how could we do that? So we can tally the reveled array, and then we can have a maximum with one. If the array is length zero, then we get one. Otherwise, we just get the length of the array. And then we can use this to take from the reveled array again.</p>
+<p>So now here it doesn’t make a difference of course we can see that that gives our data as we expected if we do it on an empty vector then we end up overtaking by one and that pads with another zero at the end and then the rest of the procedure will be the same so we can say the maximum minus the minimum of the revel let’s say we can write take this whole expression here we can write it like this and then we can go and simplify things a bit.</p>
+<p>We can turn all of this tested actually so we could ravel first and then we could apply a function to that where we use this value which is the length except it becomes one and we can take from that same thing so this is a possibility and now we don’t need the braces anymore but we have three functions here so we need to atop at least one place so now we can this works and it works on empty arrays as well.</p>
+<p>There’s actually more we could we could do firstly for the syntax here and we instead of since we have three functions that we want to avoid we because of we have to do the explicit at the top we can take this which is a magnetic function and put inside the parenthesis as a left carriage on the strain so here is the original function we’re applying it becomes a fork right here and then another fork and then finally in the top with this function here so that works as well and it gives us our results as we expect.</p>
+<p>What else can we do well observe that the ravel of an array gives us all the elements in a single vector how many elements well that’s the product over the length of all the x’s in that array so for our matrix the shape is this and that means that the product is how many elements we have very good so if we say that there are none so if there’s any zero inside the shape then the product is going to be zero so we can take that the maximum of that will one and then we can simply use that to reshape their array itself so here when the array is empty.</p>
+<p>We reshape the empty array into a one element vector giving us just a one element vector with a zero, and if we used it on say our matrix, then this would be equivalent to reveling it. So we can put all this together and again say the maximum minus the minimum of the array itself reshaped by the maximum of one and the tally of the array when that entire thing is reveled, and this works.</p>
+<p>Another thing we can do is, since we’re raveling anyway, then we can selectively append a zero, which will then be picked up by the maximum minimum, or it could actually be any other number that we add because it will be that same number minus itself, and then that the range is zero. How do we do this? Well, we have the condition zero is a member of the shape of this array, and you can see that here, and then we can use this to replicate a zero or any other number. So here we get a zero, but if the array isn’t empty, then we get nothing, and we can then append that to the ravel of the array.</p>
+<p>So now we can write the revel over the array concatenated with this as a tested function. So here we do not add any zeros, but in an empty array, we do add it to the revel. So now we selectively add a zero when we need it or any other number it would be. We can use any other number as well, and then we can say the maximum minus the minimum of that, and then that gives us zero. Let’s put this vector right here. There’s no reason to find any other number, so this is another solution.</p>
+<p>Can we be even clever? Yes, because think about it. We want to add a zero if there is a zero in the shape, and any other number in the shape, we’re not interested in only zeros. We could even be multiple zeros; it wouldn’t matter because the maximum and minimum are not going to change, just a bunch of zeros, or actually any other number, but the important thing is that we add a number or more numbers when there’s a zero in the shape. So how about just adding all the zeros from the shape?</p>
+<p>Okay, let’s say we have this array two zero zero two, reshape zero. This is this invisible matrix, and then we take the intersection of zero with the shape of this. That gives us the zero. If our array wasn’t empty, then there would be nothing there. If our array had multiple zeros in its shape, then we have the intersection of and of a single zero with all these numbers here, including the zeros, and so we get that single zero. So we can use this and concatenate this intersection.</p>
+<p>So we can write the maximum minus the minimum of the ravel concatenated with zero intersection of the shape, and that works. This is probably the most concise and way and a tested way of writing it.</p>
+<p>Now for going a little bit beyond the original question, which was just in a given numeric array, we could choose to understand it as giving any array that consists eventually of atomic numbers. How would that look? Well, we could split our matrix into a vector of vectors, and our method is not going to work anymore. We’re going to get something completely unrelated to what we’re looking for, and because our function just travels it and that doesn’t open up the structure.</p>
+<p>But we do have a function called enlist, which is just like gravel but more powerful in that it completely takes any array and flattens it out to be a simple vector. So if we take our old solution of the maximum minus the minimum of the argument and we overtake with one maximum of the length and all of this applied not on the rebel but rather on the list, now it will work.</p>
+<p>And we can do exactly the same thing with our function up here that uses the intersection. The only important thing is that instead of just using the shape directly, we get rid of this ravel and move outside the whole expression this in list. So this is in list: if there is any zero in the intersection with the shape of that in list, then we concatenate that to the argument which is the enlisted argument, and then we compute the range as normal.</p>
+<p>However, at this point, when we’ve already made the enlist, we don’t need to take the shape at all because we already know that this is a vector. And if it’s a vector and it’s empty, then it must be the empty numeric vector. So we can actually say that if the argument is the empty vector, then we add another number.</p>
+<p>So this is another way to do it, and of course, it works just fine to say the intersection with the shape or even with the tally would be just fine as well. And that’s it. Thank you so much, and see you next week.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2013/old"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-solutions"><strong>Example Solutions:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-empty-vectors">Non empty Vectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a">A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b">B</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empty-arrays">Empty Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments">Comments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c">C</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d">D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e">E</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-reshape">Using Reshape</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f">F</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#g">G</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#h">H</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-arrays">Nested Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i">I</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extras">Extras</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comment"><strong>Comment:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used"><strong>Glyphs Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used"><strong>Concepts Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript"><strong>Transcript:</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

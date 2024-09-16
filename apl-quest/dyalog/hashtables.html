@@ -1,0 +1,1199 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hash tables in Dyalog APL &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ae78d91f" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/dyalog/hashtables';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Justifying Text" href="Justifying-Text.html" />
+    <link rel="prev" title="Grading and Sorting" href="Grading-and-Sorting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2013/index.html">APL Quest 2013</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping Things In Balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Go-Forth-And-Multiply-APLQuest-2013-8.html">Go forth and Multiply 2013-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Solution-Salvation-APLQuest-2013-10.html">Solution Salvation 2013-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2014/index.html">APL Quest 2014</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2014/It-Is-All-Right-APLQuest-2014-1.html">It Is All Right 2014-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/How-Tweet-It-Is-APLQuest-2014-2.html">How Tweet It Is 2014-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Tell-a-Fib-APLQuest-2014-3.html">Tell A Fib 2014-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Space-The-Final-Frontier-APLQuest-2014-4.html">Space The Final Frontier 2014-4</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../2014/Mirror-Mirror-APLQuest-2014-5.html">Mirror Mirror 2014-5</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../2014/Revolutionary-Thinking-APLQuest-2014-7.html">Revolutionary Thinking 2014-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Go-The-Distance-APLQuest-2014-8.html">Go The Distance 2014-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Going-Ballistic-APLQuest-2014-9.html">Going Ballistic 2014-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Sales-Are-Up-APLQuest-2014-10.html">Sales Are Up 2014-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2015/index.html">APL Quest 2015</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Nag-A-Ram-APLQuest-2015-1.html">APL Quest: Anagrams Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Longest-Streak-APLQuest-2015-2.html">APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Farey-Tales-APLQuest-2015-3.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Progessive-Dyadic-Iota-APLQuest-2015-4.html">APL Quest Cap Wiki: Progressive Dyadic Iota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.html">APL Quest: Standard Deviation Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.html">APL Quest: Problem Six Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Justin-Upper-Case-APLQuest-2015-7.html">APL Quest: Problem 7 from the 2015 APL Problem Solver Competition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html">APL Quest: Swapping Interior Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Blazing-A-Trail-APLQuest-2015-10.html">API Quest: Generating a Centered Pascal’s Triangle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2016/index.html">APL Quest 2016</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mean-APLQuest-2016-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Median-APLQuest-2016-2.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mode-APLQuest-2016-3.html">Welcome to APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.html">Welcome to the Appeal Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Shorter-Onestothe-Front-APLQuest-2016-6.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/3-sand-5-s-APLQuest-2016-7.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Separating-Outthe-Negative-APLQuest-2016-8.html">APL Quest: 8th Quest Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Delimited-Text-APLQuest-2016-9.html">APL Quest: Delimiter Splitting Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Order-Total-APLQuest-2016-10.html">Welcome to the APL Quest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2017/index.html">APL Quest 2017</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2017/What-an-Odd-Bunch-APLQuest-2017-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Good-Evening-APLQuest-2017-2.html">Ensure Odd Numbers Become Even Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Miss-Quoted-APLQuest-2017-3.html">Removing Text Between Double Quotes Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Slices-of-Pies-APLQuest-2017-4.html">Computing Areas of Circle Sectors Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/DNA-APLQuest-2017-5.html">Checking Character Vectors for Valid Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/k-mers-APLQuest-2017-6.html">Chopping Text into Sequences of a Given Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Counting-DNANucleotides-APLQuest-2017-7.html">Counting Letters in a String: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Be-the-First-1-APLQuest-2017-8.html">Understanding Boolean Vector Processing in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Double-Trouble-APLQuest-2017-9.html">Finding Locations of Identical Characters in Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Squaring-Off-APLQuest-2017-10.html">Fitting Elements into a Square Array</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2018/index.html">APL Quest 2018</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Oh-Say-Can-You-See-APLQuest-2018-1.html">Counting Visible Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Number-Splitting-APLQuest-2018-2.html">Splitting Numbers into Integer and Fractional Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Rolling-Along-APLQuest-2018-3.html">Simulating Dice Rolls and Analyzing Outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-APLQuest-2018-4.html">Converting Gregorian Year Numbers to Chinese Zodiac Animals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-Revisited-APLQuest-2018-5.html">Computing Zodiac Signs from Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Angle-APLQuest-2018-6.html">A Simple Test for XML Validity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Unconditionally-Shifty-APLQuest-2018-7.html">Shifting Boolean Data: An Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Makinga-Good-Argument-APLQuest-2018-8.html">Validating Dyadic Transpose Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Earlier-Later-or-the-Same-APLQuest-2018-9.html">Comparing Dates in APL: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Anagrammatically-Correct-APLQuest-2018-10.html">Comparing Two Character Vectors: An Anagram Checker</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2019/index.html">APL Quest 2019</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Chunky-Monkey-APLQuest-2019-1.html">Chunking a List into Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Makingthe-Grade-APLQuest-2019-2.html">Converting Scores into Letter Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Grade-Distribution-APLQuest-2019-3.html">Compiling Simple Statistics on Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Knight-Moves-APLQuest-2019-4.html">Understanding the Movement of a Chess Knight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Doubling-Up-APLQuest-2019-5.html">Checking for Consecutive Identical Letters in Words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Telephone-Names-APLQuest-2019-6.html">Translating Telephone Numbers from Digits and Letters to Plain Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/In-the-Center-of-it-All-APLQuest-2019-7.html">Centering Words in a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Goingthe-Distance-APLQuest-2019-8.html">Computing the Distance Around a Path Defined by Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Area-Code-Gauss-APLQuest-2019-9.html">Calculating the Area of a Polygon Using the Shoelace Formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Odds-Evens-APLQuest-2019-10.html">Splitting a List of Words by Length</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2020/index.html">APL Quest 2020</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Lets-Split-APLQuest-2020-1.html">Understanding Vector Partitioning in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Character-Building-APLQuest-2020-2.html">Understanding Byte Sequences and UTF-8 Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Excel-lent-Columns-APLQuest-2020-3.html">Understanding Column Label Conversion in Spreadsheet Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Takea-Leap-APLQuest-2020-4.html">Understanding Leap Years: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Steppinginthe-Proper-Direction-APLQuest-2020-5.html">Generating Inclusive Integer Ranges in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Movetothe-Front-APLQuest-2020-6.html">Moving Elements in a Numeric Vector to the Front in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/See-Youina-Bit-APLQuest-2020-7.html">Checking Bit States in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Zigzag-Numbers-APLQuest-2020-8.html">Analyzing Alternating Digit Growth in Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Riseand-Fall-APLQuest-2020-9.html">Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Stacking-It-Up-APLQuest-2020-10.html">Emulating APL Array Printing Behavior</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2021/index.html">APL Quest 2021</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Are-You-a--Bacteria-APLQuest-2021-1.html">Calculating Percentage of Characters in a DNA String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Index-Of-Modified-APLQuest-2021-2.html">Creating a Cover for the Dyadic Iota in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Multiplicity-APLQuest-2021-3.html">Grouping Integers by Divisibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Square-Peg-Round-Hole-APLQuest-2021-4.html">Finding the Difference in Area Between an Inscribed Square and Its Circumscribing Circle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Rect-ify-APLQuest-2021-5.html">Finding Rectangle Dimensions with Given Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Fischer-Random-Chess-APLQuest-2021-6.html">Chess Setup Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Can-You-Feelthe-Magic-APLQuest-2021-7.html">Checking for Magic Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Timeto-Makea-Difference-APLQuest-2021-8.html">Calculating Absolute Time Difference in Minutes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Inthe-Long-Run-APLQuest-2021-9.html">Finding the Longest Consecutive Sequence in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Onthe-Right-Side-APLQuest-2021-10.html">Justified Text Transformation in APL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2022/index.html">APL Quest 2022</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Counting-DNA-Nucleotides-APLQuest-2022-1.html">Counting DNA Letters in a Character Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Attackofthe-Mutations-APLQuest-2022-2.html">Comparing DNA Strings: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Uniquely-Qualified-APLQuest-2022-3.html">Finding the Symmetric Difference Between Two Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Inthe-Long-One-APLQuest-2022-4.html">Finding the Longest Run of Ones in a Boolean Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Stairwayto-Heaven-APLQuest-2022-5.html">Building a Staircase in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Pyramid-Scheme-APLQuest-2022-6.html">Constructing Concentric Rings of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Just-Golfing-Around-APLQuest-2022-7.html">Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Lets-Split-APLQuest-2022-8.html">Splitting Text in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html">Calculating the Window Average of a List of Numbers in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Separation-Anxiety-APLQuest-2022-10.html">Inserting Separators in Large Integers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2023/index.html">APL Quest 2023</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Elimination-Sort-APLQuest-2023-1.html">Removing Non-Decreasing Elements from a List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Put-It-In-Reverse-APLQuest-2023-2.html">Finding End Points of One Array in Another</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Caesar-Salad-APLQuest-2023-3.html">Implementing a Simple Caesar Cipher for Uppercase Characters and Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Like-a-Version-APLQuest-2023-4.html">Comparing Version Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Risky-Business-APLQuest-2023-5.html">Understanding Dice Mechanics in Risk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Key-Value-Pairs-APLQuest-2023-6.html">Parsing Key-Value Pairs into a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Lets-Be-Rational-APLQuest-2023-7.html">Finding a Reduced Fraction for a Given Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Critical-Thinking-APLQuest-2023-8.html">Computing the Next Double Critical Day</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Flipping-Pairs-APLQuest-2023-9.html">Interchanging Adjacent Elements in a Multi-Dimensional Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Partition-witha-Twist-APLQuest-2023-10.html">APL Quest: Splitting Text on Spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Jupyter notebooks for Dyalog APL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="APL-Expressions.html">APL Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Arithmetic-Functions.html">Arithmetic Fuctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Boolean-Functions-and-Boolean-Algebra.html">Boolean functions</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Boolean-Scans-and-Reductions.html">Boolean Scans and Reductions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Calculus.html">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Comparison-Functions.html">Comparison functions <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">≤</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> <code class="docutils literal notranslate"><span class="pre">≥</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">≠</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Grading-and-Sorting.html">Grading and Sorting</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Hash tables in Dyalog APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Justifying-Text.html">Justifying Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Linear-Fitting.html">Linear Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Lookup-Without-Replacement.html">Lookup without Replacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Maths-versus-APL.html">Maths versus APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modifying-Rank-and-Depth.html">Modifying rank and depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="New-in-v14.html">Tally <code class="docutils literal notranslate"><span class="pre">≢</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="New-in-v15.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪/</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="New-in-v16.html">Monadic function <code class="docutils literal notranslate"><span class="pre">⍸</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="New-in-v17.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Plotting-with-SharpPlot.html">Plotting with SharpPlot</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="Random-Numbers.html">Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reduce-and-Scan.html">Reduce and Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sudoku-Solver.html">Sodoku Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tacit-Techniques.html">Tacit Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Using-the-TryAPL-Tutorials.html">TryAPL tutorial system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Your-First-Mandelbrot-Set.html">Mandelbrot Set</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/dyalog/hashtables.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Hash tables in Dyalog APL</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#namespaces-as-hash-tables">Namespaces as hash tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#net-collections">.NET Collections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyed-properties">Keyed properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dfns-alist">dfns alist</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapping-up">Wrapping up</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hash-tables-in-dyalog-apl">
+<h1>Hash tables in Dyalog APL<a class="headerlink" href="#hash-tables-in-dyalog-apl" title="Link to this heading">#</a></h1>
+<p>If you’re coming to Dyalog APL from a different programming language, before long you’ll probably wonder “where’s the hash table/dict/associative array?”. If you ask around, some seasoned APLer will chirp up with “you don’t need one, we have <em>arrays</em>”.</p>
+<div class="alert alert-block alert-info">
+As all Real Programmers know, the only useful data structure is the array. Strings, lists, structures, sets -- these are all special cases of arrays and and can be treated that way just as easily without messing up your programing language with all sorts of complications.<p><p>From <a href="https://www.ecb.torontomu.ca/~elf/hack/realmen.html">Real programmers don't use Pascal</a></div>
+<p>Ultimately, this <em>is</em> true – with a little bit of legwork, we <em>can</em> achieve much of the same things that Python (say) does with its built-in <code class="docutils literal notranslate"><span class="pre">dict</span></code> using APL arrays.</p>
+<p>For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">keys</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;bob&#39;</span><span class="w"> </span><span class="s1">&#39;eric&#39;</span><span class="w"> </span><span class="s1">&#39;frankie&#39;</span><span class="w"> </span><span class="s1">&#39;alison&#39;</span><span class="w"> </span><span class="s1">&#39;jo&#39;</span>
+<span class="nv">vals</span><span class="w"> </span><span class="kd">←</span><span class="w">   </span><span class="m">5</span><span class="w">      </span><span class="m">9</span><span class="w">       </span><span class="m">6</span><span class="w">         </span><span class="m">4</span><span class="w">      </span><span class="m">9</span>
+<span class="nv">find</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nv">vals</span><span class="sr">[</span><span class="nv">keys</span><span class="o">⍳</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">find</span><span class="w"> </span><span class="o">⊂</span><span class="s1">&#39;frankie&#39;</span>
+<span class="nv">find</span><span class="w"> </span><span class="s1">&#39;frankie&#39;</span><span class="w"> </span><span class="s1">&#39;jo&#39;</span><span class="w"> </span><span class="s1">&#39;bob&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">6
+</pre></div><div class="output text_html"><pre class="language-APL">6 9 5
+</pre></div></div>
+</div>
+<p>Fair – but whilst this is an <a class="reference external" href="https://en.wikipedia.org/wiki/Associative_array">associative array</a>, it’s not much of a <em>hash</em> table – there is no actual <em>hashing</em> going on, just a linear search. We <em>can</em> make it a bit hashier by employing a <a class="reference external" href="https://help.dyalog.com/latest/index.htm#Language/Defined%20Functions%20and%20Operators/Search%20Functions%20and%20Hash.htm">cute little trick</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">keyfind</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">keys</span><span class="na">∘</span><span class="o">⍳</span><span class="w">          </span><span class="c1">⍝ Binding array to ⍳ (or ∊) makes secret hash</span>
+<span class="nv">find</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nv">vals</span><span class="sr">[</span><span class="nv">keyfind</span><span class="w"> </span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span>
+<span class="nv">find</span><span class="w"> </span><span class="s1">&#39;frankie&#39;</span><span class="w"> </span><span class="s1">&#39;jo&#39;</span><span class="w"> </span><span class="s1">&#39;bob&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">6 9 5
+</pre></div></div>
+</div>
+<p>By binding the <code class="docutils literal notranslate"><span class="pre">keys</span></code> array to dyadic iota, we let the interpreter know that we will perform multiple lookups, and the interpreter then creates a hashed lookup table ‘behind the scenes’. This means that our hash table is read-only, but sometimes this is what you want.</p>
+<p>We can be a little bit more flexible by marking arrays for hashing, with <a class="reference external" href="https://help.dyalog.com/latest/index.htm#Language/I%20Beam%20Functions/Hash%20Array.htm">1500⌶</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">keys</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1500</span><span class="na">⌶</span><span class="s1">&#39;bob&#39;</span><span class="w"> </span><span class="s1">&#39;eric&#39;</span><span class="w"> </span><span class="s1">&#39;frankie&#39;</span><span class="w"> </span><span class="s1">&#39;alison&#39;</span><span class="w"> </span><span class="s1">&#39;jo&#39;</span>
+<span class="nv">vals</span><span class="w"> </span><span class="kd">←</span><span class="w">        </span><span class="m">5</span><span class="w">      </span><span class="m">9</span><span class="w">       </span><span class="m">6</span><span class="w">         </span><span class="m">4</span><span class="w">      </span><span class="m">9</span>
+<span class="nv">find</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nv">vals</span><span class="sr">[</span><span class="nv">keys</span><span class="o">⍳</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span>
+<span class="nv">find</span><span class="w"> </span><span class="s1">&#39;frankie&#39;</span><span class="w"> </span><span class="s1">&#39;jo&#39;</span><span class="w"> </span><span class="s1">&#39;bob&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">6 9 5
+</pre></div></div>
+</div>
+<p>This tells the interpreter to maintain a hashed index for the <code class="docutils literal notranslate"><span class="pre">keys</span></code> array, meaning that certain operations will be able to do lookups faster (like <code class="docutils literal notranslate"><span class="pre">⍳</span></code> and <code class="docutils literal notranslate"><span class="pre">∊</span></code>). However, it comes with a couple of caveats. If we add elements to the end of the array with <code class="docutils literal notranslate"><span class="pre">,←</span></code>, the hash will be maintained. If we pass the hashed array as an argument to a function, the hash will be maintained. The bad news is that if we do anything else, the hash vanishes. However, that still gives us a pretty decent use case coverage – we can do lookups and we can add new items to the hash. We can’t delete items from, or change items in the key array (perhaps no big surprise there). The <code class="docutils literal notranslate"><span class="pre">vals</span></code> array needn’t be hashed, so in our simple hash table we can still do what we want to the values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">find</span><span class="w"> </span><span class="o">⊂</span><span class="s1">&#39;frankie&#39;</span>
+<span class="nv">vals</span><span class="sr">[</span><span class="nv">keys</span><span class="o">⍳⊂</span><span class="s1">&#39;frankie&#39;</span><span class="sr">]</span><span class="kd">←</span><span class="m">10</span>
+<span class="nv">find</span><span class="w"> </span><span class="o">⊂</span><span class="s1">&#39;frankie&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">6
+</pre></div><div class="output text_html"><pre class="language-APL">10
+</pre></div></div>
+</div>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">1500⌶</span></code> to check the state of the hash table:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="p">(</span><span class="m">1500</span><span class="na">⌶</span><span class="p">)</span><span class="w"> </span><span class="nv">keys</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">2
+</pre></div></div>
+</div>
+<p>As per the documentation, a <code class="docutils literal notranslate"><span class="pre">2</span></code> means that the array has a hash table.</p>
+<p>To add a new item, we need to add the new key to the <code class="docutils literal notranslate"><span class="pre">keys</span></code> array, and the corresponding value to the <code class="docutils literal notranslate"><span class="pre">vals</span></code> array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">keys</span><span class="w"> </span><span class="o">,</span><span class="kd">←</span><span class="w"> </span><span class="o">⊂</span><span class="s1">&#39;zach&#39;</span>
+<span class="nv">vals</span><span class="w"> </span><span class="o">,</span><span class="kd">←</span><span class="w"> </span><span class="m">32</span>
+<span class="nv">find</span><span class="w"> </span><span class="o">⊂</span><span class="s1">&#39;zach&#39;</span>
+<span class="m">1</span><span class="w"> </span><span class="p">(</span><span class="m">1500</span><span class="na">⌶</span><span class="p">)</span><span class="w"> </span><span class="nv">keys</span><span class="w"> </span><span class="c1">⍝ Verify that we still have a hash table: 2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">32
+</pre></div><div class="output text_html"><pre class="language-APL">2
+</pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">keys</span>
+<span class="nv">vals</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">┌───┬────┬───────┬──────┬──┬────┐
+│bob│eric│frankie│alison│jo│zach│
+└───┴────┴───────┴──────┴──┴────┘
+</pre></div><div class="output text_html"><pre class="language-APL">5 9 10 4 9 32
+</pre></div></div>
+</div>
+<p>This kind of hash table is <em>insertion order preserving</em>. As you’re only ever adding new items to the end of the <code class="docutils literal notranslate"><span class="pre">keys</span></code> and <code class="docutils literal notranslate"><span class="pre">vals</span></code>, the order of the keys never changes.</p>
+<p>Hashing with the <code class="docutils literal notranslate"><span class="pre">1500⌶</span></code> certainly makes a bit of difference in terms of performance, but perhaps not as much as one might think.</p>
+<p>Here’s an example. Let’s read in the system dictionary (around 235k English words) and use those as our keys, and then look up every single key with <code class="docutils literal notranslate"><span class="pre">⍳</span></code> and measure the difference comparing hashed and unhashed arrays:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;cmpx&#39;</span><span class="nf">⎕cy</span><span class="s1">&#39;dfns&#39;</span>
+<span class="nv">words1</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1500</span><span class="na">⌶</span><span class="w"> </span><span class="o">⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;/usr/share/dict/words&#39;</span><span class="m">1</span><span class="w"> </span><span class="c1">⍝ Hashed</span>
+<span class="nv">words2</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⊃</span><span class="nf">⎕NGET</span><span class="s1">&#39;/usr/share/dict/words&#39;</span><span class="m">1</span><span class="w">       </span><span class="c1">⍝ Not hashed</span>
+<span class="nv">vals</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⍳≢</span><span class="nv">words1</span>
+<span class="nv">keys</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⊖</span><span class="nv">words2</span><span class="w"> </span><span class="c1">⍝ Our lookup test. Reverse order </span>
+<span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;_←vals[words1⍳keys]&#39;</span><span class="w"> </span><span class="s1">&#39;_←vals[words2⍳keys]&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">  _←vals[words1⍳keys] → 1.9E¯2 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                
+  _←vals[words2⍳keys] → 3.1E¯2 | +64% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+</pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≢</span><span class="nv">keys</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">235976
+</pre></div></div>
+</div>
+<p>A saving of around 10ms. Hashing is worthwhile perhaps on larger arrays, but Dyalog’s pretty speedy without, too.</p>
+<p>In terms of developer ergonomics, we lack a way to “upsert” values in this approach. A nice thing with Python-style dicts is that if you assign to a non-present key, it will be added to the dict, and if the key is present, the value will be updated:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Python</span> <span class="mf">3.11.2</span> <span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">May</span>  <span class="mi">2</span> <span class="mi">2023</span><span class="p">,</span> <span class="mi">15</span><span class="p">:</span><span class="mi">12</span><span class="p">:</span><span class="mi">41</span><span class="p">)</span> <span class="p">[</span><span class="n">Clang</span> <span class="mf">14.0.3</span> <span class="p">(</span><span class="n">clang</span><span class="o">-</span><span class="mf">1403.0.22.14.1</span><span class="p">)]</span> <span class="n">on</span> <span class="n">darwin</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;bob&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;eric&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;bob&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span>
+<span class="p">{</span><span class="s1">&#39;bob&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;eric&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>We can “upsert” by first checking if a key is present, and if so, just update the corresponding item in the values array.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">upsert</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span>
+<span class="w">    </span><span class="c1">⍝ &#39;upsert&#39; -- for keys already present, update values.</span>
+<span class="w">    </span><span class="c1">⍝             for keys not present, append to key and val array</span>
+<span class="w">    </span><span class="c1">⍝</span>
+<span class="w">    </span><span class="c1">⍝ ⍺ keys </span>
+<span class="w">    </span><span class="c1">⍝ ⍵ values</span>
+<span class="w">    </span><span class="c1">⍝ </span>
+<span class="w">    </span><span class="c1">⍝ Restriction: the keys in ⍺ must be unique</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nv">idx</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">keys</span><span class="o">⍳⊆</span><span class="bp">⍺</span>
+<span class="w">    </span><span class="nv">k</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">idx</span><span class="o">≠</span><span class="nf">⎕IO</span><span class="o">+≢</span><span class="nv">keys</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nv">values</span><span class="sr">[</span><span class="nv">k</span><span class="na">/</span><span class="nv">idx</span><span class="sr">]</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">k</span><span class="na">/</span><span class="bp">⍵</span><span class="w"> </span><span class="c1">⍝ Update</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">⍝ Any new kv-pairs: add at the end</span>
+<span class="w">    </span><span class="nv">keys</span><span class="o">,</span><span class="kd">←</span><span class="p">(</span><span class="o">~</span><span class="nv">k</span><span class="p">)</span><span class="na">/</span><span class="o">⊆</span><span class="bp">⍺</span>
+<span class="w">    </span><span class="nv">values</span><span class="o">,</span><span class="kd">←</span><span class="p">(</span><span class="o">~</span><span class="nv">k</span><span class="p">)</span><span class="na">/</span><span class="bp">⍵</span>
+<span class="w">    </span><span class="no">⍬</span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="namespaces-as-hash-tables">
+<h2>Namespaces as hash tables<a class="headerlink" href="#namespaces-as-hash-tables" title="Link to this heading">#</a></h2>
+<p>What else can we do? Well, the intrepid Dyaloger will have noted the conceptual similarity between namespaces and lookup tables. Can we use namespaces as hash tables? Sort of.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">a</span><span class="kd">←</span><span class="nf">⎕NS</span><span class="no">⍬</span>
+<span class="nv">a</span><span class="na">.</span><span class="p">(</span><span class="nv">bob</span><span class="w"> </span><span class="nv">eric</span><span class="w"> </span><span class="nv">frankie</span><span class="w"> </span><span class="nv">alison</span><span class="w"> </span><span class="nv">jo</span><span class="p">)</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">9</span>
+<span class="nv">a</span><span class="na">.</span><span class="nv">frankie</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">6
+</pre></div></div>
+</div>
+<p>Now that <em>is</em> pretty nice! We can add a couple of helper functions to give the illusion that namespaces are hash-like:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Keys</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">.</span><span class="nf">⎕NL</span><span class="w"> </span><span class="m">¯2</span><span class="kt">}</span>
+<span class="nv">Vals</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">.</span><span class="p">(</span><span class="o">⍎</span><span class="na">¨</span><span class="nf">⎕NL</span><span class="w"> </span><span class="m">¯2</span><span class="p">)</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Keys</span><span class="w"> </span><span class="nv">a</span>
+<span class="nv">Vals</span><span class="w"> </span><span class="nv">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">┌──────┬───┬────┬───────┬──┐
+│alison│bob│eric│frankie│jo│
+└──────┴───┴────┴───────┴──┘
+</pre></div><div class="output text_html"><pre class="language-APL">4 5 9 6 9
+</pre></div></div>
+</div>
+<p>Unfortunately, there is no particularly nice way yet to set variables in a namespace from character vectors. Here’s one way we can try:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;alison&#39;</span><span class="w"> </span><span class="s1">&#39;eric&#39;</span><span class="w"> </span><span class="s1">&#39;bob&#39;</span><span class="w"> </span><span class="nv">a</span><span class="na">.</span><span class="kt">{</span><span class="o">⍎</span><span class="p">(</span><span class="o">∊</span><span class="bp">⍺</span><span class="o">,</span><span class="na">¨</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">,</span><span class="s1">&#39;←⍵&#39;</span><span class="kt">}</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="m">¯2</span><span class="w"> </span><span class="m">¯3</span>
+<span class="nv">a</span><span class="na">.</span><span class="nv">alison</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">¯1
+</pre></div></div>
+</div>
+<p>but evaluating strings comes with its own set of complications. For example,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Jean-Pierre&#39;</span><span class="w"> </span><span class="s1">&#39;Jean-Christophe&#39;</span><span class="w"> </span><span class="s1">&#39;D&#39;&#39;Artagnan&#39;</span><span class="w"> </span><span class="p">(</span><span class="nv">a</span><span class="na">.</span><span class="kt">{</span><span class="o">⍎</span><span class="bp">⍺</span><span class="o">,</span><span class="s1">&#39;←⍵&#39;</span><span class="kt">}</span><span class="p">)</span><span class="na">¨</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="c1">⍝ VALUE ERROR</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>⍎VALUE ERROR: Undefined name: Jean
+      Jean-Pierre←⍵
+      ∧
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to be safe, we’d need to encode strings in some way to ensure that they’re valid APL names before putting them into a namespace. Fortunately, there is a handy I-beam function we can use for that, <a class="reference external" href="https://help.dyalog.com/latest/index.htm#Language/I%20Beam%20Functions/JSON%20Translate%20Name.htm">7162⌶</a> – it’s used by <code class="docutils literal notranslate"><span class="pre">⎕JSON</span></code> which faces the same issue when converting JSON-data to Dyalog namespaces.</p>
+<p>Let’s put that into action with a getter-setter pair of helper routines:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">_Set</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍺⍺</span><span class="o">⍎</span><span class="s1">&#39;←⍵&#39;</span><span class="o">,</span><span class="na">⍨</span><span class="o">∊</span><span class="s1">&#39; &#39;</span><span class="o">,</span><span class="na">¨⍨</span><span class="m">0</span><span class="p">(</span><span class="m">7162</span><span class="na">⌶</span><span class="p">)</span><span class="na">¨</span><span class="o">⊆</span><span class="bp">⍺</span><span class="kt">}</span><span class="w"> </span>
+<span class="nv">Get</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍺</span><span class="o">⍎</span><span class="na">¨</span><span class="m">0</span><span class="p">(</span><span class="m">7162</span><span class="na">⌶</span><span class="p">)</span><span class="na">¨</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s how they work:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">a</span><span class="kd">←</span><span class="nf">⎕NS</span><span class="no">⍬</span>
+<span class="s1">&#39;aaa&#39;</span><span class="w"> </span><span class="s1">&#39;bbb&#39;</span><span class="w"> </span><span class="s1">&#39;ccc&#39;</span><span class="w"> </span><span class="s1">&#39;jean-pierre&#39;</span><span class="w"> </span><span class="s1">&#39;b+c&#39;</span><span class="w"> </span><span class="s1">&#39;a/d&#39;</span><span class="w"> </span><span class="p">(</span><span class="nv">a</span><span class="w"> </span><span class="nv">_Set</span><span class="p">)</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span>
+<span class="nv">a</span><span class="w"> </span><span class="nv">Get</span><span class="w"> </span><span class="s1">&#39;aaa&#39;</span><span class="w"> </span><span class="s1">&#39;jean-pierre&#39;</span><span class="w"> </span><span class="s1">&#39;a/d&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">1 4 6
+</pre></div></div>
+</div>
+<p>Unfortunately, we still have a problem. If we try to set a large number of keys, we run into limitations of <code class="docutils literal notranslate"><span class="pre">⍎</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">a</span><span class="kd">←</span><span class="nf">⎕NS</span><span class="no">⍬</span>
+<span class="nv">words2</span><span class="w"> </span><span class="p">(</span><span class="nv">a</span><span class="w"> </span><span class="nv">_Set</span><span class="p">)</span><span class="w"> </span><span class="nv">vals</span><span class="w"> </span><span class="c1">⍝ LIMIT ERROR</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LIMIT ERROR
+_Set[0] _Set←{⍺⍺⍎&#39;←⍵&#39;,⍨∊&#39; &#39;,¨⍨0(7162⌶)¨⍺}
+                ∧
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is an internal limitation that a Dyalog function can comprise of no more than 4095 “tokens”. Our tokens, in this case, are our keys to the left, and then two more, for the <code class="docutils literal notranslate"><span class="pre">←⍵</span></code> bit of the evaluation. We need to ‘chunk’ our data into sizes less than 4093. Let’s use 4000, a nice, round number:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">_Set</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span>
+<span class="w">    </span><span class="nv">ch</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span><span class="o">=</span><span class="m">4000</span><span class="o">|⍳≢⊆</span><span class="bp">⍺</span><span class="w">                       </span>
+<span class="w">    </span><span class="nv">_sset</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="bp">⍺⍺</span><span class="o">⍎</span><span class="s1">&#39;←⍵&#39;</span><span class="o">,</span><span class="na">⍨</span><span class="o">∊</span><span class="s1">&#39; &#39;</span><span class="o">,</span><span class="na">¨⍨</span><span class="m">0</span><span class="p">(</span><span class="m">7162</span><span class="na">⌶</span><span class="p">)</span><span class="na">¨</span><span class="o">⊆</span><span class="bp">⍺</span><span class="kt">}</span><span class="w">  </span>
+<span class="w">    </span><span class="p">(</span><span class="bp">⍺⍺</span><span class="w"> </span><span class="nv">_sset</span><span class="p">)</span><span class="na">⌿¨</span><span class="o">↓⍉↑</span><span class="p">(</span><span class="nv">ch</span><span class="o">⊂</span><span class="bp">⍺</span><span class="p">)(</span><span class="nv">ch</span><span class="o">⊂</span><span class="bp">⍵</span><span class="p">)</span><span class="w">            </span>
+<span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we should be able to avoid the limit error, but with our ~235k token data set, it’s a bit slow.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">a</span><span class="kd">←</span><span class="nf">⎕NS</span><span class="no">⍬</span>
+<span class="sr">]</span><span class="nv">runtime</span><span class="w"> </span><span class="s2">&quot;words2 (a _Set) vals&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">
+* Benchmarking "words2 (a _Set) vals"
+┌──────────┬─────┐
+│          │(ms) │
+├──────────┼─────┤
+│CPU (avg):│14617│
+├──────────┼─────┤
+│Elapsed:  │14617│
+└──────────┴─────┘
+</pre></div></div>
+</div>
+</section>
+<section id="net-collections">
+<h2>.NET Collections<a class="headerlink" href="#net-collections" title="Link to this heading">#</a></h2>
+<p>What about pulling in a hash table from .NET? .NET has a superb set of collections. Let’s try the aptly named <code class="docutils literal notranslate"><span class="pre">Hashtable</span></code>. It’s nicely ergonomic, and can be indexed directly with strings, even in APL:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nf">⎕USING</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;System.Collections&#39;</span>
+<span class="nv">ht</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nf">⎕NEW</span><span class="w"> </span><span class="nv">Hashtable</span>
+<span class="kt">{</span><span class="nv">ht</span><span class="na">.</span><span class="nv">Add</span><span class="w"> </span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="o">↓⍉↑</span><span class="nv">words2</span><span class="w"> </span><span class="nv">vals</span><span class="w"> </span><span class="c1">⍝ Quick</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="keyed-properties">
+<h2>Keyed properties<a class="headerlink" href="#keyed-properties" title="Link to this heading">#</a></h2>
+<p>Most things C# can do, we can also do in Dyalog. We can actually write a dictionary-like class that is indexable directly using strings, just like the .NET example above, using what’s known as a “keyed property”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="bp">:</span><span class="nv">Class</span><span class="w"> </span><span class="nv">Dict</span>
+<span class="w">    </span><span class="c1">⍝ )ed ○ Dict</span>
+<span class="w">    </span><span class="bp">:</span><span class="nv">Field</span><span class="w"> </span><span class="nv">Public</span><span class="w"> </span><span class="nv">_keys</span><span class="kd">←</span><span class="p">(</span><span class="m">1500</span><span class="na">⌶</span><span class="p">)</span><span class="no">⍬</span>
+<span class="w">    </span><span class="bp">:</span><span class="nv">Field</span><span class="w"> </span><span class="nv">Public</span><span class="w"> </span><span class="nv">_values</span><span class="kd">←</span><span class="no">⍬</span>
+
+<span class="w">    </span><span class="bp">:</span><span class="nv">Property</span><span class="w"> </span><span class="nv">Keyed</span><span class="w"> </span><span class="nv">Default</span><span class="w"> </span><span class="nv">Item</span>
+<span class="w">        </span><span class="bp">:</span><span class="nv">Access</span><span class="w"> </span><span class="nv">Public</span><span class="w"> </span><span class="nv">Instance</span>
+
+<span class="w">        </span><span class="bp">∇</span><span class="w"> </span><span class="nv">r</span><span class="kd">←</span><span class="nv">get</span><span class="w"> </span><span class="nv">arg</span>
+<span class="w">            </span><span class="nv">r</span><span class="kd">←</span><span class="nv">_values</span><span class="sr">[</span><span class="nv">_keys</span><span class="o">⍳⊃</span><span class="nv">arg</span><span class="na">.</span><span class="nv">Indexers</span><span class="sr">]</span>
+<span class="w">        </span><span class="bp">∇</span>
+
+<span class="w">        </span><span class="bp">∇</span><span class="w"> </span><span class="nv">set</span><span class="w"> </span><span class="nv">arg</span><span class="sr">;</span><span class="nv">unique</span><span class="sr">;</span><span class="nv">kk</span><span class="sr">;</span><span class="nv">vv</span><span class="sr">;</span><span class="nv">seen</span>
+<span class="w">            </span><span class="nv">unique</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">≠⊃</span><span class="nv">arg</span><span class="na">.</span><span class="nv">Indexers</span>
+<span class="w">            </span><span class="nv">kk</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">unique</span><span class="na">/</span><span class="o">⊃</span><span class="nv">arg</span><span class="na">.</span><span class="nv">Indexers</span>
+<span class="w">            </span><span class="nv">vv</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">unique</span><span class="na">/</span><span class="nv">arg</span><span class="na">.</span><span class="nv">NewValue</span>
+<span class="w">            </span><span class="nv">seen</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">kk</span><span class="o">∊</span><span class="nv">_keys</span>
+<span class="w">            </span><span class="p">(</span><span class="nv">seen</span><span class="na">/</span><span class="nv">_values</span><span class="p">)</span><span class="kd">←</span><span class="nv">seen</span><span class="na">/</span><span class="nv">vv</span>
+<span class="w">            </span><span class="nv">_keys</span><span class="o">,</span><span class="kd">←</span><span class="p">(</span><span class="o">~</span><span class="nv">seen</span><span class="p">)</span><span class="na">/</span><span class="nv">kk</span>
+<span class="w">            </span><span class="nv">_values</span><span class="o">,</span><span class="kd">←</span><span class="p">(</span><span class="o">~</span><span class="nv">seen</span><span class="p">)</span><span class="na">/</span><span class="nv">vv</span>
+<span class="w">        </span><span class="bp">∇</span>
+
+<span class="w">    </span><span class="bp">:</span><span class="nv">EndProperty</span>
+
+<span class="w">    </span><span class="bp">∇</span><span class="w"> </span><span class="nv">Make</span><span class="p">(</span><span class="nv">keys</span><span class="w"> </span><span class="nv">values</span><span class="p">)</span>
+<span class="w">        </span><span class="bp">:</span><span class="nv">Access</span><span class="w"> </span><span class="nv">Public</span>
+<span class="w">        </span><span class="bp">:</span><span class="nv">Implements</span><span class="w"> </span><span class="nv">Constructor</span>
+
+<span class="w">        </span><span class="p">(</span><span class="nv">_keys</span><span class="w"> </span><span class="nv">_values</span><span class="p">)</span><span class="kd">←</span><span class="nv">keys</span><span class="w"> </span><span class="nv">values</span>
+<span class="w">    </span><span class="bp">∇</span>
+<span class="bp">:</span><span class="nv">EndClass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">z</span><span class="kd">←</span><span class="nf">⎕NEW</span><span class="w"> </span><span class="nv">Dict</span><span class="w"> </span><span class="p">((</span><span class="s1">&#39;APL&#39;</span><span class="w"> </span><span class="s1">&#39;Rocks!&#39;</span><span class="p">)(</span><span class="m">42</span><span class="w"> </span><span class="s1">&#39;Bob&#39;</span><span class="p">))</span>
+<span class="nv">z</span><span class="sr">[</span><span class="s1">&#39;Rocks!&#39;</span><span class="w"> </span><span class="s1">&#39;APL&#39;</span><span class="w"> </span><span class="s1">&#39;APL&#39;</span><span class="sr">]</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">┌───┬──┬──┐
+│Bob│42│42│
+└───┴──┴──┘
+</pre></div></div>
+</div>
+<p>Let’s load up that big word list and compare what we have tried so far:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">z</span><span class="kd">←</span><span class="nf">⎕NEW</span><span class="w"> </span><span class="nv">Dict</span><span class="w"> </span><span class="p">(</span><span class="nv">words2</span><span class="w"> </span><span class="nv">vals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;≢ht[keys]&#39;</span><span class="w"> </span><span class="s1">&#39;≢a Get keys&#39;</span><span class="w"> </span><span class="s1">&#39;≢vals[words1⍳keys]&#39;</span><span class="w"> </span><span class="s1">&#39;≢z[keys]&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">  ≢ht[keys]          → 5.9E¯1 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕
+  ≢a Get keys        → 2.6E¯1 | -57% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                       
+  ≢vals[words1⍳keys] → 1.9E¯2 | -97% ⎕                                       
+  ≢z[keys]           → 3.4E¯2 | -95% ⎕⎕                                      
+</pre></div></div>
+</div>
+<p>So our orignal attempt using arrays is still the fastest, and – perhaps surprisingly – the .NET approach the slowest. The guts of our keyed property class is the same as our original ‘hashed array’, so it should come as no surprise that they are pretty much identical in terms of performance.</p>
+</section>
+<section id="dfns-alist">
+<h2>dfns alist<a class="headerlink" href="#dfns-alist" title="Link to this heading">#</a></h2>
+<p>There is a set of <a class="reference external" href="https://dfns.dyalog.com/n_alists.htm">association list functions</a> in the dfns workspace. They’re simple, but nicely put together. An assoication list is a 2-element vector, where the first element is a vector of keys, and the second element is a vector of the corresponding keys:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;alpush&#39;</span><span class="w"> </span><span class="s1">&#39;alpop&#39;</span><span class="w"> </span><span class="s1">&#39;alset&#39;</span><span class="w"> </span><span class="s1">&#39;alget&#39;</span><span class="nf">⎕cy</span><span class="s1">&#39;dfns&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">alist</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;bob&#39;</span><span class="w"> </span><span class="s1">&#39;eric&#39;</span><span class="w"> </span><span class="s1">&#39;frankie&#39;</span><span class="w"> </span><span class="s1">&#39;alison&#39;</span><span class="w"> </span><span class="s1">&#39;jo&#39;</span><span class="p">)(</span><span class="m">5</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To retrieve the value corresponding to a particular key, we use <code class="docutils literal notranslate"><span class="pre">alget</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">alist</span><span class="w"> </span><span class="nv">alget</span><span class="w"> </span><span class="s1">&#39;frankie&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">6
+</pre></div></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">alget</span></code> only operates on single keys – we can’t retrieve multiple values by feeding it a vector of keys:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">alist</span><span class="w"> </span><span class="nv">alget</span><span class="w"> </span><span class="s1">&#39;frankie&#39;</span><span class="w"> </span><span class="s1">&#39;jo&#39;</span><span class="w"> </span><span class="c1">⍝ INDEX ERROR</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INDEX ERROR
+alget[2] (keys⍳⊂⍵)⊃vals      ⍝ :: val ← list ∇ key
+                  ∧
+</pre></div>
+</div>
+</div>
+</div>
+<p>To put another key-value pair onto our association list, we use <code class="docutils literal notranslate"><span class="pre">alpush</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">alist</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">alist</span><span class="w"> </span><span class="nv">alpush</span><span class="w"> </span><span class="s1">&#39;zach&#39;</span><span class="w"> </span><span class="m">32</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">┌─────────────────────────────────┬────────────┐
+│┌────┬───┬────┬───────┬──────┬──┐│32 5 9 6 4 9│
+││zach│bob│eric│frankie│alison│jo││            │
+│└────┴───┴────┴───────┴──────┴──┘│            │
+└─────────────────────────────────┴────────────┘
+</pre></div></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">alpush</span></code> adds new items to the beginning of the vectors holding keys and values. <code class="docutils literal notranslate"><span class="pre">alset</span></code> modifies the value of an existing key:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">alist</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">alist</span><span class="w"> </span><span class="nv">alset</span><span class="w"> </span><span class="s1">&#39;frankie&#39;</span><span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">┌─────────────────────────────────┬────────────┐
+│┌────┬───┬────┬───────┬──────┬──┐│32 5 9 2 4 9│
+││zach│bob│eric│frankie│alison│jo││            │
+│└────┴───┴────┴───────┴──────┴──┘│            │
+└─────────────────────────────────┴────────────┘
+</pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">alist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">┌─────────────────────────────────┬────────────┐
+│┌────┬───┬────┬───────┬──────┬──┐│32 5 9 2 4 9│
+││zach│bob│eric│frankie│alison│jo││            │
+│└────┴───┴────┴───────┴──────┴──┘│            │
+└─────────────────────────────────┴────────────┘
+</pre></div></div>
+</div>
+<p>The final function is <code class="docutils literal notranslate"><span class="pre">alpop</span></code> – it <em>removes</em> the specified key-value pair, returning the value and the resulting list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="p">(</span><span class="nv">eric_val</span><span class="w"> </span><span class="nv">alist</span><span class="p">)</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">alist</span><span class="w"> </span><span class="nv">alpop</span><span class="w"> </span><span class="s1">&#39;eric&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">┌─┬─────────────────────────────────────────┐
+│9│┌────────────────────────────┬──────────┐│
+│ ││┌────┬───┬───────┬──────┬──┐│32 5 2 4 9││
+│ │││zach│bob│frankie│alison│jo││          ││
+│ ││└────┴───┴───────┴──────┴──┘│          ││
+│ │└────────────────────────────┴──────────┘│
+└─┴─────────────────────────────────────────┘
+</pre></div></div>
+</div>
+<p>Sadly, there is no <code class="docutils literal notranslate"><span class="pre">alupsert</span></code> function that would modify an existing value if a key is present, and otherwise add a new key-value pair. We can, of course, write one ourselves:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">alupsert</span><span class="kd">←</span><span class="kt">{</span><span class="p">(</span><span class="nv">k</span><span class="w"> </span><span class="nv">v</span><span class="p">)</span><span class="kd">←</span><span class="bp">⍵</span><span class="p">⋄</span><span class="m">3</span><span class="bp">::⍺</span><span class="w"> </span><span class="nv">alpush</span><span class="w"> </span><span class="nv">k</span><span class="w"> </span><span class="nv">v</span><span class="p">⋄</span><span class="bp">⍺</span><span class="w"> </span><span class="nv">alset</span><span class="w"> </span><span class="nv">k</span><span class="w"> </span><span class="nv">v</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ Modify if present</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢</span><span class="nv">alist</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">alist</span><span class="w"> </span><span class="nv">alupsert</span><span class="w"> </span><span class="s1">&#39;æthelflæd&#39;</span><span class="w"> </span><span class="m">8</span>
+<span class="o">⊢</span><span class="nv">alist</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">alist</span><span class="w"> </span><span class="nv">alupsert</span><span class="w"> </span><span class="s1">&#39;frankie&#39;</span><span class="w"> </span><span class="m">¯1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">┌──────────────────────────────────────┬────────────┐
+│┌─────────┬────┬───┬───────┬──────┬──┐│8 32 5 2 4 9│
+││æthelflæd│zach│bob│frankie│alison│jo││            │
+│└─────────┴────┴───┴───────┴──────┴──┘│            │
+└──────────────────────────────────────┴────────────┘
+</pre></div><div class="output text_html"><pre class="language-APL">┌──────────────────────────────────────┬─────────────┐
+│┌─────────┬────┬───┬───────┬──────┬──┐│8 32 5 ¯1 4 9│
+││æthelflæd│zach│bob│frankie│alison│jo││             │
+│└─────────┴────┴───┴───────┴──────┴──┘│             │
+└──────────────────────────────────────┴─────────────┘
+</pre></div></div>
+</div>
+<p>The way this structure is defined is very neat – completely immutable, much closer in spirit to an Erlang <a class="reference external" href="https://www.erlang.org/doc/man/dict.html">dict</a> than the Python equivalent. Any modifying operation returns a copy of the original with the change applied. In comparison, all the other things we’ve done are mutable – we change things in place. Of course, always returning a copy has a cost associated with it. In functional languages like Erlang where immutability is the norm, returning copies of things doesn’t actually copy much data. In Dyalog we have to pay the price if we want to do frequent modifications of a large association list. Also, as we can only pick a single item at a time, our “big data” retrieval test is somewhat disappointing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">alist</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">words2</span><span class="w"> </span><span class="nv">vals</span>
+<span class="sr">]</span><span class="nv">runtime</span><span class="w"> </span><span class="s2">&quot;alist∘alget¨keys&quot;</span><span class="w"> </span><span class="c1">⍝ Manually interrupted after several minutes out of boredom</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INTERRUPT
+</pre></div>
+</div>
+</div>
+</div>
+<p>As they stand, the <code class="docutils literal notranslate"><span class="pre">al*</span></code> routines in the dfns ws are nicely ergonomic for small data sets, perhaps as a way to store the contents of some kind of structured configuration file, but they’re probably not the best choice for large data sets and frequent access or modification.</p>
+</section>
+<section id="wrapping-up">
+<h2>Wrapping up<a class="headerlink" href="#wrapping-up" title="Link to this heading">#</a></h2>
+<p>We all occasionally need to map keys to values, and whilst Dyalog does not come with a native dictionary type, we’ve explored several ways by which we can achieve the same thing.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            name: "dyalog-kernel",
+            path: "./apl-quest/dyalog"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Grading-and-Sorting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Grading and Sorting</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Justifying-Text.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Justifying Text</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#namespaces-as-hash-tables">Namespaces as hash tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#net-collections">.NET Collections</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keyed-properties">Keyed properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dfns-alist">dfns alist</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wrapping-up">Wrapping up</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

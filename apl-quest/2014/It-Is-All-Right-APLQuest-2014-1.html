@@ -1,0 +1,972 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>It Is All Right 2014-1 &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ae78d91f" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2014/It-Is-All-Right-APLQuest-2014-1';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How Tweet It Is 2014-2" href="How-Tweet-It-Is-APLQuest-2014-2.html" />
+    <link rel="prev" title="APL Quest 2014" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2013/index.html">APL Quest 2013</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping Things In Balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Go-Forth-And-Multiply-APLQuest-2013-8.html">Go forth and Multiply 2013-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Solution-Salvation-APLQuest-2013-10.html">Solution Salvation 2013-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">APL Quest 2014</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">It Is All Right 2014-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="How-Tweet-It-Is-APLQuest-2014-2.html">How Tweet It Is 2014-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tell-a-Fib-APLQuest-2014-3.html">Tell A Fib 2014-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Space-The-Final-Frontier-APLQuest-2014-4.html">Space The Final Frontier 2014-4</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Mirror-Mirror-APLQuest-2014-5.html">Mirror Mirror 2014-5</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Revolutionary-Thinking-APLQuest-2014-7.html">Revolutionary Thinking 2014-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Go-The-Distance-APLQuest-2014-8.html">Go The Distance 2014-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Going-Ballistic-APLQuest-2014-9.html">Going Ballistic 2014-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sales-Are-Up-APLQuest-2014-10.html">Sales Are Up 2014-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2015/index.html">APL Quest 2015</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Nag-A-Ram-APLQuest-2015-1.html">APL Quest: Anagrams Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Longest-Streak-APLQuest-2015-2.html">APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Farey-Tales-APLQuest-2015-3.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Progessive-Dyadic-Iota-APLQuest-2015-4.html">APL Quest Cap Wiki: Progressive Dyadic Iota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.html">APL Quest: Standard Deviation Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.html">APL Quest: Problem Six Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Justin-Upper-Case-APLQuest-2015-7.html">APL Quest: Problem 7 from the 2015 APL Problem Solver Competition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html">APL Quest: Swapping Interior Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Blazing-A-Trail-APLQuest-2015-10.html">API Quest: Generating a Centered Pascal’s Triangle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2016/index.html">APL Quest 2016</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mean-APLQuest-2016-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Median-APLQuest-2016-2.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mode-APLQuest-2016-3.html">Welcome to APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.html">Welcome to the Appeal Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Shorter-Onestothe-Front-APLQuest-2016-6.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/3-sand-5-s-APLQuest-2016-7.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Separating-Outthe-Negative-APLQuest-2016-8.html">APL Quest: 8th Quest Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Delimited-Text-APLQuest-2016-9.html">APL Quest: Delimiter Splitting Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Order-Total-APLQuest-2016-10.html">Welcome to the APL Quest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2017/index.html">APL Quest 2017</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2017/What-an-Odd-Bunch-APLQuest-2017-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Good-Evening-APLQuest-2017-2.html">Ensure Odd Numbers Become Even Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Miss-Quoted-APLQuest-2017-3.html">Removing Text Between Double Quotes Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Slices-of-Pies-APLQuest-2017-4.html">Computing Areas of Circle Sectors Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/DNA-APLQuest-2017-5.html">Checking Character Vectors for Valid Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/k-mers-APLQuest-2017-6.html">Chopping Text into Sequences of a Given Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Counting-DNANucleotides-APLQuest-2017-7.html">Counting Letters in a String: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Be-the-First-1-APLQuest-2017-8.html">Understanding Boolean Vector Processing in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Double-Trouble-APLQuest-2017-9.html">Finding Locations of Identical Characters in Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Squaring-Off-APLQuest-2017-10.html">Fitting Elements into a Square Array</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2018/index.html">APL Quest 2018</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Oh-Say-Can-You-See-APLQuest-2018-1.html">Counting Visible Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Number-Splitting-APLQuest-2018-2.html">Splitting Numbers into Integer and Fractional Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Rolling-Along-APLQuest-2018-3.html">Simulating Dice Rolls and Analyzing Outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-APLQuest-2018-4.html">Converting Gregorian Year Numbers to Chinese Zodiac Animals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-Revisited-APLQuest-2018-5.html">Computing Zodiac Signs from Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Angle-APLQuest-2018-6.html">A Simple Test for XML Validity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Unconditionally-Shifty-APLQuest-2018-7.html">Shifting Boolean Data: An Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Makinga-Good-Argument-APLQuest-2018-8.html">Validating Dyadic Transpose Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Earlier-Later-or-the-Same-APLQuest-2018-9.html">Comparing Dates in APL: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Anagrammatically-Correct-APLQuest-2018-10.html">Comparing Two Character Vectors: An Anagram Checker</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2019/index.html">APL Quest 2019</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Chunky-Monkey-APLQuest-2019-1.html">Chunking a List into Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Makingthe-Grade-APLQuest-2019-2.html">Converting Scores into Letter Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Grade-Distribution-APLQuest-2019-3.html">Compiling Simple Statistics on Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Knight-Moves-APLQuest-2019-4.html">Understanding the Movement of a Chess Knight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Doubling-Up-APLQuest-2019-5.html">Checking for Consecutive Identical Letters in Words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Telephone-Names-APLQuest-2019-6.html">Translating Telephone Numbers from Digits and Letters to Plain Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/In-the-Center-of-it-All-APLQuest-2019-7.html">Centering Words in a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Goingthe-Distance-APLQuest-2019-8.html">Computing the Distance Around a Path Defined by Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Area-Code-Gauss-APLQuest-2019-9.html">Calculating the Area of a Polygon Using the Shoelace Formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Odds-Evens-APLQuest-2019-10.html">Splitting a List of Words by Length</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2020/index.html">APL Quest 2020</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Lets-Split-APLQuest-2020-1.html">Understanding Vector Partitioning in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Character-Building-APLQuest-2020-2.html">Understanding Byte Sequences and UTF-8 Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Excel-lent-Columns-APLQuest-2020-3.html">Understanding Column Label Conversion in Spreadsheet Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Takea-Leap-APLQuest-2020-4.html">Understanding Leap Years: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Steppinginthe-Proper-Direction-APLQuest-2020-5.html">Generating Inclusive Integer Ranges in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Movetothe-Front-APLQuest-2020-6.html">Moving Elements in a Numeric Vector to the Front in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/See-Youina-Bit-APLQuest-2020-7.html">Checking Bit States in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Zigzag-Numbers-APLQuest-2020-8.html">Analyzing Alternating Digit Growth in Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Riseand-Fall-APLQuest-2020-9.html">Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Stacking-It-Up-APLQuest-2020-10.html">Emulating APL Array Printing Behavior</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2021/index.html">APL Quest 2021</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Are-You-a--Bacteria-APLQuest-2021-1.html">Calculating Percentage of Characters in a DNA String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Index-Of-Modified-APLQuest-2021-2.html">Creating a Cover for the Dyadic Iota in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Multiplicity-APLQuest-2021-3.html">Grouping Integers by Divisibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Square-Peg-Round-Hole-APLQuest-2021-4.html">Finding the Difference in Area Between an Inscribed Square and Its Circumscribing Circle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Rect-ify-APLQuest-2021-5.html">Finding Rectangle Dimensions with Given Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Fischer-Random-Chess-APLQuest-2021-6.html">Chess Setup Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Can-You-Feelthe-Magic-APLQuest-2021-7.html">Checking for Magic Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Timeto-Makea-Difference-APLQuest-2021-8.html">Calculating Absolute Time Difference in Minutes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Inthe-Long-Run-APLQuest-2021-9.html">Finding the Longest Consecutive Sequence in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Onthe-Right-Side-APLQuest-2021-10.html">Justified Text Transformation in APL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2022/index.html">APL Quest 2022</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Counting-DNA-Nucleotides-APLQuest-2022-1.html">Counting DNA Letters in a Character Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Attackofthe-Mutations-APLQuest-2022-2.html">Comparing DNA Strings: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Uniquely-Qualified-APLQuest-2022-3.html">Finding the Symmetric Difference Between Two Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Inthe-Long-One-APLQuest-2022-4.html">Finding the Longest Run of Ones in a Boolean Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Stairwayto-Heaven-APLQuest-2022-5.html">Building a Staircase in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Pyramid-Scheme-APLQuest-2022-6.html">Constructing Concentric Rings of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Just-Golfing-Around-APLQuest-2022-7.html">Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Lets-Split-APLQuest-2022-8.html">Splitting Text in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html">Calculating the Window Average of a List of Numbers in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Separation-Anxiety-APLQuest-2022-10.html">Inserting Separators in Large Integers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2023/index.html">APL Quest 2023</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Elimination-Sort-APLQuest-2023-1.html">Removing Non-Decreasing Elements from a List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Put-It-In-Reverse-APLQuest-2023-2.html">Finding End Points of One Array in Another</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Caesar-Salad-APLQuest-2023-3.html">Implementing a Simple Caesar Cipher for Uppercase Characters and Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Like-a-Version-APLQuest-2023-4.html">Comparing Version Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Risky-Business-APLQuest-2023-5.html">Understanding Dice Mechanics in Risk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Key-Value-Pairs-APLQuest-2023-6.html">Parsing Key-Value Pairs into a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Lets-Be-Rational-APLQuest-2023-7.html">Finding a Reduced Fraction for a Given Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Critical-Thinking-APLQuest-2023-8.html">Computing the Next Double Critical Day</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Flipping-Pairs-APLQuest-2023-9.html">Interchanging Adjacent Elements in a Multi-Dimensional Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Partition-witha-Twist-APLQuest-2023-10.html">APL Quest: Splitting Text on Spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dyalog/index.html">Jupyter notebooks for Dyalog APL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/APL-Expressions.html">APL Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Arithmetic-Functions.html">Arithmetic Fuctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Boolean-Functions-and-Boolean-Algebra.html">Boolean functions</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Boolean-Scans-and-Reductions.html">Boolean Scans and Reductions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Calculus.html">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Comparison-Functions.html">Comparison functions <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">≤</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> <code class="docutils literal notranslate"><span class="pre">≥</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">≠</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Grading-and-Sorting.html">Grading and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/hashtables.html">Hash tables in Dyalog APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Justifying-Text.html">Justifying Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Linear-Fitting.html">Linear Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Lookup-Without-Replacement.html">Lookup without Replacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Maths-versus-APL.html">Maths versus APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Modifying-Rank-and-Depth.html">Modifying rank and depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v14.html">Tally <code class="docutils literal notranslate"><span class="pre">≢</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v15.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪/</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v16.html">Monadic function <code class="docutils literal notranslate"><span class="pre">⍸</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v17.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Plotting-with-SharpPlot.html">Plotting with SharpPlot</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Random-Numbers.html">Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Reduce-and-Scan.html">Reduce and Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Sudoku-Solver.html">Sodoku Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Tacit-Techniques.html">Tacit Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Using-the-TryAPL-Tutorials.html">TryAPL tutorial system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Your-First-Mandelbrot-Set.html">Mandelbrot Set</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2014/It-Is-All-Right-APLQuest-2014-1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>It Is All Right 2014-1</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approach">Approach</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-representation">Mathematical Representation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-a">Solution A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-b">Solution B</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simplification">Simplification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-c">Solution C</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-d">Solution D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-e">Solution E</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-number-approach">Complex Number Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-f">Solution F</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-g">Solution G</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-h">Solution H</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#circle-function">Circle Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-i">Solution I</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domino-function">Domino Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-j">Solution J</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts">Concepts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="it-is-all-right-2014-1">
+<h1><a class="reference external" href="https://apl.quest/psets/2014.html?goto=P1_It_Is_All_Right">It Is All Right 2014-1</a><a class="headerlink" href="#it-is-all-right-2014-1" title="Link to this heading">#</a></h1>
+<p><strong>Problem:</strong> Write a <a class="reference external" href="https://aplwiki.com/wiki/Dfn">dfn</a> that takes the length of the legs of a triangle as its <a class="reference external" href="https://aplwiki.com/wiki/Argument">left argument</a>, and the length of the hypotenuse as its right argument and returns 1 if the triangle is a <a class="reference external" href="https://en.wikipedia.org/wiki/Right_triangle">right triangle</a>, 0 otherwise.</p>
+<p><strong>Video:</strong> <a class="reference external" href="https://www.youtube.com/watch?v=0SeHAg0q30w">https://www.youtube.com/watch?v=0SeHAg0q30w</a></p>
+<p><strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2014/1.apl">abrudz/apl_quest</a></p>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<p>We are given the left argument, which consists of the two supposed shorter sides of a triangle, and the right argument, representing the longer side. Our task is to check if these three numbers can indeed form the lengths of a right-angled triangle.</p>
+<section id="approach">
+<h3>Approach<a class="headerlink" href="#approach" title="Link to this heading">#</a></h3>
+<p>It is natural to use the <a class="reference external" href="https://en.wikipedia.org/wiki/Pythagorean_theorem">Pythagorean Theorem</a> to solve this problem. Let’s examine some test cases:</p>
+<ol class="arabic simple">
+<li><p>Shorter sides: <code class="docutils literal notranslate"><span class="pre">2</span></code> and <code class="docutils literal notranslate"><span class="pre">4</span></code>. Longer side: <code class="docutils literal notranslate"><span class="pre">4.5</span></code> → Result: <strong>False</strong></p></li>
+<li><p>Shorter sides: <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">4</span></code>. Longer side: <code class="docutils literal notranslate"><span class="pre">5</span></code> → Result: <strong>True</strong>
+According to the Pythagorean theorem, the sum of the squares of the two shorter sides must equal the square of the longer side.</p></li>
+</ol>
+</section>
+</section>
+<section id="mathematical-representation">
+<h2>Mathematical Representation<a class="headerlink" href="#mathematical-representation" title="Link to this heading">#</a></h2>
+<p>We can express this mathematically using the concept of self-multiplication or squaring:</p>
+<ol class="arabic simple">
+<li><p>The square of a number is the same as multiplying the number by itself.</p></li>
+<li><p>The sum of the squares can be represented as an <a class="reference external" href="https://aplwiki.com/wiki/Inner_Product">inner product</a> of the shorter sides.
+Given this, we can rewrite our check as:</p></li>
+</ol>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">sum</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">squares</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">shorter</span><span class="w"> </span><span class="nv">sides</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nv">square</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">longer</span><span class="w"> </span><span class="nv">side</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This leads us to our first solution:</p>
+<section id="solution-a">
+<h3>Solution A<a class="headerlink" href="#solution-a" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍺</span><span class="o">*</span><span class="m">2</span><span class="p">)</span><span class="o">=</span><span class="bp">⍵</span><span class="o">*</span><span class="m">2</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>This solution implements the Pythagorean theorem directly. It squares the elements of the left argument (the legs), sums them, and compares the result to the square of the right argument (the hypotenuse).</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⍺*2</span></code> - Square each element of the left argument (the legs) using the <a class="reference external" href="https://aplwiki.com/wiki/Power">power</a> function</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Plus_Reduce"><code class="docutils literal notranslate"><span class="pre">+/</span></code></a><code class="docutils literal notranslate"><span class="pre">⍺*2</span></code> - Sum the squared values using <a class="reference external" href="https://aplwiki.com/wiki/Reduce">reduction</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵*2</span></code> - Square the right argument (the hypotenuse)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(+/⍺*2)=⍵*2</span></code> - Compare the sum of squared legs to the squared hypotenuse using the <a class="reference external" href="https://aplwiki.com/wiki/Equal">equal</a> function</p></li>
+</ol>
+<p>We can also express this using an <a class="reference external" href="https://aplwiki.com/wiki/Inner_Product">inner product</a>:</p>
+</section>
+<section id="solution-b">
+<h3>Solution B<a class="headerlink" href="#solution-b" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="p">(</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍨</span><span class="bp">⍺</span><span class="p">)</span><span class="o">=×</span><span class="na">⍨</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ inner product is equivalent for scalar functions on vectors</span>
+</pre></div>
+</div>
+<p>This solution uses the inner product to calculate the sum of squares for the legs, making it equivalent to Solution A for <a class="reference external" href="https://aplwiki.com/wiki/Scalar_function">scalar functions</a> on vectors.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">+.×⍨⍺</span></code> - Use inner product to sum the squares of the left argument</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">×⍨⍵</span></code> - Square the right argument using <a class="reference external" href="https://aplwiki.com/wiki/Self-Reference">self-reference</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(+.×⍨⍺)=×⍨⍵</span></code> - Compare the results</p></li>
+</ol>
+</section>
+</section>
+<section id="simplification">
+<h2>Simplification<a class="headerlink" href="#simplification" title="Link to this heading">#</a></h2>
+<p>We can preprocess both arguments with self-multiplication (squaring) and then sum the left argument:</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">sum</span><span class="p">(</span><span class="nv">left_arguments</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">right_argument</span>
+</pre></div>
+</div>
+<p>This can be effectively represented in APL as:</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="na">∘</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="p">)</span><span class="na">⍨⍥</span><span class="p">(</span><span class="o">×</span><span class="na">⍨</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Alternatively, we could break out the multiplication:</p>
+<ol class="arabic simple">
+<li><p><strong>Commuting Arguments</strong>: We may preprocess one argument and then check for equality.</p></li>
+<li><p><strong>Reduction Over a Single Element</strong>: Notably, a <a class="reference external" href="https://aplwiki.com/wiki/Reduce">reduction</a> of a single element doesn’t change its value, allowing us to fold these operations effectively.
+For a reduction, we can use:</p></li>
+</ol>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">+</span><span class="na">/⍤</span><span class="o">⊣=⊢</span><span class="p">)</span><span class="na">⍥</span><span class="p">(</span><span class="o">×</span><span class="na">⍨</span><span class="p">)</span><span class="w">  </span><span class="c1">⍝ break out the squaring</span>
+</pre></div>
+</div>
+<p>These simplifications lead us to more concise solutions:</p>
+<section id="solution-c">
+<h3>Solution C<a class="headerlink" href="#solution-c" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍨⍤</span><span class="o">⊣=×</span><span class="na">⍨⍤</span><span class="o">⊢</span>
+</pre></div>
+</div>
+<p>This is the <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">tacit (point-free)</a> equivalent of Solution B.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">+.×⍨⍤⊣</span></code> - Apply the sum of squares operation to the left argument using <a class="reference external" href="https://aplwiki.com/wiki/Atop">atop</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">×⍨⍤⊢</span></code> - Apply squaring to the right argument</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Equal"><code class="docutils literal notranslate"><span class="pre">=</span></code></a> - Compare the results</p></li>
+</ol>
+</section>
+<section id="solution-d">
+<h3>Solution D<a class="headerlink" href="#solution-d" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">+</span><span class="na">/⍤</span><span class="o">⊣=⊢</span><span class="p">)</span><span class="na">⍥</span><span class="p">(</span><span class="o">×</span><span class="na">⍨</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This solution breaks out the squaring operation, applying it to both arguments before comparing.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⍥(×⍨)</span></code> - Apply squaring to both arguments using <a class="reference external" href="https://aplwiki.com/wiki/Over">over</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">+/⍤⊣</span></code> - Sum the squared left argument</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=⊢</span></code> - Compare with the squared right argument</p></li>
+</ol>
+</section>
+<section id="solution-e">
+<h3>Solution E<a class="headerlink" href="#solution-e" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="na">⍥</span><span class="p">(</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍨</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This solution combines the sum of squares operation into a single function applied to both arguments before comparison.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">+.×⍨</span></code> - Calculate the sum of squares</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=⍥(+.×⍨)</span></code> - Apply the sum of squares to both arguments and compare</p></li>
+</ol>
+</section>
+</section>
+<section id="complex-number-approach">
+<h2>Complex Number Approach<a class="headerlink" href="#complex-number-approach" title="Link to this heading">#</a></h2>
+<p>Another approach is to represent the two shorter sides as components in the complex plane. We can represent the sides as:</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">bi</span>
+</pre></div>
+</div>
+<p>Where <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code> are the two shorter sides. The magnitude of the vector is given by the absolute value, which we can derive as follows:</p>
+<ol class="arabic simple">
+<li><p>Multiply the last element of the left argument by the <a class="reference external" href="https://aplwiki.com/wiki/Imaginary">imaginary unit</a>.</p></li>
+<li><p>Take the <a class="reference external" href="https://aplwiki.com/wiki/Magnitude">absolute value</a> and compare it with the right argument.
+In APL, we can calculate the magnitude of a complex number using:</p></li>
+</ol>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">=|</span><span class="p">(</span><span class="o">⊃</span><span class="bp">⍺</span><span class="p">)</span><span class="o">+</span><span class="m">0J1</span><span class="o">×⊢</span><span class="na">/</span><span class="bp">⍺</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>This leads to our next set of solutions:</p>
+<section id="solution-f">
+<h3>Solution F<a class="headerlink" href="#solution-f" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">=|</span><span class="p">(</span><span class="o">⊃</span><span class="bp">⍺</span><span class="p">)</span><span class="o">+</span><span class="m">0J1</span><span class="o">×⊢</span><span class="na">/</span><span class="bp">⍺</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>This solution uses <a class="reference external" href="https://aplwiki.com/wiki/Complex_number">complex numbers</a> to represent the triangle.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⊃⍺</span></code> - Take the <a class="reference external" href="https://aplwiki.com/wiki/First">first</a> element of the left argument (one leg)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⊢/⍺</span></code> - Take the last element of the left argument (other leg)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⊃⍺)+0J1×⊢/⍺</span></code> - Combine the legs into a complex number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">|(</span> <span class="pre">...</span> <span class="pre">)</span></code> - Calculate the magnitude of the complex number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵=|(</span> <span class="pre">...</span> <span class="pre">)</span></code> - Compare the magnitude to the right argument (hypotenuse)</p></li>
+</ol>
+</section>
+<section id="solution-g">
+<h3>Solution G<a class="headerlink" href="#solution-g" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="na">∘</span><span class="p">(</span><span class="o">|⊃+</span><span class="m">0J1</span><span class="o">×⊢</span><span class="na">/</span><span class="p">)</span><span class="na">⍨</span>
+</pre></div>
+</div>
+<p>This is the tacit equivalent of Solution F.</p>
+</section>
+<section id="solution-h">
+<h3>Solution H<a class="headerlink" href="#solution-h" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⊢=</span><span class="na">∘</span><span class="o">|</span><span class="m">0J1</span><span class="o">⊥⊣</span>
+</pre></div>
+</div>
+<p>This solution uses i-base (<a class="reference external" href="https://aplwiki.com/wiki/Decode">decode</a>) to combine the parts of the complex number.</p>
+<p>We can also use the 4-circle function to calculate the hypotenuse:</p>
+</section>
+</section>
+<section id="circle-function">
+<h2>Circle Function<a class="headerlink" href="#circle-function" title="Link to this heading">#</a></h2>
+<section id="solution-i">
+<h3>Solution I<a class="headerlink" href="#solution-i" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="bp">⍵</span><span class="o">=</span><span class="p">(</span><span class="o">⊃⌽</span><span class="bp">⍺</span><span class="p">)</span><span class="o">×</span><span class="m">4</span><span class="o">○÷</span><span class="na">/</span><span class="bp">⍺</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>This solution uses the <a class="reference external" href="https://aplwiki.com/wiki/Circle">circle function</a> to calculate the hypotenuse.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">÷/⍺</span></code> - Calculate the ratio of the legs using <a class="reference external" href="https://aplwiki.com/wiki/Divide">divide</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4○÷/⍺</span></code> - Apply the 4-circle function to the ratio</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⊃⌽⍺)×4○÷/⍺</span></code> - Multiply by the second leg using <a class="reference external" href="https://aplwiki.com/wiki/Reverse">reverse</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵=(</span> <span class="pre">...</span> <span class="pre">)</span></code> - Compare the result to the right argument (hypotenuse)</p></li>
+</ol>
+</section>
+</section>
+<section id="domino-function">
+<h2>Domino Function<a class="headerlink" href="#domino-function" title="Link to this heading">#</a></h2>
+<p>We can solve this using the <strong>Domino</strong> function, which represents a ratio between the inversions of both arguments:</p>
+<ol class="arabic simple">
+<li><p>Apply the function to both arguments.</p></li>
+<li><p>Check if it matches the original ratio.
+This method of inversion can be represented in APL as:</p></li>
+</ol>
+<section id="solution-j">
+<h3>Solution J<a class="headerlink" href="#solution-j" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">÷</span><span class="na">⍥</span><span class="o">⌹≡÷</span>
+</pre></div>
+</div>
+<p>This solution uses the <a class="reference external" href="https://aplwiki.com/wiki/Matrix_Inverse">matrix inverse (domino) function</a> to check if the triangle is right-angled.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⌹</span></code> - Apply matrix inverse to both arguments</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">÷⍥⌹</span></code> - Divide the inversed arguments</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">≡÷</span></code> - Check if the result is identical to the regular division of the arguments using <a class="reference external" href="https://aplwiki.com/wiki/Match">match</a></p></li>
+</ol>
+<p>This is derived from:</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Derivation:</span>
+<span class="kt">{</span><span class="p">((</span><span class="o">⌹</span><span class="bp">⍺</span><span class="w">                </span><span class="p">)</span><span class="w"> </span><span class="o">×</span><span class="bp">⍵</span><span class="p">)</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="bp">⍺</span><span class="o">÷</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ unpacked</span>
+<span class="kt">{</span><span class="p">((</span><span class="bp">⍺</span><span class="w"> </span><span class="o">÷</span><span class="w"> </span><span class="p">((</span><span class="o">+</span><span class="na">/</span><span class="bp">⍺</span><span class="o">*</span><span class="m">2</span><span class="p">)</span><span class="o">*÷</span><span class="m">2</span><span class="p">)</span><span class="o">*</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">×</span><span class="bp">⍵</span><span class="p">)</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="bp">⍺</span><span class="o">÷</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ ⌹⍺ is equivalent to scaling ⍺ down by the square of its diagonal</span>
+<span class="kt">{</span><span class="p">((</span><span class="bp">⍺</span><span class="w"> </span><span class="o">÷</span><span class="w">   </span><span class="o">+</span><span class="na">/</span><span class="bp">⍺</span><span class="o">*</span><span class="m">2</span><span class="w">       </span><span class="p">)</span><span class="w"> </span><span class="o">×</span><span class="bp">⍵</span><span class="p">)</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="bp">⍺</span><span class="o">÷</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ *÷2 and *2 cancel out each other</span>
+<span class="kt">{</span><span class="p">((</span><span class="w">  </span><span class="o">÷</span><span class="w">   </span><span class="o">+</span><span class="na">/</span><span class="bp">⍺</span><span class="o">*</span><span class="m">2</span><span class="w">       </span><span class="p">)</span><span class="w"> </span><span class="o">×</span><span class="bp">⍵</span><span class="p">)</span><span class="w"> </span><span class="o">≡</span><span class="w">  </span><span class="o">÷</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ divide both sides by ⍺</span>
+<span class="kt">{</span><span class="p">(</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="o">÷</span><span class="w">   </span><span class="o">+</span><span class="na">/</span><span class="bp">⍺</span><span class="o">*</span><span class="m">2</span><span class="w">       </span><span class="p">)</span><span class="w">     </span><span class="o">≡</span><span class="w">  </span><span class="o">÷</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ move ⍵</span>
+<span class="kt">{</span><span class="p">(</span><span class="w">      </span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍺</span><span class="o">*</span><span class="m">2</span><span class="p">)</span><span class="o">÷</span><span class="bp">⍵</span><span class="w">    </span><span class="p">)</span><span class="w">     </span><span class="o">≡</span><span class="w">   </span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ reciprocal on both sides</span>
+<span class="kt">{</span><span class="w">       </span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍺</span><span class="o">*</span><span class="m">2</span><span class="p">)</span><span class="w">            </span><span class="o">≡</span><span class="w"> </span><span class="bp">⍵</span><span class="o">*</span><span class="m">2</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ multiply by ⍵ on both sides</span>
+<span class="kt">{</span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="bp">⍺</span><span class="o">*</span><span class="m">2</span><span class="p">)</span><span class="o">=</span><span class="bp">⍵</span><span class="o">*</span><span class="m">2</span><span class="kt">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="glyphs-used">
+<h2>Glyphs Used<a class="headerlink" href="#glyphs-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Plus_Reduce">Plus Reduce</a> (+/)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Power">Power</a> (*)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Equal">Equal</a> (=)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Inner_Product">Inner Product</a> (+.×)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Self-Reference">Self-Reference</a> (⍨)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> (⍨)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Atop">Atop</a> (⍤)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Left">Left</a> (⊣)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Right">Right</a> (⊢)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Over">Over</a> (⍥)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/First">First</a> (⊃)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Multiply">Multiply</a> (×)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Imaginary">Imaginary</a> (J)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Magnitude">Magnitude</a> (|)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Decode">Decode</a> (⊥)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reverse">Reverse</a> (⌽)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Divide">Divide</a> (÷)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Circle">Circle</a> (○)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Matrix_Inverse">Matrix Inverse</a> (⌹)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Match">Match</a> (≡)</p></li>
+</ul>
+</section>
+<section id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Pythagorean_theorem">Pythagorean Theorem</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Scalar_function">Scalar Function</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduction</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Inner_Product">Inner Product</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Complex_number">Complex Numbers</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Atop">Atop</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Over">Over</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Right_triangle">Right-angled Triangle</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Matrix_Inverse">Matrix Inverse</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Point-free Style</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Function_composition">Function Composition</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Self-Reference">Self-Reference</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Scalar_extension">Scalar Extension</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Argument">Left and Right Arguments</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Matrix_Inverse">Domino Function</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Circle">4-circle Function</a></p></li>
+</ul>
+</section>
+<section id="transcript">
+<h2>Transcript<a class="headerlink" href="#transcript" title="Link to this heading">#</a></h2>
+<p>Welcome to the APL quest! For details, refer to the APL Wiki. This is the first problem from the 2014 set of the APL problem-solving competition. We’re given the left argument, which represents the two supposed shorter sides of a triangle, and the right argument, which represents the longer side. Our task is to check if these three numbers together can work as the lengths of a right-angled triangle. Naturally, it’s appropriate to use the Pythagorean theorem here. Let’s put in some test cases: two shorter sides, 2 and 4; another case with shorter sides, 3 and 4. We’re going to try this with a longer side, 4.5 and 5. The first one is going to be false, and the second one is going to be true. The Pythagorean theorem states that the sum of the squares of the two shortest sides equals the square of the longer side.</p>
+<p>We can write this in various ways. If we observe that squaring is the same as multiplication by itself, we can see that we are summing over a scalar function application. A scalar reduction over a replication of a scalar function application is the same as an inner product. Here, we have the same argument being used twice on the inner product, which means we can use the selfie or commute operator. We can do the same with the commute for multiplication. This is just a different way of stating the same thing.</p>
+<p>We can also make a tacit form. We want this inner product applied on the left argument, and we want the self-multiplication applied on the right argument. It’s the same thing, just in a tacit form. We can also break out the multiplication because we really start with squaring both arguments and then summing one of them. By using the over operator, we can preprocess both arguments with self-multiplication (or squaring). Now we only need to sum the left argument, so we could write this as the sum of the left argument matching the right argument. Or we could use normal equality but preprocess an argument. We can’t represent the left form, but we can preprocess the right one with summation. The problem is, of course, that it’s the left argument we want to deal with, but we can fix this by commuting—swapping around the two arguments.</p>
+<p>We could also start off by commuting. Then, we preprocess with squaring, and then we have the summation on the right. However, observe that a reduction over a single element doesn’t actually change it, so the fact that we’re preprocessing only the right argument with summation could be used to fold this reduction into our preprocessing of both arguments because summation of a single argument doesn’t matter. Here, we have equality where we preprocess both arguments with summation of the square. We don’t need to commute anymore because we’re treating both arguments exactly the same.</p>
+<p>Of course, we can combine this plus reduction over the multiplication into an inner product if we prefer that style. A completely different way to approach this is by using complex numbers. In the complex plane, we can look at the two shorter sides as the two components: the real and the imaginary. Then, we have the diagonal being the magnitude, the whole length of that vector in the 2D space that the complex plane forms. Now, we just need to combine these two parts into a single complex number, and it doesn’t matter which one becomes the real part and which becomes the imaginary part because we’re going to take the absolute value of it anyway.</p>
+<p>We can start off by saying the last element of the left argument—we multiply that by the imaginary unit—and then we take the first element there and add to that. This combines the two. Now we can take the absolute value of that and compare it to the right argument. We can also make this tacit. All this pre-processing of the left argument—so as before, we can swap our arguments around and preprocess the right argument instead. The last element we multiply here, and then the first element takes the absolute value of that—that’s how we preprocess. Another way we can write this is using negative 11 circles. That’s simply its definition. It just multiplies by the imaginary unit.</p>
+<p>Then someone came up with a clever thing using a four-circle. If we apply the four-circle, we get back exactly what we mean on the ratio between the two elements in the left argument. Then, we multiply by the second element. That should match the right argument, and that holds for our test cases. Let’s prove that this is indeed the case. For that, let’s try to make it tacit again. We are preprocessing the right argument. So, we can write it: the ratio of these two—the four-circle on that—and then we just want the last argument, the last element of the original left argument. So, we can write that. We can either combine these two (take the first of the reverse), but we can also just use a right-tack reduction. It’s a right reduction, and we preprocess the right argument to the equality with that, and we just need to commute things around. So, this is the tacit form of that. Alternatively, we could use first, and commute the elements of the—sorry, commute the arguments of the division, and that would also work.</p>
+<p>But how does this actually work? Let’s go back to our dense form with, let’s see, the four-circle right here. This one. So, the definition of a four-circle is the square root, which we don’t have in this APL, but we’re using it as a placeholder. We’re going to eliminate it later. So, the square root of one plus the square—this is going to be a little bit complicated using the elements of the left argument, so let’s give them names: A and B. Now, the last one is B, and the fraction denominator is just A divided by B. Here’s the square of a fraction—that’s the same thing as the fraction of the two squares. We have B outside the square root; we can get it into the square root by squaring it.</p>
+<p>Now, we have one plus this fraction, where the denominator is B squared. That means that we can add on top of the fraction a B squared instead. Now, we can observe that this whole sum is being divided by B squared, and then it’s multiplied by B squared—those eliminate each other. We have a square root here, and we can just square both sides of the equality. Now, we have the sum of squares here, so we don’t really need these names anymore—it’s just the sums of A and B squared. A and B together are the left argument, so we can get rid of our temporary names, and this is exactly the Pythagorean theorem. So, we’ve proven that the solution using four circles is exactly the same thing.</p>
+<p>Now, for the last solution, which is a bit involved and uses the rarely-used domino function, which is a matrix inversion (although we’re using it here only on vectors and scalars, so it’s a bit of a misnomer to call it matrix inversion—maybe extra inversion or just inversion). It’s very clever—it is the ratio between the inversions of both arguments. So, this is using over—we check if it matches the ratio between these arguments. Okay, what’s going on here? How does this work? It does actually work for our test cases, but let’s start to unpack this a bit.</p>
+<p>First, we have a division here, and we’re preprocessing both arguments using this domino. Here’s the right argument, and here is the left argument. Then, we are checking if it matches the ratio between the arguments of all. Now, this inversion function, when applied to a scalar, is exactly the same thing as just a normal reciprocal, so we can replace that. We can also see that we’re dividing by a reciprocal—that’s the same thing as multiplication. So far, so good.</p>
+<p>What does it actually mean to invert a vector? What it does is it finds a vector for which the dot product with the original vector gives one. So, in a sense, it’s inverse—just like 5 and a fifth multiplying by each other gives one. The vector is going to have the same direction but the reciprocal magnitude. This means that the inverse vector would need to be multiplied twice by the magnitude to get the original vector. Since multiplication once by the magnitude gets us halfway to one, multiplying twice by the magnitude gets us all the way back to the original.</p>
+<p>Let’s test this out a bit. So, we invert 3 and 4, and then we can multiply that twice by that supposed magnitude. We can see that we’re right back where we started. If we try to do this for arguments that are not forming a right-angle triangle, we’ll see that it’s not going to work—they’ll get close, but not quite. Here’s our example from before. If multiplying it twice gets us all the way there, multiplying it once gets us halfway there—kind of meeting in the middle. So, if multiplying the inverse by the magnitude twice gets us all the way to the original argument, multiplying it once would be the same thing as starting from above, starting from the original, and dividing it once by the magnitude. Hence, what we have here is multiplication by the diagonal—the magnitude once by the magnitude is the same thing as dividing the original by the magnitude, and that only holds if it’s a right-angled triangle.</p>
+<p>So, we need to test if they meet in the middle. If the inverted vector times the supposed magnitude matches the original divided by the supposed magnitude, then they met in the middle, and what we’ve supposed as the magnitude is actually the true magnitude. Okay, so we said that the inversion of this vector is the same thing as</p>
+<p>scaling it down twice by its magnitude. Let’s test that—let’s write that out. So, we’re scaling it down, we’re dividing it by its magnitude twice, and its magnitude is, of course, the square root of the squares of its components.</p>
+<p>Next up, we see that we have a square root here, but it’s squared, so they cancel each other out. We had the square root of the sum of the squares, of course, to get the diagonal, and that was being squared—so these two cancel each other out, and we have the sum of the squares that we are dividing the original by. Now, we see that we have something over alpha divided by something here, and then multiplied by something. Here, we also have something over alpha. If we divide both sides of the equation by alpha, we can eliminate that. Now, we have the reciprocal of this times the right argument. So, a reciprocal multiplied by something is the same thing as that something divided by the value. Then, we can take the reciprocal of both sides of the equality—that eliminates this, and we just need to swap over the arguments here.</p>
+<p>We divide by the right argument here, and here we just have the right argument, so let’s multiply on both sides of the equality by the right argument. That eliminates this division, and this self-multiplication is, of course, the right argument squared. Therefore, we have the Pythagorean theorem again: the square of the long side equals the sum of the squares of the two shorter sides. So, that’s how this very impressive five-character solution works, and it’s the exact same thing, just in a very disguised way. One caveat: since we’re doing all these divisions, if we have any zeros, it will fail, so it doesn’t actually work if any sides are zero, but still, it’s very clever.</p>
+<p>Thank you for watching!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2014"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">APL Quest 2014</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="How-Tweet-It-Is-APLQuest-2014-2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">How Tweet It Is 2014-2</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#approach">Approach</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-representation">Mathematical Representation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-a">Solution A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-b">Solution B</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simplification">Simplification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-c">Solution C</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-d">Solution D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-e">Solution E</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-number-approach">Complex Number Approach</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-f">Solution F</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-g">Solution G</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-h">Solution H</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#circle-function">Circle Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-i">Solution I</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domino-function">Domino Function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-j">Solution J</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts">Concepts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

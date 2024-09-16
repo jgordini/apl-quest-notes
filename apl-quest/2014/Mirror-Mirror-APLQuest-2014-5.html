@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mirror Mirror 2014-5 &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ae78d91f" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2014/Mirror-Mirror-APLQuest-2014-5';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Revolutionary Thinking 2014-7" href="Revolutionary-Thinking-APLQuest-2014-7.html" />
+    <link rel="prev" title="Space The Final Frontier 2014-4" href="Space-The-Final-Frontier-APLQuest-2014-4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2013/index.html">APL Quest 2013</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping Things In Balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Go-Forth-And-Multiply-APLQuest-2013-8.html">Go forth and Multiply 2013-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Solution-Salvation-APLQuest-2013-10.html">Solution Salvation 2013-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">APL Quest 2014</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="It-Is-All-Right-APLQuest-2014-1.html">It Is All Right 2014-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="How-Tweet-It-Is-APLQuest-2014-2.html">How Tweet It Is 2014-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tell-a-Fib-APLQuest-2014-3.html">Tell A Fib 2014-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Space-The-Final-Frontier-APLQuest-2014-4.html">Space The Final Frontier 2014-4</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Mirror Mirror 2014-5</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Revolutionary-Thinking-APLQuest-2014-7.html">Revolutionary Thinking 2014-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Go-The-Distance-APLQuest-2014-8.html">Go The Distance 2014-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Going-Ballistic-APLQuest-2014-9.html">Going Ballistic 2014-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sales-Are-Up-APLQuest-2014-10.html">Sales Are Up 2014-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2015/index.html">APL Quest 2015</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Nag-A-Ram-APLQuest-2015-1.html">APL Quest: Anagrams Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Longest-Streak-APLQuest-2015-2.html">APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Farey-Tales-APLQuest-2015-3.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Progessive-Dyadic-Iota-APLQuest-2015-4.html">APL Quest Cap Wiki: Progressive Dyadic Iota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.html">APL Quest: Standard Deviation Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.html">APL Quest: Problem Six Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Justin-Upper-Case-APLQuest-2015-7.html">APL Quest: Problem 7 from the 2015 APL Problem Solver Competition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html">APL Quest: Swapping Interior Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Blazing-A-Trail-APLQuest-2015-10.html">API Quest: Generating a Centered Pascal’s Triangle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2016/index.html">APL Quest 2016</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mean-APLQuest-2016-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Median-APLQuest-2016-2.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mode-APLQuest-2016-3.html">Welcome to APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.html">Welcome to the Appeal Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Shorter-Onestothe-Front-APLQuest-2016-6.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/3-sand-5-s-APLQuest-2016-7.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Separating-Outthe-Negative-APLQuest-2016-8.html">APL Quest: 8th Quest Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Delimited-Text-APLQuest-2016-9.html">APL Quest: Delimiter Splitting Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Order-Total-APLQuest-2016-10.html">Welcome to the APL Quest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2017/index.html">APL Quest 2017</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2017/What-an-Odd-Bunch-APLQuest-2017-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Good-Evening-APLQuest-2017-2.html">Ensure Odd Numbers Become Even Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Miss-Quoted-APLQuest-2017-3.html">Removing Text Between Double Quotes Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Slices-of-Pies-APLQuest-2017-4.html">Computing Areas of Circle Sectors Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/DNA-APLQuest-2017-5.html">Checking Character Vectors for Valid Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/k-mers-APLQuest-2017-6.html">Chopping Text into Sequences of a Given Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Counting-DNANucleotides-APLQuest-2017-7.html">Counting Letters in a String: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Be-the-First-1-APLQuest-2017-8.html">Understanding Boolean Vector Processing in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Double-Trouble-APLQuest-2017-9.html">Finding Locations of Identical Characters in Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Squaring-Off-APLQuest-2017-10.html">Fitting Elements into a Square Array</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2018/index.html">APL Quest 2018</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Oh-Say-Can-You-See-APLQuest-2018-1.html">Counting Visible Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Number-Splitting-APLQuest-2018-2.html">Splitting Numbers into Integer and Fractional Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Rolling-Along-APLQuest-2018-3.html">Simulating Dice Rolls and Analyzing Outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-APLQuest-2018-4.html">Converting Gregorian Year Numbers to Chinese Zodiac Animals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-Revisited-APLQuest-2018-5.html">Computing Zodiac Signs from Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Angle-APLQuest-2018-6.html">A Simple Test for XML Validity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Unconditionally-Shifty-APLQuest-2018-7.html">Shifting Boolean Data: An Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Makinga-Good-Argument-APLQuest-2018-8.html">Validating Dyadic Transpose Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Earlier-Later-or-the-Same-APLQuest-2018-9.html">Comparing Dates in APL: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Anagrammatically-Correct-APLQuest-2018-10.html">Comparing Two Character Vectors: An Anagram Checker</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2019/index.html">APL Quest 2019</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Chunky-Monkey-APLQuest-2019-1.html">Chunking a List into Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Makingthe-Grade-APLQuest-2019-2.html">Converting Scores into Letter Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Grade-Distribution-APLQuest-2019-3.html">Compiling Simple Statistics on Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Knight-Moves-APLQuest-2019-4.html">Understanding the Movement of a Chess Knight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Doubling-Up-APLQuest-2019-5.html">Checking for Consecutive Identical Letters in Words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Telephone-Names-APLQuest-2019-6.html">Translating Telephone Numbers from Digits and Letters to Plain Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/In-the-Center-of-it-All-APLQuest-2019-7.html">Centering Words in a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Goingthe-Distance-APLQuest-2019-8.html">Computing the Distance Around a Path Defined by Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Area-Code-Gauss-APLQuest-2019-9.html">Calculating the Area of a Polygon Using the Shoelace Formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Odds-Evens-APLQuest-2019-10.html">Splitting a List of Words by Length</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2020/index.html">APL Quest 2020</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Lets-Split-APLQuest-2020-1.html">Understanding Vector Partitioning in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Character-Building-APLQuest-2020-2.html">Understanding Byte Sequences and UTF-8 Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Excel-lent-Columns-APLQuest-2020-3.html">Understanding Column Label Conversion in Spreadsheet Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Takea-Leap-APLQuest-2020-4.html">Understanding Leap Years: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Steppinginthe-Proper-Direction-APLQuest-2020-5.html">Generating Inclusive Integer Ranges in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Movetothe-Front-APLQuest-2020-6.html">Moving Elements in a Numeric Vector to the Front in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/See-Youina-Bit-APLQuest-2020-7.html">Checking Bit States in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Zigzag-Numbers-APLQuest-2020-8.html">Analyzing Alternating Digit Growth in Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Riseand-Fall-APLQuest-2020-9.html">Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Stacking-It-Up-APLQuest-2020-10.html">Emulating APL Array Printing Behavior</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2021/index.html">APL Quest 2021</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Are-You-a--Bacteria-APLQuest-2021-1.html">Calculating Percentage of Characters in a DNA String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Index-Of-Modified-APLQuest-2021-2.html">Creating a Cover for the Dyadic Iota in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Multiplicity-APLQuest-2021-3.html">Grouping Integers by Divisibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Square-Peg-Round-Hole-APLQuest-2021-4.html">Finding the Difference in Area Between an Inscribed Square and Its Circumscribing Circle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Rect-ify-APLQuest-2021-5.html">Finding Rectangle Dimensions with Given Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Fischer-Random-Chess-APLQuest-2021-6.html">Chess Setup Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Can-You-Feelthe-Magic-APLQuest-2021-7.html">Checking for Magic Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Timeto-Makea-Difference-APLQuest-2021-8.html">Calculating Absolute Time Difference in Minutes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Inthe-Long-Run-APLQuest-2021-9.html">Finding the Longest Consecutive Sequence in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Onthe-Right-Side-APLQuest-2021-10.html">Justified Text Transformation in APL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2022/index.html">APL Quest 2022</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Counting-DNA-Nucleotides-APLQuest-2022-1.html">Counting DNA Letters in a Character Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Attackofthe-Mutations-APLQuest-2022-2.html">Comparing DNA Strings: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Uniquely-Qualified-APLQuest-2022-3.html">Finding the Symmetric Difference Between Two Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Inthe-Long-One-APLQuest-2022-4.html">Finding the Longest Run of Ones in a Boolean Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Stairwayto-Heaven-APLQuest-2022-5.html">Building a Staircase in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Pyramid-Scheme-APLQuest-2022-6.html">Constructing Concentric Rings of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Just-Golfing-Around-APLQuest-2022-7.html">Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Lets-Split-APLQuest-2022-8.html">Splitting Text in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html">Calculating the Window Average of a List of Numbers in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Separation-Anxiety-APLQuest-2022-10.html">Inserting Separators in Large Integers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2023/index.html">APL Quest 2023</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Elimination-Sort-APLQuest-2023-1.html">Removing Non-Decreasing Elements from a List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Put-It-In-Reverse-APLQuest-2023-2.html">Finding End Points of One Array in Another</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Caesar-Salad-APLQuest-2023-3.html">Implementing a Simple Caesar Cipher for Uppercase Characters and Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Like-a-Version-APLQuest-2023-4.html">Comparing Version Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Risky-Business-APLQuest-2023-5.html">Understanding Dice Mechanics in Risk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Key-Value-Pairs-APLQuest-2023-6.html">Parsing Key-Value Pairs into a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Lets-Be-Rational-APLQuest-2023-7.html">Finding a Reduced Fraction for a Given Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Critical-Thinking-APLQuest-2023-8.html">Computing the Next Double Critical Day</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Flipping-Pairs-APLQuest-2023-9.html">Interchanging Adjacent Elements in a Multi-Dimensional Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Partition-witha-Twist-APLQuest-2023-10.html">APL Quest: Splitting Text on Spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dyalog/index.html">Jupyter notebooks for Dyalog APL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/APL-Expressions.html">APL Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Arithmetic-Functions.html">Arithmetic Fuctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Boolean-Functions-and-Boolean-Algebra.html">Boolean functions</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Boolean-Scans-and-Reductions.html">Boolean Scans and Reductions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Calculus.html">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Comparison-Functions.html">Comparison functions <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">≤</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> <code class="docutils literal notranslate"><span class="pre">≥</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">≠</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Grading-and-Sorting.html">Grading and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/hashtables.html">Hash tables in Dyalog APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Justifying-Text.html">Justifying Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Linear-Fitting.html">Linear Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Lookup-Without-Replacement.html">Lookup without Replacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Maths-versus-APL.html">Maths versus APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Modifying-Rank-and-Depth.html">Modifying rank and depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v14.html">Tally <code class="docutils literal notranslate"><span class="pre">≢</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v15.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪/</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v16.html">Monadic function <code class="docutils literal notranslate"><span class="pre">⍸</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v17.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Plotting-with-SharpPlot.html">Plotting with SharpPlot</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Random-Numbers.html">Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Reduce-and-Scan.html">Reduce and Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Sudoku-Solver.html">Sodoku Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Tacit-Techniques.html">Tacit Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Using-the-TryAPL-Tutorials.html">TryAPL tutorial system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Your-First-Mandelbrot-Set.html">Mandelbrot Set</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2014/Mirror-Mirror-APLQuest-2014-5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Mirror Mirror 2014-5</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Mirror Mirror 2014-5</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-solutions">Basic Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-intersection-method">1. Basic Intersection Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimized-intersection-method">2. Optimized Intersection Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-solutions">Advanced Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#range-based-method">3. Range-based Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unicode-code-point-method">4. Unicode Code Point Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-comparison">Performance Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts">Concepts</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mirror-mirror-2014-5">
+<h1><a class="reference external" href="https://apl.quest/psets/2014.html?goto=P5_Mirror_Mirror">Mirror Mirror 2014-5</a><a class="headerlink" href="#mirror-mirror-2014-5" title="Link to this heading">#</a></h1>
+<p><strong>Problem:</strong> A palindrome is a word or phrase whose letters read the same forwards and backwards. Write a dfn which returns a 1 if its character vector argument is a palindrome, 0 otherwise. For simplicity’s sake, you may assume that the vector is all one case.</p>
+<p><strong>Video:</strong> <a class="reference external" href="https://www.youtube.com/watch?v=cPzQr2aJ7e4">https://www.youtube.com/watch?v=cPzQr2aJ7e4</a></p>
+<p><strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2014/5.apl">abrudz/apl_quest</a></p>
+<p>In this article, we’ll explore different methods to detect palindromes using APL (A Programming Language). We’ll start with simple solutions and gradually optimize them for better performance. The goal is to create a function that returns 1 if the input character vector is a palindrome, and 0 otherwise.</p>
+<section id="basic-solutions">
+<h2>Basic Solutions<a class="headerlink" href="#basic-solutions" title="Link to this heading">#</a></h2>
+<section id="basic-intersection-method">
+<h3>1. Basic Intersection Method<a class="headerlink" href="#basic-intersection-method" title="Link to this heading">#</a></h3>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="kd">←</span><span class="kt">{</span><span class="nv">c</span><span class="kd">←</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">l</span><span class="kd">←</span><span class="nv">c</span><span class="na">/⍨</span><span class="nv">c</span><span class="o">∊</span><span class="nf">⎕C⎕A</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">l</span><span class="o">≡⌽</span><span class="nv">l</span><span class="kt">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">c←⎕C⍵</span></code>: Case-fold the input (convert to lowercase).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">c/⍨c∊⎕C⎕A</span></code>: Filter out non-alphabetic characters.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕C⎕A</span></code>: Case-fold the alphabet.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">c∊⎕C⎕A</span></code>: Check which characters in <code class="docutils literal notranslate"><span class="pre">c</span></code> are in the case-folded alphabet.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">c/⍨</span></code>: Replicate <code class="docutils literal notranslate"><span class="pre">c</span></code> based on the boolean mask from the previous step.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">l≡⌽l</span></code>: Check if the filtered string is equal to its reverse.</p></li>
+</ol>
+<p>This is the initial solution that case-folds the input, filters out non-alphabetic characters, and then checks if the result is equal to its reverse. It’s a straightforward approach that addresses both the case-insensitivity and non-alphabetic character removal requirements.</p>
+<p>Tacit version:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="kd">←</span><span class="o">≡</span><span class="na">∘</span><span class="o">⌽</span><span class="na">⍨</span><span class="o">∩</span><span class="na">⍥</span><span class="nf">⎕C</span><span class="na">∘</span><span class="nf">⎕A</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">∩⍥⎕C∘⎕A</span></code>: Intersection of case-folded input with case-folded alphabet.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">≡∘⌽⍨</span></code>: Compare the result with its reverse.</p></li>
+</ol>
+<p>This is a more elegant, tacit (point-free) version of the basic intersection method. It uses the intersection of the case-folded input with the case-folded alphabet, then compares the result with its reverse. This version is more concise but may have performance issues with large inputs due to case-folding the entire argument.</p>
+</section>
+<section id="optimized-intersection-method">
+<h3>2. Optimized Intersection Method<a class="headerlink" href="#optimized-intersection-method" title="Link to this heading">#</a></h3>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="kd">←</span><span class="o">≡</span><span class="na">∘</span><span class="o">⌽</span><span class="na">⍨</span><span class="o">∩</span><span class="na">∘</span><span class="p">(</span><span class="nf">⎕A</span><span class="o">,</span><span class="nf">⎕C⎕A</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕A,⎕C⎕A</span></code>: Concatenate uppercase and lowercase alphabets.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">∩∘(⎕A,⎕C⎕A)</span></code>: Intersect input with the combined alphabet.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">≡∘⌽⍨</span></code>: Compare the result with its reverse.</p></li>
+</ol>
+<p>This optimized version addresses the performance issue of case-folding a potentially large input. Instead of case-folding both the input and the alphabet, it only case-folds the alphabet. It concatenates the uppercase and lowercase alphabets, then intersects this with the input. This approach can be significantly faster for large inputs.</p>
+</section>
+</section>
+<section id="advanced-solutions">
+<h2>Advanced Solutions<a class="headerlink" href="#advanced-solutions" title="Link to this heading">#</a></h2>
+<section id="range-based-method">
+<h3>3. Range-based Method<a class="headerlink" href="#range-based-method" title="Link to this heading">#</a></h3>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="kd">←</span><span class="kt">{</span><span class="o">≡</span><span class="na">∘</span><span class="o">⌽</span><span class="na">⍨</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">2</span><span class="o">|</span><span class="s1">&#39;A[a{&#39;</span><span class="o">⍸</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'A[a{'⍸⍵</span></code>: Use interval index to check if characters are in A-Z or a-z ranges.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2|</span></code>: Take the remainder when divided by 2 (keeps only letters).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code>: Filter the input based on the boolean mask from step 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕C</span></code>: Case-fold the filtered input.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">≡∘⌽⍨</span></code>: Compare with its reverse.</p></li>
+</ol>
+<p>This method uses character ranges instead of set operations. It uses interval index to check if characters are in the A-Z or a-z ranges, then uses division remainder to keep only letters. This approach avoids the need for set operations and can be more efficient in some cases.</p>
+<p>Tacit version:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="kd">←</span><span class="o">⊢≡</span><span class="na">∘</span><span class="o">⌽</span><span class="na">⍨∘</span><span class="nf">⎕C</span><span class="na">⍤/⍨</span><span class="m">2</span><span class="o">|</span><span class="s1">&#39;A[a{&#39;</span><span class="na">∘</span><span class="o">⍸</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'A[a{'∘⍸</span></code>: Interval index (bound to input).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2|</span></code>: Remainder when divided by 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⊢⍤/⍨</span></code>: Filter input based on boolean mask.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕C</span></code>: Case-fold the filtered input.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">≡∘⌽⍨</span></code>: Compare with its reverse.</p></li>
+</ol>
+<p>This is the tacit version of the range-based method. It composes the same operations as the dfn version but in a point-free style. This version can be more efficient and is often preferred by experienced APL programmers.</p>
+</section>
+<section id="unicode-code-point-method">
+<h3>4. Unicode Code Point Method<a class="headerlink" href="#unicode-code-point-method" title="Link to this heading">#</a></h3>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">D</span><span class="kd">←</span><span class="kt">{</span><span class="o">≡</span><span class="na">∘</span><span class="o">⌽</span><span class="na">⍨</span><span class="m">32</span><span class="o">|</span><span class="nv">u</span><span class="na">/⍨</span><span class="p">((</span><span class="m">65</span><span class="na">∘</span><span class="o">≤∧≤</span><span class="na">∘</span><span class="m">90</span><span class="p">)</span><span class="o">∨</span><span class="p">(</span><span class="m">97</span><span class="na">∘</span><span class="o">≤∧≤</span><span class="na">∘</span><span class="m">122</span><span class="p">))</span><span class="nv">u</span><span class="kd">←</span><span class="nf">⎕UCS</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">u←⎕UCS⍵</span></code>: Convert input to Unicode code points.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(65∘≤∧≤∘90)∨(97∘≤∧≤∘122)</span></code>: Check if code points are in A-Z or a-z ranges.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">u/⍨</span></code>: Filter code points based on the boolean mask from step 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">32|</span></code>: Take remainder when divided by 32 (normalizes case).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">≡∘⌽⍨</span></code>: Compare with its reverse.</p></li>
+</ol>
+<p>This method works directly with Unicode code points for potentially better performance. It converts the input to code points, keeps only the code points in the ranges 65-90 (A-Z) and 97-122 (a-z), uses division remainder by 32 to normalize case, and then compares with its reverse. This approach can be significantly faster, especially for large inputs, as it avoids expensive character-based operations.</p>
+</section>
+</section>
+<section id="performance-comparison">
+<h2>Performance Comparison<a class="headerlink" href="#performance-comparison" title="Link to this heading">#</a></h2>
+<p>To compare the performance of these methods, we can use the <code class="docutils literal notranslate"><span class="pre">cmpx</span></code> function from the <code class="docutils literal notranslate"><span class="pre">dfns</span></code> workspace:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;cmpx&#39;</span><span class="nf">⎕CY</span><span class="s1">&#39;dfns&#39;</span>
+<span class="nv">t</span><span class="kd">←</span><span class="p">(</span><span class="m">70</span><span class="o">↑</span><span class="nf">⎕A</span><span class="o">,</span><span class="nf">⎕C⎕A</span><span class="o">,</span><span class="s1">&#39;,.!?&#39;</span><span class="p">)</span><span class="sr">[</span><span class="o">?</span><span class="m">1e5</span><span class="o">⍴</span><span class="m">70</span><span class="sr">]</span><span class="w">  </span><span class="c1">⍝ Non-palindrome test data</span>
+<span class="nv">p</span><span class="kd">←</span><span class="o">,</span><span class="na">∘</span><span class="o">⌽</span><span class="na">⍨</span><span class="p">(</span><span class="m">70</span><span class="o">↑</span><span class="nf">⎕A</span><span class="o">,</span><span class="nf">⎕C⎕A</span><span class="o">,</span><span class="s1">&#39;,.!?&#39;</span><span class="p">)</span><span class="sr">[</span><span class="o">?</span><span class="m">5e4</span><span class="o">⍴</span><span class="m">70</span><span class="sr">]</span><span class="w">  </span><span class="c1">⍝ Palindrome test data</span>
+
+<span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;ABCD&#39;</span><span class="o">,</span><span class="na">¨</span><span class="o">⊂</span><span class="s1">&#39; t&#39;</span><span class="w">  </span><span class="c1">⍝ Test with non-palindrome</span>
+<span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;ABCD&#39;</span><span class="o">,</span><span class="na">¨</span><span class="o">⊂</span><span class="s1">&#39; p&#39;</span><span class="w">  </span><span class="c1">⍝ Test with palindrome</span>
+</pre></div>
+</div>
+<p>The results show that:</p>
+<ol class="arabic simple">
+<li><p>Method B (optimized intersection) is faster than method A (basic intersection)</p></li>
+<li><p>Method C (range-based) doesn’t offer significant improvement</p></li>
+<li><p>Method D (Unicode code point) provides the best performance in most cases</p></li>
+</ol>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>We’ve explored several methods for palindrome detection in APL, ranging from simple set operations to more complex code point manipulations. While the simpler methods are easier to understand and implement, the more complex methods can offer significant performance improvements, especially for large inputs.</p>
+<p>When choosing a method, consider the trade-off between code simplicity and performance based on your specific use case. For small inputs or infrequent operations, the simpler methods may be sufficient. For large-scale or performance-critical applications, the code point method (D) might be the best choice.</p>
+</section>
+<section id="glyphs-used">
+<h2>Glyphs Used<a class="headerlink" href="#glyphs-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Case_Fold">Case Fold</a> (⎕C)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reverse">Reverse</a> (⌽)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Match">Match</a> (≡)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Intersection">Intersection</a> (∩)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Self-Reference">Self-Reference</a> (⍨)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Over">Over</a> (⍥)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Alphabet">Alphabet</a> (⎕A)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Replicate">Replicate</a> (/)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Membership">Membership</a> (∊)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Catenate">Catenate</a> (,)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Interval_Index">Interval Index</a> (⍸)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Residue">Residue</a> (|)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Atop">Atop</a> (⍤)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Right">Right</a> (⊢)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Less_Than_or_Equal_To">Less Than or Equal To</a> (≤)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/And">And</a> (∧)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Or">Or</a> (∨)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Unicode_Convert">Unicode Convert</a> (⎕UCS)</p></li>
+</ul>
+</section>
+<section id="concepts">
+<h2>Concepts<a class="headerlink" href="#concepts" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a></p></li>
+<li><p><a class="reference external" href="https://help.dyalog.com/latest/#Language/System%20Functions/c.htm?Highlight=Case%20Convert">Case Folding</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Set_theory">Set Operations</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Character">Character Ranges</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Unicode">Unicode Code Points</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Function_composition">Function Composition</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Self-Reference">Self-Reference</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Scalar_function">Scalar Function</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduction</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Scalar_extension">Scalar Extension</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Argument">Left and Right Arguments</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Performance">Performance Optimization</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/ASCII">ASCII Ranges</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/String">String Manipulation</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Boolean_function">Boolean Operations</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Character">Character Set Manipulation</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Palindrome">Palindrome</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Case_Fold">Case-Insensitive Comparison</a></p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="transcript">
+<h1>Transcript<a class="headerlink" href="#transcript" title="Link to this heading">#</a></h1>
+<p>Welcome to the APL Quest CAPL wiki for details. Today’s quest is the fifth problem from the 2014 round of the APL Problem Solving Competition. It’s a pretty simple problem - we’re just to find out whether a given text is a palindrome. A slight complication is that we need to make sure to ignore things like case and punctuation. Let’s start with some test data.</p>
+<p>Okay, so we need to get rid of case differences so that, for example, the first ‘A’ and the last ‘a’ in “Panama” match each other, and we can use ⍵C which is case fold for that now. And we just need to sort out the characters that we need to compare and get rid of those that we don’t want to look at at all. One way we can do this is let’s put this into a function so we can try this. This is the case folded one, and then we should look which characters are members of the case folded alphabet. Of course, it should be ⍵ here. There we go.</p>
+<p>And then we can filter by that boolean vector. Let’s call this just the letters. The last step is to see if the letters match themselves when they are reversed. We can see that “A man, a plan…” and so on is a palindrome, whereas “Hello world” is not. This works, but we can do it a little more elegantly by making some observations about what we’ve got here.</p>
+<p>Firstly, filtering by membership is the same thing as intersection, so we can actually substitute this whole thing in and say then the intersection between the case folded argument and the case folded alphabet. Notice that we are applying intersection after preprocessing both arguments with case folding. This calls ∩ over. Finally, we are comparing this L to its reverse, an operation between the identity of some value and some pre-processed value, and that we could call that a hook construct.</p>
+<p>But really, what is another way to think about it is that we are applying the match function between L and L ⌽ on itself. So that means we’re doing a selfie, only that before we apply match, we preprocess the right argument of match with reverse. And then, since we’re only using this variable once, there’s really no point in assigning it, so we can just put it inline.</p>
+<p>There’s also possibility of making this a fully tacit and function. It’s quite simple here because we just have a dyadic function applied between the argument and a constant, and then we apply another function monadically on that. So clearly this whole thing is in the top one thing applied and another thing applied, only that we have here a dyadic function where the one argument is constant. So we can bind the alphabet as a constant right argument to it, and that gives us a very neat tacit solution. Let’s call this A.</p>
+<p>It does have, however, a little bit of a performance issue, namely that we are case folding a potentially very large argument. All we need to do is we want to see to only keep those characters which are uppercase and lowercase letters, and the whole reason we’re case folding the whole argument is just so that we can take the intersection with the letters. Now the input might be of an unknown size, but the alphabet is of a known size, and so we can optimize this a little bit by simply keeping the intersection but instead of case folding both arguments, we only case fold the alphabet.</p>
+<p>Now this is a problem of course because this only gives us lowercase letters and that we might also have uppercase letters, so let’s just supply the uppercase letters as well. This is a one-time operation when we define the function, generating an uppercase and lowercase alphabet, and then we just do the intersection on that. So that might save us from doing the case folding on the entire argument, and that might speed up things a little bit.</p>
+<p>So these are the basic solutions, but we could actually go a whole different route, and that is to compare ranges. Instead of looking for intersection which is a set function, we can look at where in the Unicode character set do the characters fall, because all the uppercase letters are contiguous and all the lowercase letters are also contiguous in Unicode and ASCII. And so if we look at the values for the beginning of the uppercase alphabet, the end of the uppercase alphabet, and also the beginning of the lowercase alphabet and the end of the lowercase alphabet - oops, sorry, we need an each there.</p>
+<p>Okay, so we can see from 65 to 90, from 97 to 122. Now interval index is what we’re going to use for looking up ranges, and it is inclusive on the left and the beginning and exclusive on the end, so we need to go one up at the end. And then we can look at what those characters are. So these are the characters that we want to use for cutoffs, and so we can see that some characters fall inside this interval here. That’s number one between these two, and then zero is before the first one, and then some fall over here, and then there might also be something that falls in punctuation. The force here, but that’s pretty rare.</p>
+<p>Which means that it’s every other interval which we want. If it’s zero, it’s outside, we don’t want it. If it’s one, it’s an uppercase letter. If it’s two, it’s lowercase. If it’s three, it’s some punctuation, and if it’s four, then it’s beyond the lowercase and small punctuation that we don’t want. So we can take the division remainder when dividing by two, and that gives us a one for all the odd ones, which is exactly where we have uppercase and lowercase letters, and that is what we need to use to filter with.</p>
+<p>So that’s another way of doing the filtering, and then we can apply the actual palindromic testing as we’ve done before. Oops, and we’ve of course been missing the case folding. That’s once we’re done with that. There we go. Let’s call this C. Actually, we can make this one and test it as well. Before we give it a name, let’s just try that.</p>
+<p>So there’s an interesting problem here with the slash, which is a hybrid operator function. We can begin by fixing that within a top, and then we have a dyadic function with a constant left argument, so we can just bind that over here. And then we have the argument over here, case folding, and then comparison. So we could write all of it like this. See, but since we are anyway post-processing the result from the replicate or compress here, then we don’t actually need to use an identity function to do with the top to force it to be a function. We could take this whole thing and move it in here as well. So let’s call this C.</p>
+<p>But this whole business of case folding and that means that you need to consider every character whether that needs to be case folded, that is potentially expensive. And if we can operate on raw code points, we might get a significant performance advantage. Now how is that going to work?</p>
+<p>So if we start immediately by converting all the characters to code points, if they are all ASCII, then that’s really cheap because that means we can - because the code points are essentially unsigned byte values, on-site integers. If there are some characters that are outside of ASCII, then we’ll end up having values larger than 127, and we’ll have to go to two-byte integers because the integers internally are signed. But still, it’s going to be pretty cheap operation to switch to code points like this.</p>
+<p>And then we need to check whether they are in this range that we used before, and we can write this in a tacit way that I really like for ranges. So there are two ranges we’re looking at, and we want to know if it’s in either those ranges. And so the way we can - APL doesn’t allow you to write X or something like A≤X≤B because ≤ is just a function and it would bind wrong, but we can write that 65 is less than or equal to and the value is also less than or equal to 90. So that’s the upper bound, and this kind of reads nicely, right? 65 is less than or equal to and it’s less than equal to 90. So that’s the uppercase, and then lowercase is 97 is less than or equal to and it’s less than or equal to 122.</p>
+<p>So this, I like writing ranges in APL like this. So this again gives us the elements that we’re interested in, and then we need to use that to filter. But we’re not filtering the characters now, we are filtered because then we need to case fold. We’re filtering the code points. So we give this a name U, and then we’ll filter U with that, and that gives us all these values.</p>
+<p>Now it might not be easy to see what’s going on here, but if we just temporarily apply ⎕UCS to it, we can do each again, then we can see all letters that we’re interested in. Now here’s the thing: ASCII, and then by extension Unicode because it’s just a superset, is constructed in such a way that there’s a single bit difference between uppercase and lowercase. And that means that we can do a division remainder with 32, and that, since we’re not - it doesn’t matter that there are many other values that would collapse to the same division remainder with 32 because we only look at uppercase and lowercase letters.</p>
+<p>So anything we need to do to know is like the offset from the beginning of the alphabet, and 32 gives us exactly that. Now these aren’t useful byte values, but we’re not interested in byte values. We’re just interested in these - should we say labels on the characters and see if they are the same. And then we can check using the exact same thing as before whether or not we’ve got a palindrome. So by working on code points, the code is significantly more involved, but we might potentially avoid some expensive operations there.</p>
+<p>Okay, let’s have a look at the performance. We’re copying CMPX from dfns, and then we’re going to - we need to create some test data of course. So let’s create some test data. Say we overtake from the uppercase and the lowercase alphabet, much like we did - we let the application look alphabet before - followed by a little bit of punctuation that might happen there. So because this adds up to much less than 70, that means we’ll get some spaces as well. So it kind of looks like natural text, and there are obviously 70 here. And let’s just do 50 of them for now just to see what this looks like.</p>
+<p>So this kind of looks like natural text with a little bit of punctuation there. It’s not really very important. And so let’s - so this is a case. So let’s put it over here. 1E5 should be enough. And then - so this isn’t obviously a palindrome, but we can create one that is a palindrome, and we can do that simply by - let’s take half of this. So this is 5E4, and then we can just - so it’s the same kind of construct. This is the hook contrast. We are self-concatenating it, and then we are reversing it and before we concatenate one of them. So this concatenated to its reverse could be read as competition. It’s reversed, and this is obviously a palindrome.</p>
+<p>And now we can say CMPX on A, B, C, and D, each one of them with the entire argument of T. So this is on a non-palindromic case, and we can see that our solution where we avoid case folding the input instead of having a both application lowercase alphabet for the intersection, that did save us significantly. And doing the intervals with raw characters, that’s not worth it. However, switching to code points gives us a significant speed up in this case. And we can just, for good measure, try this with the palindrome as well. We’ll probably see similar results. Yeah, that looks very much the same.</p>
+<p>So that’s all for checking for palindromes. Thank you for watching.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2014"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Space-The-Final-Frontier-APLQuest-2014-4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Space The Final Frontier 2014-4</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Revolutionary-Thinking-APLQuest-2014-7.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Revolutionary Thinking 2014-7</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Mirror Mirror 2014-5</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-solutions">Basic Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-intersection-method">1. Basic Intersection Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimized-intersection-method">2. Optimized Intersection Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-solutions">Advanced Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#range-based-method">3. Range-based Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unicode-code-point-method">4. Unicode Code Point Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-comparison">Performance Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts">Concepts</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

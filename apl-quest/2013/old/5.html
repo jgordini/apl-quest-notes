@@ -1,0 +1,1090 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Identity Crisis &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=ae78d91f" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/old/5';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">APL Quest 2013</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping Things In Balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Go-Forth-And-Multiply-APLQuest-2013-8.html">Go forth and Multiply 2013-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Solution-Salvation-APLQuest-2013-10.html">Solution Salvation 2013-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2014/index.html">APL Quest 2014</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/It-Is-All-Right-APLQuest-2014-1.html">It Is All Right 2014-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/How-Tweet-It-Is-APLQuest-2014-2.html">How Tweet It Is 2014-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Tell-a-Fib-APLQuest-2014-3.html">Tell A Fib 2014-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Space-The-Final-Frontier-APLQuest-2014-4.html">Space The Final Frontier 2014-4</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Mirror-Mirror-APLQuest-2014-5.html">Mirror Mirror 2014-5</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Revolutionary-Thinking-APLQuest-2014-7.html">Revolutionary Thinking 2014-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Go-The-Distance-APLQuest-2014-8.html">Go The Distance 2014-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Going-Ballistic-APLQuest-2014-9.html">Going Ballistic 2014-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2014/Sales-Are-Up-APLQuest-2014-10.html">Sales Are Up 2014-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2015/index.html">APL Quest 2015</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Nag-A-Ram-APLQuest-2015-1.html">APL Quest: Anagrams Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Longest-Streak-APLQuest-2015-2.html">APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Farey-Tales-APLQuest-2015-3.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Progessive-Dyadic-Iota-APLQuest-2015-4.html">APL Quest Cap Wiki: Progressive Dyadic Iota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.html">APL Quest: Standard Deviation Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.html">APL Quest: Problem Six Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Justin-Upper-Case-APLQuest-2015-7.html">APL Quest: Problem 7 from the 2015 APL Problem Solver Competition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html">APL Quest: Swapping Interior Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2015/Blazing-A-Trail-APLQuest-2015-10.html">API Quest: Generating a Centered Pascal’s Triangle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2016/index.html">APL Quest 2016</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Statistics-Mean-APLQuest-2016-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Statistics-Median-APLQuest-2016-2.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Statistics-Mode-APLQuest-2016-3.html">Welcome to APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.html">Welcome to the Appeal Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Shorter-Onestothe-Front-APLQuest-2016-6.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/3-sand-5-s-APLQuest-2016-7.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Separating-Outthe-Negative-APLQuest-2016-8.html">APL Quest: 8th Quest Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Delimited-Text-APLQuest-2016-9.html">APL Quest: Delimiter Splitting Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2016/Order-Total-APLQuest-2016-10.html">Welcome to the APL Quest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2017/index.html">APL Quest 2017</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/What-an-Odd-Bunch-APLQuest-2017-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Good-Evening-APLQuest-2017-2.html">Ensure Odd Numbers Become Even Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Miss-Quoted-APLQuest-2017-3.html">Removing Text Between Double Quotes Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Slices-of-Pies-APLQuest-2017-4.html">Computing Areas of Circle Sectors Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/DNA-APLQuest-2017-5.html">Checking Character Vectors for Valid Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/k-mers-APLQuest-2017-6.html">Chopping Text into Sequences of a Given Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Counting-DNANucleotides-APLQuest-2017-7.html">Counting Letters in a String: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Be-the-First-1-APLQuest-2017-8.html">Understanding Boolean Vector Processing in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Double-Trouble-APLQuest-2017-9.html">Finding Locations of Identical Characters in Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2017/Squaring-Off-APLQuest-2017-10.html">Fitting Elements into a Square Array</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2018/index.html">APL Quest 2018</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Oh-Say-Can-You-See-APLQuest-2018-1.html">Counting Visible Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Number-Splitting-APLQuest-2018-2.html">Splitting Numbers into Integer and Fractional Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Rolling-Along-APLQuest-2018-3.html">Simulating Dice Rolls and Analyzing Outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Whats-Your-Sign-APLQuest-2018-4.html">Converting Gregorian Year Numbers to Chinese Zodiac Animals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Whats-Your-Sign-Revisited-APLQuest-2018-5.html">Computing Zodiac Signs from Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Whats-Your-Angle-APLQuest-2018-6.html">A Simple Test for XML Validity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Unconditionally-Shifty-APLQuest-2018-7.html">Shifting Boolean Data: An Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Makinga-Good-Argument-APLQuest-2018-8.html">Validating Dyadic Transpose Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Earlier-Later-or-the-Same-APLQuest-2018-9.html">Comparing Dates in APL: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2018/Anagrammatically-Correct-APLQuest-2018-10.html">Comparing Two Character Vectors: An Anagram Checker</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2019/index.html">APL Quest 2019</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Chunky-Monkey-APLQuest-2019-1.html">Chunking a List into Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Makingthe-Grade-APLQuest-2019-2.html">Converting Scores into Letter Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Grade-Distribution-APLQuest-2019-3.html">Compiling Simple Statistics on Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Knight-Moves-APLQuest-2019-4.html">Understanding the Movement of a Chess Knight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Doubling-Up-APLQuest-2019-5.html">Checking for Consecutive Identical Letters in Words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Telephone-Names-APLQuest-2019-6.html">Translating Telephone Numbers from Digits and Letters to Plain Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/In-the-Center-of-it-All-APLQuest-2019-7.html">Centering Words in a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Goingthe-Distance-APLQuest-2019-8.html">Computing the Distance Around a Path Defined by Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Area-Code-Gauss-APLQuest-2019-9.html">Calculating the Area of a Polygon Using the Shoelace Formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2019/Odds-Evens-APLQuest-2019-10.html">Splitting a List of Words by Length</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2020/index.html">APL Quest 2020</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Lets-Split-APLQuest-2020-1.html">Understanding Vector Partitioning in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Character-Building-APLQuest-2020-2.html">Understanding Byte Sequences and UTF-8 Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Excel-lent-Columns-APLQuest-2020-3.html">Understanding Column Label Conversion in Spreadsheet Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Takea-Leap-APLQuest-2020-4.html">Understanding Leap Years: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Steppinginthe-Proper-Direction-APLQuest-2020-5.html">Generating Inclusive Integer Ranges in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Movetothe-Front-APLQuest-2020-6.html">Moving Elements in a Numeric Vector to the Front in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/See-Youina-Bit-APLQuest-2020-7.html">Checking Bit States in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Zigzag-Numbers-APLQuest-2020-8.html">Analyzing Alternating Digit Growth in Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Riseand-Fall-APLQuest-2020-9.html">Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2020/Stacking-It-Up-APLQuest-2020-10.html">Emulating APL Array Printing Behavior</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2021/index.html">APL Quest 2021</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Are-You-a--Bacteria-APLQuest-2021-1.html">Calculating Percentage of Characters in a DNA String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Index-Of-Modified-APLQuest-2021-2.html">Creating a Cover for the Dyadic Iota in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Multiplicity-APLQuest-2021-3.html">Grouping Integers by Divisibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Square-Peg-Round-Hole-APLQuest-2021-4.html">Finding the Difference in Area Between an Inscribed Square and Its Circumscribing Circle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Rect-ify-APLQuest-2021-5.html">Finding Rectangle Dimensions with Given Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Fischer-Random-Chess-APLQuest-2021-6.html">Chess Setup Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Can-You-Feelthe-Magic-APLQuest-2021-7.html">Checking for Magic Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Timeto-Makea-Difference-APLQuest-2021-8.html">Calculating Absolute Time Difference in Minutes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Inthe-Long-Run-APLQuest-2021-9.html">Finding the Longest Consecutive Sequence in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2021/Onthe-Right-Side-APLQuest-2021-10.html">Justified Text Transformation in APL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2022/index.html">APL Quest 2022</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Counting-DNA-Nucleotides-APLQuest-2022-1.html">Counting DNA Letters in a Character Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Attackofthe-Mutations-APLQuest-2022-2.html">Comparing DNA Strings: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Uniquely-Qualified-APLQuest-2022-3.html">Finding the Symmetric Difference Between Two Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Inthe-Long-One-APLQuest-2022-4.html">Finding the Longest Run of Ones in a Boolean Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Stairwayto-Heaven-APLQuest-2022-5.html">Building a Staircase in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Pyramid-Scheme-APLQuest-2022-6.html">Constructing Concentric Rings of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Just-Golfing-Around-APLQuest-2022-7.html">Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Lets-Split-APLQuest-2022-8.html">Splitting Text in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html">Calculating the Window Average of a List of Numbers in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2022/Separation-Anxiety-APLQuest-2022-10.html">Inserting Separators in Large Integers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../2023/index.html">APL Quest 2023</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Elimination-Sort-APLQuest-2023-1.html">Removing Non-Decreasing Elements from a List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Put-It-In-Reverse-APLQuest-2023-2.html">Finding End Points of One Array in Another</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Caesar-Salad-APLQuest-2023-3.html">Implementing a Simple Caesar Cipher for Uppercase Characters and Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Like-a-Version-APLQuest-2023-4.html">Comparing Version Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Risky-Business-APLQuest-2023-5.html">Understanding Dice Mechanics in Risk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Key-Value-Pairs-APLQuest-2023-6.html">Parsing Key-Value Pairs into a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Lets-Be-Rational-APLQuest-2023-7.html">Finding a Reduced Fraction for a Given Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Critical-Thinking-APLQuest-2023-8.html">Computing the Next Double Critical Day</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Flipping-Pairs-APLQuest-2023-9.html">Interchanging Adjacent Elements in a Multi-Dimensional Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2023/Partition-witha-Twist-APLQuest-2023-10.html">APL Quest: Splitting Text on Spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../dyalog/index.html">Jupyter notebooks for Dyalog APL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/APL-Expressions.html">APL Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Arithmetic-Functions.html">Arithmetic Fuctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Boolean-Functions-and-Boolean-Algebra.html">Boolean functions</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Boolean-Scans-and-Reductions.html">Boolean Scans and Reductions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Calculus.html">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Comparison-Functions.html">Comparison functions <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">≤</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> <code class="docutils literal notranslate"><span class="pre">≥</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">≠</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Grading-and-Sorting.html">Grading and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/hashtables.html">Hash tables in Dyalog APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Justifying-Text.html">Justifying Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Linear-Fitting.html">Linear Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Lookup-Without-Replacement.html">Lookup without Replacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Maths-versus-APL.html">Maths versus APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Modifying-Rank-and-Depth.html">Modifying rank and depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/New-in-v14.html">Tally <code class="docutils literal notranslate"><span class="pre">≢</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/New-in-v15.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪/</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/New-in-v16.html">Monadic function <code class="docutils literal notranslate"><span class="pre">⍸</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/New-in-v17.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Plotting-with-SharpPlot.html">Plotting with SharpPlot</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Random-Numbers.html">Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Reduce-and-Scan.html">Reduce and Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Sudoku-Solver.html">Sodoku Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Tacit-Techniques.html">Tacit Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Using-the-TryAPL-Tutorials.html">TryAPL tutorial system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dyalog/Your-First-Mandelbrot-Set.html">Mandelbrot Set</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/apl-quest/2013/old/5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Identity Crisis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-solutions"><strong>Example Solutions:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a"><strong>A</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-equailty-table-using-same-indeces-for-both-sides"><strong>B</strong> - Equailty Table using same indeces for both sides</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-assign-to-diagonal"><strong>C</strong> - Assign to diagonal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-amend-at-i-i">D - amend at (i,i)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-1s-at-i-i">E - 1s at (i,i)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f">F</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#industrial-versions">Industrial Versions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b">B</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-tacit">C - Tacit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-signum">D  - Signum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-tally">E - Tally</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expand">Expand</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">B</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-matrix-multiplication">Matrix - Matrix Multiplication</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">B</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base-conversion">Base conversion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">A</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overtake-mix-and-scan">Overtake, Mix and Scan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">B</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-operator">Key Operator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">B</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-numbers">Complex Numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">A</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comment"><strong>Comment:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used"><strong>Glyphs Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used"><strong>Concepts Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript"><strong>Transcript:</strong></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="identity-crisis">
+<h1><a class="reference external" href="https://problems.tryapl.org/psets/2013.html?goto=P5_Identity_Crisis">Identity Crisis</a><a class="headerlink" href="#identity-crisis" title="Link to this heading">#</a></h1>
+<p><strong>Problem:</strong> An <a class="reference external" href="https://en.wikipedia.org/wiki/Identity_matrix">Identity Matrix</a> is a square matrix (table) of 0 with 1’s in the main diagonal. Write an APL dfn which produces an n×n identity matrix.</p>
+<p><strong>Video:</strong> https://youtu.be/vVaZ3wEdmpQ
+<strong>Code:</strong> https://github.com/abrudz/apl_quest/blob/main/2013/5.apl</p>
+<section id="example-solutions">
+<h2><strong>Example Solutions:</strong><a class="headerlink" href="#example-solutions" title="Link to this heading">#</a></h2>
+<section id="a">
+<h3><strong>A</strong><a class="headerlink" href="#a" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">n</span><span class="kd">←</span><span class="m">5</span>
+<span class="nv">A</span><span class="kd">←</span><span class="p">(</span><span class="o">=</span><span class="na">/¨⍤</span><span class="o">⍳,</span><span class="na">⍨</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ equality of x and y in all indices</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Catenate">Catenate</a> <code class="docutils literal notranslate"><span class="pre">,</span></code> <strong>n</strong> to <a class="reference external" href="https://aplwiki.com/wiki/Commute">Itself</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> we get a vector of 5 5</p></li>
+<li><p>We can take that vector and use it as an input for the <a class="reference external" href="https://aplwiki.com/wiki/Index_Generator">Index Generator</a>. <code class="docutils literal notranslate"><span class="pre">⍳</span></code> this generates an array of shape 5 5 where the elements are the indices for each element.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Equality</a> <a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduction</a> of <a class="reference external" href="https://aplwiki.com/wiki/Each">Each</a> pair <code class="docutils literal notranslate"><span class="pre">=/¨</span></code> we can see where the horizontal and vertical indexes are equal.  This forms our identity matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍤</span></code> The <a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a> operator <code class="docutils literal notranslate"><span class="pre">f⍤g</span> <span class="pre">Y</span></code> performs  performs f on the result of g on Y.  This allows the expression to be <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit</a>.</p></li>
+</ol>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="p">(</span><span class="kt">{</span><span class="p">(</span><span class="o">=</span><span class="na">/</span><span class="p">)</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="p">)(</span><span class="o">⍳</span><span class="p">(</span><span class="bp">⍵</span><span class="o">,</span><span class="bp">⍵</span><span class="p">))</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ The expression as a Dfn from tacit.help</span>
+</pre></div>
+</div>
+</section>
+<section id="b-equailty-table-using-same-indeces-for-both-sides">
+<h3><strong>B</strong> - Equailty Table using same indeces for both sides<a class="headerlink" href="#b-equailty-table-using-same-indeces-for-both-sides" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="kd">←</span><span class="p">(</span><span class="na">∘.</span><span class="o">=</span><span class="na">⍨</span><span class="o">⍳</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ equality table for one dimensional indices</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">∘.</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Outer_Product">Outer Product</a> <code class="docutils literal notranslate"><span class="pre">∘.</span></code> generates a table from the input vector</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍨⍳</span></code> Same input vector on both sides. Uses <a class="reference external" href="https://aplwiki.com/wiki/Index_Generator">Index Generator</a> <code class="docutils literal notranslate"><span class="pre">⍳</span></code> to create the values.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">=</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Function</a> = checks for eqality beween the elements.</p></li>
+<li><p>This forms our identity matrix.</p></li>
+</ol>
+</section>
+<section id="c-assign-to-diagonal">
+<h3><strong>C</strong> - Assign to diagonal<a class="headerlink" href="#c-assign-to-diagonal" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="nv">s</span><span class="kd">←</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="o">⍴</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="o">⍉</span><span class="nv">s</span><span class="p">)</span><span class="kd">←</span><span class="m">1</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">s</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ assign to diagonal</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵</span> <span class="pre">⍵⍴0</span></code> Reshape 0 to a 5 by 5 matrix and assign it to s</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">1⍉s)←1</span></code> Giving 1 1 to <a class="reference external" href="https://xpqz.github.io/learnapl/dyadictrn.html?highlight=assignment#dyadic-transpose-ab">dyadic transpose </a>returns the leading diagonal. 1 replaces those values becuase dyadic transpose allows for modified assignment.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">s</span></code> returns the new identity matrix. Diamond is the statement seperator.</p></li>
+</ol>
+</section>
+<section id="d-amend-at-i-i">
+<h3>D - amend at (i,i)<a class="headerlink" href="#d-amend-at-i-i" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="m">1</span><span class="na">@</span><span class="p">(</span><span class="o">,</span><span class="na">⍨¨</span><span class="o">⍳</span><span class="bp">⍵</span><span class="p">)</span><span class="o">⊢</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="o">⍴</span><span class="m">0</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ amend at (i,i)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">,⍨¨⍳⍵</span></code> By using the Index Generator <code class="docutils literal notranslate"><span class="pre">⍳</span></code>  and <a class="reference external" href="https://aplwiki.com/wiki/Catenate">catenating</a> <code class="docutils literal notranslate"><span class="pre">,</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Each">each</a> <code class="docutils literal notranslate"><span class="pre">¨</span></code>  value to <a class="reference external" href="https://aplwiki.com/wiki/Commute">itself</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> we can generate all the indices that need to be set to 1.  (1 1) (2 2) (3 3) (4 4) (5 5)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1&#64;</span></code> Sets 1 <a class="reference external" href="https://xpqz.github.io/cultivations/Operators.html#at">At</a> each location.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⊢⍵</span> <span class="pre">⍵⍴0</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity</a> <code class="docutils literal notranslate"><span class="pre">⊢</span></code> returns the  <a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshaped</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> array of ⍵ ⍵ filled with zeros.</p></li>
+</ol>
+</section>
+<section id="e-1s-at-i-i">
+<h3>E - 1s at (i,i)<a class="headerlink" href="#e-1s-at-i-i" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍸</span><span class="na">⍣</span><span class="m">¯1</span><span class="o">,</span><span class="na">⍨¨</span><span class="o">⍳</span><span class="w"> </span><span class="c1">⍝ 1s at (i,i)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">,⍨¨⍳</span></code> Step 1 of D (1 1) (2 2) (3 3) (4 4) (5 5)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍸⍣¯1</span></code>  <a class="reference external" href="https://aplwiki.com/wiki/Indices">Where</a> <code class="docutils literal notranslate"><span class="pre">⍸</span></code> returns the <a class="reference external" href="https://aplwiki.com/wiki/Index" title="Index">indices</a> of all ones in a <a class="reference external" href="https://aplwiki.com/wiki/Boolean" title="Boolean">Boolean</a> array. The <a class="reference external" href="https://aplwiki.com/wiki/Power_(operator)">Power Operator</a>  with <code class="docutils literal notranslate"><span class="pre">¯1</span></code> returns the inverse of the Where function. Given the indices in Step 1 it returns a boolean vector with ones at each position. The <a class="reference external" href="https://aplwiki.com/wiki/Indices#Inverse">inverse of indices</a>.</p></li>
+<li><p>This generates our identity matrix.</p></li>
+</ol>
+</section>
+<section id="f">
+<h3>F<a class="headerlink" href="#f" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">d</span><span class="kd">←</span><span class="nv">i</span><span class="o">+</span><span class="bp">⍵</span><span class="o">×</span><span class="nv">i</span><span class="kd">←</span><span class="o">⍳</span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="o">⍴</span><span class="m">1</span><span class="na">@</span><span class="nv">d</span><span class="o">⊢</span><span class="m">0</span><span class="o">↑</span><span class="na">⍨</span><span class="bp">⍵</span><span class="o">*</span><span class="m">2</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ amend at (i,i)ₙ</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕IO←0</span></code> Sets <a class="reference external" href="https://aplwiki.com/wiki/Index_origin">Index Origin</a>  to 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d←i+⍵×i←⍳⍵</span></code> Taking the indices <code class="docutils literal notranslate"><span class="pre">⍳⍵</span></code> we can multiply by their length <code class="docutils literal notranslate"><span class="pre">w</span></code> we get the indices for the <a class="reference external" href="https://aplwiki.com/wiki/Leading_axis_theory">leading axis</a> in <a class="reference external" href="https://aplwiki.com/wiki/Ravel_order">ravel order</a> (0 5 10 15 20 25), adding the indices <code class="docutils literal notranslate"><span class="pre">⍳⍵</span></code> returns the diagonal (0 6 12 18 24). This is then assigned to <code class="docutils literal notranslate"><span class="pre">d</span></code> which we use in the next step.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1&#64;d</span></code> We then set 1s <a class="reference external" href="https://xpqz.github.io/cultivations/Operators.html#at">At</a> <code class="docutils literal notranslate"><span class="pre">1&#64;d</span></code> these indices in a vector <code class="docutils literal notranslate"><span class="pre">⊢</span></code> of 0s with length of <code class="docutils literal notranslate"><span class="pre">⍵*2</span></code> using <a class="reference external" href="https://aplwiki.com/wiki/Take#Overtaking">Overtake</a>  <code class="docutils literal notranslate"><span class="pre">↑</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵</span> <span class="pre">⍵⍴</span></code> The result is shaped into a matrix using <a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code></p></li>
+</ol>
+</section>
+</section>
+<section id="industrial-versions">
+<h2>Industrial Versions<a class="headerlink" href="#industrial-versions" title="Link to this heading">#</a></h2>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="o">⍴</span><span class="m">1</span><span class="o">,</span><span class="bp">⍵</span><span class="o">↑</span><span class="m">0</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ insert 1 before n 0s</span>
+</pre></div>
+</div>
+<section id="id1">
+<h3>A<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>There are n zeros to the next 1. (1 0 0 0 0 0 1) ex. n=5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1,⍵↑0</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Take#Overtaking">Overtake</a> <code class="docutils literal notranslate"><span class="pre">↑</span></code> A length larger than the argument length causes <a class="reference external" href="https://aplwiki.com/wiki/Fill_element" title="Fill element">fills</a> to be inserted. In this case we use it to pad zero with <code class="docutils literal notranslate"><span class="pre">⍵-1</span></code> additional zeros. <code class="docutils literal notranslate"><span class="pre">1,</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Catenate">Catenate</a> a 1 to the result.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> repeats an argument of any length, singleton or otherwise. We prefix it with <code class="docutils literal notranslate"><span class="pre">⍵</span> <span class="pre">⍵</span></code> to indicate the desired final shape.  A 5x5 matrix using the example in Step 1.</p></li>
+</ol>
+</section>
+<section id="b">
+<h3>B<a class="headerlink" href="#b" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="o">⍴</span><span class="p">(</span><span class="bp">⍵</span><span class="o">+</span><span class="m">1</span><span class="p">)</span><span class="o">↑</span><span class="m">1</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ overtake</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Using the concept of Overtake we saw in Step 1 of A we can pad 1 with <code class="docutils literal notranslate"><span class="pre">⍵+1</span></code>  zeros and then reshape the result. Obtaining the same matrix.</p></li>
+</ol>
+</section>
+<section id="c-tacit">
+<h3>C - Tacit<a class="headerlink" href="#c-tacit" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="w"> </span><span class="kd">←</span><span class="p">(</span><span class="o">,</span><span class="na">⍨</span><span class="o">⍴+</span><span class="na">∘</span><span class="m">1</span><span class="o">↑</span><span class="m">1</span><span class="na">⍨</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ tacit form</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">,⍨⍴</span></code> Ravel the argument against itself and use it to reshape</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">+∘1</span></code> Bind + to 1 making it monadic. Add one to the argument.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">↑1⍨</span></code> Use step 2 to Overtake 1. The Selfie <code class="docutils literal notranslate"><span class="pre">⍨</span></code> is used as a <a class="reference external" href="https://aplwiki.com/wiki/Constant">Constant</a>.</p></li>
+</ol>
+</section>
+<section id="d-signum">
+<h3>D  - Signum<a class="headerlink" href="#d-signum" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">D</span><span class="w"> </span><span class="kd">←</span><span class="p">(</span><span class="o">,</span><span class="na">⍨</span><span class="o">⍴+</span><span class="na">∘</span><span class="m">1</span><span class="o">↑×</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ sign gives 1 (or 0 for 0)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Signum">Signum</a> <code class="docutils literal notranslate"><span class="pre">×A</span></code> - Sign of number  - on a real argument are <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, and <code class="docutils literal notranslate"><span class="pre">¯1</span></code> (zero, positive and negative)</p></li>
+</ol>
+</section>
+<section id="e-tally">
+<h3>E - Tally<a class="headerlink" href="#e-tally" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">E</span><span class="w"> </span><span class="kd">←</span><span class="p">(</span><span class="o">,</span><span class="na">⍨</span><span class="o">⍴+</span><span class="na">∘</span><span class="m">1</span><span class="o">↑≢</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ tally of scalar is 1</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> <code class="docutils literal notranslate"><span class="pre">≢</span></code> The tally of a Scalar is 1</p></li>
+</ol>
+</section>
+</section>
+<section id="expand">
+<h2>Expand<a class="headerlink" href="#expand" title="Link to this heading">#</a></h2>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="o">⍴</span><span class="m">1</span><span class="p">(</span><span class="o">-</span><span class="bp">⍵</span><span class="p">)</span><span class="na">\</span><span class="m">1</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ expand 1 into one 1 and n 0s</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://xpqz.github.io/cultivations/Functions7.html?#expand">Expand</a> <code class="docutils literal notranslate"><span class="pre">\</span></code> - copies each <a class="reference external" href="https://aplwiki.com/wiki/Element" title="Element">element</a> of the right <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> a given number of times. Positive numbers on the left also replicate like with <code class="docutils literal notranslate"><span class="pre">/</span></code> but negative numbers insert that many prototypical (spaces for characters and zeros for numbers) elements at that position.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1(-⍵)\1</span></code>  <code class="docutils literal notranslate"><span class="pre">-⍵</span></code> is the number of zeros. <code class="docutils literal notranslate"><span class="pre">\1</span></code> is the number to prepend with. <code class="docutils literal notranslate"><span class="pre">1(-⍵)</span></code> is the number of times to prepend with a 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵</span> <span class="pre">⍵⍴</span></code>  Reshape into a <code class="docutils literal notranslate"><span class="pre">⍵</span> <span class="pre">⍵</span></code> matrix.</p></li>
+</ol>
+<section id="id2">
+<h3>B<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="p">(</span><span class="o">,</span><span class="na">⍨</span><span class="o">⍴</span><span class="m">1</span><span class="na">\⍨</span><span class="m">1</span><span class="o">,-</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ tacit</span>
+<span class="nv">C</span><span class="w"> </span><span class="kd">←</span><span class="kt">{</span><span class="p">(</span><span class="bp">⍵</span><span class="o">,</span><span class="bp">⍵</span><span class="p">)</span><span class="o">⍴</span><span class="p">((</span><span class="m">1</span><span class="o">,</span><span class="p">(</span><span class="o">-</span><span class="bp">⍵</span><span class="p">))</span><span class="na">\</span><span class="m">1</span><span class="p">)</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ tacit.help</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">,⍨⍴1</span></code> Self concatenation of the argument reshaped by</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1\⍨1</span></code> 1 expanded by 1 (See A step 2)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">,-</span></code> followed by the negation of the argument (generates zeros)</p></li>
+<li><p>See C for <a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a> form</p></li>
+</ol>
+</section>
+</section>
+<section id="matrix-matrix-multiplication">
+<h2>Matrix - <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_multiplication">Matrix Multiplication</a><a class="headerlink" href="#matrix-matrix-multiplication" title="Link to this heading">#</a></h2>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="kt">{</span><span class="o">⌹</span><span class="na">⍨</span><span class="o">?</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="o">⍴</span><span class="m">0</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ M × I = M</span>
+<span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="p">(</span><span class="o">⌹</span><span class="na">⍨⍤</span><span class="o">?,</span><span class="na">⍨</span><span class="o">⍴≡</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ depth of simple scalar is 0</span>
+<span class="nv">C</span><span class="w"> </span><span class="kd">←</span><span class="kt">{</span><span class="p">(</span><span class="o">?</span><span class="p">((</span><span class="bp">⍵</span><span class="o">,</span><span class="bp">⍵</span><span class="p">)</span><span class="o">⍴</span><span class="p">(</span><span class="o">≡</span><span class="bp">⍵</span><span class="p">)))</span><span class="o">⌹</span><span class="p">(</span><span class="o">?</span><span class="p">((</span><span class="bp">⍵</span><span class="o">,</span><span class="bp">⍵</span><span class="p">)</span><span class="o">⍴</span><span class="p">(</span><span class="o">≡</span><span class="bp">⍵</span><span class="p">)))</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ tacit.help</span>
+</pre></div>
+</div>
+<section id="id3">
+<h3>A<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Reshape a matrix of random numbers against it’s inverse.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">?⍵</span> <span class="pre">⍵⍴0</span></code> This gives us a matrix of random floats between zero and one.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Matrix_Divide">Matrix Divide</a> <code class="docutils literal notranslate"><span class="pre">⌹</span></code> Using <a class="reference external" href="https://mastering.dyalog.com/Tacit-Programming.html?highlight=selfie#commute-and-selfie">Selfie</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> we echo the right argument to its left. In this case the matrix generated in Step 2 is divided by itself.</p></li>
+<li><p>This produces the identity matrix using <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_multiplication">matrix multiplication</a></p></li>
+</ol>
+</section>
+<section id="id4">
+<h3>B<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Makes A a [Tacit Function](<a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a>)</p></li>
+<li><p>Can be read as Matrix division <code class="docutils literal notranslate"><span class="pre">⌹</span></code>, Selfie <code class="docutils literal notranslate"><span class="pre">⍨</span></code> , On <code class="docutils literal notranslate"><span class="pre">⍤</span></code>, random numbers <code class="docutils literal notranslate"><span class="pre">?</span></code> shaped <code class="docutils literal notranslate"><span class="pre">⍴</span></code> as the self concatentation <code class="docutils literal notranslate"><span class="pre">,⍨</span></code>(takes one input and makes it two) of <a class="reference external" href="https://aplwiki.com/wiki/Depth">Depth</a> <code class="docutils literal notranslate"><span class="pre">≡</span></code> - returns an array’s depth. On a scaler (our input) it reurns zero.</p></li>
+<li><p>See C for <a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a> form</p></li>
+</ol>
+</section>
+</section>
+<section id="base-conversion">
+<h2>Base conversion<a class="headerlink" href="#base-conversion" title="Link to this heading">#</a></h2>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⍴</span><span class="na">∘</span><span class="m">2</span><span class="o">⊤</span><span class="m">2</span><span class="o">*⊢-⍳</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ powers of two are 1 0 0 …</span>
+<span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="p">(</span><span class="bp">⍵</span><span class="o">⍴</span><span class="m">2</span><span class="p">)</span><span class="o">⊤</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="p">(</span><span class="bp">⍵</span><span class="o">-</span><span class="p">(</span><span class="o">⍳</span><span class="bp">⍵</span><span class="p">)))</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ tacit.help</span>
+</pre></div>
+</div>
+<section id="id5">
+<h3>A<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Looking at our identiry matrix we can see that each column is a power of two spelled out in binary.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2*⊢-⍳</span></code> We can generate these numbers by subtracting the initial <a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity</a> <code class="docutils literal notranslate"><span class="pre">⊢</span></code> from the  <a class="reference external" href="https://aplwiki.com/wiki/Index_Generator">Index Generator</a><code class="docutils literal notranslate"><span class="pre">⍳</span></code> of the argument and raising the result to the <a class="reference external" href="https://aplwiki.com/wiki/Exponential">power of</a> 2.</p></li>
+<li><p>We can then perform a base conversion. The left argument to <a class="reference external" href="https://mastering.dyalog.com/Mathematical-Functions.html?highlight=encode#encode">Encode</a> <code class="docutils literal notranslate"><span class="pre">⊤</span></code> defines the number of digits in the new number system. In this case we are prefixing it with a 2.</p></li>
+<li><p>We <a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a> <code class="docutils literal notranslate"><span class="pre">∘</span></code> -  the Encode <code class="docutils literal notranslate"><span class="pre">⊤</span></code> with <a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> creating a derived function and a tacit result.</p></li>
+<li><p>See B for <a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a> form</p></li>
+</ol>
+</section>
+</section>
+<section id="overtake-mix-and-scan">
+<h2>Overtake, Mix and Scan<a class="headerlink" href="#overtake-mix-and-scan" title="Link to this heading">#</a></h2>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="na">⍤</span><span class="o">⍳↑</span><span class="na">⍤</span><span class="m">0</span><span class="o">≢</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ suffixes of 1</span>
+<span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">↑,</span><span class="na">⍨\⍤</span><span class="o">↑</span><span class="na">∘</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ cumulative reverse-concatenations</span>
+<span class="nv">C</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">↑</span><span class="p">((</span><span class="kt">{</span><span class="bp">⍵</span><span class="o">,</span><span class="bp">⍺</span><span class="kt">}</span><span class="na">\</span><span class="p">)(</span><span class="bp">⍵</span><span class="o">↑</span><span class="m">1</span><span class="p">))</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ tacit.help</span>
+</pre></div>
+</div>
+<section id="id6">
+<h3>A<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-⍤⍳</span></code> Negation of the indices</p></li>
+<li><p>Paired with the rank operator. Take using a length which is larger than the argument length causes <a class="reference external" href="https://aplwiki.com/wiki/Fill_element" title="Fill element">fills</a> of 0’s to be inserted.</p></li>
+<li><p>Use tally to get a 1 allows function to be tacit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{(-(⍳⍵))(↑⍤0)(≢⍵)}</span></code> is the Dfn version</p></li>
+</ol>
+</section>
+<section id="id7">
+<h3>B<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">,⍨\</span></code> Swapped concatentation of scan returns the reversed prefixes of a vector</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">↑∘1</span></code> Take binded with one. Overtakes one with the arguments number of zeros. In this case n=5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍤</span></code> Atop seperates the functions returns the right and then the left.</p></li>
+</ol>
+</section>
+</section>
+<section id="key-operator">
+<h2>Key Operator<a class="headerlink" href="#key-operator" title="Link to this heading">#</a></h2>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="kd">←</span><span class="p">(</span><span class="o">×⌽</span><span class="na">⍤</span><span class="o">↑</span><span class="na">⌸⍤</span><span class="o">⍳</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ {×(({⌽(⍺↑⍵)}⌸)(⍳⍵))}</span>
+</pre></div>
+</div>
+<section id="id8">
+<h3>A<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Signum reversal atop of the the taking of the two arguments</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">↑⌸⍤⍳</span></code>  We use the <a class="reference external" href="https://aplwiki.com/wiki/Index_Generator">Index Generator</a> <code class="docutils literal notranslate"><span class="pre">⍳</span></code> to produce a list of numbers. <a class="reference external" href="https://aplwiki.com/wiki/Key">Key</a>  <code class="docutils literal notranslate"><span class="pre">⌸</span></code>  groups each unique element as left argument, and the indices of that element in the data as right argument. We can then <a class="reference external" href="https://aplwiki.com/wiki/Take#Overtaking">Overtake</a> <code class="docutils literal notranslate"><span class="pre">↑</span></code> with a length larger than the argument length causing  <a class="reference external" href="https://aplwiki.com/wiki/Fill_element" title="Fill element">fills</a> of zeros to be inserted.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">×⌽</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Reverse">Reverse</a> <code class="docutils literal notranslate"><span class="pre">⌽</span></code> reorders the <a class="reference external" href="https://aplwiki.com/wiki/Elements" title="Elements">elements</a> of the argument to go in the opposite direction along a specified <a class="reference external" href="https://aplwiki.com/wiki/Axis" title="Axis">axis</a> We then use  <a class="reference external" href="https://aplwiki.com/wiki/Signum">Signum</a> <code class="docutils literal notranslate"><span class="pre">×</span></code> to generate 1’s, instead of the indices generated by Key in Step 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍤</span></code> The <a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a> operator <code class="docutils literal notranslate"><span class="pre">f⍤g</span> <span class="pre">Y</span></code> performs  performs f on the result of g on Y.  This allows the expression to be <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit</a>.</p></li>
+<li><p>See Comment for the <a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a> version.</p></li>
+</ol>
+</section>
+<section id="id9">
+<h3>B<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">B</span><span class="kd">←</span><span class="p">(</span><span class="o">⍸</span><span class="na">⍣</span><span class="m">¯1</span><span class="na">⍤</span><span class="o">⊢</span><span class="na">⌸</span><span class="o">⍳</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ {({(⍸⍣¯1)⍵}⌸)(⍳⍵)}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Where inverse atop the right argument. Boolean vectors with 1 in each position.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⊢⌸⍳</span></code>   Same as in A we use the <a class="reference external" href="https://aplwiki.com/wiki/Index_Generator">Index Generator</a> <code class="docutils literal notranslate"><span class="pre">⍳</span></code> to produce a list of numbers. <a class="reference external" href="https://aplwiki.com/wiki/Key">Key</a>  <code class="docutils literal notranslate"><span class="pre">⌸</span></code>  groups each unique element as left argument, and the indices of that element in the data as right argument. However we use <a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity</a> <code class="docutils literal notranslate"><span class="pre">⊢</span></code> to just return the indices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍸⍣¯1</span></code> <a class="reference external" href="https://aplwiki.com/wiki/Power_(operator)">Power</a> <code class="docutils literal notranslate"><span class="pre">⍣¯1</span></code> is used to access function inverses. <a class="reference external" href="https://aplwiki.com/wiki/Indices">Where</a> <code class="docutils literal notranslate"><span class="pre">⍸</span></code> returns the indices of a boolean array. So this will pad our indices with zeros.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍤</span></code> The <a class="reference external" href="https://aplwiki.com/wiki/Atop_(operator)">Atop</a> operator <code class="docutils literal notranslate"><span class="pre">f⍤g</span> <span class="pre">Y</span></code> performs  performs f on the result of g on Y.  This allows the expression to be <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit</a>.</p></li>
+<li><p>See Comment for the <a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a> version.</p></li>
+</ol>
+</section>
+</section>
+<section id="complex-numbers">
+<h2><a class="reference external" href="https://aplwiki.com/wiki/Complex_number">Complex Numbers</a><a class="headerlink" href="#complex-numbers" title="Link to this heading">#</a></h2>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">4</span><span class="o">=○÷</span><span class="m">12</span><span class="o">○</span><span class="bp">⍵</span><span class="na">∘.</span><span class="o">+</span><span class="m">0j1</span><span class="o">×</span><span class="bp">⍵</span><span class="kt">}</span><span class="o">⍳</span><span class="w"> </span><span class="c1">⍝ π÷4 = arg(a+ai)</span>
+<span class="nv">B</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">0</span><span class="o">=</span><span class="p">(</span><span class="m">2</span><span class="o">*÷</span><span class="m">2</span><span class="p">)</span><span class="o">||</span><span class="bp">⍵</span><span class="na">∘.</span><span class="o">+</span><span class="m">0j1</span><span class="o">×</span><span class="bp">⍵</span><span class="kt">}</span><span class="o">⍳</span><span class="w"> </span><span class="c1">⍝ |a+ai| = 0 mod √2</span>
+</pre></div>
+</div>
+<section id="id10">
+<h3>A<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵∘.+0j1×⍵</span></code> Using <a class="reference external" href="https://aplwiki.com/wiki/Outer_Product">Outer Product</a> <code class="docutils literal notranslate"><span class="pre">∘.+</span></code> of the real part plus the imaginary part <code class="docutils literal notranslate"><span class="pre">+0j1</span></code> and Multiplying the imaginary part <code class="docutils literal notranslate"><span class="pre">0j1×⍵</span></code> by the Index <code class="docutils literal notranslate"><span class="pre">⍳</span></code> to create a table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">○÷12○</span></code> The <a class="reference external" href="https://aplwiki.com/wiki/Circular">Circular</a>  <code class="docutils literal notranslate"><span class="pre">12○</span></code> function is the <a class="reference external" href="https://en.wikipedia.org/wiki/Phase_(waves)">Phase</a> of ⍵. This determines the magnitude and the direction fo a complex number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4=○÷</span></code> The diagonal values will have Phase of 45 degrees or one quarter of pi (0.785398163 radians). Dividing by pi <code class="docutils literal notranslate"><span class="pre">○÷</span></code> returns 4 and we can then select all the 4’s in the matrix. Returning 1’s for true.
+B</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵∘.+0j1×⍵</span></code> Again using <a class="reference external" href="https://aplwiki.com/wiki/Outer_Product">Outer Product</a> <code class="docutils literal notranslate"><span class="pre">∘.+</span></code> of the real part plus the imaginary part <code class="docutils literal notranslate"><span class="pre">+0j1</span></code> and Multiplying the imaginary part <code class="docutils literal notranslate"><span class="pre">0j1×⍵</span></code> by the Index <code class="docutils literal notranslate"><span class="pre">⍳</span></code> to create a table.</p></li>
+<li><p>When two complex numbers are added, they form the two sides of a right triangle in the complex plane, with the resulting complex number being the hypotenuse. The magnitude of the resulting complex number is equal to the length of the hypotenuse.</p></li>
+<li><p>Becuase the horizontal and the vertical parts of this triangle are equal to each other( the same index is used on both sides of the outer product). The diagnals length is a multiple of the square root of 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(2*÷2)||</span></code> The first vertial bar takes the <a class="reference external" href="https://aplwiki.com/wiki/Magnitude">Magnitude</a> <code class="docutils literal notranslate"><span class="pre">|</span></code> of the result of Step 1. The second bar calculates the remainder or <a class="reference external" href="https://aplwiki.com/wiki/Residue">Residue</a> when the table is divided by the square root of two <code class="docutils literal notranslate"><span class="pre">(2*÷2)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0=</span></code> Everywhere there is no remainder we are on the diagonal.</p></li>
+</ol>
+</section>
+</section>
+<section id="comment">
+<h2><strong>Comment:</strong><a class="headerlink" href="#comment" title="Link to this heading">#</a></h2>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">J</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="w"> </span><span class="bp">⍵</span><span class="o">⍴</span><span class="p">(</span><span class="bp">⍵</span><span class="o">+</span><span class="m">1</span><span class="p">)</span><span class="o">↑</span><span class="m">1</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ overtake to insert 1 before n 0s</span>
+<span class="o">=</span><span class="na">/¨</span><span class="w">  </span><span class="c1">⍝ Compare Each</span>
+<span class="na">∘.</span><span class="o">=</span><span class="na">⍨</span><span class="w"> </span><span class="c1">⍝ Equailty Table using same indeces for both sides</span>
+<span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="o">⍉</span><span class="nv">s</span><span class="w"> </span><span class="c1">⍝ Selects the diagonal of s</span>
+<span class="o">,</span><span class="na">⍨¨</span><span class="w"> </span><span class="c1">⍝ Catenate each to itself</span>
+<span class="nv">x</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="nv">y</span><span class="w"> </span><span class="c1">⍝ matrix multiplication</span>
+<span class="o">,</span><span class="na">\</span><span class="w"> </span><span class="c1">⍝ prefix of a vector</span>
+</pre></div>
+</div>
+</section>
+<section id="glyphs-used">
+<h2><strong>Glyphs Used:</strong><a class="headerlink" href="#glyphs-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Catenate">Catenate</a> <code class="docutils literal notranslate"><span class="pre">,</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Index_Of">Index of</a> <code class="docutils literal notranslate"><span class="pre">⍳</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison Function</a> =</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Replicate">Compress</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> - filters the right argument <code class="docutils literal notranslate"><span class="pre">=/¨</span></code> compare each</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Each">Each</a> <code class="docutils literal notranslate"><span class="pre">¨</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code>  - aka Selfie or Swap</p></li>
+<li><p><a class="reference external" href="https://xpqz.github.io/learnapl/dyadictrn.html?#dyadic-transpose-ab">Dyadic Transpose</a> <code class="docutils literal notranslate"><span class="pre">x⍉y</span></code> - allows you to select diagonals by giving one or more dimensions equal mapping</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code></p></li>
+<li><p><a class="reference external" href="https://xpqz.github.io/cultivations/Operators.html#at">At</a> <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> - What’s on its left gets done at the position indicated by its right operand.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Identity">Identity</a> <code class="docutils literal notranslate"><span class="pre">⊢</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Indices">Where</a> <code class="docutils literal notranslate"><span class="pre">⍸</span></code> - returns the indices of a boolean array - mondadic</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Power_(operator)">Power</a> <code class="docutils literal notranslate"><span class="pre">⍣¯1</span></code> - used to access function inverses</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Power_(function)">Power(Function)</a> <code class="docutils literal notranslate"><span class="pre">*</span></code> -  <code class="docutils literal notranslate"><span class="pre">X*Y</span></code> is <code class="docutils literal notranslate"><span class="pre">X</span></code> raised to the power <code class="docutils literal notranslate"><span class="pre">Y</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Take#Overtaking">Overtake</a> <code class="docutils literal notranslate"><span class="pre">↑</span></code> - A length larger than the argument length causes <a class="reference external" href="https://aplwiki.com/wiki/Fill_element" title="Fill element">fills</a> to be inserted</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a> <code class="docutils literal notranslate"><span class="pre">∘</span></code> -  used to create a derived function with a single constant argument</p></li>
+<li><p><a class="reference external" href="https://xpqz.github.io/cultivations/Operators.html#constant-a">Constant</a> <code class="docutils literal notranslate"><span class="pre">A⍨</span></code> - always returns the operator array</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Signum">Signum</a> <code class="docutils literal notranslate"><span class="pre">×A</span></code> - Sign of number  - on a real argument are <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, and <code class="docutils literal notranslate"><span class="pre">¯1</span></code> (zero, positive and negative)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> <code class="docutils literal notranslate"><span class="pre">≢</span></code></p></li>
+<li><p><a class="reference external" href="https://xpqz.github.io/cultivations/Functions7.html?#expand">Expand</a> <code class="docutils literal notranslate"><span class="pre">\</span></code> - copies each <a class="reference external" href="https://aplwiki.com/wiki/Element" title="Element">element</a> of the right <a class="reference external" href="https://aplwiki.com/wiki/Argument" title="Argument">argument</a> a given number of times</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Roll">Roll</a> <code class="docutils literal notranslate"><span class="pre">?0</span></code> - When zero Roll chooses a floating-point number between 0 and 1</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Matrix_Divide">Matrix Divide</a> <code class="docutils literal notranslate"><span class="pre">⌹</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Rank_(operator)">Rank</a> <code class="docutils literal notranslate"><span class="pre">⍤</span></code> - applies its left [operand](. https://aplwiki.com/wiki/Operand “Operand”) function to <a class="reference external" href="https://aplwiki.com/wiki/Cells" title="Cells">cells</a> of its arguments specified by its right operand array.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Depth">Depth</a> <code class="docutils literal notranslate"><span class="pre">≡</span></code> - returns an array’s depth</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Decode">Decode</a> <code class="docutils literal notranslate"><span class="pre">⊥</span></code> - aka base</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Encode">Encode</a> <code class="docutils literal notranslate"><span class="pre">⊤</span></code> - aka antibase</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a> <code class="docutils literal notranslate"><span class="pre">∘</span></code> - used to create a derived function with a single constant argument</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Key">Key</a>  <code class="docutils literal notranslate"><span class="pre">⌸</span></code> - groups <a class="reference external" href="https://aplwiki.com/wiki/Major_cell" title="Major cell">major cells</a> and applies the <a class="reference external" href="https://aplwiki.com/wiki/Function" title="Function">function</a> for each cell</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Enclose">Enclose</a> <code class="docutils literal notranslate"><span class="pre">⊂</span></code> - An enclosed array is a <a class="reference external" href="https://aplwiki.com/wiki/Scalar" title="Scalar">scalar</a>, which is subject to <a class="reference external" href="https://aplwiki.com/wiki/Scalar_extension" title="Scalar extension">scalar extension</a>.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reverse">Reverse</a> <code class="docutils literal notranslate"><span class="pre">⌽</span></code> - reorders <a class="reference external" href="https://aplwiki.com/wiki/Elements" title="Elements">elements</a> of the argument to go in the opposite direction along a specified <a class="reference external" href="https://aplwiki.com/wiki/Axis" title="Axis">axis</a>.</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Circular">Circular</a>  12○ - Phase of ⍵ (omega)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Pi_Times">Pi Times</a> ○</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Magnitude">Magnitude</a> <code class="docutils literal notranslate"><span class="pre">|</span></code> aka absolute value</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Residue">Residue</a> <code class="docutils literal notranslate"><span class="pre">|</span></code> aka remainder</p></li>
+</ul>
+</section>
+<section id="concepts-used">
+<h2><strong>Concepts Used:</strong><a class="headerlink" href="#concepts-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Identity_matrix">Identity Matrix</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Radix">Radix</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Index_origin">Index Origin</a> - Generating Functions with that work with 0 or 1 origin</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Ravel_order">Ravel Order</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Outer_Product">Outer Product</a> <code class="docutils literal notranslate"><span class="pre">∘.</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_multiplication">Matrix Multiplication</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Prefix">Vector Prefix</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Complex_number">Complex Numbers</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Phase_(waves)">Phase</a></p></li>
+</ul>
+</section>
+<section id="transcript">
+<h2><strong>Transcript:</strong><a class="headerlink" href="#transcript" title="Link to this heading">#</a></h2>
+<p>Welcome to this episode of the apl quest see APL wiki for details. Today’s quest is generating an identity matrix of order n. It’s a very simple task, but there are a lot of interesting ways we can do this. Let’s get started with some serious solutions and then look at some more fun innovative solutions after that.</p>
+<p>The first thing we can do is that we have a number n. Let’s, for argument, say that n is five and we want to make a matrix that is five by five. So we can calculate n to itself, giving us five by five.</p>
+<p>Next up, we can generate all the indices of an array of shape five five, and we can take these indices and look at where the horizontal and vertical index are the same by comparing each. This gives us our identity matrix. However, we can do this in a simpler way. We only need to generate the indices until n and then make an inequality table using the outer product and the selfie or commute operator to use the same indices on both sides of the quality. In fact, this is our simplest solution. So just the outer product selfie on the indices.</p>
+<p>It isn’t a very efficient solution, however, because we are comparing a lot of numbers in general that we have generated when we actually know where the ones are going to be in advance. So what we can do is we can start off by creating an empty matrix of zeros. So we take n and use that twice to reshape zero. This gives us a big empty vector like this, an empty matrix like this. No, it’s not empty. It has a big zero matrix like this.</p>
+<p>Then we can use dyadic transpose, which selects the um, it can collapse dimensions so that we get diagonals. We can illustrate this by saying 5 5 reshape iota 25, and then we can use the attic transpose mapping both dimensions to a single dimension, and that gives us the compromise between them diagonal.</p>
+<p>Now we can use this with a selective assignment. We say one one transpose of s gates one, and the one that gets distributed over the entire s. And now s has been updated to become an identity matrix. We can put this into a function as s gets omega omega reshape zero, and then the diagonal of s gets one, and then return that s. And we can now give it the argument five fine.</p>
+<p>This is verbose, but it works. It doesn’t have the best performance necessarily, and it’s a bit awkward because we have to have this middle statement where we update s before we then return s. We can also use the add operator to do something similar. We can start off by generating all the indices that need to be set to 1.</p>
+<p>How can we do this? Well, if we start with this iota n in our case, then we know that it is the elements of position one one, two two, three three, four four, and that need to be set to one. So what we can do is we concatenate selfie concatenate to itself each one of them, and these are the indices that we need to set to one. And then we can use this, setting one at those indices in the array that is n and reshape zero, and that will give us an identity matrix.</p>
+<p>We could also use these indices in a different way, and namely we could say, “Give me a boolean matrix that has ones in those positions.” So where are all the ones in the boolean matrix? It’s magnetic iota underbar, and the inverse we can use power negative one on that, and that gives us an identity matrix as well.</p>
+<p>There are even more things that we could do along these lines. Instead of using a matrix, we can use a vector. The way we can do that is by observing that this is kind of an encoding of in in a special radix. So we want ones, and then when we do things like that, we need to set coordinate to zero, otherwise, it becomes too complicated.</p>
+<p>What we can do is we have the indices iota n here, and then we can multiply those by n, and so this corresponds to, let’s see, number zero is this element, and number five is this element, and number ten is this element in revel order. However, we need to offset one for each one, so if you take these indices and add them to this, that gives us in revel order that diagonal. We can actually see this if we say 5 5 reshape by yo to 25. We can see that 0, 6, 12, 18, 24, those are diagonals.</p>
+<p>Once we have those, we can then use the add operator as before. So we can set the ones at that in a vector, which is zero reshaped to the shape of n squared, and this is our flattened identity matrix. Now we can take the proper shape and reshape it, and we get our identity matrix.</p>
+<p>Let’s change back to quarter one index origin one and then actually do some of the best performing solutions. We can observe similar to what we’ve done now. We can see that there are exactly n zeros onto the next one, and then again n zeros to the next one. So what we can do is we can begin with a one followed by n zeros, and then we can reshape that cyclically into our full shape. We’ll use n here, and this is almost as good as it gets.</p>
+<p>There’s one problem for a very large n, and we create a boolean vector of all zeros. And by inserting one at the beginning, it gives us sub-optimal performance because we need to copy this entire array one step over, shifting everything by one bit to insert that leading bit. How can we avoid that? Well, we can use overtake. So if we say <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">take</span></code> of one, it pads with additional zeros at the end. And the only thing we need to do here is really adding n plus one, and this gives us the full row. And now we can reshape into that shape.</p>
+<p>This is going to be the best it gets. We can put this into a function as <code class="docutils literal notranslate"><span class="pre">omega</span> <span class="pre">omega</span> <span class="pre">reshape</span> <span class="pre">omega</span> <span class="pre">plus</span> <span class="pre">one</span> <span class="pre">take</span> <span class="pre">one</span></code>. We can also make this into a tested form, and we can play some tricks there. Let’s split up the problem <code class="docutils literal notranslate"><span class="pre">omega</span> <span class="pre">omega</span></code> that is the self-concatenation of the argument. Then we reshape that, and then we want the argument plus one.</p>
+<p>So we can tie or bind a 1 to plus, making a magnetic function. So that’s an increment function, and we use that to take from. Well, we need a 1 here, but we can’t have 1 at the end of a tested function because it’s a constant, not a function. We can transform it into a function using the constant operator, so we can try this as well, and that works. And then for a little bit of trickery, we can actually avoid this construct of one constant by observing that the sine of five is one, and the problem was that we needed on the right hand to have a function, not a constant.</p>
+<p>So this is a function applied to any number that’s relevant, and we get one. If we want the zero by zero, it doesn’t matter that the sine of zero is zero. It will still work because it becomes an empty array, so we can do this. We can say <code class="docutils literal notranslate"><span class="pre">i5</span></code> like this. Another possibility is observing that how many elements are there in a single number? There’s only one, and that applies even to zero.</p>
+<p>So we can do that as well. This is the fastest solution that we’re going to get. This is a proper solution, whether you want to use a tested form or a defend. It should be about the same performance.</p>
+<p>Now onto some more fun and innovative solutions that we could do. Remember again that we needed a single one followed by n zeros, and we can actually do that using expand. So if we have a one representing that we want <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">1</span></code> and then we have negative n representing n fill elements, we can use that with the expand function on a single one to get the same thing, and then we can reshape that to our identity matrix.</p>
+<p>We can write this in a tested form, and so this is again the self-concatenation, reshapes one expanded by one followed by the negation, and it works for zero as well. What happens in the zero case is negation of zero is zero, so we get <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">0</span></code>. That means we expand one as a single one with no fill elements, reshape that to <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span></code>, and we have an empty numeric matrix, so that works as well.</p>
+<p>Here’s one that almost always works. There is an astronomically small probability that it won’t work, but it is rather fun. Let’s say we have a matrix of random numbers. So with the zero as argument, <code class="docutils literal notranslate"><span class="pre">?</span></code> gives us random floats between zero and one. They won’t be zero, they won’t be one, and it’s exceedingly unlikely that we’ll have duplicates here.</p>
+<p>Of course, now if this is a matrix, then there must exist a matrix such that <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">*</span> <span class="pre">m</span></code> (multiplication here means matrix multiplication) will give us… but in traditional mathematics, just <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">*</span> <span class="pre">m</span></code> will give us the matrix itself, and that is the identity matrix.</p>
+<p>Now, if we move things around in this equation, we’ll find that dividing the matrix by itself should give us the identity matrix. And indeed, that is so. So we can do m matrix divide with m, and that gives us an identity matrix. We can write the whole thing as matrix division selfie on the random numbers of the self-concatenation of zero (here’s a constant zero). You can try this, and it works.</p>
+<p>Similar to what we did with sine and tally to get a 1, there’s also a function which, for a single number (a scalar), gives 0, and that is the depth function. So we can go up and amend our function to this very obscure looking thing which works just fine and is very, very inefficient because API will have to solve an equation system every time we generate an identity matrix. But hey, it’s fun, right?</p>
+<p>Here’s another one which is very, very inefficient. Let’s think about this: we’ve got the indices up to n. If we subtract these from n itself, that gives us descending powers from four down to zero, raised two to the power of that, and we’ve got descending powers of two. And now, if we go up and look in our identity matrix, then we can see that the first column is 16 spelled out in binary, and the second column is 8 spelled out in binary, and 4 and 2 and 1. So this means that if we represent all these numbers in base 2, then we would get the identity matrix.</p>
+<p>So we could do something like this which auto-sizes, but we already know that we want n bits, so we can say n nreship2 encode on that, and that works as well. And then we can make the whole thing tacit by saying that it is the reshape of two. So this is a magnetic function which reshapes two encodes 2 to the power of the argument minus iota on the argument, so this works just fine but again, very inefficient doing base conversions when we just want to create an identity matrix. But fun!</p>
+<p>Okay, a little bit more fun. We can generate the negative indices, and then we can overtake like we did before on a1, so each one of these will be used to take from a1. It takes from the rear padding, zeroes us at the front. Oops, that was too much - missing an each there. There we go. And now we just need to stack them up on top of each other, and there are various ways we could do that. We can mix or we could use the rank operator. So we want to pair these up, we need to do take pair these up with one and then it mixes everything together, so that works as well. And now we can put all this together to create a tested function.</p>
+<p>So we have the negation of iota take rank 0 on… remember how to get a 1 without using literal one? We could use tally, for example, so this should work as well. And here’s our density matrix in the rather roundabout way.</p>
+<p>Another thing we can use is scan. So we can get normally prefixes of a vector like this, and if we instead of concatenate (this is a cumulative concatenation), we do a cumulative swapped concatenation, then we get these reversed prefixes instead. If we can have a way to get reverse prefixes and we have a way to get one followed by a bunch of zeros, then these give us our rows, and we just need to mix.</p>
+<p>So we can write this as an as a function the conclusion swapped scan and off the take of one so this is an end take one and then we mix that then we just need to put and a top here so we have two functions after each other and here we got our identity function in a very roundabout manner but lots of fun again.</p>
+<p>Now let’s move over to the key operator which we can also use for this. We can generate our our indices like this and then we can ask the key operator what are the indices so let’s put it like this but now so this is saying index one is found or the number one is found at position one the number two is filter under position two only number three is found at position three that means the alpha here is one and omega is what f plus 2 omega is 2 and so on. Now we can use take here and that gives us these vectors and we can see how where we’re going with this. We can then reverse this and now we just have the problem of the sign so we can take the sign of all of this and we need to stack them on top of each other as well.</p>
+<p>So we could mix it like this but there’s a better way but not enclosing them we already get the mix for free and now we just need to get the sign here and then we can make this tacit because it fits very nicely it is the reversal on top of the taking of these two arguments and that gives us our identity matrix. It’s not quite a function yet but we can make it so by combining the key with the indices and now we have our identity matrix generator in a totally obscure way that nobody will be able to understand.</p>
+<p>Don’t do this in production code. Let’s make it worse. Let’s start again with this construct and here we are only interested in the right argument so that gives us these vectors of um indices one by itself two beta three beta four by five by itself and remember we used the uh iota underbar the where inverse to generate a boolean array and that has ones in those positions there’s only one position in each one but we can still do this so this gives us these vectors and yes you recognize this remove the enclosure and we’ve got our identity matrix.</p>
+<p>We can combine this. We can make the operand test it simply by saying that it’s this where inverse on top of the right argument we have to have that because there’s a left argument as well and so this is our function and that works again don’t do this in production code but it sure is fun to look at.</p>
+<p>Then somebody asked during the live chat event if we can’t use complex numbers for this, and of course, we can use complex numbers for this. Okay, let’s get started. So we have these indices, and let’s make a table of complex numbers. So we do the other product of the real part plus the imaginary part, so we multiply the imaginary units with these indices. Oops, there shouldn’t be n here; it should be that, and that gives us a complex number table.</p>
+<p>So this is 1 + 1i, 2 + 1i, 1 + 2i, 1 + 3i, next row 2 + 1i, and so on. And now what we need to do is we want to find out the ones that are down the diagonal and both actually down the diagonal. We can kind of see the angle of them, but it also happens to be that in a complex plane, these will have an angle or also known as the argument, which is 45 degrees or a quarter of pi. So we can ask for the argument of that, and we can see that going down the diagonal, they all have that 0.785 and so on. Now we can multiply that by, or rather, sorry, divide pi by that, so the same thing as taking the reciprocal and multiplying by pi, and then you can see that gives four. And now we can say where is 4 equal to that, and that gives us our identity matrix.</p>
+<p>So this is our full function. We could either do iota omega here, or we could just use omega and put iota outside that as in the top, and we’ve got our identity matrix producing function here in a terrible way using complex numbers. And as if that wasn’t enough, let’s go in and modify this a bit. Starting again from here with our table of complex numbers, we can also ask what is the absolute value or the magnitude of these numbers. And since they are on the 45-degree angle, that means that the horizontal and vertical parts in this right-angle triangle are equal to each other. That means that the diagonal’s length has to be a multiple of the square root of 2. So we can ask what is the divisional remainder when these numbers are divided by the square root of 2, and if there is no remainder, then we are on the diagonal, so we can compare this with zero, and we get our identity matrix using complex numbers.</p>
+<p>That’s enough fun, and what you should do, of course, is use the solution where we take the argument twice, reshape with one plus the argument to take over of and of one, or you can use the tested version where it’s a self-concatenation of the reshape of the incremented number take off one or as a constant, or you can use the sign or the tally if you really want to go there. But these would be the industrial strength versions. You can also go up, and if you don’t like parentheses like I personally don’t do, then you can swap the arguments of this take as well. That’s perfectly acceptable as well. Thank you for watching.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2013/old"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-solutions"><strong>Example Solutions:</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a"><strong>A</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-equailty-table-using-same-indeces-for-both-sides"><strong>B</strong> - Equailty Table using same indeces for both sides</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-assign-to-diagonal"><strong>C</strong> - Assign to diagonal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-amend-at-i-i">D - amend at (i,i)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-1s-at-i-i">E - 1s at (i,i)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f">F</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#industrial-versions">Industrial Versions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b">B</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-tacit">C - Tacit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-signum">D  - Signum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#e-tally">E - Tally</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expand">Expand</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">B</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-matrix-multiplication">Matrix - Matrix Multiplication</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">B</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#base-conversion">Base conversion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">A</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overtake-mix-and-scan">Overtake, Mix and Scan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">B</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-operator">Key Operator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">B</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#complex-numbers">Complex Numbers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">A</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comment"><strong>Comment:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used"><strong>Glyphs Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used"><strong>Concepts Used:</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript"><strong>Transcript:</strong></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

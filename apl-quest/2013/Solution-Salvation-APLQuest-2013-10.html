@@ -1,0 +1,996 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Solution Salvation 2013-10 &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ae78d91f" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2013/Solution-Salvation-APLQuest-2013-10';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="APL Quest 2014" href="../2014/index.html" />
+    <link rel="prev" title="It’s a moving experience 2013-9" href="It-Isa-Moving-Experience-APLQuest-2013-9.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">APL Quest 2013</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping Things In Balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Go-Forth-And-Multiply-APLQuest-2013-8.html">Go forth and Multiply 2013-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Solution Salvation 2013-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2014/index.html">APL Quest 2014</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2014/It-Is-All-Right-APLQuest-2014-1.html">It Is All Right 2014-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/How-Tweet-It-Is-APLQuest-2014-2.html">How Tweet It Is 2014-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Tell-a-Fib-APLQuest-2014-3.html">Tell A Fib 2014-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Space-The-Final-Frontier-APLQuest-2014-4.html">Space The Final Frontier 2014-4</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../2014/Mirror-Mirror-APLQuest-2014-5.html">Mirror Mirror 2014-5</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../2014/Revolutionary-Thinking-APLQuest-2014-7.html">Revolutionary Thinking 2014-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Go-The-Distance-APLQuest-2014-8.html">Go The Distance 2014-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Going-Ballistic-APLQuest-2014-9.html">Going Ballistic 2014-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Sales-Are-Up-APLQuest-2014-10.html">Sales Are Up 2014-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2015/index.html">APL Quest 2015</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Nag-A-Ram-APLQuest-2015-1.html">APL Quest: Anagrams Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Longest-Streak-APLQuest-2015-2.html">APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Farey-Tales-APLQuest-2015-3.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Progessive-Dyadic-Iota-APLQuest-2015-4.html">APL Quest Cap Wiki: Progressive Dyadic Iota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.html">APL Quest: Standard Deviation Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.html">APL Quest: Problem Six Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Justin-Upper-Case-APLQuest-2015-7.html">APL Quest: Problem 7 from the 2015 APL Problem Solver Competition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html">APL Quest: Swapping Interior Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Blazing-A-Trail-APLQuest-2015-10.html">API Quest: Generating a Centered Pascal’s Triangle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2016/index.html">APL Quest 2016</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mean-APLQuest-2016-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Median-APLQuest-2016-2.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mode-APLQuest-2016-3.html">Welcome to APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.html">Welcome to the Appeal Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Shorter-Onestothe-Front-APLQuest-2016-6.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/3-sand-5-s-APLQuest-2016-7.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Separating-Outthe-Negative-APLQuest-2016-8.html">APL Quest: 8th Quest Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Delimited-Text-APLQuest-2016-9.html">APL Quest: Delimiter Splitting Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Order-Total-APLQuest-2016-10.html">Welcome to the APL Quest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2017/index.html">APL Quest 2017</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2017/What-an-Odd-Bunch-APLQuest-2017-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Good-Evening-APLQuest-2017-2.html">Ensure Odd Numbers Become Even Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Miss-Quoted-APLQuest-2017-3.html">Removing Text Between Double Quotes Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Slices-of-Pies-APLQuest-2017-4.html">Computing Areas of Circle Sectors Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/DNA-APLQuest-2017-5.html">Checking Character Vectors for Valid Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/k-mers-APLQuest-2017-6.html">Chopping Text into Sequences of a Given Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Counting-DNANucleotides-APLQuest-2017-7.html">Counting Letters in a String: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Be-the-First-1-APLQuest-2017-8.html">Understanding Boolean Vector Processing in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Double-Trouble-APLQuest-2017-9.html">Finding Locations of Identical Characters in Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Squaring-Off-APLQuest-2017-10.html">Fitting Elements into a Square Array</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2018/index.html">APL Quest 2018</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Oh-Say-Can-You-See-APLQuest-2018-1.html">Counting Visible Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Number-Splitting-APLQuest-2018-2.html">Splitting Numbers into Integer and Fractional Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Rolling-Along-APLQuest-2018-3.html">Simulating Dice Rolls and Analyzing Outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-APLQuest-2018-4.html">Converting Gregorian Year Numbers to Chinese Zodiac Animals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-Revisited-APLQuest-2018-5.html">Computing Zodiac Signs from Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Angle-APLQuest-2018-6.html">A Simple Test for XML Validity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Unconditionally-Shifty-APLQuest-2018-7.html">Shifting Boolean Data: An Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Makinga-Good-Argument-APLQuest-2018-8.html">Validating Dyadic Transpose Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Earlier-Later-or-the-Same-APLQuest-2018-9.html">Comparing Dates in APL: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Anagrammatically-Correct-APLQuest-2018-10.html">Comparing Two Character Vectors: An Anagram Checker</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2019/index.html">APL Quest 2019</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Chunky-Monkey-APLQuest-2019-1.html">Chunking a List into Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Makingthe-Grade-APLQuest-2019-2.html">Converting Scores into Letter Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Grade-Distribution-APLQuest-2019-3.html">Compiling Simple Statistics on Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Knight-Moves-APLQuest-2019-4.html">Understanding the Movement of a Chess Knight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Doubling-Up-APLQuest-2019-5.html">Checking for Consecutive Identical Letters in Words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Telephone-Names-APLQuest-2019-6.html">Translating Telephone Numbers from Digits and Letters to Plain Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/In-the-Center-of-it-All-APLQuest-2019-7.html">Centering Words in a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Goingthe-Distance-APLQuest-2019-8.html">Computing the Distance Around a Path Defined by Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Area-Code-Gauss-APLQuest-2019-9.html">Calculating the Area of a Polygon Using the Shoelace Formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Odds-Evens-APLQuest-2019-10.html">Splitting a List of Words by Length</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2020/index.html">APL Quest 2020</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Lets-Split-APLQuest-2020-1.html">Understanding Vector Partitioning in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Character-Building-APLQuest-2020-2.html">Understanding Byte Sequences and UTF-8 Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Excel-lent-Columns-APLQuest-2020-3.html">Understanding Column Label Conversion in Spreadsheet Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Takea-Leap-APLQuest-2020-4.html">Understanding Leap Years: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Steppinginthe-Proper-Direction-APLQuest-2020-5.html">Generating Inclusive Integer Ranges in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Movetothe-Front-APLQuest-2020-6.html">Moving Elements in a Numeric Vector to the Front in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/See-Youina-Bit-APLQuest-2020-7.html">Checking Bit States in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Zigzag-Numbers-APLQuest-2020-8.html">Analyzing Alternating Digit Growth in Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Riseand-Fall-APLQuest-2020-9.html">Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Stacking-It-Up-APLQuest-2020-10.html">Emulating APL Array Printing Behavior</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2021/index.html">APL Quest 2021</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Are-You-a--Bacteria-APLQuest-2021-1.html">Calculating Percentage of Characters in a DNA String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Index-Of-Modified-APLQuest-2021-2.html">Creating a Cover for the Dyadic Iota in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Multiplicity-APLQuest-2021-3.html">Grouping Integers by Divisibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Square-Peg-Round-Hole-APLQuest-2021-4.html">Finding the Difference in Area Between an Inscribed Square and Its Circumscribing Circle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Rect-ify-APLQuest-2021-5.html">Finding Rectangle Dimensions with Given Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Fischer-Random-Chess-APLQuest-2021-6.html">Chess Setup Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Can-You-Feelthe-Magic-APLQuest-2021-7.html">Checking for Magic Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Timeto-Makea-Difference-APLQuest-2021-8.html">Calculating Absolute Time Difference in Minutes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Inthe-Long-Run-APLQuest-2021-9.html">Finding the Longest Consecutive Sequence in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Onthe-Right-Side-APLQuest-2021-10.html">Justified Text Transformation in APL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2022/index.html">APL Quest 2022</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Counting-DNA-Nucleotides-APLQuest-2022-1.html">Counting DNA Letters in a Character Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Attackofthe-Mutations-APLQuest-2022-2.html">Comparing DNA Strings: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Uniquely-Qualified-APLQuest-2022-3.html">Finding the Symmetric Difference Between Two Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Inthe-Long-One-APLQuest-2022-4.html">Finding the Longest Run of Ones in a Boolean Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Stairwayto-Heaven-APLQuest-2022-5.html">Building a Staircase in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Pyramid-Scheme-APLQuest-2022-6.html">Constructing Concentric Rings of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Just-Golfing-Around-APLQuest-2022-7.html">Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Lets-Split-APLQuest-2022-8.html">Splitting Text in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html">Calculating the Window Average of a List of Numbers in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Separation-Anxiety-APLQuest-2022-10.html">Inserting Separators in Large Integers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2023/index.html">APL Quest 2023</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Elimination-Sort-APLQuest-2023-1.html">Removing Non-Decreasing Elements from a List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Put-It-In-Reverse-APLQuest-2023-2.html">Finding End Points of One Array in Another</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Caesar-Salad-APLQuest-2023-3.html">Implementing a Simple Caesar Cipher for Uppercase Characters and Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Like-a-Version-APLQuest-2023-4.html">Comparing Version Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Risky-Business-APLQuest-2023-5.html">Understanding Dice Mechanics in Risk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Key-Value-Pairs-APLQuest-2023-6.html">Parsing Key-Value Pairs into a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Lets-Be-Rational-APLQuest-2023-7.html">Finding a Reduced Fraction for a Given Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Critical-Thinking-APLQuest-2023-8.html">Computing the Next Double Critical Day</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Flipping-Pairs-APLQuest-2023-9.html">Interchanging Adjacent Elements in a Multi-Dimensional Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Partition-witha-Twist-APLQuest-2023-10.html">APL Quest: Splitting Text on Spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dyalog/index.html">Jupyter notebooks for Dyalog APL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/APL-Expressions.html">APL Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Arithmetic-Functions.html">Arithmetic Fuctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Boolean-Functions-and-Boolean-Algebra.html">Boolean functions</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Boolean-Scans-and-Reductions.html">Boolean Scans and Reductions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Calculus.html">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Comparison-Functions.html">Comparison functions <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">≤</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> <code class="docutils literal notranslate"><span class="pre">≥</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">≠</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Grading-and-Sorting.html">Grading and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/hashtables.html">Hash tables in Dyalog APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Justifying-Text.html">Justifying Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Linear-Fitting.html">Linear Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Lookup-Without-Replacement.html">Lookup without Replacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Maths-versus-APL.html">Maths versus APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Modifying-Rank-and-Depth.html">Modifying rank and depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v14.html">Tally <code class="docutils literal notranslate"><span class="pre">≢</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v15.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪/</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v16.html">Monadic function <code class="docutils literal notranslate"><span class="pre">⍸</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v17.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Plotting-with-SharpPlot.html">Plotting with SharpPlot</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Random-Numbers.html">Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Reduce-and-Scan.html">Reduce and Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Sudoku-Solver.html">Sodoku Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Tacit-Techniques.html">Tacit Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Using-the-TryAPL-Tutorials.html">TryAPL tutorial system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Your-First-Mandelbrot-Set.html">Mandelbrot Set</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2013/Solution-Salvation-APLQuest-2013-10.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Solution Salvation 2013-10</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro">Intro</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-equation-system">Setting Up the Equation System</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-missing-values">Finding the Missing Values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-solutions"><strong>Basic Solutions</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-solutions">Advanced Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hotelling-bodewig-scheme"><strong>Hotelling-Bodewig Scheme</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#soleymani-method">Soleymani method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combined-hotelling-bodewig-and-soleymani-method"><strong>Combined Hotelling-Bodewig and Soleymani Method</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-jordan-elimination"><strong>Gauss-Jordan Elimination</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#old-style-apl-matrix-inversion"><strong>Old-style APL Matrix Inversion</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="solution-salvation-2013-10">
+<h1><a class="reference external" href="https://apl.quest/psets/2013.html?goto=P10_Solution_Salvation">Solution Salvation 2013-10</a><a class="headerlink" href="#solution-salvation-2013-10" title="Link to this heading">#</a></h1>
+<p><strong>Problem:</strong> Write a <a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a> to produce a vector of the first n odd numbers.</p>
+<p><strong>Video:</strong> <a class="reference external" href="https://www.youtube.com/watch?v=w-rzx2VNqbY">https://www.youtube.com/watch?v=w-rzx2VNqbY</a></p>
+<p><strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2013/10.apl">abrudz/apl_quest</a></p>
+<p>Hello and welcome to this APL quest! In today’s episode, we’re tackling the last problem from the 2013 round of the APL problem-solving competition. The objective is straightforward: we are given a set of linear equations and their corresponding results, and we need to find the values of the variables.</p>
+<section id="intro">
+<h2>Intro<a class="headerlink" href="#intro" title="Link to this heading">#</a></h2>
+<section id="setting-up-the-equation-system">
+<h3>Setting Up the Equation System<a class="headerlink" href="#setting-up-the-equation-system" title="Link to this heading">#</a></h3>
+<p>Let’s start by creating a simple example of a system of equations with three variables:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((4x + 1y + 1z = 2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((2x + 2y + 2z = 6)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((6x + 3y + 1z = 4)\)</span></p></li>
+</ul>
+<p>A potential solution for this system could be:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((x = -1)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((y = 3)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((z = 1)\)</span></p></li>
+</ul>
+<p>We can verify this by substituting the values back into the equations and calculating the results.</p>
+<p>The equations simplify to:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((4 \times (-1) + 1 \times 3 + 1 \times 1 = 2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((2 \times (-1) + 2 \times 3 + 2 \times 1 = 6)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((6 \times (-1) + 3 \times 3 + 1 \times 1 = 4)\)</span></p></li>
+</ul>
+<p>Indeed, these yield the correct outcomes.</p>
+</section>
+<section id="finding-the-missing-values">
+<h3>Finding the Missing Values<a class="headerlink" href="#finding-the-missing-values" title="Link to this heading">#</a></h3>
+<p>The next step is to compute the values of (x, y,) and (z) without knowing them a priori. We know the results (2, 6,) and (4), and we can express our goal as finding a vector (v) such that:</p>
+<p><span class="math notranslate nohighlight">\([ M \cdot v = R ]\)</span></p>
+<p>Where (M) represents the matrix of coefficients and (R) represents our results.</p>
+</section>
+</section>
+<section id="basic-solutions">
+<h2><strong>Basic Solutions</strong><a class="headerlink" href="#basic-solutions" title="Link to this heading">#</a></h2>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">M</span><span class="kd">←</span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="o">⍴</span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span>
+<span class="nv">r</span><span class="kd">←</span><span class="m">2</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">4</span>
+<span class="nv">v</span><span class="kd">←</span><span class="m">¯1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span>
+
+<span class="nv">v</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="nv">r</span><span class="w"> </span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍣</span><span class="m">¯1</span><span class="na">⍨</span><span class="w"> </span><span class="nv">M</span>
+<span class="nv">v</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="nv">r</span><span class="w"> </span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍨∘</span><span class="o">⌹</span><span class="w"> </span><span class="nv">M</span>
+<span class="nv">v</span><span class="w"> </span><span class="o">≡</span><span class="w"> </span><span class="nv">r</span><span class="w"> </span><span class="o">⌹</span><span class="w"> </span><span class="nv">M</span>
+</pre></div>
+</div>
+<p>These are three equivalent primitive APL solutions for solving a set of linear equations:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">v</span> <span class="pre">≡</span> <span class="pre">r</span> <span class="pre">+.×⍣¯1⍨</span> <span class="pre">M</span></code>: This uses the inverse of matrix multiplication.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">+.×</span></code> is the inner product (matrix multiplication)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍣¯1</span></code> applies the inverse of the function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍨</span></code> swaps the arguments</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">v</span> <span class="pre">≡</span> <span class="pre">r</span> <span class="pre">+.×⍨∘⌹</span> <span class="pre">M</span></code>: This uses explicit matrix inversion.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⌹</span></code> is the matrix inverse operator</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">∘</span></code> composes the matrix multiplication with the inverse</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍨</span></code> swaps the arguments</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">v</span> <span class="pre">≡</span> <span class="pre">r</span> <span class="pre">⌹</span> <span class="pre">M</span></code>: This uses the built-in linear equation solver.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⌹</span></code> when used dyadically solves the system of linear equations</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="advanced-solutions">
+<h2>Advanced Solutions<a class="headerlink" href="#advanced-solutions" title="Link to this heading">#</a></h2>
+<section id="hotelling-bodewig-scheme">
+<h3><strong>Hotelling-Bodewig Scheme</strong><a class="headerlink" href="#hotelling-bodewig-scheme" title="Link to this heading">#</a></h3>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Hotelling-Bodewig scheme:</span>
+<span class="c1">⍝ Vᵢ₊₁ = Vᵢ(2I−AVᵢ)</span>
+<span class="c1">⍝ Vᵢ₊₁ = 2Vᵢ−VᵢAVᵢ</span>
+<span class="c1">⍝ Vᵢ₊₁ = Vᵢ+Vᵢ−VᵢAVᵢ</span>
+<span class="w"> </span><span class="nv">Vi</span><span class="o">+</span><span class="nv">Vi</span><span class="o">-</span><span class="nv">Vi</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="nv">A</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="nv">Vi</span>
+<span class="w"> </span><span class="nv">A</span><span class="p">(</span><span class="o">⊢+⊢-⊢+</span><span class="na">.</span><span class="o">×+</span><span class="na">.</span><span class="o">×</span><span class="p">)</span><span class="nv">Vi</span>
+<span class="w"> </span><span class="o">⊢</span><span class="p">(</span><span class="o">⊢+⊢-⊢+</span><span class="na">.</span><span class="o">×+</span><span class="na">.</span><span class="o">×</span><span class="p">)</span><span class="na">⍣</span><span class="o">≡</span>
+<span class="c1">⍝ https://codegolf.stackexchange.com/a/213953</span>
+</pre></div>
+</div>
+<p><strong>Overview</strong></p>
+<p>The Hotelling-Bodewig algorithm is an iterative method for refining an initial approximation of a matrix’s inverse. The method is defined by the iteration formula:</p>
+<p><span class="math notranslate nohighlight">\(𝑉𝑖+1 = 𝑉𝑖(2𝐼 − 𝐴𝑉𝑖)\)</span></p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(𝑉𝑖\)</span> is the current approximation of the inverse of matrix 𝐴</p></li>
+<li><p><span class="math notranslate nohighlight">\(𝑉𝑖+1\)</span> is the next approximation</p></li>
+<li><p><span class="math notranslate nohighlight">\(𝐼\)</span> is the identity matrix</p></li>
+</ul>
+<p>The process continues iteratively until <span class="math notranslate nohighlight">\(𝑉𝑖\)</span> converges to <span class="math notranslate nohighlight">\(𝐴⁻¹\)</span>, the true inverse of the matrix 𝐴.</p>
+<p>This formulation is equivalent to the previously given formula, but expressed in a more compact form. It directly shows how each iteration refines the approximation by multiplying the current estimate 𝑉𝑖 with a correction term (<span class="math notranslate nohighlight">\(2𝐼 − 𝐴𝑉𝑖\)</span>).</p>
+<ol class="arabic simple">
+<li><p>Start with the mathematical formula</p></li>
+<li><p>Rearrange terms</p></li>
+<li><p>Express in APL notation</p></li>
+<li><p>Create a tacit function using trains</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍣≡</span></code> applies the function on its left until the result doesn’t change. Because of the way [equality testing works](https://help.dyalog.com/18.0/Content/Language/System Functions/ct.htm) in Dyalog APL, this terminates.</p></li>
+</ol>
+</section>
+<section id="soleymani-method">
+<h3>Soleymani method<a class="headerlink" href="#soleymani-method" title="Link to this heading">#</a></h3>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Soleymani V₀:</span>
+<span class="c1">⍝ Mᵀ÷tr(MMᵀ)</span>
+<span class="o">+</span><span class="na">/</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="o">⍉+</span><span class="na">.</span><span class="o">×</span><span class="na">∘</span><span class="o">⍉</span><span class="na">⍨</span><span class="nv">M</span><span class="w"> </span><span class="c1">⍝ tr(MMᵀ) Explicit matrix multiplication and diagonal sum</span>
+<span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="o">⍉</span><span class="kt">{</span><span class="bp">⍺</span><span class="s1">&#39;+&#39;</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">.</span><span class="kt">{</span><span class="bp">⍺</span><span class="s1">&#39;×&#39;</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">∘</span><span class="o">⍉</span><span class="na">⍨</span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="o">⍴⍳</span><span class="m">9</span><span class="w"> </span><span class="c1">⍝ Symbolic representation of the operation</span>
+<span class="o">+</span><span class="na">/</span><span class="o">×</span><span class="na">⍨</span><span class="o">,</span><span class="nv">M</span><span class="w"> </span><span class="c1">⍝ Sum of squared elements</span>
+<span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍨</span><span class="o">,</span><span class="nv">M</span><span class="w"> </span><span class="c1">⍝ Inner product of raveled matrix with itself</span>
+<span class="p">(</span><span class="o">,+</span><span class="na">.</span><span class="o">×,</span><span class="p">)</span><span class="nv">M</span><span class="w"> </span><span class="c1">⍝ Compressed notation for the same operation</span>
+<span class="p">(</span><span class="o">⍉÷,+</span><span class="na">.</span><span class="o">×,</span><span class="p">)</span><span class="nv">M</span><span class="w"> </span><span class="c1">⍝ Complete initial guess calculation</span>
+<span class="c1">⍝ https://www.opuscula.agh.edu.pl/vol33/2/art/opuscula_math_3322.pdf</span>
+</pre></div>
+</div>
+<p>The Soleymani method is an advanced iterative technique designed to solve ill-conditioned linear systems of equations. These systems are challenging because small changes in the input can lead to large changes in the output, making traditional methods less reliable.</p>
+<p><strong>Problem Statement</strong></p>
+<p>Consider the linear system:</p>
+<p><span class="math notranslate nohighlight">\(Ax = b\)</span></p>
+<p>Where:</p>
+<ul class="simple">
+<li><p>A is an n × n ill-conditioned matrix</p></li>
+<li><p>x is the unknown vector</p></li>
+<li><p>b is the known right-hand side vector</p></li>
+</ul>
+<p><strong>Iterative Formula</strong></p>
+<p>The Soleymani method uses the following iterative formula:</p>
+<p><span class="math notranslate nohighlight">\(x_{k+1} = x_k - (2I - AA^T)A^T(Ax_k - b)\)</span></p>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x_k\)</span> is the kth iteration approximation of the solution</p></li>
+<li><p><span class="math notranslate nohighlight">\(I\)</span> is the identity matrix</p></li>
+<li><p><span class="math notranslate nohighlight">\(A^T\)</span> is the transpose of A</p></li>
+</ul>
+<p><strong>Initialization and Convergence</strong></p>
+<ol class="arabic simple">
+<li><p>Start with an initial guess <span class="math notranslate nohighlight">\(x_0\)</span> (often the zero vector or another reasonable starting point)</p></li>
+<li><p>Iterate until a convergence criterion is met, e.g., <span class="math notranslate nohighlight">\(||Ax_k - b|| &lt; ε\)</span> for some small <span class="math notranslate nohighlight">\(ε &gt; 0\)</span></p></li>
+</ol>
+<p><strong>APL Implementation of Initial Guess</strong></p>
+<p>The initial guess for the Soleymani method, V₀, is given by:</p>
+<p><span class="math notranslate nohighlight">\(V₀ = M^T ÷ tr(MM^T)\)</span></p>
+<p>Where <span class="math notranslate nohighlight">\(M^T\)</span> is the transpose of <span class="math notranslate nohighlight">\(M\)</span>, and <span class="math notranslate nohighlight">\(tr(MM^T)\)</span> is the trace of <span class="math notranslate nohighlight">\(MM^T\)</span>.</p>
+</section>
+</section>
+<section id="combined-hotelling-bodewig-and-soleymani-method">
+<h2><strong>Combined Hotelling-Bodewig and Soleymani Method</strong><a class="headerlink" href="#combined-hotelling-bodewig-and-soleymani-method" title="Link to this heading">#</a></h2>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Hotelling-Bodewig + Soleymani:</span>
+<span class="p">(</span><span class="o">⊢</span><span class="p">(</span><span class="o">⊢+⊢-⊢+</span><span class="na">.</span><span class="o">×+</span><span class="na">.</span><span class="o">×</span><span class="p">)</span><span class="na">⍣</span><span class="o">≡⍉÷,+</span><span class="na">.</span><span class="o">×,</span><span class="p">)</span><span class="nv">M</span><span class="w">              </span><span class="c1">⍝ ⌹M</span>
+<span class="nv">r</span><span class="p">(</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍨∘</span><span class="o">⊢</span><span class="p">(</span><span class="o">⊢+⊢-⊢+</span><span class="na">.</span><span class="o">×+</span><span class="na">.</span><span class="o">×</span><span class="p">)</span><span class="na">⍣</span><span class="o">≡⍉÷,+</span><span class="na">.</span><span class="o">×,</span><span class="p">)</span><span class="nv">M</span><span class="w">        </span><span class="c1">⍝ v⌹M</span>
+<span class="kt">{</span><span class="nv">r</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍨∘</span><span class="p">(</span><span class="o">⊢</span><span class="p">(</span><span class="o">⊢+⊢-⊢+</span><span class="na">.</span><span class="o">×+</span><span class="na">.</span><span class="o">×</span><span class="p">)</span><span class="na">⍣</span><span class="bp">⍵</span><span class="o">⍉÷,+</span><span class="na">.</span><span class="o">×,</span><span class="p">)</span><span class="nv">M</span><span class="kt">}</span><span class="na">⍤</span><span class="m">0</span><span class="o">⍳</span><span class="m">11</span><span class="w"> </span><span class="c1">⍝ show steps</span>
+</pre></div>
+</div>
+<p><strong>Matrix Inversion:</strong></p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">⊢</span><span class="p">(</span><span class="o">⊢+⊢-⊢+</span><span class="na">.</span><span class="o">×+</span><span class="na">.</span><span class="o">×</span><span class="p">)</span><span class="na">⍣</span><span class="o">≡⍉÷,+</span><span class="na">.</span><span class="o">×,</span><span class="p">)</span><span class="nv">M</span>
+</pre></div>
+</div>
+<p>This line combines the Hotelling-Bodewig iteration with Soleymani’s initial guess to compute the inverse of matrix M. Let’s break it down from right to left:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(⍉÷,+.×,)M</span></code>: This is Soleymani’s initial guess <span class="math notranslate nohighlight">\(V₀ = M^T ÷ tr(MM^T)\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(⊢+⊢-⊢+.×+.×)</span></code>: This is the Hotelling-Bodewig iteration step.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍣≡</span></code>: This applies the iteration until convergence.</p></li>
+<li><p>The outer <code class="docutils literal notranslate"><span class="pre">⊢</span></code> is used to make the function a monadic operator that takes M as its right argument.</p></li>
+</ul>
+<p><strong>Solving the Linear System:</strong></p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">r</span><span class="p">(</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍨∘</span><span class="o">⊢</span><span class="p">(</span><span class="o">⊢+⊢-⊢+</span><span class="na">.</span><span class="o">×+</span><span class="na">.</span><span class="o">×</span><span class="p">)</span><span class="na">⍣</span><span class="o">≡⍉÷,+</span><span class="na">.</span><span class="o">×,</span><span class="p">)</span><span class="nv">M</span>
+</pre></div>
+</div>
+<p>This line solves the linear system <span class="math notranslate nohighlight">\(Mx = r\)</span>, where r is the right-hand side vector. It’s similar to the previous line, but with these changes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">r</span></code> is prepended to multiply the result with the computed inverse.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">+.×⍨∘⊢</span></code> is inserted to perform the matrix-vector multiplication.</p></li>
+</ul>
+<p><strong>Showing Intermediate Steps:</strong></p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="kt">{</span><span class="nv">r</span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍨∘</span><span class="p">(</span><span class="o">⊢</span><span class="p">(</span><span class="o">⊢+⊢-⊢+</span><span class="na">.</span><span class="o">×+</span><span class="na">.</span><span class="o">×</span><span class="p">)</span><span class="na">⍣</span><span class="bp">⍵</span><span class="o">⍉÷,+</span><span class="na">.</span><span class="o">×,</span><span class="p">)</span><span class="nv">M</span><span class="kt">}</span><span class="na">⍤</span><span class="m">0</span><span class="o">⍳</span><span class="m">11</span>
+</pre></div>
+</div>
+<p>This line shows the intermediate steps of the iteration:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⍳11</span></code> generates a vector from 1 to 11.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍤0</span></code> applies the function to each element of this vector separately.</p></li>
+<li><p>The function is similar to the previous line, but <code class="docutils literal notranslate"><span class="pre">⍣≡</span></code> (iterate until convergence) is replaced with <code class="docutils literal notranslate"><span class="pre">⍣⍵</span></code>, where ⍵ is the current iteration count.</p></li>
+</ul>
+<p>This implementation elegantly combines the Hotelling-Bodewig scheme with Soleymani’s initial guess, providing an efficient method for matrix inversion and solving linear systems. The final line allows for visualization of the convergence process, which can be useful for understanding the algorithm’s behavior and performance.</p>
+</section>
+<section id="gauss-jordan-elimination">
+<h2><strong>Gauss-Jordan Elimination</strong><a class="headerlink" href="#gauss-jordan-elimination" title="Link to this heading">#</a></h2>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Adapted from https://dfns.dyalog.com/n_gauss_jordan.htm</span>
+<span class="nv">GaussJordan</span><span class="kd">←</span><span class="kt">{</span><span class="nf">⎕IO</span><span class="w"> </span><span class="nf">⎕ML</span><span class="kd">←</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w">               </span><span class="c1">⍝ Gauss-Jordan elimination</span>
+<span class="w">    </span><span class="nv">Elim</span><span class="kd">←</span><span class="kt">{</span><span class="w">                            </span><span class="c1">⍝ elimination of row/col ⍺</span>
+<span class="w">        </span><span class="nv">p</span><span class="kd">←</span><span class="bp">⍺</span><span class="o">+</span><span class="kt">{</span><span class="bp">⍵</span><span class="o">⍳⌈</span><span class="na">/</span><span class="bp">⍵</span><span class="kt">}</span><span class="o">|</span><span class="bp">⍺</span><span class="o">↓</span><span class="bp">⍵</span><span class="sr">[;</span><span class="bp">⍺</span><span class="sr">]</span><span class="w">           </span><span class="c1">⍝ index of pivot row</span>
+<span class="w">        </span><span class="nv">swap</span><span class="kd">←</span><span class="o">⊖</span><span class="na">@</span><span class="bp">⍺</span><span class="w"> </span><span class="nv">p</span><span class="o">⊢</span><span class="bp">⍵</span><span class="w">                  </span><span class="c1">⍝ swap ⍺th and pth rows</span>
+<span class="w">        </span><span class="nv">mat</span><span class="kd">←</span><span class="nv">swap</span><span class="sr">[</span><span class="bp">⍺</span><span class="sr">;</span><span class="bp">⍺</span><span class="sr">]</span><span class="o">÷</span><span class="na">⍨@</span><span class="bp">⍺</span><span class="o">⊢</span><span class="nv">swap</span><span class="w">        </span><span class="c1">⍝ col diag red to 1</span>
+<span class="w">        </span><span class="nv">mat</span><span class="o">-</span><span class="p">(</span><span class="nv">mat</span><span class="sr">[;</span><span class="bp">⍺</span><span class="sr">]</span><span class="o">×</span><span class="bp">⍺</span><span class="o">≠⍳≢</span><span class="bp">⍵</span><span class="p">)</span><span class="na">∘.</span><span class="o">×</span><span class="nv">mat</span><span class="sr">[</span><span class="bp">⍺</span><span class="sr">;]</span><span class="w"> </span><span class="c1">⍝ col off-diag red to 0</span>
+<span class="w">    </span><span class="kt">}</span>
+<span class="w">    </span><span class="p">(</span><span class="o">⍴</span><span class="bp">⍺</span><span class="p">)</span><span class="o">⍴</span><span class="p">(</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="o">×⍴</span><span class="bp">⍵</span><span class="p">)</span><span class="o">↓↑</span><span class="nv">Elim</span><span class="na">/</span><span class="p">(</span><span class="o">⌽⍳⌊</span><span class="na">/</span><span class="o">⍴</span><span class="bp">⍵</span><span class="p">)</span><span class="o">,⊂</span><span class="bp">⍵</span><span class="o">,</span><span class="bp">⍺</span><span class="w"> </span><span class="c1">⍝ Elim/ … 2 1 0 (⍵,⍺)</span>
+<span class="kt">}</span>
+<span class="nv">r</span><span class="w"> </span><span class="nv">GaussJordan</span><span class="w"> </span><span class="nv">M</span>
+</pre></div>
+</div>
+<p>This is an implementation of the Gauss-Jordan elimination method:</p>
+<ol class="arabic simple">
+<li><p>Define the main function and an inner elimination function</p></li>
+<li><p>Find the pivot row</p></li>
+<li><p>Swap rows and normalize the pivot element</p></li>
+<li><p>Eliminate other elements in the column</p></li>
+<li><p>Apply the elimination process iteratively</p></li>
+</ol>
+</section>
+<section id="old-style-apl-matrix-inversion">
+<h2><strong>Old-style APL Matrix Inversion</strong><a class="headerlink" href="#old-style-apl-matrix-inversion" title="Link to this heading">#</a></h2>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Adapted from https://www.jsoftware.com/papers/APL360TerminalSystem1.htm#fig4</span>
+<span class="w">    </span><span class="bp">∇</span><span class="w">  </span><span class="nv">b</span><span class="kd">←</span><span class="nv">rec</span><span class="w"> </span><span class="nv">a</span><span class="sr">;</span><span class="nv">p</span><span class="sr">;</span><span class="nv">k</span><span class="sr">;</span><span class="nv">i</span><span class="sr">;</span><span class="nv">j</span><span class="sr">;</span><span class="nv">s</span>
+<span class="sr">[</span><span class="m">1</span><span class="sr">]</span><span class="w">    </span><span class="kd">→</span><span class="m">3</span><span class="o">×⍳</span><span class="p">(</span><span class="m">2</span><span class="o">=⍴⍴</span><span class="nv">a</span><span class="p">)</span><span class="o">∧=</span><span class="na">/</span><span class="o">⍴</span><span class="nv">a</span>
+<span class="sr">[</span><span class="m">2</span><span class="sr">]</span><span class="w">    </span><span class="kd">→</span><span class="m">0</span><span class="o">=⍴</span><span class="vg">⎕</span><span class="kd">←</span><span class="s1">&#39;no inverse found&#39;</span>
+<span class="sr">[</span><span class="m">3</span><span class="sr">]</span><span class="w">    </span><span class="nv">p</span><span class="kd">←</span><span class="o">⍳</span><span class="nv">k</span><span class="kd">←</span><span class="nv">s</span><span class="kd">←</span><span class="m">1</span><span class="o">⍴⍴</span><span class="nv">a</span>
+<span class="sr">[</span><span class="m">4</span><span class="sr">]</span><span class="w">    </span><span class="nv">a</span><span class="kd">←</span><span class="p">((</span><span class="nv">s</span><span class="o">⍴</span><span class="m">1</span><span class="p">)</span><span class="o">,</span><span class="m">0</span><span class="p">)</span><span class="na">\</span><span class="nv">a</span>
+<span class="sr">[</span><span class="m">5</span><span class="sr">]</span><span class="w">    </span><span class="nv">a</span><span class="sr">[;</span><span class="nv">s</span><span class="o">+</span><span class="m">1</span><span class="sr">]</span><span class="kd">←</span><span class="nv">s</span><span class="w"> </span><span class="nv">A</span><span class="w"> </span><span class="m">1</span>
+<span class="sr">[</span><span class="m">6</span><span class="sr">]</span><span class="w">    </span><span class="nv">i</span><span class="kd">←</span><span class="nv">j</span><span class="o">⍳⌈</span><span class="na">/</span><span class="nv">j</span><span class="kd">←</span><span class="o">|</span><span class="nv">a</span><span class="sr">[</span><span class="o">⍳</span><span class="nv">k</span><span class="sr">;</span><span class="m">1</span><span class="sr">]</span>
+<span class="sr">[</span><span class="m">7</span><span class="sr">]</span><span class="w">    </span><span class="nv">p</span><span class="sr">[</span><span class="m">1</span><span class="o">,</span><span class="nv">i</span><span class="sr">]</span><span class="kd">←</span><span class="nv">p</span><span class="sr">[</span><span class="nv">i</span><span class="o">,</span><span class="m">1</span><span class="sr">]</span>
+<span class="sr">[</span><span class="m">8</span><span class="sr">]</span><span class="w">    </span><span class="nv">a</span><span class="sr">[</span><span class="m">1</span><span class="o">,</span><span class="nv">i</span><span class="sr">;</span><span class="o">⍳</span><span class="nv">s</span><span class="sr">]</span><span class="kd">←</span><span class="nv">a</span><span class="sr">[</span><span class="nv">i</span><span class="o">,</span><span class="m">1</span><span class="sr">;</span><span class="o">⍳</span><span class="nv">s</span><span class="sr">]</span>
+<span class="sr">[</span><span class="m">9</span><span class="sr">]</span><span class="w">    </span><span class="kd">→</span><span class="m">2</span><span class="o">×⍳</span><span class="m">1E¯30</span><span class="o">&gt;|</span><span class="nv">a</span><span class="sr">[</span><span class="m">1</span><span class="sr">;</span><span class="m">1</span><span class="sr">]</span><span class="o">÷⌈</span><span class="na">/</span><span class="o">|,</span><span class="nv">a</span>
+<span class="sr">[</span><span class="m">10</span><span class="sr">]</span><span class="w">   </span><span class="nv">a</span><span class="sr">[</span><span class="m">1</span><span class="sr">;]</span><span class="kd">←</span><span class="nv">a</span><span class="sr">[</span><span class="m">1</span><span class="sr">;]</span><span class="o">÷</span><span class="nv">a</span><span class="sr">[</span><span class="m">1</span><span class="sr">;</span><span class="m">1</span><span class="sr">]</span>
+<span class="sr">[</span><span class="m">11</span><span class="sr">]</span><span class="w">   </span><span class="nv">a</span><span class="kd">←</span><span class="nv">a</span><span class="o">-</span><span class="p">((</span><span class="o">~</span><span class="nv">s</span><span class="w"> </span><span class="nv">A</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="o">×</span><span class="nv">a</span><span class="sr">[;</span><span class="m">1</span><span class="sr">]</span><span class="p">)</span><span class="na">∘.</span><span class="o">×</span><span class="nv">a</span><span class="sr">[</span><span class="m">1</span><span class="sr">;]</span>
+<span class="sr">[</span><span class="m">12</span><span class="sr">]</span><span class="w">   </span><span class="nv">a</span><span class="kd">←</span><span class="m">1</span><span class="o">⌽</span><span class="sr">[</span><span class="m">1</span><span class="sr">]</span><span class="m">1</span><span class="o">⌽</span><span class="nv">a</span>
+<span class="sr">[</span><span class="m">13</span><span class="sr">]</span><span class="w">   </span><span class="nv">p</span><span class="kd">←</span><span class="m">1</span><span class="o">⌽</span><span class="nv">p</span>
+<span class="sr">[</span><span class="m">14</span><span class="sr">]</span><span class="w">   </span><span class="kd">→</span><span class="m">5</span><span class="o">×⍳</span><span class="m">0</span><span class="o">&lt;</span><span class="nv">k</span><span class="kd">←</span><span class="nv">k</span><span class="o">-</span><span class="m">1</span>
+<span class="sr">[</span><span class="m">15</span><span class="sr">]</span><span class="w">   </span><span class="nv">b</span><span class="kd">←</span><span class="nv">a</span><span class="sr">[;</span><span class="nv">p</span><span class="o">⍳⍳</span><span class="nv">s</span><span class="sr">]</span>
+<span class="w">    </span><span class="bp">∇</span>
+<span class="nv">A</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍺</span><span class="o">↑</span><span class="bp">⍵</span><span class="o">⍴</span><span class="m">1</span><span class="kt">}</span>
+<span class="nv">r</span><span class="w"> </span><span class="o">+</span><span class="na">.</span><span class="o">×</span><span class="na">⍨</span><span class="nv">rec</span><span class="w"> </span><span class="nv">M</span>
+</pre></div>
+</div>
+<p>This is an old-style APL implementation of matrix inversion:</p>
+<ol class="arabic simple">
+<li><p>Check input validity</p></li>
+<li><p>Initialize variables</p></li>
+<li><p>Augment the matrix</p></li>
+<li><p>Find the pivot element</p></li>
+<li><p>Swap rows</p></li>
+<li><p>Normalize the pivot row</p></li>
+<li><p>Eliminate other elements in the column</p></li>
+<li><p>Rotate the matrix and continue the process</p></li>
+<li><p>Rearrange the result</p></li>
+</ol>
+</section>
+<section id="glyphs-used">
+<h2>Glyphs Used:<a class="headerlink" href="#glyphs-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Shape">Shape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> - Create array with specified shape</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Times">Multiply</a> <code class="docutils literal notranslate"><span class="pre">×</span></code> - Multiplication</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Matrix_inverse">Matrix Inverse</a> <code class="docutils literal notranslate"><span class="pre">⌹</span></code> - Matrix division</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Outer_product">Outer Product</a> <code class="docutils literal notranslate"><span class="pre">∘.</span></code> - Apply function to all combinations</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Inner_product">Inner Product</a> <code class="docutils literal notranslate"><span class="pre">+.×</span></code> - Matrix multiplication</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Transpose">Transpose</a> <code class="docutils literal notranslate"><span class="pre">⍉</span></code> - Transpose matrix</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Match">Identical To</a> <code class="docutils literal notranslate"><span class="pre">≡</span></code> - Exact equality</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Power_operator">Power Operator</a> <code class="docutils literal notranslate"><span class="pre">⍣</span></code> - Repeat function application</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> - Swap arguments</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Index_generator">Index Generator</a> <code class="docutils literal notranslate"><span class="pre">⍳</span></code> - Generate integer series</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reverse">Reverse</a> <code class="docutils literal notranslate"><span class="pre">⌽</span></code> - Reverse array</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduce</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> - Apply function between elements</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/At">At</a> <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> - Replace elements at specified indices</p></li>
+</ul>
+</section>
+<section id="concepts-used">
+<h2>Concepts Used:<a class="headerlink" href="#concepts-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Matrix">Matrix Operations</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/System_of_linear_equations">System of Linear Equations</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hotelling%27s_iteration">Hotelling-Bodewig Scheme</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Iterative_method">Iterative Methods</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_elimination">Gauss-Jordan Elimination</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a> - Dynamic Function</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Train">Trains</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Index_origin">Index Origin</a> <code class="docutils literal notranslate"><span class="pre">⎕IO</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Migration_level">Migration Level</a> <code class="docutils literal notranslate"><span class="pre">⎕ML</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Recursion">Recursive Function</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Control_structure">Control Structures</a> (e.g., <code class="docutils literal notranslate"><span class="pre">→</span></code>)</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Rank">Rank</a></p></li>
+</ul>
+</section>
+<section id="transcript">
+<h2>Transcript<a class="headerlink" href="#transcript" title="Link to this heading">#</a></h2>
+<p>Hello and welcome to this APL quest episode. See APL wiki for details. Today’s quest is the last problem from the 2013 round of the APL problem solving competition. We are simply given a set of linear equations and the values that those equations add up to, and then we are to find the solution for the variables.</p>
+<p>Let’s start by creating this equation system. We’ll have a simple example of just three equations with three variables. This is saying four x plus one y plus z, and two of each, and then six x plus three y plus z. They should add up to a result which is two, six, four. So four x plus one y plus three z equals 2, and 2x plus 2y plus 2z equals 6, and so on.</p>
+<p>A solution to that is if x is negative one, y is three, and z is one. We can check this. We have the matrix, and then we’ll multiply each row by these values, and then we can sum them up. We can see that we got these results. Indeed, four times x (where x is negative one) plus one times y (where y is three) plus three times z (where z is one) gives two, just like we’re supposed to have it.</p>
+<p>We can write this a little bit neater as an inner product. The problem here is that we don’t know this result (-1, 3, 1). We want to compute it. What we do know are these values: 2, 6, and 4. In other words, we want to find a v such that M plus dot times this value gives 2, 6, 4. This matches our R.</p>
+<p>Luckily, we can actually write this up. We can say we want to apply this negative one time to get this value. This is a power negative one, applying a function in reverse. Applying it negative one times really asks this question: what argument (in this case, right argument) can we give to M plus dot times such that we get R? And that solves the problem.</p>
+<p>Now, in the problem specification, R goes on the left argument and M is the right argument. So we can type up our solution as plus dot times operator negative one, commute (just swap the two arguments like that), and then the matrix goes on the right and the vector goes on the left. That’s a proper solution.</p>
+<p>However, this matrix multiplication in reverse is actually the same as multiplying by the inverse. So we can state this instead as multiplying by the inverse. We can glue them together, so it’s the same thing as the explicit formula like this. But for now, we’ll have it in a proper assignable function like this. This is multiplication by the inverse, and the dyadic form of this character (which is often nicknamed “domino” as it looks like a one-one domino) is actually exactly that.</p>
+<p>So the entire solution can just be that. In other words, this problem has a one-character solution in APL. Now, that’s of course lots of fun, but it would be nice to see how we could really solve this without APL just doing all the work for us.</p>
+<p>There are a couple of ways to do this. There’s a really clever way called the Hotelling-Bodewig scheme (if I pronounce that correctly). It states that we can do an iterative approach to approximate better and better the correct solution to an inverse of a matrix. As we had before, if we have the inverse, then the problem is basically solved.</p>
+<p>It states like this: we’re going to iterate with this result, where every iteration depends on the previous value. The formula looks like this (I’m not going to go into exactly why this works, but this is what they state - you can look up their paper). They say that the next iteration is the previous iteration matrix multiplied by two times the identity matrix minus the grand matrix (the original matrix) that has been multiplied by the previous iteration.</p>
+<p>We can rearrange this formula a little bit. We can take this Vi here and, so to say, multiply into the parenthesis. So that gives us 2Vi (because the Vi multiplied by the identity matrix is just Vi, of course) minus Vi times A (which is the original matrix) times Vi again.</p>
+<p>We can then state this in APL. The way we would write that is: it’s 2Vi, or we can write 2 times Vi, minus Vi plus dot times (which is the matrix multiplication) and A plus times and Vi. We can break this, avoid the parenthesis simply by having two Vi’s here instead. It’ll be the same thing as multiplying it by two.</p>
+<p>Now we can make this a function of the original matrix on one side, so we have A, and then we make a function and we have the previous iteration as the right argument. So we’ll do it as a tacit function. We start from the right here, build it up. First, we want the matrix multiplication of them (plus dot times), and then we want to multiply by Vi again. So Vi is the right argument plus dot times that. And then we want to subtract this from Vi. That’s the right argument minus that, and then we add another one of the right arguments. We can write it up like this.</p>
+<p>So here’s a tacit way to compute this, and this is one iteration of it. However, we actually want to keep doing this until it becomes stable. The way we would then write that: we could take it as a function where the right argument function of the original matrix (here called A) becomes fed into our inner function as a left argument, and then we keep iterating with the power operator until two consecutive iterations are the same.</p>
+<p>And so we then just need to apply this whole thing on our initial guess. That’s the next problem. The problem is it’s kind of hard to find an initial guess which will work out for us, but recently someone named Soleymani came up with a surefire way to determine an initial guess.</p>
+<p>What he stated was that the transpose of the array divided by the trace of the matrix times its transpose is a good starting guess that will always come up. Again, see his paper if you want the details of how exactly that works out.</p>
+<p>So again, the trace of the matrix times its transpose, and then we divide the transpose by that. First, we do the trace of the matrix times its transpose. We can have this matrix M, and we can transpose it, and then we can do a matrix multiplication with itself. And then we want the trace. The trace is the sum of the major diagonal from top left to bottom right, and that we can do as a 1 1 transpose. That’s the trace of that, and then we sum that up.</p>
+<p>So for our matrix M here, that magic value that we want to divide by is 84. And then we would go ahead and divide the transpose of M by 84, and that would be a good starting value.</p>
+<p>Now, this can be - we could use this, but it can actually be simplified a little bit. And for that, we need to observe some characteristics of doing exactly this: the trace of the matrix multiplied by its transpose.</p>
+<p>So what we’re going to do is we’ll start with a matrix that is easy to recognize where the bits and pieces are going. And instead of doing an actual multiplication with itself, we are going to take and model the plus and the times as functions that are just saying what they would do, rather than actually doing them.</p>
+<p>So this will show us - we give great little boxes showing us what’s going on, and we need to multiply it with itself, with the right argument to the matrix multiplication being transposed. So here we can see all the results that we’re getting, but we’re only interested in the diagonal. So we’re taking the 1 1 transpose of that.</p>
+<p>And now we can observe exactly what’s going on. Remember, the trace is the sum of these, so really what will happen is we’re going to add all these together, all these little boxes. And notice that it is 1 1 multiplied by each other, and 2 2, 3 3, and so on. That means every element of the entire matrix gets multiplied by itself squared, and then we just sum all these squares together.</p>
+<p>Which means we can state this much easier: we can just ravel the matrix, square it, and sum it. Or we could, of course, square it first, ravel it, then sum it - many different ways of doing that. We can also combine this summing and the multiplication into an inner product. And that means that if we’re going to write in the train - we want this as short as possible - then we can write the ravel plus times the ravel of the matrix, and that gives us that.</p>
+<p>And now we just need to take the transpose of the matrix and divide by that. So we can take the transpose, divide by this, and that gives us our starting value, which isn’t very interesting to look at. But let’s put all of this together.</p>
+<p>So what we - let’s go up and get it from up here. We had this formula right here, and we stick it in here. And this is then the inverse that we get. We can compare this with the inverse primitive and see we got the exact same value.</p>
+<p>And now remember how we solve this with V. So we can go in and say V plus dot times this inverse. Or instead - and this is a solution, but we want to glue these two things together to be a single function. So this right part here is the inversion of the matrix, and the left part is the matrix multiplication. So we multiply with the inverse, and that gives us our solution.</p>
+<p>And remember, this is an iterative thing. So here inside here is the power match, which just runs over and over again until two consecutive things match each other. It would actually be neat to see how this would look. We can do that by doing each iteration separately.</p>
+<p>Now, I happen to know that we only need to go through 11 iterations. So for every one of numbers from 1 to 11, we’re going to apply it that many times. And then we can see the progression of better and better values for x, y, and z to solve this system until we’re done - it becomes stable.</p>
+<p>So this is a modern computational approach to this. The traditional way that you might have learned in school is the Gauss-Jordan method. And you can find it in the dfns workspace. Here is an adapted version of what you can find there. I’ll try to explain it a little bit.</p>
+<p>What it’s doing here - if you learned it in school, you would have learned that there are these various actions you can take on your matrix together with the result values to slowly build up a diagonal matrix, and then you have the solution. When we’re running it as computer code, then we can’t go by feeling of what’s easier; instead, we just go through all the steps every time.</p>
+<p>So what we’re building up here at the bottom is this: this is our equation system, these are the final values that we’re putting next to it, and then these are the reversed indices because reduction runs from right to left. So that’s what this comment is trying to say - that this is what we’re going to reduce over. So this just eliminates here, eliminates here, eliminates here, in this order.</p>
+<p>And every time we eliminate, we choose - for precision reasons - we choose the row that has the largest magnitude. So this gives us a specific column, and we start - because we’re going down diagonals - so first we start with the first column. And then we get rid of the first few elements that have already been - those columns that have already been taken care of. Of course, with the first one, that means we’re dropping zero. Notice that the index origin is zero up here.</p>
+<p>And then we look at the magnitudes and choose the largest one, and that’s what we call our pivot row. And then we swap things around. So where we’re up to in the nth row and the pivot row, we’re taking those and just flipping them. There’s just two of them, so reverse just swaps the two around.</p>
+<p>And now we’ve got a matrix that’s modified by having these two swapped around. And then we want to normalize such that in that corner - or should we say, of the sub-matrix missing rows and columns that is on the intersection of the nth column and the nth row - that’s why we have alpha semicolon alpha here. And we divide that - we divide all the other values there so that we get a 1.</p>
+<p>And then finally, we have the step of adding or subtracting. And the way it’s been implemented here is we are adding/subtracting not just for that single row, but we’re doing the entire matrix. So it’s built up using masks, essentially. When we add or subtract 0, then nothing happens, and we’re using a mask. So these are all the indices for all the rows, and then we have a specific row number here which gets - so wherever it’s different from, we get zeros, and that means we only get 1 on this single row.</p>
+<p>Then we pick out from that column there and create a matrix with all the values that are in this particular row. And then that effectively just - we have a bunch of zeros, and we subtract the right values in the right place. Once that’s done, since we’ve done a reduction, we have enclosed, so we open that up. And we’re not interested in the entire matrix with result values; rather, we can chop those away. So that’s what this is doing.</p>
+<p>And then, just in case they were all identical, we use a single value - we just reshape it to have the right shape. And that’s how the Gauss-Jordan method works. We can try that - it solves the whole thing immediately, like this, in exactly the same way.</p>
+<p>And then I happened to look up in an old paper on APL 360, and it was actually interesting - it brought us an example of code, and this function, which is an inversion of a matrix, but implemented in old-style APL. I’m not going to go through and explain this - you can do it on your own. It’s really very much - it is the Gauss-Jordan method. It’s very much the same, but in an old style without using any of the new operators.</p>
+<p>I’ve altered one slight thing - you can see a capital A in there. And that was an original function in APL 360. They had some functions called alpha and omega, which were prefix and suffix vectors. So alpha (or which I’ve changed to an A here, because alpha is now meaning something else) - and you can define it like this in our case here, where it’s - so the left argument is the length of the vector, and the right argument is the number of leading ones in that boolean vector.</p>
+<p>In our case, it could just be a take, but I suppose overtake (meaning you can take more elements than there are in an array) wasn’t supported yet at that time. So you can actually replace these A’s just with an up arrow. And this gives us our inverted matrix, as we can see from before - same thing as the primitive.</p>
+<p>And that means that we could do the same thing here with multiplying the result of the inversion with our result - our desired result values. And that gives us our values for x, y, and z in the very oldest of fashions.</p>
+<p>So this concludes the first year of APL problem solving competitions, and we’re now going to continue next time with the problems from 2014. Thank you for watching.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2013"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="It-Isa-Moving-Experience-APLQuest-2013-9.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">It’s a moving experience 2013-9</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../2014/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">APL Quest 2014</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intro">Intro</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-the-equation-system">Setting Up the Equation System</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-the-missing-values">Finding the Missing Values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-solutions"><strong>Basic Solutions</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-solutions">Advanced Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hotelling-bodewig-scheme"><strong>Hotelling-Bodewig Scheme</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#soleymani-method">Soleymani method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combined-hotelling-bodewig-and-soleymani-method"><strong>Combined Hotelling-Bodewig and Soleymani Method</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-jordan-elimination"><strong>Gauss-Jordan Elimination</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#old-style-apl-matrix-inversion"><strong>Old-style APL Matrix Inversion</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

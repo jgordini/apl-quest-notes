@@ -1,0 +1,1701 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Justifying Text &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ae78d91f" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/dyalog/Justifying-Text';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Linear Fitting" href="Linear-Fitting.html" />
+    <link rel="prev" title="Hash tables in Dyalog APL" href="hashtables.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2013/index.html">APL Quest 2013</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping Things In Balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Go-Forth-And-Multiply-APLQuest-2013-8.html">Go forth and Multiply 2013-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Solution-Salvation-APLQuest-2013-10.html">Solution Salvation 2013-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2014/index.html">APL Quest 2014</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2014/It-Is-All-Right-APLQuest-2014-1.html">It Is All Right 2014-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/How-Tweet-It-Is-APLQuest-2014-2.html">How Tweet It Is 2014-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Tell-a-Fib-APLQuest-2014-3.html">Tell A Fib 2014-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Space-The-Final-Frontier-APLQuest-2014-4.html">Space The Final Frontier 2014-4</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../2014/Mirror-Mirror-APLQuest-2014-5.html">Mirror Mirror 2014-5</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../2014/Revolutionary-Thinking-APLQuest-2014-7.html">Revolutionary Thinking 2014-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Go-The-Distance-APLQuest-2014-8.html">Go The Distance 2014-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Going-Ballistic-APLQuest-2014-9.html">Going Ballistic 2014-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Sales-Are-Up-APLQuest-2014-10.html">Sales Are Up 2014-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2015/index.html">APL Quest 2015</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Nag-A-Ram-APLQuest-2015-1.html">APL Quest: Anagrams Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Longest-Streak-APLQuest-2015-2.html">APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Farey-Tales-APLQuest-2015-3.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Progessive-Dyadic-Iota-APLQuest-2015-4.html">APL Quest Cap Wiki: Progressive Dyadic Iota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.html">APL Quest: Standard Deviation Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.html">APL Quest: Problem Six Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Justin-Upper-Case-APLQuest-2015-7.html">APL Quest: Problem 7 from the 2015 APL Problem Solver Competition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html">APL Quest: Swapping Interior Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Blazing-A-Trail-APLQuest-2015-10.html">API Quest: Generating a Centered Pascal’s Triangle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2016/index.html">APL Quest 2016</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mean-APLQuest-2016-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Median-APLQuest-2016-2.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mode-APLQuest-2016-3.html">Welcome to APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.html">Welcome to the Appeal Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Shorter-Onestothe-Front-APLQuest-2016-6.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/3-sand-5-s-APLQuest-2016-7.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Separating-Outthe-Negative-APLQuest-2016-8.html">APL Quest: 8th Quest Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Delimited-Text-APLQuest-2016-9.html">APL Quest: Delimiter Splitting Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Order-Total-APLQuest-2016-10.html">Welcome to the APL Quest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2017/index.html">APL Quest 2017</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2017/What-an-Odd-Bunch-APLQuest-2017-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Good-Evening-APLQuest-2017-2.html">Ensure Odd Numbers Become Even Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Miss-Quoted-APLQuest-2017-3.html">Removing Text Between Double Quotes Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Slices-of-Pies-APLQuest-2017-4.html">Computing Areas of Circle Sectors Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/DNA-APLQuest-2017-5.html">Checking Character Vectors for Valid Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/k-mers-APLQuest-2017-6.html">Chopping Text into Sequences of a Given Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Counting-DNANucleotides-APLQuest-2017-7.html">Counting Letters in a String: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Be-the-First-1-APLQuest-2017-8.html">Understanding Boolean Vector Processing in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Double-Trouble-APLQuest-2017-9.html">Finding Locations of Identical Characters in Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Squaring-Off-APLQuest-2017-10.html">Fitting Elements into a Square Array</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2018/index.html">APL Quest 2018</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Oh-Say-Can-You-See-APLQuest-2018-1.html">Counting Visible Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Number-Splitting-APLQuest-2018-2.html">Splitting Numbers into Integer and Fractional Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Rolling-Along-APLQuest-2018-3.html">Simulating Dice Rolls and Analyzing Outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-APLQuest-2018-4.html">Converting Gregorian Year Numbers to Chinese Zodiac Animals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-Revisited-APLQuest-2018-5.html">Computing Zodiac Signs from Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Angle-APLQuest-2018-6.html">A Simple Test for XML Validity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Unconditionally-Shifty-APLQuest-2018-7.html">Shifting Boolean Data: An Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Makinga-Good-Argument-APLQuest-2018-8.html">Validating Dyadic Transpose Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Earlier-Later-or-the-Same-APLQuest-2018-9.html">Comparing Dates in APL: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Anagrammatically-Correct-APLQuest-2018-10.html">Comparing Two Character Vectors: An Anagram Checker</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2019/index.html">APL Quest 2019</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Chunky-Monkey-APLQuest-2019-1.html">Chunking a List into Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Makingthe-Grade-APLQuest-2019-2.html">Converting Scores into Letter Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Grade-Distribution-APLQuest-2019-3.html">Compiling Simple Statistics on Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Knight-Moves-APLQuest-2019-4.html">Understanding the Movement of a Chess Knight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Doubling-Up-APLQuest-2019-5.html">Checking for Consecutive Identical Letters in Words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Telephone-Names-APLQuest-2019-6.html">Translating Telephone Numbers from Digits and Letters to Plain Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/In-the-Center-of-it-All-APLQuest-2019-7.html">Centering Words in a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Goingthe-Distance-APLQuest-2019-8.html">Computing the Distance Around a Path Defined by Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Area-Code-Gauss-APLQuest-2019-9.html">Calculating the Area of a Polygon Using the Shoelace Formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Odds-Evens-APLQuest-2019-10.html">Splitting a List of Words by Length</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2020/index.html">APL Quest 2020</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Lets-Split-APLQuest-2020-1.html">Understanding Vector Partitioning in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Character-Building-APLQuest-2020-2.html">Understanding Byte Sequences and UTF-8 Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Excel-lent-Columns-APLQuest-2020-3.html">Understanding Column Label Conversion in Spreadsheet Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Takea-Leap-APLQuest-2020-4.html">Understanding Leap Years: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Steppinginthe-Proper-Direction-APLQuest-2020-5.html">Generating Inclusive Integer Ranges in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Movetothe-Front-APLQuest-2020-6.html">Moving Elements in a Numeric Vector to the Front in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/See-Youina-Bit-APLQuest-2020-7.html">Checking Bit States in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Zigzag-Numbers-APLQuest-2020-8.html">Analyzing Alternating Digit Growth in Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Riseand-Fall-APLQuest-2020-9.html">Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Stacking-It-Up-APLQuest-2020-10.html">Emulating APL Array Printing Behavior</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2021/index.html">APL Quest 2021</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Are-You-a--Bacteria-APLQuest-2021-1.html">Calculating Percentage of Characters in a DNA String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Index-Of-Modified-APLQuest-2021-2.html">Creating a Cover for the Dyadic Iota in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Multiplicity-APLQuest-2021-3.html">Grouping Integers by Divisibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Square-Peg-Round-Hole-APLQuest-2021-4.html">Finding the Difference in Area Between an Inscribed Square and Its Circumscribing Circle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Rect-ify-APLQuest-2021-5.html">Finding Rectangle Dimensions with Given Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Fischer-Random-Chess-APLQuest-2021-6.html">Chess Setup Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Can-You-Feelthe-Magic-APLQuest-2021-7.html">Checking for Magic Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Timeto-Makea-Difference-APLQuest-2021-8.html">Calculating Absolute Time Difference in Minutes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Inthe-Long-Run-APLQuest-2021-9.html">Finding the Longest Consecutive Sequence in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Onthe-Right-Side-APLQuest-2021-10.html">Justified Text Transformation in APL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2022/index.html">APL Quest 2022</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Counting-DNA-Nucleotides-APLQuest-2022-1.html">Counting DNA Letters in a Character Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Attackofthe-Mutations-APLQuest-2022-2.html">Comparing DNA Strings: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Uniquely-Qualified-APLQuest-2022-3.html">Finding the Symmetric Difference Between Two Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Inthe-Long-One-APLQuest-2022-4.html">Finding the Longest Run of Ones in a Boolean Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Stairwayto-Heaven-APLQuest-2022-5.html">Building a Staircase in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Pyramid-Scheme-APLQuest-2022-6.html">Constructing Concentric Rings of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Just-Golfing-Around-APLQuest-2022-7.html">Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Lets-Split-APLQuest-2022-8.html">Splitting Text in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html">Calculating the Window Average of a List of Numbers in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Separation-Anxiety-APLQuest-2022-10.html">Inserting Separators in Large Integers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2023/index.html">APL Quest 2023</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Elimination-Sort-APLQuest-2023-1.html">Removing Non-Decreasing Elements from a List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Put-It-In-Reverse-APLQuest-2023-2.html">Finding End Points of One Array in Another</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Caesar-Salad-APLQuest-2023-3.html">Implementing a Simple Caesar Cipher for Uppercase Characters and Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Like-a-Version-APLQuest-2023-4.html">Comparing Version Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Risky-Business-APLQuest-2023-5.html">Understanding Dice Mechanics in Risk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Key-Value-Pairs-APLQuest-2023-6.html">Parsing Key-Value Pairs into a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Lets-Be-Rational-APLQuest-2023-7.html">Finding a Reduced Fraction for a Given Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Critical-Thinking-APLQuest-2023-8.html">Computing the Next Double Critical Day</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Flipping-Pairs-APLQuest-2023-9.html">Interchanging Adjacent Elements in a Multi-Dimensional Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Partition-witha-Twist-APLQuest-2023-10.html">APL Quest: Splitting Text on Spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Jupyter notebooks for Dyalog APL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="APL-Expressions.html">APL Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Arithmetic-Functions.html">Arithmetic Fuctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Boolean-Functions-and-Boolean-Algebra.html">Boolean functions</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Boolean-Scans-and-Reductions.html">Boolean Scans and Reductions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Calculus.html">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Comparison-Functions.html">Comparison functions <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">≤</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> <code class="docutils literal notranslate"><span class="pre">≥</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">≠</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Grading-and-Sorting.html">Grading and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hashtables.html">Hash tables in Dyalog APL</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Justifying Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Linear-Fitting.html">Linear Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Lookup-Without-Replacement.html">Lookup without Replacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Maths-versus-APL.html">Maths versus APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modifying-Rank-and-Depth.html">Modifying rank and depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="New-in-v14.html">Tally <code class="docutils literal notranslate"><span class="pre">≢</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="New-in-v15.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪/</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="New-in-v16.html">Monadic function <code class="docutils literal notranslate"><span class="pre">⍸</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="New-in-v17.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Plotting-with-SharpPlot.html">Plotting with SharpPlot</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="Random-Numbers.html">Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reduce-and-Scan.html">Reduce and Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sudoku-Solver.html">Sodoku Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tacit-Techniques.html">Tacit Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Using-the-TryAPL-Tutorials.html">TryAPL tutorial system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Your-First-Mandelbrot-Set.html">Mandelbrot Set</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/dyalog/Justifying-Text.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Justifying Text</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-text-we-ll-justify">The Text We’ll Justify</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format">Data Format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-matrix-we-want-to-build">The Matrix We Want to Build</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-characters-to-keep">The Characters to Keep</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-spaces">Finding Spaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trailing-spaces">Trailing Spaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduce-and-scan">Reduce and Scan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-and-scanning-with">Reducing and Scanning with <code class="docutils literal notranslate"><span class="pre">∧</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-and-scanning-a-matrix">Reducing and Scanning a Matrix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-space-expansion">Inner Space Expansion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-spaces">Extra Spaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumerating-the-inner-spaces">Enumerating the Inner Spaces</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-everything-together">Putting Everything Together</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-dfn">Writing a Dfn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-more-robust-function">A More Robust Function</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="justifying-text">
+<h1>Justifying Text<a class="headerlink" href="#justifying-text" title="Link to this heading">#</a></h1>
+<p>In this notebook we will take a look at how to write some <em>array-oriented</em> APL code that justifies some text.
+In case you are wondering what “justified text” is, take a look at the <a class="reference external" href="https://en.wikipedia.org/wiki/Typographic_alignment#Examples">example in the Wikipedia</a>.</p>
+<p>(The content of this notebook draws heavily from <a class="reference external" href="https://chat.stackexchange.com/rooms/52405/conversation/lesson-42-array-coding-style-in-depth">Lesson 42</a> of the <a class="reference external" href="https://chat.stackexchange.com/rooms/info/52405/the-apl-orchard?tab=conversations">APL Cultivation chat lessons</a> and is a written follow-up to Rodrigo Girão Serrão’s presentation at <a class="reference external" href="https://www.dyalog.com/apl-seeds-user-meetings/aplseeds21.htm">APL Seeds’21</a>.)</p>
+<section id="the-text-we-ll-justify">
+<h2>The Text We’ll Justify<a class="headerlink" href="#the-text-we-ll-justify" title="Link to this heading">#</a></h2>
+<p>While we prototype our solution that justifies some text, let us define some text to play around with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;To APL, or not to APL, that is&#39;</span><span class="w"> </span><span class="s1">&#39;the question: whether &#39;&#39;tis&#39;</span><span class="w"> </span><span class="s1">&#39;nobler in the mind to suffer&#39;</span><span class="w"> </span><span class="s1">&#39;the slings and arrows of the&#39;</span><span class="w"> </span><span class="s1">&#39;outrageous fortune...&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌──────────────────────────────┬──────────────────────────┬────────────────────────────┬────────────────────────────┬─────────────────────┐
+│To APL, or not to APL, that is│the question: whether 'tis│nobler in the mind to suffer│the slings and arrows of the│outrageous fortune...│
+└──────────────────────────────┴──────────────────────────┴────────────────────────────┴────────────────────────────┴─────────────────────┘
+
+</span></div></div>
+</div>
+<p>Now we have a vector with 5 elements, where each box represents one of the lines of the text we want to justify:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≢</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">5
+
+</span></div></div>
+</div>
+</section>
+<section id="data-format">
+<h2>Data Format<a class="headerlink" href="#data-format" title="Link to this heading">#</a></h2>
+<p>However, instead of dealing with a vector of “strings” – which in APL we call <em>character vectors</em> – it would be more useful to work with the text data in a different format:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">To APL, or not to APL, that is
+the question: whether 'tis    
+nobler in the mind to suffer  
+the slings and arrows of the  
+outrageous fortune...         
+
+</span></div></div>
+</div>
+<p>If we work with the text in this format, it looks more like printed text on a page and it also becomes easier to develop our solution.
+With that in mind, let us redefine our <code class="docutils literal notranslate"><span class="pre">text</span></code> variable to hold the text like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">text</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">↑</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can look at <code class="docutils literal notranslate"><span class="pre">↑</span></code> (which is called <em>mix</em>) as a function that is stacking <em>up</em> the vectors that compose <code class="docutils literal notranslate"><span class="pre">text</span></code>.</p>
+<p>The resulting data we have is now a <em>matrix</em>: a two-dimensional structure composed of characters.
+The way you check <code class="docutils literal notranslate"><span class="pre">text</span></code> is a matrix is by asking APL to tell you the shape of <code class="docutils literal notranslate"><span class="pre">text</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍴</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">5 30
+
+</span></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">⍴</span></code> is called <em>shape</em> and it tells you that <code class="docutils literal notranslate"><span class="pre">text</span></code> has <code class="docutils literal notranslate"><span class="pre">5</span></code> rows and <code class="docutils literal notranslate"><span class="pre">30</span></code> columns…</p>
+<p>But that is certainly interesting, because some of the lines are clearly shorter than 30 characters…
+When we used <code class="docutils literal notranslate"><span class="pre">↑</span></code> to convert our <code class="docutils literal notranslate"><span class="pre">text</span></code> to a matrix, APL padded the shorter lines with spaces so that all lines had the same length.</p>
+<p>The easiest way to verify that we actually have trailing whitespace on the shorter lines is by using <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> to replace them with something else:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;⎕&#39;</span><span class="na">@</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">=⊢</span><span class="p">)</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">To⎕APL,⎕or⎕not⎕to⎕APL,⎕that⎕is
+the⎕question:⎕whether⎕'tis⎕⎕⎕⎕
+nobler⎕in⎕the⎕mind⎕to⎕suffer⎕⎕
+the⎕slings⎕and⎕arrows⎕of⎕the⎕⎕
+outrageous⎕fortune...⎕⎕⎕⎕⎕⎕⎕⎕⎕
+
+</span></div></div>
+</div>
+<p>You can read the line above as</p>
+<blockquote>
+<div><p>“Put the character <code class="docutils literal notranslate"><span class="pre">'⎕'</span></code> <em>at</em> the positions where the character <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'</span></code> is <em>equal</em> to the characters in the <code class="docutils literal notranslate"><span class="pre">text</span></code> matrix.”</p>
+</div></blockquote>
+<p>Working with a matrix of characters is already half of the work done, because it does simplify our code greatly.</p>
+</section>
+<section id="the-matrix-we-want-to-build">
+<h2>The Matrix We Want to Build<a class="headerlink" href="#the-matrix-we-want-to-build" title="Link to this heading">#</a></h2>
+<p>Of course this particular data format is only useful because we had an idea for how to solve this problem of justifying some text.
+Let us take another look at the matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">To APL, or not to APL, that is
+the question: whether 'tis    
+nobler in the mind to suffer  
+the slings and arrows of the  
+outrageous fortune...         
+
+</span></div></div>
+</div>
+<p>In order to justify this text, what we want to do is take the trailing spaces and spread them along the inner spaces of each line.
+In essence, we want to go from</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ To⎕APL,⎕or⎕not⎕to⎕APL,⎕that⎕is</span>
+<span class="c1">⍝ the⎕question:⎕whether⎕&#39;tis⎕⎕⎕⎕</span>
+<span class="c1">⍝ nobler⎕in⎕the⎕mind⎕to⎕suffer⎕⎕</span>
+<span class="c1">⍝ the⎕slings⎕and⎕arrows⎕of⎕the⎕⎕</span>
+<span class="c1">⍝ outrageous⎕fortune...⎕⎕⎕⎕⎕⎕⎕⎕⎕</span>
+</pre></div>
+</div>
+<p>to</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ To⎕APL,⎕or⎕not⎕to⎕APL,⎕that⎕is</span>
+<span class="c1">⍝ the⎕⎕⎕question:⎕⎕whether⎕⎕&#39;tis</span>
+<span class="c1">⍝ nobler⎕⎕in⎕⎕the⎕mind⎕to⎕suffer</span>
+<span class="c1">⍝ the⎕⎕slings⎕⎕and⎕arrows⎕of⎕the</span>
+<span class="c1">⍝ outrageous⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕fortune...</span>
+</pre></div>
+</div>
+<p>If we take a closer look at the second row of these two matrices, we notice that there were four trailing spaces that got divided as evenly as possible among the three inner spaces that existed: the first space (between “the” and “question”) is now 3 spaces wide and the two other spaces are 2 spaces wide:</p>
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ the⎕question:⎕whether⎕&#39;tis⎕⎕⎕⎕</span>
+<span class="c1">⍝ the⎕⎕⎕question:⎕⎕whether⎕⎕&#39;tis</span>
+</pre></div>
+</div>
+<p>In order to achieve this, what we will do is a build an integer matrix (with a shape that matches the shape of <code class="docutils literal notranslate"><span class="pre">text</span></code>) and each integer in that matrix will tell how many copies of each character we want in the final result.</p>
+<p>For example, for the second row of <code class="docutils literal notranslate"><span class="pre">text</span></code>, we would like this integer row:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">chars</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;the question: whether &#39;&#39;tis    &#39;</span>
+<span class="nv">ints</span><span class="w">  </span><span class="kd">←</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+<span class="o">↑</span><span class="nv">chars</span><span class="w"> </span><span class="nv">ints</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">t h e   q u e s t i o n :   w h e t h e r   ' t i s        
+1 1 1 3 1 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 2 1 1 1 1 0 0 0 0
+
+</span></div></div>
+</div>
+<p>Each integer below each character tells how many copies of that character we want:</p>
+<ul class="simple">
+<li><p>below letters and punctuation there is always a <code class="docutils literal notranslate"><span class="pre">1</span></code>, because we want to preserve that character as-is;</p></li>
+<li><p>below the trailing spaces we have a <code class="docutils literal notranslate"><span class="pre">0</span></code>, because we want to remove that character from the line; and</p></li>
+<li><p>below the inner spaces there are the numbers <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">2</span></code>, because we want to create copies of those characters.</p></li>
+</ul>
+<p>Without further ado, let’s start building this matrix.
+We will do it in three simpler steps.</p>
+</section>
+<section id="the-characters-to-keep">
+<h2>The Characters to Keep<a class="headerlink" href="#the-characters-to-keep" title="Link to this heading">#</a></h2>
+<section id="finding-spaces">
+<h3>Finding Spaces<a class="headerlink" href="#finding-spaces" title="Link to this heading">#</a></h3>
+<p>The first step is computing a Boolean matrix that will help us distinguish the trailing spaces from all other characters.
+Let us start by identifying the spaces in the <code class="docutils literal notranslate"><span class="pre">text</span></code> matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 0 0 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0
+0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 1 1 1 1
+0 0 0 0 0 0 1 0 0 1 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 0 1 1
+0 0 0 1 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 1 0 0 1 0 0 0 1 1
+0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1
+
+</span></div></div>
+</div>
+</section>
+<section id="trailing-spaces">
+<h3>Trailing Spaces<a class="headerlink" href="#trailing-spaces" title="Link to this heading">#</a></h3>
+<p>What we want to do now is take the Boolean matrix above and extract another Boolean matrix that contains <code class="docutils literal notranslate"><span class="pre">1</span></code> for all characters in the <code class="docutils literal notranslate"><span class="pre">text</span></code> that we care about and that contains <code class="docutils literal notranslate"><span class="pre">0</span></code> in the positions of the trailing spaces.</p>
+<p>To achieve this effect, we first use <code class="docutils literal notranslate"><span class="pre">spaces</span></code> to create a matrix that identifies the trailing spaces with <code class="docutils literal notranslate"><span class="pre">1</span></code>s, and <em>then</em> we negate that matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌽∧</span><span class="na">\</span><span class="o">⌽</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1
+
+</span></div></div>
+</div>
+<p>There are three distinct symbols in the line above, so what do they do?</p>
+<p><code class="docutils literal notranslate"><span class="pre">⌽</span></code> is the <em>reverse</em> function and the way it works is really simple:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌽</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">4 3 2 1
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌽</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">si taht ,LPA ot ton ro ,LPA oT
+    sit' rehtehw :noitseuq eht
+  reffus ot dnim eht ni relbon
+  eht fo sworra dna sgnils eht
+         ...enutrof suoegartuo
+
+</span></div></div>
+</div>
+<p>The part that may require a deeper explanation is the <code class="docutils literal notranslate"><span class="pre">∧\</span></code> part.
+Start by noticing that <code class="docutils literal notranslate"><span class="pre">∧</span></code> is the Boolean <em>and</em> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">∧</span><span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">0</span><span class="o">∧</span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">∧</span><span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="o">∧</span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+
+</span></div></div>
+</div>
+<p>(In APL we use <code class="docutils literal notranslate"><span class="pre">0</span></code> for “false” and <code class="docutils literal notranslate"><span class="pre">1</span></code> for “true”.)</p>
+</section>
+<section id="reduce-and-scan">
+<h3>Reduce and Scan<a class="headerlink" href="#reduce-and-scan" title="Link to this heading">#</a></h3>
+<p>Then <code class="docutils literal notranslate"><span class="pre">\</span></code> is an <em>operator</em>: an APL glyph that takes a function and modifies it in some way.
+To understand what <code class="docutils literal notranslate"><span class="pre">\</span></code> does, let us start by looking at the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="o">×</span><span class="m">3</span><span class="o">×</span><span class="m">4</span><span class="o">×</span><span class="m">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">120
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">×</span><span class="na">/</span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">120
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">10</span><span class="o">+</span><span class="m">45</span><span class="o">+</span><span class="m">23</span><span class="o">+</span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">79
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">/</span><span class="m">10</span><span class="w"> </span><span class="m">45</span><span class="w"> </span><span class="m">23</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">79
+
+</span></div></div>
+</div>
+<p>Can you spot the pattern?</p>
+<p><code class="docutils literal notranslate"><span class="pre">/</span></code> is the <em>reduce</em> operator: it takes a function on its left and puts it in between the elements of the vector on the right.</p>
+<p><code class="docutils literal notranslate"><span class="pre">\</span></code> is the <em>scan</em> operator and works in a similar manner, but it gives you the intermediate results as well:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="o">×</span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="o">×</span><span class="m">3</span><span class="o">×</span><span class="m">4</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="o">×</span><span class="m">3</span><span class="o">×</span><span class="m">4</span><span class="o">×</span><span class="m">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">2 6 24 120
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">×</span><span class="na">\</span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">2 6 24 120
+
+</span></div></div>
+</div>
+</section>
+<section id="reducing-and-scanning-with">
+<h3>Reducing and Scanning with <code class="docutils literal notranslate"><span class="pre">∧</span></code><a class="headerlink" href="#reducing-and-scanning-with" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">f/</span></code> can often be read as a single unit:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">+/</span></code> is “sum”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">×/</span></code> is “product”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">,/</span></code> is “join”</p></li>
+<li><p>…</p></li>
+</ul>
+<p>In particular, <code class="docutils literal notranslate"><span class="pre">∧/</span></code> is read as “all”, as it returns <code class="docutils literal notranslate"><span class="pre">1</span></code> only if all elements are <code class="docutils literal notranslate"><span class="pre">1</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∧</span><span class="na">/</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∧</span><span class="na">/</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+
+</span></div></div>
+</div>
+<p>Tied with <code class="docutils literal notranslate"><span class="pre">∧/</span></code> is <code class="docutils literal notranslate"><span class="pre">∧\</span></code> which returns the partial results:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∧</span><span class="na">\</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 0 0
+
+</span></div></div>
+</div>
+<p>Because of the interpretation of <code class="docutils literal notranslate"><span class="pre">∧/</span></code> and the way <code class="docutils literal notranslate"><span class="pre">\</span></code> scans the input vector, <code class="docutils literal notranslate"><span class="pre">∧\</span></code> takes a Boolean vector and returns a Boolean vector with the leading <code class="docutils literal notranslate"><span class="pre">1</span></code>s preserved and everything else as <code class="docutils literal notranslate"><span class="pre">0</span></code>s:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∧</span><span class="na">\</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 1 1
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∧</span><span class="na">\</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 0 0 0 0
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∧</span><span class="na">\</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 0 0 0
+
+</span></div></div>
+</div>
+<p>You can read <code class="docutils literal notranslate"><span class="pre">∧\</span></code> as “were all <code class="docutils literal notranslate"><span class="pre">1</span></code> so far?”.</p>
+</section>
+<section id="reducing-and-scanning-a-matrix">
+<h3>Reducing and Scanning a Matrix<a class="headerlink" href="#reducing-and-scanning-a-matrix" title="Link to this heading">#</a></h3>
+<p>When you use <code class="docutils literal notranslate"><span class="pre">f/</span></code> or <code class="docutils literal notranslate"><span class="pre">f\</span></code> with a matrix, it is as if you did <code class="docutils literal notranslate"><span class="pre">f/</span></code> or <code class="docutils literal notranslate"><span class="pre">f\</span></code> on each row separately, so</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">/</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">7 7 7 7 10
+
+</span></div></div>
+</div>
+<p>tells you how many spaces each line has, for example.</p>
+<p>Now you should be able to better grasp what we did above: <code class="docutils literal notranslate"><span class="pre">⌽spaces</span></code> puts the trailing spaces in the beginning and then <code class="docutils literal notranslate"><span class="pre">∧\</span></code> makes it so that only the leading <code class="docutils literal notranslate"><span class="pre">1</span></code>s remain:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∧</span><span class="na">\</span><span class="o">⌽</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+</span></div></div>
+</div>
+<p>When we reverse once more we put the <code class="docutils literal notranslate"><span class="pre">1</span></code>s back in their place, therefore creating a Boolean matrix that tells us exactly where the trailing spaces are:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌽∧</span><span class="na">\</span><span class="o">⌽</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1
+
+</span></div></div>
+</div>
+<p>We can negate this matrix, therefore creating a matrix that tells us what characters we want to keep and which characters (the trailing spaces) to discard:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="w"> </span><span class="nv">keep</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">~⌽∧</span><span class="na">\</span><span class="o">⌽</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0
+
+</span></div></div>
+</div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">~</span></code> above is the <em>negate</em> function and it turns <code class="docutils literal notranslate"><span class="pre">0</span></code>s into <code class="docutils literal notranslate"><span class="pre">1</span></code>s and <code class="docutils literal notranslate"><span class="pre">1</span></code>s into <code class="docutils literal notranslate"><span class="pre">0</span></code>s.</p>
+</section>
+</section>
+<section id="inner-space-expansion">
+<h2>Inner Space Expansion<a class="headerlink" href="#inner-space-expansion" title="Link to this heading">#</a></h2>
+<p>Now that we have two Boolean matrices, one that tells the positions that contain spaces, and another that tells the positions that contain characters to keep, we can combine them to create a matrix with the positions of the inner spaces:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="w"> </span><span class="nv">inner</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">keep</span><span class="o">∧</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 0 0 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0
+0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 1 0 0 1 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0
+0 0 0 1 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+</span></div></div>
+</div>
+<p>We will now investigate, for each of the positions marked in this <code class="docutils literal notranslate"><span class="pre">inner</span></code> matrix, how many spaces should be added in those positions.</p>
+<p>In order to figure that out, we first need to know how many trailing spaces each row has to distribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="w"> </span><span class="nv">trail</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="o">~</span><span class="nv">keep</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 4 2 2 9
+
+</span></div></div>
+</div>
+<p>Just remember that <code class="docutils literal notranslate"><span class="pre">+/</span></code> sums each row and <code class="docutils literal notranslate"><span class="pre">~keep</span></code> has <code class="docutils literal notranslate"><span class="pre">1</span></code>s where the trailing spaces are.</p>
+<p>Similarly, we need to know how many positions exist that could receive trailing spaces, but this is just a matter of summing the <code class="docutils literal notranslate"><span class="pre">inner</span></code> matrix along the rows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="w"> </span><span class="nv">spaces</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="nv">inner</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">7 3 5 5 1
+
+</span></div></div>
+</div>
+<p>Let us put the <code class="docutils literal notranslate"><span class="pre">trail</span></code> and <code class="docutils literal notranslate"><span class="pre">spaces</span></code> vectors on top of each other:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">↑</span><span class="nv">trail</span><span class="w"> </span><span class="nv">spaces</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 4 2 2 9
+7 3 5 5 1
+
+</span></div></div>
+</div>
+<p>Here is what this means:</p>
+<ul class="simple">
+<li><p>the 1st row has <code class="docutils literal notranslate"><span class="pre">0</span></code> trailing spaces that need to be distributed among <code class="docutils literal notranslate"><span class="pre">7</span></code> positions;</p></li>
+<li><p>the 2nd row has <code class="docutils literal notranslate"><span class="pre">4</span></code> trailing spaces that need to be distributed among <code class="docutils literal notranslate"><span class="pre">3</span></code> positions;</p></li>
+<li><p>…</p></li>
+<li><p>the 5th row has <code class="docutils literal notranslate"><span class="pre">9</span></code> trailing spaces that need to be distributed among <code class="docutils literal notranslate"><span class="pre">1</span></code> position.</p></li>
+</ul>
+<p>If we divide <code class="docutils literal notranslate"><span class="pre">trail</span></code> by <code class="docutils literal notranslate"><span class="pre">spaces</span></code> we can figure out how many spaces to add to each position in each row:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">trail</span><span class="o">÷</span><span class="nv">spaces</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 1.33333 0.4 0.4 9
+
+</span></div></div>
+</div>
+<p>However, we cannot add <code class="docutils literal notranslate"><span class="pre">1.33333</span></code> spaces in a position, nor <code class="docutils literal notranslate"><span class="pre">0.4</span></code> spaces.
+We can only add whole characters, so let us round those values down:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌊</span><span class="nv">trail</span><span class="o">÷</span><span class="nv">spaces</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 1 0 0 9
+
+</span></div></div>
+</div>
+<p>This shows how many spaces each position in each row can get, so let us encode that information in the <code class="docutils literal notranslate"><span class="pre">inner</span></code> matrix that we have:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">inner</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 0 0 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0
+0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 1 0 0 1 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0
+0 0 0 1 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+</span></div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">inner</span></code> matrix just says which positions can receive spaces, but we want a matrix that says <em>how many</em> spaces to add in each position.</p>
+<p>One of the simplest ways to do that is by multiplying each row by the corresponding value in <code class="docutils literal notranslate"><span class="pre">⌊trail÷spaces</span></code>.
+It would be great if we could write</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">inner</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">⌊</span><span class="nv">trail</span><span class="o">÷</span><span class="nv">spaces</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RANK ERROR: Mismatched left and right argument ranks
+      inner×⌊trail÷spaces
+           ∧
+</pre></div>
+</div>
+</div>
+</div>
+<p>But unfortunately we cannot, so we need to tell APL that the <code class="docutils literal notranslate"><span class="pre">×</span></code> <em>times</em> function should operate on each <em>row</em> of <code class="docutils literal notranslate"><span class="pre">inner</span></code> and each <em>element</em> of the vector <code class="docutils literal notranslate"><span class="pre">⌊trail÷spaces</span></code>, and we can do that with the <em>rank</em> operator <code class="docutils literal notranslate"><span class="pre">⍤</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="w"> </span><span class="nv">add</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">inner</span><span class="w"> </span><span class="p">(</span><span class="o">×</span><span class="na">⍤</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">⌊</span><span class="nv">trail</span><span class="o">÷</span><span class="nv">spaces</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+</span></div></div>
+</div>
+<p>First, note that in each row, the <code class="docutils literal notranslate"><span class="pre">1</span></code>s have been replaced by the corresponding number in <code class="docutils literal notranslate"><span class="pre">⌊trail÷spaces</span></code>.</p>
+<p>The <em>rank</em> operator <code class="docutils literal notranslate"><span class="pre">⍤</span></code> is a really powerful operator but it might take some time to wrap your head around it.
+I can recommend <a class="reference external" href="https://aplcart.info/pub/?q=the%20rank%20operator#">Richard Park’s webinars on the <em>rank</em> operator</a>.</p>
+</section>
+<section id="extra-spaces">
+<h2>Extra Spaces<a class="headerlink" href="#extra-spaces" title="Link to this heading">#</a></h2>
+<p>You might have noticed that the <code class="docutils literal notranslate"><span class="pre">add</span></code> matrix, that tells you how many spaces can be added to each position, does not account for all the trailing spaces that had to be distributed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">/</span><span class="nv">add</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 3 0 0 9
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">trail</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 4 2 2 9
+
+</span></div></div>
+</div>
+<p>That is because some of the rows were such that the number of inner spaces did not divide into the total number of trailing spaces that had to be distributed.
+We still need to distribute these spaces.</p>
+<p>First of all, how many do we still have to distribute?
+You can compute it as</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">trail</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="nv">add</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 1 2 2 0
+
+</span></div></div>
+</div>
+<p>But it can also be</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">spaces</span><span class="o">|</span><span class="nv">trail</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 1 2 2 0
+
+</span></div></div>
+</div>
+<p>if you make use of the <em>residue</em> function <code class="docutils literal notranslate"><span class="pre">|</span></code> .</p>
+<section id="enumerating-the-inner-spaces">
+<h3>Enumerating the Inner Spaces<a class="headerlink" href="#enumerating-the-inner-spaces" title="Link to this heading">#</a></h3>
+<p>Now that we know how many spaces are missing in each row, we need to figure out which of the <code class="docutils literal notranslate"><span class="pre">inner</span></code> positions receive those extra spaces.
+From the result of <code class="docutils literal notranslate"><span class="pre">spaces|trail</span></code> we see that</p>
+<ul class="simple">
+<li><p>1st and 5th rows need no extra spaces;</p></li>
+<li><p>2nd row needs 1 extra space; and</p></li>
+<li><p>3rd and 4th rows need 2 extra spaces;</p></li>
+</ul>
+<p>We wish to create a matrix, similar to <code class="docutils literal notranslate"><span class="pre">inner</span></code>, but that tells us what positions get these extra spaces.
+In order to get there, we start by scanning <code class="docutils literal notranslate"><span class="pre">inner</span></code> with <code class="docutils literal notranslate"><span class="pre">+</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">\</span><span class="nv">inner</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 1 1 1 2 2 2 3 3 3 3 4 4 4 5 5 5 5 5 6 6 6 6 6 7 7 7
+0 0 0 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3
+0 0 0 0 0 0 1 1 1 2 2 2 2 3 3 3 3 3 4 4 4 5 5 5 5 5 5 5 5 5
+0 0 0 1 1 1 1 1 1 1 2 2 2 2 3 3 3 3 3 3 3 4 4 4 5 5 5 5 5 5
+0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+
+</span></div></div>
+</div>
+<p>Notice that this creates an interesting integer matrix, where the value in each row increases by <code class="docutils literal notranslate"><span class="pre">1</span></code> whenever we hit a <code class="docutils literal notranslate"><span class="pre">1</span></code> in the original <code class="docutils literal notranslate"><span class="pre">inner</span></code> matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">inner</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 0 0 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0
+0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 1 0 0 1 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0
+0 0 0 1 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+</span></div></div>
+</div>
+<p>If we multiply the two together, we get an enumeration of the marked <code class="docutils literal notranslate"><span class="pre">inner</span></code> positions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">inner</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="o">+</span><span class="na">\</span><span class="nv">inner</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 0 0 0 0 2 0 0 3 0 0 0 4 0 0 5 0 0 0 0 6 0 0 0 0 7 0 0
+0 0 0 1 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 1 0 0 2 0 0 0 3 0 0 0 0 4 0 0 5 0 0 0 0 0 0 0 0
+0 0 0 1 0 0 0 0 0 0 2 0 0 0 3 0 0 0 0 0 0 4 0 0 5 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+</span></div></div>
+</div>
+<p>Now we can see which of these numbered positions need an extra space.
+We can do so by comparing the rows of that matrix with the values in <code class="docutils literal notranslate"><span class="pre">spaces|trail</span></code>.
+Again, we cannot do this directly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">inner</span><span class="o">×+</span><span class="na">\</span><span class="nv">inner</span><span class="p">)</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="nv">spaces</span><span class="o">|</span><span class="nv">trail</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RANK ERROR: Mismatched left and right argument ranks
+      (inner×+\inner)≤spaces|trail
+                     ∧
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to use the <em>rank</em> operator <code class="docutils literal notranslate"><span class="pre">⍤</span></code> once more to pair the rows of <code class="docutils literal notranslate"><span class="pre">inner×+\inner</span></code> with the values of <code class="docutils literal notranslate"><span class="pre">spaces|trail</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">inner</span><span class="o">×+</span><span class="na">\</span><span class="nv">inner</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">≤</span><span class="na">⍤</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="nv">spaces</span><span class="o">|</span><span class="nv">trail</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 0 1 1 1 1 0 1 1 0 1 1 1 0 1 1 0 1 1 1 1 0 1 1 1 1 0 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 0 1 1 0 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 0 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+
+</span></div></div>
+</div>
+<p>This result looks funny because our comparison also looked at all of the <code class="docutils literal notranslate"><span class="pre">0</span></code>s in the <code class="docutils literal notranslate"><span class="pre">inner</span></code> matrix, although we don’t care about those.
+In order to fix it, we need to multiply by <code class="docutils literal notranslate"><span class="pre">inner</span></code> again:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">inner</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="p">(</span><span class="nv">inner</span><span class="o">×+</span><span class="na">\</span><span class="nv">inner</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">≤</span><span class="na">⍤</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="nv">spaces</span><span class="o">|</span><span class="nv">trail</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+</span></div></div>
+</div>
+<p>Now this shows the positions that will receive one extra space.
+Let us save it in a variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">extra</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">inner</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="p">(</span><span class="nv">inner</span><span class="o">×+</span><span class="na">\</span><span class="nv">inner</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">≤</span><span class="na">⍤</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="nv">spaces</span><span class="o">|</span><span class="nv">trail</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that we could multiply by <code class="docutils literal notranslate"><span class="pre">inner</span></code> just once, in the end, instead of twice:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">inner</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="p">(</span><span class="o">+</span><span class="na">\</span><span class="nv">inner</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">≤</span><span class="na">⍤</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="nv">spaces</span><span class="o">|</span><span class="nv">trail</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+</span></div></div>
+</div>
+</section>
+</section>
+<section id="putting-everything-together">
+<h2>Putting Everything Together<a class="headerlink" href="#putting-everything-together" title="Link to this heading">#</a></h2>
+<p>We have our three matrices <code class="docutils literal notranslate"><span class="pre">keep</span></code>, <code class="docutils literal notranslate"><span class="pre">add</span></code>, and <code class="docutils literal notranslate"><span class="pre">extra</span></code>, so we can build the matrix we set out to build:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">keep</span><span class="o">+</span><span class="nv">add</span><span class="o">+</span><span class="nv">extra</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 1 1 1 1 1 1 1 1  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 3 1 1 1 1 1 1  1 1 1 2 1 1 1 1 1 1 1 2 1 1 1 1 0 0 0 0
+1 1 1 1 1 1 2 1 1 2  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0
+1 1 1 2 1 1 1 1 1 1  2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0
+1 1 1 1 1 1 1 1 1 1 10 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0
+
+</span></div></div>
+</div>
+<p>We just have to use it to replicate the original characters by the correct amount:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">To APL, or not to APL, that is
+the question: whether 'tis    
+nobler in the mind to suffer  
+the slings and arrows of the  
+outrageous fortune...         
+
+</span></div></div>
+</div>
+<p>Luckily, APL has a <em>replicate</em> function, which is also in the symbol <code class="docutils literal notranslate"><span class="pre">/</span></code>.
+For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="na">/</span><span class="w"> </span><span class="s1">&#39;DYALOG&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">DAAOOO
+
+</span></div></div>
+</div>
+<p>Unfortunately, <code class="docutils literal notranslate"><span class="pre">/</span></code> does not work as-is with two matrices:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">keep</span><span class="o">+</span><span class="nv">add</span><span class="o">+</span><span class="nv">extra</span><span class="p">)</span><span class="na">/</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RANK ERROR
+      (keep+add+extra)/text
+                      ∧
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to flatten the two matrices with <code class="docutils literal notranslate"><span class="pre">,</span></code>, and then use <code class="docutils literal notranslate"><span class="pre">⍴</span></code> to <em>reshape</em> the result back to its original <em>shape</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">⍴</span><span class="nv">text</span><span class="p">)</span><span class="o">⍴</span><span class="p">(</span><span class="o">,</span><span class="nv">keep</span><span class="o">+</span><span class="nv">add</span><span class="o">+</span><span class="nv">extra</span><span class="p">)</span><span class="na">/</span><span class="o">,</span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">To APL, or not to APL, that is
+the   question:  whether  'tis
+nobler  in  the mind to suffer
+the  slings  and arrows of the
+outrageous          fortune...
+
+</span></div></div>
+</div>
+</section>
+<section id="writing-a-dfn">
+<h2>Writing a Dfn<a class="headerlink" href="#writing-a-dfn" title="Link to this heading">#</a></h2>
+<p>If we take all our code and put it in a (single-line) dfn, here is what we get:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Just</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="nv">keep</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">~⌽∧</span><span class="na">\</span><span class="o">⌽</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">inner</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">keep</span><span class="o">∧</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">trail</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="o">~</span><span class="nv">keep</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">spaces</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="nv">inner</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">add</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">inner</span><span class="p">(</span><span class="o">×</span><span class="na">⍤</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="o">⌊</span><span class="nv">trail</span><span class="o">÷</span><span class="nv">spaces</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">extra</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">inner</span><span class="o">×</span><span class="p">(</span><span class="o">+</span><span class="na">\</span><span class="nv">inner</span><span class="p">)(</span><span class="o">≤</span><span class="na">⍤</span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="nv">spaces</span><span class="o">|</span><span class="nv">trail</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="p">(</span><span class="o">⍴</span><span class="bp">⍵</span><span class="p">)</span><span class="o">⍴</span><span class="p">(</span><span class="o">,</span><span class="nv">keep</span><span class="o">+</span><span class="nv">add</span><span class="o">+</span><span class="nv">extra</span><span class="p">)</span><span class="na">/</span><span class="o">,</span><span class="bp">⍵</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Just</span><span class="w"> </span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">To APL, or not to APL, that is
+the   question:  whether  'tis
+nobler  in  the mind to suffer
+the  slings  and arrows of the
+outrageous          fortune...
+
+</span></div></div>
+</div>
+<p>(Notice that, for one, this implementation may not be the best solution to this task, but was written in this way because of the context in which it was presented. Secondly, this dfn should probably be defined across multiple lines, but current limitations of the <a class="reference external" href="https://tryapl.org">TryAPL</a> site mean we can only define one-line dfns.)</p>
+</section>
+<section id="a-more-robust-function">
+<h2>A More Robust Function<a class="headerlink" href="#a-more-robust-function" title="Link to this heading">#</a></h2>
+<p>While our code works quite well, it has a very serious shortcoming:
+it does not work on text with empty lines…</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">text</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">↑</span><span class="s1">&#39;This is the first line.&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;This is another paragraph.&#39;</span>
+<span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">This is the first line.   
+                          
+This is another paragraph.
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">Just</span><span class="w"> </span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DOMAIN ERROR: Divide by zero
+Just[0] Just←{keep←~⌽∧\⌽&#39; &#39;=⍵ ⋄ inner←keep∧&#39; &#39;=⍵ ⋄ trail←+/~keep ⋄ spaces←+/inner ⋄ add←inner(×⍤1 0)⌊trail÷spaces ⋄ extra←inner×(+\inner)(≤⍤1 0)spaces|trail ⋄ (⍴⍵)⍴(,keep+add+extra)/,⍵}
+                                                                                                          ∧
+</pre></div>
+</div>
+</div>
+</div>
+<p>Gladly, we can fix this without too much trouble.
+We can just add some pre-processing to ignore blank lines or lines that do not need justifying (lines that have only 1 word or lines that are too short) and reuse our <code class="docutils literal notranslate"><span class="pre">Just</span></code> function.</p>
+<p>(This was shown in the APL Seeds presentation very briefly, with no explanation, as it was used to justify a text with approximately 12.500 lines (a text file of Jules Verne’s “Twenty Thousand Leagues Under the Sea”, <a class="reference external" href="http://www.gutenberg.org/ebooks/164">downloaded from Project Gutenberg</a>.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">BetterJust</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="w"> </span><span class="nv">s</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">t</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⌽∧</span><span class="na">\</span><span class="o">⌽</span><span class="nv">s</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">fewWs</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span><span class="o">=+</span><span class="na">/</span><span class="nv">s</span><span class="o">-</span><span class="nv">t</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">shortL</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">+</span><span class="na">/</span><span class="nv">t</span><span class="p">)</span><span class="o">&gt;</span><span class="m">0.25</span><span class="o">×⊃⌽⍴</span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">use</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">~</span><span class="nv">fewWs</span><span class="o">∨</span><span class="nv">shortL</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="p">(</span><span class="nv">use</span><span class="na">⌿</span><span class="nv">result</span><span class="p">)</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">Just</span><span class="w"> </span><span class="nv">use</span><span class="na">⌿</span><span class="bp">⍵</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="kt">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">BetterJust</span><span class="w"> </span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">This  is  the  first line.
+                          
+This is another paragraph.
+
+</span></div></div>
+</div>
+<p>We can also take our original text, add a header and a blank line for demonstration purposes, and justify it again:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="w"> </span><span class="nv">text</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">↑</span><span class="s1">&#39;HAMLET&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39;To APL, or not to APL, that is&#39;</span><span class="w"> </span><span class="s1">&#39;the question: whether &#39;&#39;tis&#39;</span><span class="w"> </span><span class="s1">&#39;nobler in the mind to suffer&#39;</span><span class="w"> </span><span class="s1">&#39;the slings and arrows of the&#39;</span><span class="w"> </span><span class="s1">&#39;outrageous fortune...&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">HAMLET                        
+                              
+To APL, or not to APL, that is
+the question: whether 'tis    
+nobler in the mind to suffer  
+the slings and arrows of the  
+outrageous fortune...         
+
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">BetterJust</span><span class="w"> </span><span class="nv">text</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">HAMLET                        
+                              
+To APL, or not to APL, that is
+the   question:  whether  'tis
+nobler  in  the mind to suffer
+the  slings  and arrows of the
+outrageous fortune...         
+
+</span></div></div>
+</div>
+<p>Notice that, now, the last line doesn’t get justified because it is “too short”.
+What “too short” means is controlled by a parameter in the <code class="docutils literal notranslate"><span class="pre">BetterJust</span></code> function, which is set to <code class="docutils literal notranslate"><span class="pre">0.25</span></code> right now (meaning lines that have 25% or more of trailing whitespace are not justified).</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            name: "dyalog-kernel",
+            path: "./apl-quest/dyalog"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="hashtables.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Hash tables in Dyalog APL</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Linear-Fitting.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Linear Fitting</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-text-we-ll-justify">The Text We’ll Justify</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-format">Data Format</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-matrix-we-want-to-build">The Matrix We Want to Build</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-characters-to-keep">The Characters to Keep</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finding-spaces">Finding Spaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trailing-spaces">Trailing Spaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduce-and-scan">Reduce and Scan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-and-scanning-with">Reducing and Scanning with <code class="docutils literal notranslate"><span class="pre">∧</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-and-scanning-a-matrix">Reducing and Scanning a Matrix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-space-expansion">Inner Space Expansion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-spaces">Extra Spaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumerating-the-inner-spaces">Enumerating the Inner Spaces</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-everything-together">Putting Everything Together</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-a-dfn">Writing a Dfn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-more-robust-function">A More Robust Function</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

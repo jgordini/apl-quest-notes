@@ -1,0 +1,1413 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Boolean Scans and Reductions &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ae78d91f" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/dyalog/Boolean-Scans-and-Reductions';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Calculus" href="Calculus.html" />
+    <link rel="prev" title="Boolean functions" href="Boolean-Functions-and-Boolean-Algebra.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2013/index.html">APL Quest 2013</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping Things In Balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Go-Forth-And-Multiply-APLQuest-2013-8.html">Go forth and Multiply 2013-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Solution-Salvation-APLQuest-2013-10.html">Solution Salvation 2013-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2014/index.html">APL Quest 2014</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2014/It-Is-All-Right-APLQuest-2014-1.html">It Is All Right 2014-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/How-Tweet-It-Is-APLQuest-2014-2.html">How Tweet It Is 2014-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Tell-a-Fib-APLQuest-2014-3.html">Tell A Fib 2014-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Space-The-Final-Frontier-APLQuest-2014-4.html">Space The Final Frontier 2014-4</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../2014/Mirror-Mirror-APLQuest-2014-5.html">Mirror Mirror 2014-5</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../2014/Revolutionary-Thinking-APLQuest-2014-7.html">Revolutionary Thinking 2014-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Go-The-Distance-APLQuest-2014-8.html">Go The Distance 2014-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Going-Ballistic-APLQuest-2014-9.html">Going Ballistic 2014-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Sales-Are-Up-APLQuest-2014-10.html">Sales Are Up 2014-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2015/index.html">APL Quest 2015</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Nag-A-Ram-APLQuest-2015-1.html">APL Quest: Anagrams Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Longest-Streak-APLQuest-2015-2.html">APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Farey-Tales-APLQuest-2015-3.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Progessive-Dyadic-Iota-APLQuest-2015-4.html">APL Quest Cap Wiki: Progressive Dyadic Iota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.html">APL Quest: Standard Deviation Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.html">APL Quest: Problem Six Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Justin-Upper-Case-APLQuest-2015-7.html">APL Quest: Problem 7 from the 2015 APL Problem Solver Competition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html">APL Quest: Swapping Interior Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Blazing-A-Trail-APLQuest-2015-10.html">API Quest: Generating a Centered Pascal’s Triangle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2016/index.html">APL Quest 2016</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mean-APLQuest-2016-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Median-APLQuest-2016-2.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mode-APLQuest-2016-3.html">Welcome to APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.html">Welcome to the Appeal Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Shorter-Onestothe-Front-APLQuest-2016-6.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/3-sand-5-s-APLQuest-2016-7.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Separating-Outthe-Negative-APLQuest-2016-8.html">APL Quest: 8th Quest Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Delimited-Text-APLQuest-2016-9.html">APL Quest: Delimiter Splitting Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Order-Total-APLQuest-2016-10.html">Welcome to the APL Quest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2017/index.html">APL Quest 2017</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2017/What-an-Odd-Bunch-APLQuest-2017-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Good-Evening-APLQuest-2017-2.html">Ensure Odd Numbers Become Even Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Miss-Quoted-APLQuest-2017-3.html">Removing Text Between Double Quotes Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Slices-of-Pies-APLQuest-2017-4.html">Computing Areas of Circle Sectors Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/DNA-APLQuest-2017-5.html">Checking Character Vectors for Valid Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/k-mers-APLQuest-2017-6.html">Chopping Text into Sequences of a Given Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Counting-DNANucleotides-APLQuest-2017-7.html">Counting Letters in a String: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Be-the-First-1-APLQuest-2017-8.html">Understanding Boolean Vector Processing in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Double-Trouble-APLQuest-2017-9.html">Finding Locations of Identical Characters in Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Squaring-Off-APLQuest-2017-10.html">Fitting Elements into a Square Array</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2018/index.html">APL Quest 2018</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Oh-Say-Can-You-See-APLQuest-2018-1.html">Counting Visible Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Number-Splitting-APLQuest-2018-2.html">Splitting Numbers into Integer and Fractional Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Rolling-Along-APLQuest-2018-3.html">Simulating Dice Rolls and Analyzing Outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-APLQuest-2018-4.html">Converting Gregorian Year Numbers to Chinese Zodiac Animals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-Revisited-APLQuest-2018-5.html">Computing Zodiac Signs from Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Angle-APLQuest-2018-6.html">A Simple Test for XML Validity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Unconditionally-Shifty-APLQuest-2018-7.html">Shifting Boolean Data: An Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Makinga-Good-Argument-APLQuest-2018-8.html">Validating Dyadic Transpose Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Earlier-Later-or-the-Same-APLQuest-2018-9.html">Comparing Dates in APL: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Anagrammatically-Correct-APLQuest-2018-10.html">Comparing Two Character Vectors: An Anagram Checker</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2019/index.html">APL Quest 2019</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Chunky-Monkey-APLQuest-2019-1.html">Chunking a List into Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Makingthe-Grade-APLQuest-2019-2.html">Converting Scores into Letter Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Grade-Distribution-APLQuest-2019-3.html">Compiling Simple Statistics on Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Knight-Moves-APLQuest-2019-4.html">Understanding the Movement of a Chess Knight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Doubling-Up-APLQuest-2019-5.html">Checking for Consecutive Identical Letters in Words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Telephone-Names-APLQuest-2019-6.html">Translating Telephone Numbers from Digits and Letters to Plain Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/In-the-Center-of-it-All-APLQuest-2019-7.html">Centering Words in a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Goingthe-Distance-APLQuest-2019-8.html">Computing the Distance Around a Path Defined by Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Area-Code-Gauss-APLQuest-2019-9.html">Calculating the Area of a Polygon Using the Shoelace Formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Odds-Evens-APLQuest-2019-10.html">Splitting a List of Words by Length</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2020/index.html">APL Quest 2020</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Lets-Split-APLQuest-2020-1.html">Understanding Vector Partitioning in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Character-Building-APLQuest-2020-2.html">Understanding Byte Sequences and UTF-8 Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Excel-lent-Columns-APLQuest-2020-3.html">Understanding Column Label Conversion in Spreadsheet Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Takea-Leap-APLQuest-2020-4.html">Understanding Leap Years: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Steppinginthe-Proper-Direction-APLQuest-2020-5.html">Generating Inclusive Integer Ranges in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Movetothe-Front-APLQuest-2020-6.html">Moving Elements in a Numeric Vector to the Front in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/See-Youina-Bit-APLQuest-2020-7.html">Checking Bit States in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Zigzag-Numbers-APLQuest-2020-8.html">Analyzing Alternating Digit Growth in Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Riseand-Fall-APLQuest-2020-9.html">Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Stacking-It-Up-APLQuest-2020-10.html">Emulating APL Array Printing Behavior</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2021/index.html">APL Quest 2021</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Are-You-a--Bacteria-APLQuest-2021-1.html">Calculating Percentage of Characters in a DNA String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Index-Of-Modified-APLQuest-2021-2.html">Creating a Cover for the Dyadic Iota in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Multiplicity-APLQuest-2021-3.html">Grouping Integers by Divisibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Square-Peg-Round-Hole-APLQuest-2021-4.html">Finding the Difference in Area Between an Inscribed Square and Its Circumscribing Circle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Rect-ify-APLQuest-2021-5.html">Finding Rectangle Dimensions with Given Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Fischer-Random-Chess-APLQuest-2021-6.html">Chess Setup Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Can-You-Feelthe-Magic-APLQuest-2021-7.html">Checking for Magic Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Timeto-Makea-Difference-APLQuest-2021-8.html">Calculating Absolute Time Difference in Minutes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Inthe-Long-Run-APLQuest-2021-9.html">Finding the Longest Consecutive Sequence in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Onthe-Right-Side-APLQuest-2021-10.html">Justified Text Transformation in APL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2022/index.html">APL Quest 2022</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Counting-DNA-Nucleotides-APLQuest-2022-1.html">Counting DNA Letters in a Character Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Attackofthe-Mutations-APLQuest-2022-2.html">Comparing DNA Strings: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Uniquely-Qualified-APLQuest-2022-3.html">Finding the Symmetric Difference Between Two Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Inthe-Long-One-APLQuest-2022-4.html">Finding the Longest Run of Ones in a Boolean Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Stairwayto-Heaven-APLQuest-2022-5.html">Building a Staircase in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Pyramid-Scheme-APLQuest-2022-6.html">Constructing Concentric Rings of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Just-Golfing-Around-APLQuest-2022-7.html">Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Lets-Split-APLQuest-2022-8.html">Splitting Text in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html">Calculating the Window Average of a List of Numbers in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Separation-Anxiety-APLQuest-2022-10.html">Inserting Separators in Large Integers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2023/index.html">APL Quest 2023</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Elimination-Sort-APLQuest-2023-1.html">Removing Non-Decreasing Elements from a List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Put-It-In-Reverse-APLQuest-2023-2.html">Finding End Points of One Array in Another</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Caesar-Salad-APLQuest-2023-3.html">Implementing a Simple Caesar Cipher for Uppercase Characters and Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Like-a-Version-APLQuest-2023-4.html">Comparing Version Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Risky-Business-APLQuest-2023-5.html">Understanding Dice Mechanics in Risk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Key-Value-Pairs-APLQuest-2023-6.html">Parsing Key-Value Pairs into a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Lets-Be-Rational-APLQuest-2023-7.html">Finding a Reduced Fraction for a Given Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Critical-Thinking-APLQuest-2023-8.html">Computing the Next Double Critical Day</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Flipping-Pairs-APLQuest-2023-9.html">Interchanging Adjacent Elements in a Multi-Dimensional Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Partition-witha-Twist-APLQuest-2023-10.html">APL Quest: Splitting Text on Spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Jupyter notebooks for Dyalog APL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="APL-Expressions.html">APL Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Arithmetic-Functions.html">Arithmetic Fuctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Boolean-Functions-and-Boolean-Algebra.html">Boolean functions</a></li>
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Boolean Scans and Reductions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Calculus.html">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Comparison-Functions.html">Comparison functions <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">≤</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> <code class="docutils literal notranslate"><span class="pre">≥</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">≠</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Grading-and-Sorting.html">Grading and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hashtables.html">Hash tables in Dyalog APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Justifying-Text.html">Justifying Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Linear-Fitting.html">Linear Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Lookup-Without-Replacement.html">Lookup without Replacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Maths-versus-APL.html">Maths versus APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modifying-Rank-and-Depth.html">Modifying rank and depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="New-in-v14.html">Tally <code class="docutils literal notranslate"><span class="pre">≢</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="New-in-v15.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪/</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="New-in-v16.html">Monadic function <code class="docutils literal notranslate"><span class="pre">⍸</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="New-in-v17.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Plotting-with-SharpPlot.html">Plotting with SharpPlot</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="Random-Numbers.html">Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reduce-and-Scan.html">Reduce and Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sudoku-Solver.html">Sodoku Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tacit-Techniques.html">Tacit Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Using-the-TryAPL-Tutorials.html">TryAPL tutorial system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Your-First-Mandelbrot-Set.html">Mandelbrot Set</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/dyalog/Boolean-Scans-and-Reductions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Boolean Scans and Reductions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utility">Utility</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sixteen-logical-functions">Sixteen logical functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scans-and-reductions">Scans and reductions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-last-value">The last value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#less-than">Less-than</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#not-equal">Not-equal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flat-partition">Flat partition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efficient-implementation">Efficient implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sixteen-boolean-reductions">Sixteen boolean reductions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="boolean-scans-and-reductions">
+<h1>Boolean Scans and Reductions<a class="headerlink" href="#boolean-scans-and-reductions" title="Link to this heading">#</a></h1>
+<p>The content of this notebook was presented in <a class="reference external" href="https://dyalog.tv/Webinar/?v=erv_1LxEByk">Dyalog Webinars: Boolean Scans and Reductions</a>.</p>
+<p>Logical values are the integers <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code>, in contrast to distinct <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">false</span></code> values you might find in other programming languages.</p>
+<section id="utility">
+<h2>Utility<a class="headerlink" href="#utility" title="Link to this heading">#</a></h2>
+<p>Boolean data is widely used in APL.</p>
+<p>Results of comparison functions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">_</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">,</span><span class="na">⍥</span><span class="o">⊆</span><span class="w">   </span><span class="c1">⍝ Stranding function</span>
+<span class="m">¯2</span><span class="w"> </span><span class="m">¯1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="p">(</span><span class="o">↑</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">_</span><span class="w"> </span><span class="o">≤</span><span class="w"> </span><span class="nv">_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">_</span><span class="w"> </span><span class="o">≠</span><span class="w"> </span><span class="nv">_</span><span class="w"> </span><span class="o">≥</span><span class="w"> </span><span class="nv">_</span><span class="w"> </span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 0 0 0
+1 1 1 0 0
+0 0 1 0 0
+1 1 0 1 1
+0 0 1 1 1
+0 0 0 1 1
+</span></div></div>
+</div>
+<p>Data-driven conditionals. For example, “increase the salaries in group A by 5%”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">groups</span><span class="w">   </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;ABACC&#39;</span>
+<span class="nv">salaries</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">20000</span><span class="w"> </span><span class="m">25750</span><span class="w"> </span><span class="m">21000</span><span class="w"> </span><span class="m">32350</span><span class="w"> </span><span class="m">32400</span>
+<span class="nv">salaries</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="m">1.05</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">21000 25750 22050 32350 32400
+</span></div></div>
+</div>
+<p>Selecting from arrays:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">values</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">24</span>
+<span class="nv">names</span><span class="kd">←</span><span class="s1">&#39;Anne&#39;</span><span class="w"> </span><span class="s1">&#39;Ben&#39;</span><span class="w"> </span><span class="s1">&#39;Charlie&#39;</span><span class="w"> </span><span class="s1">&#39;Demi&#39;</span><span class="w"> </span><span class="s1">&#39;Ella&#39;</span><span class="w"> </span><span class="s1">&#39;Fiona&#39;</span>
+<span class="p">(</span><span class="nv">values</span><span class="o">≥</span><span class="m">10</span><span class="p">)</span><span class="na">/</span><span class="nv">names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">┌───┬────┬─────┐
+│Ben│Ella│Fiona│
+└───┴────┴─────┘
+</span></div></div>
+</div>
+<p>Simple statistics:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">+</span><span class="na">⌿</span><span class="o">÷≢</span><span class="p">)</span><span class="s1">&#39;the alphabet&#39;</span><span class="o">∊</span><span class="s1">&#39;aeiou&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0.333333
+</span></div></div>
+</div>
+</section>
+<section id="sixteen-logical-functions">
+<h2>Sixteen logical functions<a class="headerlink" href="#sixteen-logical-functions" title="Link to this heading">#</a></h2>
+<p>With modern APL, all sixteen logical functions for 2-bit inputs can be represented by either <a class="reference external" href="https://aplwiki.com/wiki/Primitive_function">primitives</a>, <a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming#Atops">atops</a> or <a class="reference external" href="https://aplwiki.com/wiki/Constant">constant functions</a>.</p>
+<p>The descriptions given below are either common names for <a class="reference external" href="https://en.wikipedia.org/wiki/Logic_gate">digital logic gates</a> or mnemonic descriptions of the functionality with regards to left and right Boolean arguments.</p>
+<blockquote>
+<div><p>The binary column here represets the output of the logic gate for all combinations of two 1-bit inputs — also known as the truth table. For example, the truth table for an <strong>OR</strong> gate:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      0 0 1 1 ∨ 0 1 0 1
+0 1 1 1
+      2⊥0 1 1 1
+7
+</pre></div>
+</div>
+</div></blockquote>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Binary</p></th>
+<th class="head text-left"><p>Decimal <code class="docutils literal notranslate"><span class="pre">2⊥</span></code></p></th>
+<th class="head text-left"><p>Function <code class="docutils literal notranslate"><span class="pre">f</span></code></p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0⍨</span></code></p></td>
+<td class="text-left"><p>FALSE</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">∧</span></code></p></td>
+<td class="text-left"><p>AND</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td class="text-left"><p>Left but not right</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">⊣</span></code></p></td>
+<td class="text-left"><p>Left</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td class="text-left"><p>Right but not left</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">0</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">5</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">⊢</span></code></p></td>
+<td class="text-left"><p>Right</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">6</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">≠</span></code></p></td>
+<td class="text-left"><p>Exlusive OR</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">1</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">7</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">∨</span></code></p></td>
+<td class="text-left"><p>OR</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">8</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">⍱</span></code></p></td>
+<td class="text-left"><p>NOR</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">9</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">=</span></code></p></td>
+<td class="text-left"><p>Exclusive NOR</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">0</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">10</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">~⍤⊢</span></code></p></td>
+<td class="text-left"><p>Not right</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">1</span> <span class="pre">0</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">11</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">≥</span></code></p></td>
+<td class="text-left"><p>Left OR not right</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">12</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">~⍤⊣</span></code></p></td>
+<td class="text-left"><p>Not left</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">13</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">≤</span></code></p></td>
+<td class="text-left"><p>Right OR not left</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">1</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">14</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">⍲</span></code></p></td>
+<td class="text-left"><p>NAND</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">1</span> <span class="pre">1</span> <span class="pre">1</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">15</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">1⍨</span></code></p></td>
+<td class="text-left"><p>TRUE</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p><strong>Note</strong><br />
+<a class="reference external" href="http://archive.vector.org.uk/art10501140">Phil Last’s article</a> gives <a class="reference external" href="https://aplwiki.com/wiki/Scalar_function">scalar</a> <a class="reference external" href="https://aplwiki.com/wiki/Dfn">dfn</a> definitions, whereas some definitions in the previous table are not scalar functions.</p>
+</div></blockquote>
+</section>
+<section id="scans-and-reductions">
+<h2>Scans and reductions<a class="headerlink" href="#scans-and-reductions" title="Link to this heading">#</a></h2>
+<p>Reductions summarise some property:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">/</span><span class="m">4</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span><span class="w">   </span><span class="c1">⍝ Sum</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">13
+</span></div></div>
+</div>
+<p>Scans indicate a progression of that property along the array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">\</span><span class="m">4</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span><span class="w">   </span><span class="c1">⍝ Cumulative sum</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">4 7 8 13
+</span></div></div>
+</div>
+<p>Some reductions, and their related scans, are well known to APLers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">∧</span><span class="na">/</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w">   </span><span class="c1">⍝ Are all true?</span>
+<span class="o">∧</span><span class="na">\</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w">   </span><span class="c1">⍝ Were all true so far?</span>
+<span class="o">∨</span><span class="na">/</span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w">   </span><span class="c1">⍝ Are any true?</span>
+<span class="o">∨</span><span class="na">\</span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w">   </span><span class="c1">⍝ Were any true so far?</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 0 0 0 0 0 0
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 1 1 1 1 1
+</span></div></div>
+</div>
+</section>
+<section id="the-last-value">
+<h2>The last value<a class="headerlink" href="#the-last-value" title="Link to this heading">#</a></h2>
+<p>The value of a vector reduction <code class="docutils literal notranslate"><span class="pre">f/⍵</span></code> is always the last value in the related scan <code class="docutils literal notranslate"><span class="pre">f\⍵</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">/</span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span>
+<span class="o">⊃⌽+</span><span class="na">\</span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">13
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">13
+</span></div></div>
+</div>
+<p>In general, properties of boolean vectors for which <code class="docutils literal notranslate"><span class="pre">1≡f/⍵</span></code> for a function <code class="docutils literal notranslate"><span class="pre">f</span></code> reflect properties in the related scans <code class="docutils literal notranslate"><span class="pre">f\⍵</span></code>.</p>
+<p>From here we will take a quick look at a couple of particular scans and reductions which have some interesting applications. At the end of this notebook is a table of reductions for the sixteen logical functions, as well as some references for further reading.</p>
+</section>
+<section id="less-than">
+<h2>Less-than<a class="headerlink" href="#less-than" title="Link to this heading">#</a></h2>
+<p>Less-than-scan leaves only the first true bit on, and all others are turned off:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="na">\</span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 0 0 0 0 0 0 0 0 0 0 0 0
+</span></div></div>
+</div>
+<p>This is because the reduction only returns true when the last bit is the one and only true bit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="na">/</span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div></div>
+</div>
+<p>Too see the relationship, view the scan as a progression of reductions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ &lt;\0 1 0 1 1</span>
+<span class="m">0</span>
+<span class="m">0</span><span class="o">&lt;</span><span class="m">1</span>
+<span class="m">0</span><span class="o">&lt;</span><span class="m">1</span><span class="o">&lt;</span><span class="m">0</span>
+<span class="m">0</span><span class="o">&lt;</span><span class="m">1</span><span class="o">&lt;</span><span class="m">0</span><span class="o">&lt;</span><span class="m">1</span>
+<span class="m">0</span><span class="o">&lt;</span><span class="m">1</span><span class="o">&lt;</span><span class="m">0</span><span class="o">&lt;</span><span class="m">1</span><span class="o">&lt;</span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div></div>
+</div>
+<p>An example use is to mark the start of end-of-line comments:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">code</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;+/⍳10   ⍝ sum⍝of⍝first⍝10⍝ints&#39;</span>
+<span class="nv">c</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;⍝&#39;</span>
+<span class="o">↑</span><span class="w"> </span><span class="nv">code</span><span class="w"> </span><span class="nv">c</span><span class="w"> </span><span class="p">(</span><span class="o">&lt;</span><span class="na">\</span><span class="nv">c</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">+ / ⍳ 1 0       ⍝   s u m ⍝ o f ⍝ f i r s t ⍝ 1 0 ⍝ i n t s
+0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 1 0 0 0 0 0 1 0 0 1 0 0 0 0
+0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+</span></div></div>
+</div>
+<p>The pair-wise reduction can be used to mark the start of groups of similar cells:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">v</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;⍟⎕⍟⍟⍟⎕⎕⍟⎕⎕⍟⍟⍟⍟⎕⎕⎕⎕⍟⍟⎕⎕⎕⎕⍟⍟⎕⍟&#39;</span>
+<span class="nv">q</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;⎕&#39;</span><span class="o">=</span><span class="nv">v</span>
+<span class="o">↑</span><span class="nv">v</span><span class="w"> </span><span class="nv">q</span><span class="w"> </span><span class="p">(</span><span class="m">2</span><span class="o">&lt;</span><span class="na">/</span><span class="m">0</span><span class="o">,</span><span class="nv">q</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">⍟ ⎕ ⍟ ⍟ ⍟ ⎕ ⎕ ⍟ ⎕ ⎕ ⍟ ⍟ ⍟ ⍟ ⎕ ⎕ ⎕ ⎕ ⍟ ⍟ ⎕ ⎕ ⎕ ⎕ ⍟ ⍟ ⎕ ⍟
+0 1 0 0 0 1 1 0 1 1 0 0 0 0 1 1 1 1 0 0 1 1 1 1 0 0 1 0
+0 1 0 0 0 1 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0
+</span></div></div>
+</div>
+</section>
+<section id="not-equal">
+<h2>Not-equal<a class="headerlink" href="#not-equal" title="Link to this heading">#</a></h2>
+<p>The not-equal reduction <code class="docutils literal notranslate"><span class="pre">≠/</span></code> only returns true if there are an odd number of <code class="docutils literal notranslate"><span class="pre">1</span></code>s</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">≠</span><span class="na">/</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+<span class="m">2</span><span class="o">|+</span><span class="na">/</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span>
+
+<span class="o">≠</span><span class="na">/</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+<span class="m">2</span><span class="o">|+</span><span class="na">/</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div></div>
+</div>
+<p>The related scan <code class="docutils literal notranslate"><span class="pre">≠\</span></code> then has the property that odd and even instances of <code class="docutils literal notranslate"><span class="pre">1</span></code>s are joined by a series of <code class="docutils literal notranslate"><span class="pre">1</span></code>s</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">b</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
+<span class="o">↑</span><span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="p">(</span><span class="o">≠</span><span class="na">\</span><span class="nv">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0 0 1 0 0 0 1 0 0 0 0 1 0 0 1
+0 0 1 1 1 1 0 0 0 0 0 1 1 1 0
+</span></div></div>
+</div>
+<p>Again, looking at the progression can help us to see how this works:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ ≠\0 1 0 0 1</span>
+<span class="m">0</span>
+<span class="m">0</span><span class="o">≠</span><span class="m">1</span>
+<span class="m">0</span><span class="o">≠</span><span class="m">1</span><span class="o">≠</span><span class="m">0</span>
+<span class="m">0</span><span class="o">≠</span><span class="m">1</span><span class="o">≠</span><span class="m">0</span><span class="o">≠</span><span class="m">0</span>
+<span class="m">0</span><span class="o">≠</span><span class="m">1</span><span class="o">≠</span><span class="m">0</span><span class="o">≠</span><span class="m">0</span><span class="o">≠</span><span class="m">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">1
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">0
+</span></div></div>
+</div>
+<p>An example use of this is to mark quoted parts of text:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">quoted</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;extract the &quot;quoted&quot; parts from this &quot;text&quot;&#39;</span>
+<span class="nv">q</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="o">=</span><span class="nv">quoted</span>
+<span class="nv">inc</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">~∧≠</span><span class="na">\</span><span class="p">)</span><span class="s1">&#39;&quot;&#39;</span><span class="o">=</span><span class="nv">quoted</span><span class="w">   </span><span class="c1">⍝ Including quote marks</span>
+<span class="nv">exc</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">⊢∨≠</span><span class="na">\</span><span class="p">)</span><span class="s1">&#39;&quot;&#39;</span><span class="o">=</span><span class="nv">quoted</span><span class="w">   </span><span class="c1">⍝ Exclusing quote marks</span>
+<span class="o">↑</span><span class="w"> </span><span class="nv">quoted</span><span class="w"> </span><span class="nv">q</span><span class="w"> </span><span class="nv">inc</span><span class="w"> </span><span class="nv">exc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">e x t r a c t   t h e   " q u o t e d "   p a r t s   f r o m   t h i s   " t e x t "
+0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1
+0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 0
+0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1
+</span></div></div>
+</div>
+<p>These masks can easily be used to isolate the quoted parts:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">inc</span><span class="na">/</span><span class="nv">quoted</span>
+<span class="nv">exc</span><span class="o">⊆</span><span class="nv">quoted</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">quotedtext
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">┌────────┬──────┐
+│"quoted"│"text"│
+└────────┴──────┘
+</span></div></div>
+</div>
+<p>With a bit more effort, we can mark C-style (Java, JavaScript, CSS etc.) comments:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">css</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;* {color: #000; /* text */ background: #fff; /* bg */}&#39;</span>
+<span class="nv">cpos</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;/*&#39;</span><span class="na">∘</span><span class="p">(</span><span class="o">≠</span><span class="na">\</span><span class="o">⍷∨</span><span class="m">¯1</span><span class="o">⌽</span><span class="na">∘</span><span class="o">⌽⍷</span><span class="na">∘</span><span class="o">⌽</span><span class="p">)</span><span class="nv">css</span>
+<span class="o">↑</span><span class="w"> </span><span class="nv">css</span><span class="w"> </span><span class="nv">cpos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">*   { c o l o r :   # 0 0 0 ;   / *   t e x t   * /   b a c k g r o u n d :   # f f f ;   / *   b g   * / }
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 0
+</span></div></div>
+</div>
+<p>Some of these examples, and more, can be found <a class="reference external" href="https://aplcart.info/?q=%E2%89%A0%5C#">on APLcart</a>.</p>
+<p>For one last example, let’s use something like a data table with successive fields of different lengths:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">data</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">?</span><span class="m">9</span><span class="o">⍴</span><span class="m">100</span><span class="p">)</span><span class="o">,</span><span class="p">(</span><span class="m">4</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="na">⌿</span><span class="m">3</span><span class="w"> </span><span class="m">3</span><span class="o">⍴</span><span class="m">3</span><span class="na">/</span><span class="s1">&#39;ABC&#39;</span><span class="p">)</span><span class="o">,⍪?</span><span class="m">9</span><span class="o">⍴</span><span class="m">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">data</span></code>, there is a field of length <code class="docutils literal notranslate"><span class="pre">4</span></code> containing the <code class="docutils literal notranslate"><span class="pre">'A'</span></code> markers, followed by a field of length <code class="docutils literal notranslate"><span class="pre">2</span></code> with the <code class="docutils literal notranslate"><span class="pre">'B'</span></code> markers and finally a field of length 3 with the <code class="docutils literal notranslate"><span class="pre">'C'</span></code> markers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">50 AAA 0.127932
+26 AAA 0.528921
+10 AAA 0.116772
+50 AAA 0.320547
+64 BBB 0.377289
+90 BBB 0.54566 
+68 CCC 0.339044
+98 CCC 0.145094
+66 CCC 0.63628 
+</span></div></div>
+</div>
+<p>We would like to present the data above in a more human-readable format, so we are going to insert two blank lines between each field.</p>
+<p>To start with, let’s create some partition vectors. The function <code class="docutils literal notranslate"><span class="pre">MTake</span></code> creates a boolean vector where <code class="docutils literal notranslate"><span class="pre">1</span></code> indicates the start of a field:</p>
+<p><code class="docutils literal notranslate"><span class="pre">MTake</span></code> has a neat, nested-array style definition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">MTake</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">∊↑</span><span class="na">∘</span><span class="m">1</span><span class="na">¨</span>
+<span class="nv">MTake</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 0 0 0 1 0 1 0 0
+</span></div></div>
+</div>
+<p>A more traditional definition has performance benefits for larger data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">MTake</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="m">¯1</span><span class="o">⌽</span><span class="p">(</span><span class="o">⍳+</span><span class="na">/</span><span class="bp">⍵</span><span class="p">)</span><span class="o">∊+</span><span class="na">\</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">MTake</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 0 0 0 1 0 1 0 0
+</span></div></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">f</span></code> indicates a field, and <code class="docutils literal notranslate"><span class="pre">b</span></code> indicates a series of blank lines,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1 0 0 0 1 0 1 0 1 0 1 0 0 1 0
+←--f--→ ←b→ ←f→ ←b→ ←-f-→ ←b→
+</pre></div>
+</div>
+<p>we can use <em>catenate-rank-zero</em> to interleave the blank lines:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">MTake</span><span class="o">,</span><span class="m">4</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="o">,</span><span class="na">⍤</span><span class="m">0</span><span class="o">⊢</span><span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 0 0 0 1 0 1 0 1 0 1 0 0 1 0
+</span></div></div>
+</div>
+<p>And use <em>not-equal-scan</em> to switch sections on and off, creating an expansion vector:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="vg">⎕</span><span class="kd">←</span><span class="nv">e</span><span class="kd">←</span><span class="o">≠</span><span class="na">\</span><span class="nv">MTake</span><span class="o">,</span><span class="m">4</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="o">,</span><span class="na">⍤</span><span class="m">0</span><span class="o">⊢</span><span class="m">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 1 1 1 0 0 1 1 0 0 1 1 1 0 0
+</span></div></div>
+</div>
+<p>Which we then use to expand a character matrix format of our data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">e</span><span class="na">⍀</span><span class="o">⍕</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">50 AAA 0.127932
+26 AAA 0.528921
+10 AAA 0.116772
+50 AAA 0.320547
+               
+               
+64 BBB 0.377289
+90 BBB 0.54566 
+               
+               
+68 CCC 0.339044
+98 CCC 0.145094
+66 CCC 0.63628 
+               
+               
+</span></div></div>
+</div>
+<p>A similar technique can be used to also label our fields:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">labels</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="nv">MTake</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="na">⍀</span><span class="p">(</span><span class="o">↑</span><span class="s1">&#39;Field &#39;</span><span class="na">∘</span><span class="o">,</span><span class="na">¨</span><span class="s1">&#39;ABC&#39;</span><span class="p">)</span>
+<span class="nv">e</span><span class="na">⍀</span><span class="o">⍕</span><span class="nv">labels</span><span class="o">,</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">Field A 50 AAA 0.127932
+        26 AAA 0.528921
+        10 AAA 0.116772
+        50 AAA 0.320547
+                       
+                       
+Field B 64 BBB 0.377289
+        90 BBB 0.54566 
+                       
+                       
+Field C 68 CCC 0.339044
+        98 CCC 0.145094
+        66 CCC 0.63628 
+                       
+                       
+</span></div></div>
+</div>
+</section>
+<section id="flat-partition">
+<h2>Flat partition<a class="headerlink" href="#flat-partition" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Scientific_Time_Sharing_Corporation">STSC</a> publication <a class="reference external" href="http://www.sudleyplace.com/APL/boolean.pdf"><em>Boolean Functions and Techniques</em></a> contains a wealth of information on Boolean functions and techniques (duh).</p>
+<p>In particular, there is a description of a general procedure for applying some function to parts of an array independently, where <em>parts</em> is defined similarly to the fields in the previous example.</p>
+<p>The general procedure involves a loop. With nested arrays, the pattern is quite easy to show:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kt">{</span><span class="o">∊⌽</span><span class="na">¨</span><span class="bp">⍺</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="s1">&#39;ABCDXYZ&#39;</span><span class="w">   </span><span class="c1">⍝ Reverse two parts independently</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">DCBAZYX
+</span></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="kt">{</span><span class="o">∊+</span><span class="na">/¨</span><span class="bp">⍺</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="w"> </span><span class="o">⍳</span><span class="m">7</span><span class="w">   </span><span class="c1">⍝ Sum two parts independently</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">10 18
+</span></div></div>
+</div>
+<p>This pattern is easily turned into a <a class="reference internal" href="#"><span class="xref myst">dop</span></a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">_P</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="kt">{</span><span class="o">∊</span><span class="bp">⍺⍺</span><span class="na">¨</span><span class="bp">⍺</span><span class="o">⊂</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">   </span><span class="c1">⍝ A partitioned-function-application operator</span>
+<span class="nv">p</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+<span class="nv">p</span><span class="w"> </span><span class="o">⌽</span><span class="w"> </span><span class="nv">_P</span><span class="w"> </span><span class="s1">&#39;ABCDXYZ&#39;</span>
+<span class="nv">p</span><span class="w"> </span><span class="o">+</span><span class="na">/</span><span class="nv">_P</span><span class="w"> </span><span class="o">⍳</span><span class="m">7</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">DCBAZYX
+</span></div><div class="output text_html"><span style="white-space:pre; font-family: monospace">10 18
+</span></div></div>
+</div>
+<p>However, this looping approach can become inefficient for large arrays with many parts. Page 10 of Boolean Functions and Techniques gives some definitions for more array-oriented solutions for use with specific functions. Here we will look at a couple of these, starting with <em>partitioned-reverse</em> <code class="docutils literal notranslate"><span class="pre">PREVERSE</span></code>.</p>
+<p>The <em>plus-scan</em> is useful with these types of Boolean partitioned vectors, as it causes partitions to be marked by groups of successive integers:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">a</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="s1">&#39;ABCDXYZ&#39;</span>
+<span class="o">↑</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">p</span><span class="w"> </span><span class="p">(</span><span class="o">+</span><span class="na">\</span><span class="nv">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">A B C D X Y Z
+1 0 0 0 1 0 0
+1 1 1 1 2 2 2
+</span></div></div>
+</div>
+<p>If we <em>downgrade</em> the plus-scan, the relative positions of indices for each partition <strong>relative to the whole array</strong> are reversed, but the positions of indices <strong>within each partition</strong> stay in ascending order:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⍒+</span><span class="na">\</span><span class="nv">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">5 6 7 1 2 3 4
+</span></div></div>
+</div>
+<p>Reversing the plus-scan then restores the relative positions of partitions within the whole array, but the indices <strong>within each partition</strong> are reversed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">⌽⍒+</span><span class="na">\</span><span class="nv">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">4 3 2 1 7 6 5
+</span></div></div>
+</div>
+<p>Indexing with this vector creates the desired effect:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">a</span><span class="sr">[</span><span class="o">⌽⍒+</span><span class="na">\</span><span class="nv">p</span><span class="sr">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">DCBAZYX
+</span></div></div>
+</div>
+<p>These kinds of techniques often give performance improvements compared to their general nested-array counterparts:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      p ← 1,1↓1=?1e4⍴10
+      t ← ⎕A[?1e4⍴26]
+
+      ]runtime -c &quot;p ⌽_P t&quot; &quot;p {⍵[⌽⍒+\⍺]} t&quot;
+                                                                          
+  p ⌽_P t        → 1.4E¯4 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕ 
+  p {⍵[⌽⍒+\⍺]} t → 3.5E¯5 | -75% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                             
+</pre></div>
+</div>
+<p>The partitioned sum starts with the plus-scan of the whole vector:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="o">+</span><span class="na">\</span><span class="o">⍳</span><span class="m">7</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">1 3 6 10 15 21 28
+</span></div></div>
+</div>
+<p>We then extract the progressive sums up to the end of each partition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="m">1</span><span class="o">⌽</span><span class="nv">p</span><span class="p">)</span><span class="na">/</span><span class="o">+</span><span class="na">\</span><span class="o">⍳</span><span class="m">7</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">10 28
+</span></div></div>
+</div>
+<p>Finally subtract each partition’s sum from the sum of its preceding partition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="m">¯2</span><span class="o">-</span><span class="na">/</span><span class="m">0</span><span class="o">,</span><span class="p">(</span><span class="m">1</span><span class="o">⌽</span><span class="nv">p</span><span class="p">)</span><span class="na">/</span><span class="o">+</span><span class="na">\</span><span class="o">⍳</span><span class="m">7</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><span style="white-space:pre; font-family: monospace">10 18
+</span></div></div>
+</div>
+<p>Once again, there is a speedup relative to the general case:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      p ← 1,1↓1=?1e4⍴10
+      i ← ?1e4⍴1000
+
+      ]runtime -c &quot;p +/_P i&quot; &quot;p {¯2-/0,(1⌽⍺)/+\⍵} i&quot;
+                                                                          
+  p +/_P i              → 6.8E¯5 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕ 
+  p {¯2-/0,(1⌽⍺)/+\⍵} i → 8.9E¯6 | -87% ⎕⎕⎕⎕⎕                          
+</pre></div>
+</div>
+</section>
+<section id="efficient-implementation">
+<h2>Efficient implementation<a class="headerlink" href="#efficient-implementation" title="Link to this heading">#</a></h2>
+<p>Some languages implement boolean types as <a class="reference external" href="https://en.wikipedia.org/wiki/Byte">bytes</a> (8 bits). The decision to use bit representations <a class="reference external" href="https://aplwiki.com/wiki/Boolean#Boolean_optimization">was made by Larry Breed for the first implementation</a> of APL.</p>
+<p>Not only do boolean arrays use the smallest amount of memory possible, they are also subject to <a class="reference external" href="https://en.wikipedia.org/wiki/SIMD">SIMD</a> parallelisations - even on hardware without special SIMD capabilities.</p>
+<p>More on this topic can be found on <a class="reference external" href="https://apl.wiki/boolean">the APL Wiki article on Booleans</a>.</p>
+</section>
+<section id="sixteen-boolean-reductions">
+<h2>Sixteen boolean reductions<a class="headerlink" href="#sixteen-boolean-reductions" title="Link to this heading">#</a></h2>
+<p>Finally let’s return to the table of Boolean functions from earlier. In the <a class="reference external" href="http://archive.vector.org.uk/art10501140">Vector article</a>, Phil Last gives plain English descriptions for properties of boolean vectors when their reduction using a Boolean function <code class="docutils literal notranslate"><span class="pre">f</span></code> gives <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Function <code class="docutils literal notranslate"><span class="pre">f</span></code></p></th>
+<th class="head text-right"><p><code class="docutils literal notranslate"><span class="pre">f/⍵</span></code> is true if <code class="docutils literal notranslate"><span class="pre">⍵</span></code> satisfies:</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">0⍨</span></code></p></td>
+<td class="text-right"><p>Never</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">∧</span></code></p></td>
+<td class="text-right"><p>All ones</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td class="text-right"><p>Odd leading ones</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">⊣</span></code></p></td>
+<td class="text-right"><p>First is one</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td class="text-right"><p>Last is the only one</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">⊢</span></code></p></td>
+<td class="text-right"><p>Last is one</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">≠</span></code></p></td>
+<td class="text-right"><p>Odd ones</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">∨</span></code></p></td>
+<td class="text-right"><p>At least one one</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">⍱</span></code></p></td>
+<td class="text-right"><p>Odd leading zeros else the last is the only one</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">=</span></code></p></td>
+<td class="text-right"><p>Even zeroes</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">~⍤⊢</span></code></p></td>
+<td class="text-right"><p>Last is parity of the length</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">≥</span></code></p></td>
+<td class="text-right"><p>Even leading zeros</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">~⍤⊣</span></code></p></td>
+<td class="text-right"><p>First is zero</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">≤</span></code></p></td>
+<td class="text-right"><p>Last is not the only zero</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">⍲</span></code></p></td>
+<td class="text-right"><p>Even leading ones else last is the only zero</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">1⍨</span></code></p></td>
+<td class="text-right"><p>Always</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For those not described in this notebook, you might want to experiment and show yourself the relationships between the descriptions given in the table, and the properties of the scans <code class="docutils literal notranslate"><span class="pre">f\⍵</span></code>. APL expressions offering similar insights are given on page 23 of the Boolean Functions and Techniques publication.</p>
+</section>
+<section id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://apl.wiki/boolean">apl.wiki/boolean</a></p></li>
+<li><p><strong>S.B. Jaffe</strong> <a class="reference external" href="https://dl.acm.org/doi/10.1145/22008.22025">Topics for a Second Course in APL</a></p></li>
+<li><p><strong>R. Bernecky</strong> <a class="reference external" href="https://dyalog.tv/Dyalog16/?v=G2g13YKjWes">A Compendium of SIMD Boolean Array Algorithms</a> (Video)</p></li>
+<li><p><strong>P. Last</strong> <a class="reference external" href="http://archive.vector.org.uk/art10501140">Boolean Reductions</a></p></li>
+<li><p><strong>STSC</strong> <a class="reference external" href="http://www.sudleyplace.com/APL/boolean.pdf">Boolean Functions and Techniques, 2nd Edition</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            name: "dyalog-kernel",
+            path: "./apl-quest/dyalog"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Boolean-Functions-and-Boolean-Algebra.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Boolean functions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Calculus.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Calculus</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utility">Utility</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sixteen-logical-functions">Sixteen logical functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scans-and-reductions">Scans and reductions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-last-value">The last value</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#less-than">Less-than</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#not-equal">Not-equal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flat-partition">Flat partition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efficient-implementation">Efficient implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sixteen-boolean-reductions">Sixteen boolean reductions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further reading</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

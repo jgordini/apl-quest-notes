@@ -1,0 +1,1262 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Plotting with SharpPlot &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ae78d91f" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/dyalog/Plotting-with-SharpPlot';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Random Numbers" href="Random-Numbers.html" />
+    <link rel="prev" title="Monadic function ∪" href="New-in-v17.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2013/index.html">APL Quest 2013</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping Things In Balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Go-Forth-And-Multiply-APLQuest-2013-8.html">Go forth and Multiply 2013-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Solution-Salvation-APLQuest-2013-10.html">Solution Salvation 2013-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2014/index.html">APL Quest 2014</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2014/It-Is-All-Right-APLQuest-2014-1.html">It Is All Right 2014-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/How-Tweet-It-Is-APLQuest-2014-2.html">How Tweet It Is 2014-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Tell-a-Fib-APLQuest-2014-3.html">Tell A Fib 2014-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Space-The-Final-Frontier-APLQuest-2014-4.html">Space The Final Frontier 2014-4</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../2014/Mirror-Mirror-APLQuest-2014-5.html">Mirror Mirror 2014-5</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../2014/Revolutionary-Thinking-APLQuest-2014-7.html">Revolutionary Thinking 2014-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Go-The-Distance-APLQuest-2014-8.html">Go The Distance 2014-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Going-Ballistic-APLQuest-2014-9.html">Going Ballistic 2014-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2014/Sales-Are-Up-APLQuest-2014-10.html">Sales Are Up 2014-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2015/index.html">APL Quest 2015</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Nag-A-Ram-APLQuest-2015-1.html">APL Quest: Anagrams Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Longest-Streak-APLQuest-2015-2.html">APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Farey-Tales-APLQuest-2015-3.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Progessive-Dyadic-Iota-APLQuest-2015-4.html">APL Quest Cap Wiki: Progressive Dyadic Iota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.html">APL Quest: Standard Deviation Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.html">APL Quest: Problem Six Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Justin-Upper-Case-APLQuest-2015-7.html">APL Quest: Problem 7 from the 2015 APL Problem Solver Competition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html">APL Quest: Swapping Interior Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Blazing-A-Trail-APLQuest-2015-10.html">API Quest: Generating a Centered Pascal’s Triangle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2016/index.html">APL Quest 2016</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mean-APLQuest-2016-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Median-APLQuest-2016-2.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mode-APLQuest-2016-3.html">Welcome to APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.html">Welcome to the Appeal Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Shorter-Onestothe-Front-APLQuest-2016-6.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/3-sand-5-s-APLQuest-2016-7.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Separating-Outthe-Negative-APLQuest-2016-8.html">APL Quest: 8th Quest Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Delimited-Text-APLQuest-2016-9.html">APL Quest: Delimiter Splitting Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Order-Total-APLQuest-2016-10.html">Welcome to the APL Quest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2017/index.html">APL Quest 2017</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2017/What-an-Odd-Bunch-APLQuest-2017-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Good-Evening-APLQuest-2017-2.html">Ensure Odd Numbers Become Even Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Miss-Quoted-APLQuest-2017-3.html">Removing Text Between Double Quotes Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Slices-of-Pies-APLQuest-2017-4.html">Computing Areas of Circle Sectors Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/DNA-APLQuest-2017-5.html">Checking Character Vectors for Valid Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/k-mers-APLQuest-2017-6.html">Chopping Text into Sequences of a Given Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Counting-DNANucleotides-APLQuest-2017-7.html">Counting Letters in a String: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Be-the-First-1-APLQuest-2017-8.html">Understanding Boolean Vector Processing in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Double-Trouble-APLQuest-2017-9.html">Finding Locations of Identical Characters in Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Squaring-Off-APLQuest-2017-10.html">Fitting Elements into a Square Array</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2018/index.html">APL Quest 2018</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Oh-Say-Can-You-See-APLQuest-2018-1.html">Counting Visible Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Number-Splitting-APLQuest-2018-2.html">Splitting Numbers into Integer and Fractional Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Rolling-Along-APLQuest-2018-3.html">Simulating Dice Rolls and Analyzing Outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-APLQuest-2018-4.html">Converting Gregorian Year Numbers to Chinese Zodiac Animals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-Revisited-APLQuest-2018-5.html">Computing Zodiac Signs from Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Angle-APLQuest-2018-6.html">A Simple Test for XML Validity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Unconditionally-Shifty-APLQuest-2018-7.html">Shifting Boolean Data: An Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Makinga-Good-Argument-APLQuest-2018-8.html">Validating Dyadic Transpose Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Earlier-Later-or-the-Same-APLQuest-2018-9.html">Comparing Dates in APL: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Anagrammatically-Correct-APLQuest-2018-10.html">Comparing Two Character Vectors: An Anagram Checker</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2019/index.html">APL Quest 2019</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Chunky-Monkey-APLQuest-2019-1.html">Chunking a List into Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Makingthe-Grade-APLQuest-2019-2.html">Converting Scores into Letter Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Grade-Distribution-APLQuest-2019-3.html">Compiling Simple Statistics on Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Knight-Moves-APLQuest-2019-4.html">Understanding the Movement of a Chess Knight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Doubling-Up-APLQuest-2019-5.html">Checking for Consecutive Identical Letters in Words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Telephone-Names-APLQuest-2019-6.html">Translating Telephone Numbers from Digits and Letters to Plain Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/In-the-Center-of-it-All-APLQuest-2019-7.html">Centering Words in a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Goingthe-Distance-APLQuest-2019-8.html">Computing the Distance Around a Path Defined by Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Area-Code-Gauss-APLQuest-2019-9.html">Calculating the Area of a Polygon Using the Shoelace Formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Odds-Evens-APLQuest-2019-10.html">Splitting a List of Words by Length</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2020/index.html">APL Quest 2020</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Lets-Split-APLQuest-2020-1.html">Understanding Vector Partitioning in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Character-Building-APLQuest-2020-2.html">Understanding Byte Sequences and UTF-8 Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Excel-lent-Columns-APLQuest-2020-3.html">Understanding Column Label Conversion in Spreadsheet Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Takea-Leap-APLQuest-2020-4.html">Understanding Leap Years: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Steppinginthe-Proper-Direction-APLQuest-2020-5.html">Generating Inclusive Integer Ranges in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Movetothe-Front-APLQuest-2020-6.html">Moving Elements in a Numeric Vector to the Front in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/See-Youina-Bit-APLQuest-2020-7.html">Checking Bit States in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Zigzag-Numbers-APLQuest-2020-8.html">Analyzing Alternating Digit Growth in Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Riseand-Fall-APLQuest-2020-9.html">Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Stacking-It-Up-APLQuest-2020-10.html">Emulating APL Array Printing Behavior</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2021/index.html">APL Quest 2021</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Are-You-a--Bacteria-APLQuest-2021-1.html">Calculating Percentage of Characters in a DNA String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Index-Of-Modified-APLQuest-2021-2.html">Creating a Cover for the Dyadic Iota in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Multiplicity-APLQuest-2021-3.html">Grouping Integers by Divisibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Square-Peg-Round-Hole-APLQuest-2021-4.html">Finding the Difference in Area Between an Inscribed Square and Its Circumscribing Circle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Rect-ify-APLQuest-2021-5.html">Finding Rectangle Dimensions with Given Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Fischer-Random-Chess-APLQuest-2021-6.html">Chess Setup Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Can-You-Feelthe-Magic-APLQuest-2021-7.html">Checking for Magic Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Timeto-Makea-Difference-APLQuest-2021-8.html">Calculating Absolute Time Difference in Minutes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Inthe-Long-Run-APLQuest-2021-9.html">Finding the Longest Consecutive Sequence in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Onthe-Right-Side-APLQuest-2021-10.html">Justified Text Transformation in APL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2022/index.html">APL Quest 2022</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Counting-DNA-Nucleotides-APLQuest-2022-1.html">Counting DNA Letters in a Character Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Attackofthe-Mutations-APLQuest-2022-2.html">Comparing DNA Strings: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Uniquely-Qualified-APLQuest-2022-3.html">Finding the Symmetric Difference Between Two Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Inthe-Long-One-APLQuest-2022-4.html">Finding the Longest Run of Ones in a Boolean Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Stairwayto-Heaven-APLQuest-2022-5.html">Building a Staircase in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Pyramid-Scheme-APLQuest-2022-6.html">Constructing Concentric Rings of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Just-Golfing-Around-APLQuest-2022-7.html">Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Lets-Split-APLQuest-2022-8.html">Splitting Text in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html">Calculating the Window Average of a List of Numbers in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Separation-Anxiety-APLQuest-2022-10.html">Inserting Separators in Large Integers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2023/index.html">APL Quest 2023</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Elimination-Sort-APLQuest-2023-1.html">Removing Non-Decreasing Elements from a List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Put-It-In-Reverse-APLQuest-2023-2.html">Finding End Points of One Array in Another</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Caesar-Salad-APLQuest-2023-3.html">Implementing a Simple Caesar Cipher for Uppercase Characters and Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Like-a-Version-APLQuest-2023-4.html">Comparing Version Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Risky-Business-APLQuest-2023-5.html">Understanding Dice Mechanics in Risk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Key-Value-Pairs-APLQuest-2023-6.html">Parsing Key-Value Pairs into a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Lets-Be-Rational-APLQuest-2023-7.html">Finding a Reduced Fraction for a Given Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Critical-Thinking-APLQuest-2023-8.html">Computing the Next Double Critical Day</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Flipping-Pairs-APLQuest-2023-9.html">Interchanging Adjacent Elements in a Multi-Dimensional Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Partition-witha-Twist-APLQuest-2023-10.html">APL Quest: Splitting Text on Spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Jupyter notebooks for Dyalog APL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="APL-Expressions.html">APL Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Arithmetic-Functions.html">Arithmetic Fuctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Boolean-Functions-and-Boolean-Algebra.html">Boolean functions</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="Boolean-Scans-and-Reductions.html">Boolean Scans and Reductions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Calculus.html">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Comparison-Functions.html">Comparison functions <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">≤</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> <code class="docutils literal notranslate"><span class="pre">≥</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">≠</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Grading-and-Sorting.html">Grading and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hashtables.html">Hash tables in Dyalog APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Justifying-Text.html">Justifying Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Linear-Fitting.html">Linear Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Lookup-Without-Replacement.html">Lookup without Replacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Maths-versus-APL.html">Maths versus APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Modifying-Rank-and-Depth.html">Modifying rank and depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="New-in-v14.html">Tally <code class="docutils literal notranslate"><span class="pre">≢</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="New-in-v15.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪/</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="New-in-v16.html">Monadic function <code class="docutils literal notranslate"><span class="pre">⍸</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="New-in-v17.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪</span></code></a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Plotting with SharpPlot</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="Random-Numbers.html">Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reduce-and-Scan.html">Reduce and Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sudoku-Solver.html">Sodoku Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tacit-Techniques.html">Tacit Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Using-the-TryAPL-Tutorials.html">TryAPL tutorial system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Your-First-Mandelbrot-Set.html">Mandelbrot Set</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/dyalog/Plotting-with-SharpPlot.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Plotting with SharpPlot</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Plotting with SharpPlot</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-data">Sample data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting">Formatting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ranges-and-labels">Ranges and labels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-and-display">Plot and display</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-function-operator">Plotting ~~function~~ operator</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="plotting-with-sharpplot">
+<h1>Plotting with SharpPlot<a class="headerlink" href="#plotting-with-sharpplot" title="Link to this heading">#</a></h1>
+<p>The goal of this notebook is to show how <a class="reference external" href="https://www.sharpplot.com/">SharpPlot</a> can be used for the production of high quality graphs in Dyalog jupyter notebooks. It is shown, as an example, how to create a nice looking graph with a custom format. However, the notebook is not intended to be a comprehensive tutorial on the usage of SP. For further details, refer to the <a class="reference external" href="https://www.sharpplot.com/SharpPlot.htm">official documentation</a> (take into account that this documentation is written for the C# version of SP; check the <a class="reference external" href="https://www.sharpplot.com/Languages.htm">Rosetta stone</a> to see how to translate these commands into Dyalog APL).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">)</span><span class="nv">clear</span><span class="w">   </span><span class="c1">⍝ begin on a clean workspace</span>
+<span class="nf">⎕IO</span><span class="kd">←</span><span class="m">0</span><span class="w">    </span><span class="c1">⍝ for convenience</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">clear ws
+</pre></div></div>
+</div>
+<section id="sample-data">
+<h2>Sample data<a class="headerlink" href="#sample-data" title="Link to this heading">#</a></h2>
+<p>Let’s generate some sample data to have something to work with. Initially, we use the user command <a class="reference external" href="https://github.com/Dyalog/dyalog-jupyter-kernel/wiki/1.1-Creating-content#rich-content"><code class="docutils literal notranslate"><span class="pre">]plot</span></code></a> to display the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nv">y1</span><span class="w"> </span><span class="nv">y2</span><span class="p">)</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">○⊂</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0.1</span><span class="o">×⍳</span><span class="m">101</span><span class="w"> </span><span class="c1">⍝ sin and cos</span>
+<span class="sr">]</span><span class="nv">plot</span><span class="w"> </span><span class="p">(</span><span class="nv">y1</span><span class="w"> </span><span class="nv">y2</span><span class="p">)</span><span class="w"> </span><span class="nv">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><svg version="1.1" baseProfile="full" width="100%" height="100%" viewBox="0 0 4320 3240"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" >
+<desc>Created by Causeway SVG engine - SharpPlot v3.71.0</desc>
+<g stroke-miterlimit="100">
+<desc>Paint the paper =====</desc>
+ <g fill="White" >
+  <rect x="0" y="0" width="4320" height="3240" />
+ </g>
+<desc>Border =====</desc>
+<desc>Region =====</desc>
+<desc>X-Axis Ticks =====</desc>
+<desc>X-Axis tickmarks</desc>
+ <path fill="none" stroke-width="7.2" stroke="Black" d="M400 2720L400 2764M770 2720L770 2764M1140 2720L1140 2764M1510 2720L1510 2764M1880 2720L1880 2764M2250 2720L2250 2764M2620 2720L2620 2764M2990 2720L2990 2764M3360 2720L3360 2764M3730 2720L3730 2764M4100 2720L4100 2764"/>
+<desc>Y-Axis Ticks =====</desc>
+<desc>Y-Axis tickmarks</desc>
+ <path fill="none" stroke-width="7.2" stroke="Black" d="M400 2720L367 2720M400 2494L367 2494M400 2268L367 2268M400 2042L367 2042M400 1816L367 1816M400 1590L367 1590M400 1364L367 1364M400 1138L367 1138M400 912L367 912M400 686L367 686M400 460L367 460"/>
+<desc>Axes =====</desc>
+ <path fill="none" stroke-width="12" stroke="Black" d="M400 2764L400 416M356 2720L4144 2720"/>
+<desc>Y-axis labels</desc>
+ <g font-family="Times New Roman" font-size="80" text-anchor="end" >
+  <text x="335" y="2740" >-1</text>
+  <text x="335" y="2514" >-0.8</text>
+  <text x="335" y="2288" >-0.6</text>
+  <text x="335" y="2062" >-0.4</text>
+  <text x="335" y="1836" >-0.2</text>
+  <text x="335" y="1610" >0</text>
+  <text x="335" y="1384" >0.2</text>
+  <text x="335" y="1158" >0.4</text>
+  <text x="335" y="932" >0.6</text>
+  <text x="335" y="706" >0.8</text>
+  <text x="335" y="480" >1</text>
+ </g>
+<desc>for X-axis labels</desc>
+ <g font-family="Times New Roman" font-size="80" text-anchor="middle" >
+  <text x="400" y="2844" >0</text>
+  <text x="770" y="2844" >1</text>
+  <text x="1140" y="2844" >2</text>
+  <text x="1510" y="2844" >3</text>
+  <text x="1880" y="2844" >4</text>
+  <text x="2250" y="2844" >5</text>
+  <text x="2620" y="2844" >6</text>
+  <text x="2990" y="2844" >7</text>
+  <text x="3360" y="2844" >8</text>
+  <text x="3730" y="2844" >9</text>
+  <text x="4100" y="2844" >10</text>
+ </g>
+<desc>Heading, subheading and footnotes =====</desc>
+<desc>Start of Line Chart ===========</desc>
+<desc>Points follow ...</desc>
+<desc>Line</desc>
+ <g stroke-width="3" stroke="Navy" stroke-linejoin="round" stroke-linecap="round" fill="none" >
+  <path d="M4100 2205L4063 2107 4026 2004 3989 1897 3952 1787 3915 1675 3878 1562 3841 1449 3804 1338 3767 1229 3730 1124 3693 1024 3656 929 3619 841 3582 760 3545 688 3508 624 3471 571 3434 527 3397 494 3360 472 3323 461 3286 462 3249 473 3212 496 3175 530 3138 574 3101 629 3064 693 3027 766 2990 848 2953 936 2916 1032 2879 1133 2842 1238 2805 1347 2768 1458 2731 1571 2694 1684 2657 1796 2620 1906 2583 2012 2546 2115 2509 2212 2472 2303 2435 2387 2398 2463 2361 2530 2324 2588 2287 2636 2250 2674 2213 2700 2176 2716 2139 2720 2102 2713 2065 2695 2028 2665 1991 2625 1954 2575 1917 2515 1880 2445 1843 2367 1806 2281 1769 2189 1732 2090 1695 1986 1658 1879 1621 1768 1584 1656 1547 1543 1510 1431 1473 1320 1436 1211 1399 1107 1362 1007 1325 914 1288 827 1251 747 1214 676 1177 615 1140 562 1103 521 1066 490 1029 469 992 460 955 463 918 476 881 501 844 537 807 583 770 639 733 705 696 779 659 862 622 952 585 1048 548 1150 511 1256 474 1366 437 1477 400 1590" />
+ </g>
+<desc>Points follow ...</desc>
+<desc>Line</desc>
+ <g stroke-width="3" stroke="Maroon" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="9 12" fill="none" >
+  <path d="M4100 2538L4063 2595 4026 2641 3989 2677 3952 2703 3915 2717 3878 2720 3841 2711 3804 2692 3767 2661 3730 2620 3693 2568 3656 2507 3619 2436 3582 2357 3545 2270 3508 2177 3471 2077 3434 1973 3397 1865 3360 1754 3323 1642 3286 1529 3249 1417 3212 1306 3175 1198 3138 1094 3101 996 3064 903 3027 816 2990 738 2953 668 2916 608 2879 557 2842 516 2805 486 2768 468 2731 460 2694 464 2657 479 2620 505 2583 542 2546 589 2509 647 2472 714 2435 789 2398 873 2361 964 2324 1061 2287 1163 2250 1269 2213 1379 2176 1491 2139 1604 2102 1717 2065 1828 2028 1937 1991 2043 1954 2144 1917 2240 1880 2329 1843 2410 1806 2484 1769 2548 1732 2603 1695 2648 1658 2682 1621 2706 1584 2718 1547 2719 1510 2709 1473 2687 1436 2655 1399 2612 1362 2558 1325 2495 1288 2423 1251 2343 1214 2255 1177 2160 1140 2060 1103 1955 1066 1847 1029 1736 992 1623 955 1510 918 1398 881 1288 844 1181 807 1077 770 979 733 888 696 803 659 726 622 657 585 598 548 549 511 510 474 483 437 466 400 460" />
+ </g>
+<desc>Reset to original origin</desc>
+</g>
+</svg>
+</div></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">]plot</span></code> command only allows very basic functionality (displaying functions with a common x-axis using different plotting methods), with no configuration options. For instance, if we have different “sampling rates”, we won’t be able to use <code class="docutils literal notranslate"><span class="pre">]plot</span></code> to create a single plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="nv">y1</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="nv">x1</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">0.1</span><span class="o">×⍳</span><span class="m">101</span><span class="w">           </span><span class="c1">⍝ sin</span>
+<span class="nv">y2</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">○</span><span class="w"> </span><span class="nv">x2</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="m">0.02</span><span class="o">×○</span><span class="m">3</span><span class="p">)</span><span class="o">×⍳</span><span class="m">51</span><span class="w">      </span><span class="c1">⍝ cos</span>
+<span class="nv">data</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="nv">sin</span><span class="w"> </span><span class="nv">cos</span><span class="p">)</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="nv">y1</span><span class="w"> </span><span class="nv">x1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nv">y2</span><span class="w"> </span><span class="nv">x2</span><span class="p">)</span><span class="w"> </span><span class="c1">⍝ data to plot</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to create more advanced graphs, we will use SP. First, we will do it directly in the workspace, and at the end we will define our own <code class="docutils literal notranslate"><span class="pre">Plot</span></code> function.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="plotting">
+<h1>Plotting<a class="headerlink" href="#plotting" title="Link to this heading">#</a></h1>
+<section id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">sharpplot</span></code> workspace provides a <code class="docutils literal notranslate"><span class="pre">InitCauseway</span></code> function that will initialize everything required to work with SP from Dyalog APL (as well as some additional functionality which won’t be discussed here). After running it, we will have a <code class="docutils literal notranslate"><span class="pre">Causeway</span></code> namespace. Then, we create a new instance of the <code class="docutils literal notranslate"><span class="pre">Causeway.SharpPlot</span></code> class, that we will use to interact with SP.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Init</span>
+<span class="s1">&#39;InitCauseway&#39;</span><span class="nf">⎕CY</span><span class="s1">&#39;sharpplot&#39;</span>
+<span class="nv">InitCauseway</span><span class="w"> </span><span class="no">⍬</span>
+<span class="nv">sp</span><span class="kd">←</span><span class="nf">⎕NEW</span><span class="w"> </span><span class="nv">Causeway</span><span class="na">.</span><span class="nv">SharpPlot</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="formatting">
+<h2>Formatting<a class="headerlink" href="#formatting" title="Link to this heading">#</a></h2>
+<p>Several <code class="docutils literal notranslate"><span class="pre">sp</span></code> fields and methods can be used to adjust the format of our plot. We will define the format of gridlines, labels, captions, and lines. A large number of formatting options are available. The <a class="reference external" href="https://www.sharpplot.com/Styles.htm">SP User Manual</a> contains more information on format and styles.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Format</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">XAxisStyle</span><span class="kd">←</span><span class="nv">Causeway</span><span class="na">.</span><span class="nv">XAxisStyles</span><span class="na">.</span><span class="nv">GridLines</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">YAxisStyle</span><span class="kd">←</span><span class="nv">Causeway</span><span class="na">.</span><span class="nv">YAxisStyles</span><span class="na">.</span><span class="p">(</span><span class="nv">GridLines</span><span class="o">+</span><span class="nv">AtEndCaption</span><span class="p">)</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetKeyFont</span><span class="w"> </span><span class="m">9.5</span><span class="w"> </span><span class="nv">System</span><span class="na">.</span><span class="nv">Drawing</span><span class="na">.</span><span class="nv">Color</span><span class="na">.</span><span class="nv">Black</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetXCaptionFont</span><span class="w"> </span><span class="m">9.5</span><span class="w"> </span><span class="nv">System</span><span class="na">.</span><span class="nv">Drawing</span><span class="na">.</span><span class="nv">Color</span><span class="na">.</span><span class="nv">Black</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetYCaptionFont</span><span class="w"> </span><span class="m">9.5</span><span class="w"> </span><span class="nv">System</span><span class="na">.</span><span class="nv">Drawing</span><span class="na">.</span><span class="nv">Color</span><span class="na">.</span><span class="nv">Black</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetXLabelFont</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="nv">System</span><span class="na">.</span><span class="nv">Drawing</span><span class="na">.</span><span class="nv">Color</span><span class="na">.</span><span class="nv">Black</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetYLabelFont</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="nv">System</span><span class="na">.</span><span class="nv">Drawing</span><span class="na">.</span><span class="nv">Color</span><span class="na">.</span><span class="nv">Black</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">XLabelFormat</span><span class="kd">←</span><span class="s1">&#39;0.00&#39;</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">YLabelFormat</span><span class="kd">←</span><span class="s1">&#39;0.00&#39;</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetPenWidths</span><span class="w"> </span><span class="m">2</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetColors</span><span class="w"> </span><span class="o">⊂</span><span class="s1">&#39;black&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ranges-and-labels">
+<h2>Ranges and labels<a class="headerlink" href="#ranges-and-labels" title="Link to this heading">#</a></h2>
+<p>Next, we set up the key and axis labels, as well as the limits of the plot. In order to define these limits, we need to find the maximum and minimum values in all the curves:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Labels</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">XCaption</span><span class="kd">←</span><span class="o">,</span><span class="s1">&#39;x&#39;</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">YCaption</span><span class="kd">←</span><span class="o">,</span><span class="s1">&#39;y&#39;</span><span class="o">,</span><span class="nf">⎕UCS</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="c1">⍝ add newline to leave some space</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetKeyText</span><span class="o">⊂</span><span class="s1">&#39;sin&#39;</span><span class="w"> </span><span class="s1">&#39;cos&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Limits</span>
+<span class="p">(</span><span class="nv">ya</span><span class="w"> </span><span class="nv">xa</span><span class="p">)</span><span class="kd">←</span><span class="o">⌊</span><span class="na">⌿</span><span class="o">⌊</span><span class="na">/¨</span><span class="o">↑</span><span class="nv">data</span>
+<span class="p">(</span><span class="nv">yw</span><span class="w"> </span><span class="nv">xw</span><span class="p">)</span><span class="kd">←</span><span class="o">⌈</span><span class="na">⌿</span><span class="o">⌈</span><span class="na">/¨</span><span class="o">↑</span><span class="nv">data</span>
+<span class="p">(</span><span class="nv">xa</span><span class="o">,</span><span class="s1">&#39;≤ x ≤&#39;</span><span class="o">,</span><span class="nv">xw</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nv">ya</span><span class="o">,</span><span class="s1">&#39;≤ y ≤&#39;</span><span class="o">,</span><span class="nv">yw</span><span class="p">)</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetYRange</span><span class="w"> </span><span class="nv">ya</span><span class="w"> </span><span class="nv">yw</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetXRange</span><span class="w"> </span><span class="nv">xa</span><span class="w"> </span><span class="nv">xw</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre class="language-APL">┌──────────┬──────────┐
+│0 ≤ x ≤ 10│¯1 ≤ y ≤ 1│
+└──────────┴──────────┘
+</pre></div></div>
+</div>
+</section>
+<section id="plot-and-display">
+<h2>Plot and display<a class="headerlink" href="#plot-and-display" title="Link to this heading">#</a></h2>
+<p>To plot, we use the <a class="reference external" href="https://www.sharpplot.com/SharpPlot-DrawLineGraph.htm"><code class="docutils literal notranslate"><span class="pre">sp.DrawLineGraph</span></code></a> function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Plot</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">DrawLineGraph</span><span class="na">¨</span><span class="nv">data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The plot is already created, but we still need to display it. Alternatively, we could <a class="reference external" href="https://www.sharpplot.com/SharpPlot-SaveImage.htm">save it as an image</a> or <a class="reference external" href="https://www.sharpplot.com/SharpPlot-SaveImage.htm">pdf</a> file, for example. To render the plot inside the jupyter notebook, we first generate a SVG graph with <a class="reference external" href="https://www.sharpplot.com/SharpPlot-RenderSvg.htm"><code class="docutils literal notranslate"><span class="pre">sp.RenderSvg</span></code></a>. Then, the <code class="docutils literal notranslate"><span class="pre">]html</span></code> command sends the generated SVG to the browser.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ Display</span>
+<span class="sr">]</span><span class="nv">html</span><span class="w"> </span><span class="nv">sp</span><span class="na">.</span><span class="nv">RenderSvg</span><span class="w"> </span><span class="nv">Causeway</span><span class="na">.</span><span class="nv">SvgMode</span><span class="na">.</span><span class="nv">FixedAspect</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><svg version="1.1" baseProfile="full" width="100%" height="100%" viewBox="0 0 4320 3240"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" >
+<desc>Created by Causeway SVG engine - SharpPlot v3.71.0</desc>
+<g stroke-miterlimit="100">
+<desc>Paint the paper =====</desc>
+ <g fill="White" >
+  <rect x="0" y="0" width="4320" height="3240" />
+ </g>
+<desc>Border =====</desc>
+<desc>Region =====</desc>
+<desc>X-Axis Ticks =====</desc>
+<desc>X-Axis Grid</desc>
+ <path fill="none" stroke-width="1.8" stroke="Silver" d="M400 2720L400 460M770 2720L770 460M1140 2720L1140 460M1510 2720L1510 460M1880 2720L1880 460M2250 2720L2250 460M2620 2720L2620 460M2990 2720L2990 460M3360 2720L3360 460M3730 2720L3730 460M4100 2720L4100 460"/>
+<desc>X-Axis tickmarks</desc>
+ <path fill="none" stroke-width="7.2" stroke="Black" d="M400 2720L400 2764M770 2720L770 2764M1140 2720L1140 2764M1510 2720L1510 2764M1880 2720L1880 2764M2250 2720L2250 2764M2620 2720L2620 2764M2990 2720L2990 2764M3360 2720L3360 2764M3730 2720L3730 2764M4100 2720L4100 2764"/>
+<desc>Y-Axis Ticks =====</desc>
+<desc>Y grid</desc>
+ <path fill="none" stroke-width="1.8" stroke="Silver" d="M400 2720L4100 2720M400 2494L4100 2494M400 2268L4100 2268M400 2042L4100 2042M400 1816L4100 1816M400 1590L4100 1590M400 1364L4100 1364M400 1138L4100 1138M400 912L4100 912M400 686L4100 686M400 460L4100 460"/>
+<desc>Y-Axis tickmarks</desc>
+ <path fill="none" stroke-width="7.2" stroke="Black" d="M400 2720L367 2720M400 2494L367 2494M400 2268L367 2268M400 2042L367 2042M400 1816L367 1816M400 1590L367 1590M400 1364L367 1364M400 1138L367 1138M400 912L367 912M400 686L367 686M400 460L367 460"/>
+<desc>Axes =====</desc>
+ <path fill="none" stroke-width="12" stroke="Black" d="M400 2764L400 416M356 2720L4144 2720"/>
+<desc>Y-axis labels</desc>
+ <g font-family="Times New Roman" font-size="70" text-anchor="end" >
+  <text x="335" y="2740" >-1.00</text>
+  <text x="335" y="2514" >-0.80</text>
+  <text x="335" y="2288" >-0.60</text>
+  <text x="335" y="2062" >-0.40</text>
+  <text x="335" y="1836" >-0.20</text>
+  <text x="335" y="1610" >0.00</text>
+  <text x="335" y="1384" >0.20</text>
+  <text x="335" y="1158" >0.40</text>
+  <text x="335" y="932" >0.60</text>
+  <text x="335" y="706" >0.80</text>
+  <text x="335" y="480" >1.00</text>
+ </g>
+<desc>for X-axis labels</desc>
+ <g font-family="Times New Roman" font-size="70" text-anchor="middle" >
+  <text x="400" y="2839" >0.00</text>
+  <text x="770" y="2839" >1.00</text>
+  <text x="1140" y="2839" >2.00</text>
+  <text x="1510" y="2839" >3.00</text>
+  <text x="1880" y="2839" >4.00</text>
+  <text x="2250" y="2839" >5.00</text>
+  <text x="2620" y="2839" >6.00</text>
+  <text x="2990" y="2839" >7.00</text>
+  <text x="3360" y="2839" >8.00</text>
+  <text x="3730" y="2839" >9.00</text>
+  <text x="4100" y="2839" >10.00</text>
+ </g>
+<desc>Y-Captions: text and effects</desc>
+ <g font-family="Times New Roman" font-size="90" text-anchor="middle" >
+  <text x="400" y="359" >y</text>
+ </g>
+<desc>X-Caption: text and effects</desc>
+ <g font-family="Times New Roman" font-size="90" text-anchor="end" >
+  <text x="4100" y="2972" >x</text>
+ </g>
+<desc>Heading, subheading and footnotes =====</desc>
+<desc>Start of Line Chart ===========</desc>
+<desc>Points follow ...</desc>
+<desc>Line</desc>
+ <g stroke-width="20" stroke="Black" stroke-linejoin="round" stroke-linecap="round" fill="none" >
+  <path d="M4100 2205L4063 2107 4026 2004 3989 1897 3952 1787 3915 1675 3878 1562 3841 1449 3804 1338 3767 1229 3730 1124 3693 1024 3656 929 3619 841 3582 760 3545 688 3508 624 3471 571 3434 527 3397 494 3360 472 3323 461 3286 462 3249 473 3212 496 3175 530 3138 574 3101 629 3064 693 3027 766 2990 848 2953 936 2916 1032 2879 1133 2842 1238 2805 1347 2768 1458 2731 1571 2694 1684 2657 1796 2620 1906 2583 2012 2546 2115 2509 2212 2472 2303 2435 2387 2398 2463 2361 2530 2324 2588 2287 2636 2250 2674 2213 2700 2176 2716 2139 2720 2102 2713 2065 2695 2028 2665 1991 2625 1954 2575 1917 2515 1880 2445 1843 2367 1806 2281 1769 2189 1732 2090 1695 1986 1658 1879 1621 1768 1584 1656 1547 1543 1510 1431 1473 1320 1436 1211 1399 1107 1362 1007 1325 914 1288 827 1251 747 1214 676 1177 615 1140 562 1103 521 1066 490 1029 469 992 460 955 463 918 476 881 501 844 537 807 583 770 639 733 705 696 779 659 862 622 952 585 1048 548 1150 511 1256 474 1366 437 1477 400 1590" />
+ </g>
+<desc>Start of Line Chart ===========</desc>
+<desc>Points follow ...</desc>
+<desc>Line</desc>
+ <g stroke-width="20" stroke="Black" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="60 80" fill="none" >
+  <path d="M3887 2720L3817 2700 3748 2641 3678 2544 3608 2414 3538 2254 3469 2071 3399 1871 3329 1661 3259 1448 3190 1241 3120 1046 3050 870 2981 719 2911 600 2841 515 2771 469 2702 462 2632 496 2562 568 2492 676 2423 816 2353 985 2283 1174 2213 1378 2144 1590 2074 1802 2004 2006 1934 2195 1865 2364 1795 2504 1725 2612 1655 2684 1586 2718 1516 2711 1446 2665 1376 2580 1307 2461 1237 2310 1167 2134 1097 1939 1028 1732 958 1519 888 1309 818 1109 749 926 679 766 609 636 539 539 470 480 400 460" />
+ </g>
+<desc>Key =====</desc>
+<desc>Key - Line</desc>
+ <g stroke-width="20" stroke="Black" fill="none" >
+  <path d="M657 3004L495 3004" />
+ </g>
+<desc>Key - Line</desc>
+ <g stroke-width="20" stroke="Black" stroke-linecap="round" stroke-dasharray="60 80" fill="none" >
+  <path d="M1072 3004L900 3004" />
+ </g>
+ <g font-family="Times New Roman" font-size="90" >
+  <text x="704" y="3033" >sin</text>
+ </g>
+ <g font-family="Times New Roman" font-size="90" >
+  <text x="1119" y="3033" >cos</text>
+ </g>
+<desc>Reset to original origin</desc>
+</g>
+</svg>
+</div></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="plotting-function-operator">
+<h1>Plotting ~~function~~ operator<a class="headerlink" href="#plotting-function-operator" title="Link to this heading">#</a></h1>
+<p>To finish, we are going to put everything together. We want to define a plotting function, but we will need more than two parameters, so we define a custom operator instead. There are many options that could be added to such a function or operator. The intention is not to provide a very complete and configurable implementation, but just to show how to define your own.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Plot</span></code> operator is defined as a <a class="reference external" href="https://help.dyalog.com/latest/index.htm#Language/Defined%20Functions%20and%20Operators/TradFns/Introduction.htm">tradop</a>. This method is preferred above a dfn or a tacit function because it matches better with the procedural style of the SP interface. More specifically, there are SP methods, such as <code class="docutils literal notranslate"><span class="pre">sp.SetColors</span></code>, which do not return any value, so the resulting dfn or tacit function would be awkward.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Plot</span></code> takes two operands, which will be the labels of the x and y axis, a dataset as right argument and, optionally, a list of colors as left argument. The dataset consists of a list of curves, where each curve is composed of a name and yx data. We handle as a special case a single curve (<code class="docutils literal notranslate"><span class="pre">¯4&lt;≡data</span></code>) and apply “scalar extension” to the left argument (<code class="docutils literal notranslate"><span class="pre">(≢data)⍴⊆colors</span></code>) so that the user can easily specify a common color for all curves. In order to make it possible to set an individual color for each curve, we plot them inside a <code class="docutils literal notranslate"><span class="pre">:For</span></code> loop.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="sr">]</span><span class="nv">dinput</span>
+<span class="nv">svg</span><span class="kd">←</span><span class="kt">{</span><span class="nv">colors</span><span class="kt">}</span><span class="p">(</span><span class="nv">xlabel</span><span class="w"> </span><span class="nv">Plot</span><span class="w"> </span><span class="nv">ylabel</span><span class="p">)</span><span class="w"> </span><span class="nv">data</span><span class="sr">;</span><span class="nv">InitCauseway</span><span class="sr">;</span><span class="nv">Causeway</span><span class="sr">;</span><span class="nv">System</span><span class="sr">;</span><span class="nv">sp</span><span class="sr">;</span><span class="nv">fc</span><span class="sr">;</span><span class="nv">fl</span><span class="sr">;</span><span class="nv">fs</span><span class="sr">;</span><span class="nv">fmt</span><span class="sr">;</span><span class="nv">names</span><span class="sr">;</span><span class="nv">xa</span><span class="sr">;</span><span class="nv">xw</span><span class="sr">;</span><span class="nv">ya</span><span class="sr">;</span><span class="nv">yw</span>
+<span class="c1">⍝ eg: &#39;red&#39; &#39;blue&#39; (&#39;xlabel&#39;Plot&#39;ylabel&#39;) (&#39;series1&#39; (y1 x1)) (&#39;series2&#39; (y2 x2))</span>
+
+<span class="c1">⍝ Init</span>
+<span class="bp">:</span><span class="nv">If</span><span class="w"> </span><span class="m">0</span><span class="o">=</span><span class="nf">⎕NC</span><span class="s1">&#39;Causeway&#39;</span>
+<span class="w">    </span><span class="s1">&#39;InitCauseway&#39;</span><span class="nf">⎕CY</span><span class="s1">&#39;sharpplot&#39;</span>
+<span class="w">    </span><span class="nv">InitCauseway</span><span class="w"> </span><span class="no">⍬</span>
+<span class="bp">:</span><span class="nv">EndIf</span>
+<span class="nv">sp</span><span class="kd">←</span><span class="nf">⎕NEW</span><span class="w"> </span><span class="nv">Causeway</span><span class="na">.</span><span class="nv">SharpPlot</span>
+
+<span class="c1">⍝ Format</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">XAxisStyle</span><span class="kd">←</span><span class="nv">Causeway</span><span class="na">.</span><span class="nv">XAxisStyles</span><span class="na">.</span><span class="nv">GridLines</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">YAxisStyle</span><span class="kd">←</span><span class="nv">Causeway</span><span class="na">.</span><span class="nv">YAxisStyles</span><span class="na">.</span><span class="p">(</span><span class="nv">GridLines</span><span class="o">+</span><span class="nv">AtEndCaption</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">fc</span><span class="w"> </span><span class="nv">fl</span><span class="w"> </span><span class="nv">fs</span><span class="p">)</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="nv">System</span><span class="na">.</span><span class="nv">Drawing</span><span class="na">.</span><span class="nv">Color</span><span class="na">.</span><span class="nv">Black</span><span class="w"> </span><span class="m">9.5</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="c1">⍝ font color, large size, small size</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetXCaptionFont</span><span class="w"> </span><span class="nv">fl</span><span class="w"> </span><span class="nv">fc</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">sp</span><span class="na">.</span><span class="nv">SetXLabelFont</span><span class="w"> </span><span class="nv">fs</span><span class="w"> </span><span class="nv">fc</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetYCaptionFont</span><span class="w"> </span><span class="nv">fl</span><span class="w"> </span><span class="nv">fc</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">sp</span><span class="na">.</span><span class="nv">SetYLabelFont</span><span class="w"> </span><span class="nv">fs</span><span class="w"> </span><span class="nv">fc</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetKeyFont</span><span class="w"> </span><span class="nv">fl</span><span class="w"> </span><span class="nv">fc</span>
+<span class="nv">fmt</span><span class="kd">←</span><span class="s1">&#39;0.00&#39;</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">sp</span><span class="na">.</span><span class="nv">XLabelFormat</span><span class="kd">←</span><span class="nv">fmt</span><span class="w"> </span><span class="p">⋄</span><span class="w"> </span><span class="nv">sp</span><span class="na">.</span><span class="nv">YLabelFormat</span><span class="kd">←</span><span class="nv">fmt</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetPenWidths</span><span class="w"> </span><span class="m">2</span>
+
+<span class="c1">⍝ Curves</span>
+<span class="bp">:</span><span class="nv">If</span><span class="w"> </span><span class="m">0</span><span class="o">=</span><span class="nf">⎕NC</span><span class="s1">&#39;colors&#39;</span>
+<span class="w">    </span><span class="nv">colors</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="o">⊂</span><span class="s1">&#39;black&#39;</span>
+<span class="bp">:</span><span class="nv">EndIf</span>
+<span class="bp">:</span><span class="nv">If</span><span class="w"> </span><span class="m">¯4</span><span class="o">&lt;≡</span><span class="nv">data</span>
+<span class="w">    </span><span class="p">(</span><span class="nv">names</span><span class="w"> </span><span class="nv">data</span><span class="p">)</span><span class="kd">←</span><span class="nv">data</span>
+<span class="w">    </span><span class="nv">data</span><span class="kd">←</span><span class="o">,⊂</span><span class="nv">data</span>
+<span class="bp">:</span><span class="nv">Else</span>
+<span class="w">    </span><span class="p">(</span><span class="nv">names</span><span class="w"> </span><span class="nv">data</span><span class="p">)</span><span class="kd">←</span><span class="o">↓⍉↑</span><span class="nv">data</span><span class="w"> </span><span class="c1">⍝ names and data</span>
+<span class="bp">:</span><span class="nv">EndIf</span>
+<span class="nv">colors</span><span class="w"> </span><span class="kd">←</span><span class="w"> </span><span class="p">(</span><span class="o">≢</span><span class="nv">data</span><span class="p">)</span><span class="o">⍴⊆</span><span class="nv">colors</span><span class="w"> </span><span class="c1">⍝ &quot;scalar extension&quot;</span>
+
+<span class="c1">⍝ Labels</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">XCaption</span><span class="kd">←</span><span class="o">,</span><span class="nv">xlabel</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">YCaption</span><span class="kd">←</span><span class="o">,</span><span class="nv">ylabel</span><span class="o">,</span><span class="nf">⎕UCS</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="c1">⍝ add newline to leave some space</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetKeyText</span><span class="o">⊂</span><span class="nv">names</span>
+
+<span class="c1">⍝ Limits</span>
+<span class="p">(</span><span class="nv">ya</span><span class="w"> </span><span class="nv">xa</span><span class="p">)</span><span class="kd">←</span><span class="o">⌊</span><span class="na">⌿</span><span class="o">⌊</span><span class="na">/¨</span><span class="o">↑</span><span class="nv">data</span>
+<span class="p">(</span><span class="nv">yw</span><span class="w"> </span><span class="nv">xw</span><span class="p">)</span><span class="kd">←</span><span class="o">⌈</span><span class="na">⌿</span><span class="o">⌈</span><span class="na">/¨</span><span class="o">↑</span><span class="nv">data</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetYRange</span><span class="w"> </span><span class="nv">ya</span><span class="w"> </span><span class="nv">yw</span>
+<span class="nv">sp</span><span class="na">.</span><span class="nv">SetXRange</span><span class="w"> </span><span class="nv">xa</span><span class="w"> </span><span class="nv">xw</span>
+
+<span class="c1">⍝ Plot and display</span>
+<span class="bp">:</span><span class="nv">For</span><span class="w"> </span><span class="nv">i</span><span class="w"> </span><span class="bp">:</span><span class="nv">In</span><span class="w"> </span><span class="o">⍳≢</span><span class="nv">data</span>
+<span class="w">    </span><span class="nv">sp</span><span class="na">.</span><span class="nv">SetColors</span><span class="w"> </span><span class="nv">i</span><span class="o">⌷</span><span class="nv">colors</span><span class="w"> </span>
+<span class="w">    </span><span class="nv">sp</span><span class="na">.</span><span class="nv">DrawLineGraph</span><span class="w"> </span><span class="nv">i</span><span class="o">⊃</span><span class="nv">data</span>
+<span class="bp">:</span><span class="nv">EndFor</span>
+<span class="nv">svg</span><span class="kd">←</span><span class="nv">sp</span><span class="na">.</span><span class="nv">RenderSvg</span><span class="w"> </span><span class="nv">Causeway</span><span class="na">.</span><span class="nv">SvgMode</span><span class="na">.</span><span class="nv">FixedAspect</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The return of <code class="docutils literal notranslate"><span class="pre">Plot</span></code> is the plot as SVG, so we use <code class="docutils literal notranslate"><span class="pre">]html</span></code> to display it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-APL notranslate"><div class="highlight"><pre><span></span><span class="c1">⍝ eg</span>
+<span class="sr">]</span><span class="nv">html</span><span class="w"> </span><span class="s1">&#39;red&#39;</span><span class="w"> </span><span class="s1">&#39;blue&#39;</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="nv">Plot</span><span class="s1">&#39;y&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;sin&#39;</span><span class="w"> </span><span class="nv">sin</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;cos&#39;</span><span class="w"> </span><span class="nv">cos</span><span class="p">)</span><span class="w">                                </span><span class="c1">⍝ sin and cos, with colors</span>
+<span class="sr">]</span><span class="nv">html</span><span class="w"> </span><span class="s1">&#39;purple&#39;</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="nv">Plot</span><span class="s1">&#39;y&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;log&#39;</span><span class="w"> </span><span class="p">((</span><span class="o">⍟</span><span class="m">1</span><span class="o">↓</span><span class="nv">x</span><span class="p">)</span><span class="w"> </span><span class="nv">x</span><span class="p">)</span><span class="w">                                           </span><span class="c1">⍝ single curve</span>
+<span class="sr">]</span><span class="nv">html</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Time [s]&#39;</span><span class="nv">Plot</span><span class="s1">&#39;Distance [m]&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;a = 20&#39;</span><span class="w"> </span><span class="p">((</span><span class="nv">x</span><span class="o">×</span><span class="m">100</span><span class="o">+</span><span class="m">10</span><span class="o">×</span><span class="nv">x</span><span class="p">)</span><span class="w"> </span><span class="nv">x</span><span class="p">))</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;a = 0&#39;</span><span class="w"> </span><span class="p">((</span><span class="nv">x</span><span class="o">×</span><span class="m">100</span><span class="p">)</span><span class="w"> </span><span class="nv">x</span><span class="p">))</span><span class="w"> </span><span class="c1">⍝ default color</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><svg version="1.1" baseProfile="full" width="100%" height="100%" viewBox="0 0 4320 3240"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" >
+<desc>Created by Causeway SVG engine - SharpPlot v3.71.0</desc>
+<g stroke-miterlimit="100">
+<desc>Paint the paper =====</desc>
+ <g fill="White" >
+  <rect x="0" y="0" width="4320" height="3240" />
+ </g>
+<desc>Border =====</desc>
+<desc>Region =====</desc>
+<desc>X-Axis Ticks =====</desc>
+<desc>X-Axis Grid</desc>
+ <path fill="none" stroke-width="1.8" stroke="Silver" d="M400 2720L400 460M770 2720L770 460M1140 2720L1140 460M1510 2720L1510 460M1880 2720L1880 460M2250 2720L2250 460M2620 2720L2620 460M2990 2720L2990 460M3360 2720L3360 460M3730 2720L3730 460M4100 2720L4100 460"/>
+<desc>X-Axis tickmarks</desc>
+ <path fill="none" stroke-width="7.2" stroke="Black" d="M400 2720L400 2764M770 2720L770 2764M1140 2720L1140 2764M1510 2720L1510 2764M1880 2720L1880 2764M2250 2720L2250 2764M2620 2720L2620 2764M2990 2720L2990 2764M3360 2720L3360 2764M3730 2720L3730 2764M4100 2720L4100 2764"/>
+<desc>Y-Axis Ticks =====</desc>
+<desc>Y grid</desc>
+ <path fill="none" stroke-width="1.8" stroke="Silver" d="M400 2720L4100 2720M400 2494L4100 2494M400 2268L4100 2268M400 2042L4100 2042M400 1816L4100 1816M400 1590L4100 1590M400 1364L4100 1364M400 1138L4100 1138M400 912L4100 912M400 686L4100 686M400 460L4100 460"/>
+<desc>Y-Axis tickmarks</desc>
+ <path fill="none" stroke-width="7.2" stroke="Black" d="M400 2720L367 2720M400 2494L367 2494M400 2268L367 2268M400 2042L367 2042M400 1816L367 1816M400 1590L367 1590M400 1364L367 1364M400 1138L367 1138M400 912L367 912M400 686L367 686M400 460L367 460"/>
+<desc>Axes =====</desc>
+ <path fill="none" stroke-width="12" stroke="Black" d="M400 2764L400 416M356 2720L4144 2720"/>
+<desc>Y-axis labels</desc>
+ <g font-family="Times New Roman" font-size="70" text-anchor="end" >
+  <text x="335" y="2740" >-1.00</text>
+  <text x="335" y="2514" >-0.80</text>
+  <text x="335" y="2288" >-0.60</text>
+  <text x="335" y="2062" >-0.40</text>
+  <text x="335" y="1836" >-0.20</text>
+  <text x="335" y="1610" >0.00</text>
+  <text x="335" y="1384" >0.20</text>
+  <text x="335" y="1158" >0.40</text>
+  <text x="335" y="932" >0.60</text>
+  <text x="335" y="706" >0.80</text>
+  <text x="335" y="480" >1.00</text>
+ </g>
+<desc>for X-axis labels</desc>
+ <g font-family="Times New Roman" font-size="70" text-anchor="middle" >
+  <text x="400" y="2839" >0.00</text>
+  <text x="770" y="2839" >1.00</text>
+  <text x="1140" y="2839" >2.00</text>
+  <text x="1510" y="2839" >3.00</text>
+  <text x="1880" y="2839" >4.00</text>
+  <text x="2250" y="2839" >5.00</text>
+  <text x="2620" y="2839" >6.00</text>
+  <text x="2990" y="2839" >7.00</text>
+  <text x="3360" y="2839" >8.00</text>
+  <text x="3730" y="2839" >9.00</text>
+  <text x="4100" y="2839" >10.00</text>
+ </g>
+<desc>Y-Captions: text and effects</desc>
+ <g font-family="Times New Roman" font-size="90" text-anchor="middle" >
+  <text x="400" y="359" >y</text>
+ </g>
+<desc>X-Caption: text and effects</desc>
+ <g font-family="Times New Roman" font-size="90" text-anchor="end" >
+  <text x="4100" y="2972" >x</text>
+ </g>
+<desc>Heading, subheading and footnotes =====</desc>
+<desc>Start of Line Chart ===========</desc>
+<desc>Points follow ...</desc>
+<desc>Line</desc>
+ <g stroke-width="20" stroke="Red" stroke-linejoin="round" stroke-linecap="round" fill="none" >
+  <path d="M4100 2205L4063 2107 4026 2004 3989 1897 3952 1787 3915 1675 3878 1562 3841 1449 3804 1338 3767 1229 3730 1124 3693 1024 3656 929 3619 841 3582 760 3545 688 3508 624 3471 571 3434 527 3397 494 3360 472 3323 461 3286 462 3249 473 3212 496 3175 530 3138 574 3101 629 3064 693 3027 766 2990 848 2953 936 2916 1032 2879 1133 2842 1238 2805 1347 2768 1458 2731 1571 2694 1684 2657 1796 2620 1906 2583 2012 2546 2115 2509 2212 2472 2303 2435 2387 2398 2463 2361 2530 2324 2588 2287 2636 2250 2674 2213 2700 2176 2716 2139 2720 2102 2713 2065 2695 2028 2665 1991 2625 1954 2575 1917 2515 1880 2445 1843 2367 1806 2281 1769 2189 1732 2090 1695 1986 1658 1879 1621 1768 1584 1656 1547 1543 1510 1431 1473 1320 1436 1211 1399 1107 1362 1007 1325 914 1288 827 1251 747 1214 676 1177 615 1140 562 1103 521 1066 490 1029 469 992 460 955 463 918 476 881 501 844 537 807 583 770 639 733 705 696 779 659 862 622 952 585 1048 548 1150 511 1256 474 1366 437 1477 400 1590" />
+ </g>
+<desc>Start of Line Chart ===========</desc>
+<desc>Points follow ...</desc>
+<desc>Line</desc>
+ <g stroke-width="20" stroke="Blue" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="60 80" fill="none" >
+  <path d="M3887 2720L3817 2700 3748 2641 3678 2544 3608 2414 3538 2254 3469 2071 3399 1871 3329 1661 3259 1448 3190 1241 3120 1046 3050 870 2981 719 2911 600 2841 515 2771 469 2702 462 2632 496 2562 568 2492 676 2423 816 2353 985 2283 1174 2213 1378 2144 1590 2074 1802 2004 2006 1934 2195 1865 2364 1795 2504 1725 2612 1655 2684 1586 2718 1516 2711 1446 2665 1376 2580 1307 2461 1237 2310 1167 2134 1097 1939 1028 1732 958 1519 888 1309 818 1109 749 926 679 766 609 636 539 539 470 480 400 460" />
+ </g>
+<desc>Key =====</desc>
+<desc>Key - Line</desc>
+ <g stroke-width="20" stroke="Red" fill="none" >
+  <path d="M657 3004L495 3004" />
+ </g>
+<desc>Key - Line</desc>
+ <g stroke-width="20" stroke="Blue" stroke-linecap="round" stroke-dasharray="60 80" fill="none" >
+  <path d="M1072 3004L900 3004" />
+ </g>
+ <g font-family="Times New Roman" font-size="90" >
+  <text x="704" y="3033" >sin</text>
+ </g>
+ <g font-family="Times New Roman" font-size="90" >
+  <text x="1119" y="3033" >cos</text>
+ </g>
+<desc>Reset to original origin</desc>
+</g>
+</svg>
+</div><div class="output text_html"><svg version="1.1" baseProfile="full" width="100%" height="100%" viewBox="0 0 4320 3240"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" >
+<desc>Created by Causeway SVG engine - SharpPlot v3.71.0</desc>
+<g stroke-miterlimit="100">
+<desc>Paint the paper =====</desc>
+ <g fill="White" >
+  <rect x="0" y="0" width="4320" height="3240" />
+ </g>
+<desc>Border =====</desc>
+<desc>Region =====</desc>
+<desc>X-Axis Ticks =====</desc>
+<desc>X-Axis Grid</desc>
+ <path fill="none" stroke-width="1.8" stroke="Silver" d="M400 2720L400 460M770 2720L770 460M1140 2720L1140 460M1510 2720L1510 460M1880 2720L1880 460M2250 2720L2250 460M2620 2720L2620 460M2990 2720L2990 460M3360 2720L3360 460M3730 2720L3730 460M4100 2720L4100 460"/>
+<desc>X-Axis tickmarks</desc>
+ <path fill="none" stroke-width="7.2" stroke="Black" d="M400 2720L400 2764M770 2720L770 2764M1140 2720L1140 2764M1510 2720L1510 2764M1880 2720L1880 2764M2250 2720L2250 2764M2620 2720L2620 2764M2990 2720L2990 2764M3360 2720L3360 2764M3730 2720L3730 2764M4100 2720L4100 2764"/>
+<desc>Y-Axis Ticks =====</desc>
+<desc>Y grid</desc>
+ <path fill="none" stroke-width="1.8" stroke="Silver" d="M400 2720L4100 2720M400 2494L4100 2494M400 2268L4100 2268M400 2042L4100 2042M400 1816L4100 1816M400 1590L4100 1590M400 1364L4100 1364M400 1138L4100 1138M400 912L4100 912M400 686L4100 686M400 460L4100 460"/>
+<desc>Y-Axis tickmarks</desc>
+ <path fill="none" stroke-width="7.2" stroke="Black" d="M400 2720L367 2720M400 2494L367 2494M400 2268L367 2268M400 2042L367 2042M400 1816L367 1816M400 1590L367 1590M400 1364L367 1364M400 1138L367 1138M400 912L367 912M400 686L367 686M400 460L367 460"/>
+<desc>Axes =====</desc>
+ <path fill="none" stroke-width="12" stroke="Black" d="M400 2764L400 416M356 2720L4144 2720"/>
+<desc>Y-axis labels</desc>
+ <g font-family="Times New Roman" font-size="70" text-anchor="end" >
+  <text x="335" y="2740" >-2.50</text>
+  <text x="335" y="2514" >-2.00</text>
+  <text x="335" y="2288" >-1.50</text>
+  <text x="335" y="2062" >-1.00</text>
+  <text x="335" y="1836" >-0.50</text>
+  <text x="335" y="1610" >0.00</text>
+  <text x="335" y="1384" >0.50</text>
+  <text x="335" y="1158" >1.00</text>
+  <text x="335" y="932" >1.50</text>
+  <text x="335" y="706" >2.00</text>
+  <text x="335" y="480" >2.50</text>
+ </g>
+<desc>for X-axis labels</desc>
+ <g font-family="Times New Roman" font-size="70" text-anchor="middle" >
+  <text x="400" y="2839" >0.00</text>
+  <text x="770" y="2839" >1.00</text>
+  <text x="1140" y="2839" >2.00</text>
+  <text x="1510" y="2839" >3.00</text>
+  <text x="1880" y="2839" >4.00</text>
+  <text x="2250" y="2839" >5.00</text>
+  <text x="2620" y="2839" >6.00</text>
+  <text x="2990" y="2839" >7.00</text>
+  <text x="3360" y="2839" >8.00</text>
+  <text x="3730" y="2839" >9.00</text>
+  <text x="4100" y="2839" >10.00</text>
+ </g>
+<desc>Y-Captions: text and effects</desc>
+ <g font-family="Times New Roman" font-size="90" text-anchor="middle" >
+  <text x="400" y="359" >y</text>
+ </g>
+<desc>X-Caption: text and effects</desc>
+ <g font-family="Times New Roman" font-size="90" text-anchor="end" >
+  <text x="4100" y="2972" >x</text>
+ </g>
+<desc>Heading, subheading and footnotes =====</desc>
+<desc>Start of Line Chart ===========</desc>
+<desc>Points follow ...</desc>
+<desc>Line</desc>
+ <g stroke-width="20" stroke="Purple" stroke-linejoin="round" stroke-linecap="round" fill="none" >
+  <path d="M4063 549L4026 554 3989 558 3952 563 3915 568 3878 572 3841 577 3804 582 3767 587 3730 592 3693 597 3656 602 3619 607 3582 612 3545 617 3508 623 3471 628 3434 633 3397 639 3360 644 3323 650 3286 656 3249 662 3212 667 3175 673 3138 679 3101 685 3064 691 3027 698 2990 704 2953 710 2916 717 2879 724 2842 730 2805 737 2768 744 2731 751 2694 758 2657 765 2620 773 2583 780 2546 788 2509 795 2472 803 2435 811 2398 819 2361 828 2324 836 2287 845 2250 854 2213 863 2176 872 2139 881 2102 891 2065 900 2028 910 1991 920 1954 931 1917 941 1880 952 1843 963 1806 975 1769 987 1732 999 1695 1011 1658 1024 1621 1037 1584 1050 1547 1064 1510 1079 1473 1093 1436 1109 1399 1125 1362 1141 1325 1158 1288 1176 1251 1194 1214 1214 1177 1234 1140 1255 1103 1277 1066 1300 1029 1324 992 1350 955 1378 918 1407 881 1438 844 1471 807 1508 770 1547 733 1590 696 1638 659 1691 622 1751 585 1821 548 1903 511 2004 474 2134 437 2317 400 2631" />
+ </g>
+<desc>Key =====</desc>
+<desc>Key - Line</desc>
+ <g stroke-width="20" stroke="Purple" fill="none" >
+  <path d="M657 3004L495 3004" />
+ </g>
+ <g font-family="Times New Roman" font-size="90" >
+  <text x="704" y="3033" >log</text>
+ </g>
+<desc>Reset to original origin</desc>
+</g>
+</svg>
+</div><div class="output text_html"><svg version="1.1" baseProfile="full" width="100%" height="100%" viewBox="0 0 4320 3240"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" >
+<desc>Created by Causeway SVG engine - SharpPlot v3.71.0</desc>
+<g stroke-miterlimit="100">
+<desc>Paint the paper =====</desc>
+ <g fill="White" >
+  <rect x="0" y="0" width="4320" height="3240" />
+ </g>
+<desc>Border =====</desc>
+<desc>Region =====</desc>
+<desc>X-Axis Ticks =====</desc>
+<desc>X-Axis Grid</desc>
+ <path fill="none" stroke-width="1.8" stroke="Silver" d="M400 2720L400 460M770 2720L770 460M1140 2720L1140 460M1510 2720L1510 460M1880 2720L1880 460M2250 2720L2250 460M2620 2720L2620 460M2990 2720L2990 460M3360 2720L3360 460M3730 2720L3730 460M4100 2720L4100 460"/>
+<desc>X-Axis tickmarks</desc>
+ <path fill="none" stroke-width="7.2" stroke="Black" d="M400 2720L400 2764M770 2720L770 2764M1140 2720L1140 2764M1510 2720L1510 2764M1880 2720L1880 2764M2250 2720L2250 2764M2620 2720L2620 2764M2990 2720L2990 2764M3360 2720L3360 2764M3730 2720L3730 2764M4100 2720L4100 2764"/>
+<desc>Y-Axis Ticks =====</desc>
+<desc>Y grid</desc>
+ <path fill="none" stroke-width="1.8" stroke="Silver" d="M400 2720L4100 2720M400 2494L4100 2494M400 2268L4100 2268M400 2042L4100 2042M400 1816L4100 1816M400 1590L4100 1590M400 1364L4100 1364M400 1138L4100 1138M400 912L4100 912M400 686L4100 686M400 460L4100 460"/>
+<desc>Y-Axis tickmarks</desc>
+ <path fill="none" stroke-width="7.2" stroke="Black" d="M400 2720L367 2720M400 2494L367 2494M400 2268L367 2268M400 2042L367 2042M400 1816L367 1816M400 1590L367 1590M400 1364L367 1364M400 1138L367 1138M400 912L367 912M400 686L367 686M400 460L367 460"/>
+<desc>Axes =====</desc>
+ <path fill="none" stroke-width="12" stroke="Black" d="M400 2764L400 416M356 2720L4144 2720"/>
+<desc>Y-axis labels</desc>
+ <g font-family="Times New Roman" font-size="70" text-anchor="end" >
+  <text x="335" y="2740" >0.00</text>
+  <text x="335" y="2514" >200.00</text>
+  <text x="335" y="2288" >400.00</text>
+  <text x="335" y="2062" >600.00</text>
+  <text x="335" y="1836" >800.00</text>
+  <text x="335" y="1610" >1000.00</text>
+  <text x="335" y="1384" >1200.00</text>
+  <text x="335" y="1158" >1400.00</text>
+  <text x="335" y="932" >1600.00</text>
+  <text x="335" y="706" >1800.00</text>
+  <text x="335" y="480" >2000.00</text>
+ </g>
+<desc>for X-axis labels</desc>
+ <g font-family="Times New Roman" font-size="70" text-anchor="middle" >
+  <text x="400" y="2839" >0.00</text>
+  <text x="770" y="2839" >1.00</text>
+  <text x="1140" y="2839" >2.00</text>
+  <text x="1510" y="2839" >3.00</text>
+  <text x="1880" y="2839" >4.00</text>
+  <text x="2250" y="2839" >5.00</text>
+  <text x="2620" y="2839" >6.00</text>
+  <text x="2990" y="2839" >7.00</text>
+  <text x="3360" y="2839" >8.00</text>
+  <text x="3730" y="2839" >9.00</text>
+  <text x="4100" y="2839" >10.00</text>
+ </g>
+<desc>Y-Captions: text and effects</desc>
+ <g font-family="Times New Roman" font-size="90" text-anchor="middle" >
+  <text x="400" y="359" >Distance [m]</text>
+ </g>
+<desc>X-Caption: text and effects</desc>
+ <g font-family="Times New Roman" font-size="90" text-anchor="end" >
+  <text x="4100" y="2972" >Time [s]</text>
+ </g>
+<desc>Heading, subheading and footnotes =====</desc>
+<desc>Start of Line Chart ===========</desc>
+<desc>Points follow ...</desc>
+<desc>Line</desc>
+ <g stroke-width="20" stroke="Black" stroke-linejoin="round" stroke-linecap="round" fill="none" >
+  <path d="M4100 460L4063 494 4026 527 3989 561 3952 594 3915 627 3878 659 3841 692 3804 724 3767 756 3730 788 3693 819 3656 851 3619 882 3582 912 3545 943 3508 973 3471 1004 3434 1034 3397 1063 3360 1093 3323 1122 3286 1151 3249 1180 3212 1209 3175 1237 3138 1265 3101 1293 3064 1321 3027 1348 2990 1375 2953 1402 2916 1429 2879 1456 2842 1482 2805 1508 2768 1534 2731 1560 2694 1585 2657 1610 2620 1635 2583 1660 2546 1684 2509 1709 2472 1733 2435 1757 2398 1780 2361 1804 2324 1827 2287 1850 2250 1873 2213 1895 2176 1917 2139 1939 2102 1961 2065 1983 2028 2004 1991 2025 1954 2046 1917 2067 1880 2087 1843 2107 1806 2127 1769 2147 1732 2167 1695 2186 1658 2205 1621 2224 1584 2243 1547 2261 1510 2279 1473 2297 1436 2315 1399 2333 1362 2350 1325 2367 1288 2384 1251 2400 1214 2417 1177 2433 1140 2449 1103 2465 1066 2480 1029 2495 992 2510 955 2525 918 2540 881 2554 844 2568 807 2582 770 2596 733 2609 696 2622 659 2635 622 2648 585 2661 548 2673 511 2685 474 2697 437 2709 400 2720" />
+ </g>
+<desc>Start of Line Chart ===========</desc>
+<desc>Points follow ...</desc>
+<desc>Line</desc>
+ <g stroke-width="20" stroke="Black" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="60 80" fill="none" >
+  <path d="M4100 1590L4063 1601 4026 1613 3989 1624 3952 1635 3915 1647 3878 1658 3841 1669 3804 1680 3767 1692 3730 1703 3693 1714 3656 1726 3619 1737 3582 1748 3545 1760 3508 1771 3471 1782 3434 1793 3397 1805 3360 1816 3323 1827 3286 1839 3249 1850 3212 1861 3175 1873 3138 1884 3101 1895 3064 1906 3027 1918 2990 1929 2953 1940 2916 1952 2879 1963 2842 1974 2805 1986 2768 1997 2731 2008 2694 2019 2657 2031 2620 2042 2583 2053 2546 2065 2509 2076 2472 2087 2435 2099 2398 2110 2361 2121 2324 2132 2287 2144 2250 2155 2213 2166 2176 2178 2139 2189 2102 2200 2065 2212 2028 2223 1991 2234 1954 2245 1917 2257 1880 2268 1843 2279 1806 2291 1769 2302 1732 2313 1695 2325 1658 2336 1621 2347 1584 2358 1547 2370 1510 2381 1473 2392 1436 2404 1399 2415 1362 2426 1325 2438 1288 2449 1251 2460 1214 2471 1177 2483 1140 2494 1103 2505 1066 2517 1029 2528 992 2539 955 2551 918 2562 881 2573 844 2584 807 2596 770 2607 733 2618 696 2630 659 2641 622 2652 585 2664 548 2675 511 2686 474 2697 437 2709 400 2720" />
+ </g>
+<desc>Key =====</desc>
+<desc>Key - Line</desc>
+ <g stroke-width="20" stroke="Black" fill="none" >
+  <path d="M657 3004L495 3004" />
+ </g>
+<desc>Key - Line</desc>
+ <g stroke-width="20" stroke="Black" stroke-linecap="round" stroke-dasharray="60 80" fill="none" >
+  <path d="M1199 3004L1028 3004" />
+ </g>
+ <g font-family="Times New Roman" font-size="90" >
+  <text x="704" y="3033" >a = 20</text>
+ </g>
+ <g font-family="Times New Roman" font-size="90" >
+  <text x="1247" y="3033" >a = 0</text>
+ </g>
+<desc>Reset to original origin</desc>
+</g>
+</svg>
+</div></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "dyalog-kernel"
+        },
+        kernelOptions: {
+            name: "dyalog-kernel",
+            path: "./apl-quest/dyalog"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'dyalog-kernel'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="New-in-v17.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Monadic function <code class="docutils literal notranslate"><span class="pre">∪</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Random-Numbers.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Random Numbers</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Plotting with SharpPlot</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-data">Sample data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting">Plotting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initialization">Initialization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formatting">Formatting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ranges-and-labels">Ranges and labels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-and-display">Plot and display</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-function-operator">Plotting ~~function~~ operator</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

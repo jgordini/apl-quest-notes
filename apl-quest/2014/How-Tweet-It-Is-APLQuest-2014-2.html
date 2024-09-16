@@ -1,0 +1,870 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>How Tweet It Is 2014-2 &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ae78d91f" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2014/How-Tweet-It-Is-APLQuest-2014-2';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tell A Fib 2014-3" href="Tell-a-Fib-APLQuest-2014-3.html" />
+    <link rel="prev" title="It Is All Right 2014-1" href="It-Is-All-Right-APLQuest-2014-1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2013/index.html">APL Quest 2013</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping Things In Balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Go-Forth-And-Multiply-APLQuest-2013-8.html">Go forth and Multiply 2013-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Solution-Salvation-APLQuest-2013-10.html">Solution Salvation 2013-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">APL Quest 2014</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="It-Is-All-Right-APLQuest-2014-1.html">It Is All Right 2014-1</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">How Tweet It Is 2014-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tell-a-Fib-APLQuest-2014-3.html">Tell A Fib 2014-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Space-The-Final-Frontier-APLQuest-2014-4.html">Space The Final Frontier 2014-4</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Mirror-Mirror-APLQuest-2014-5.html">Mirror Mirror 2014-5</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Revolutionary-Thinking-APLQuest-2014-7.html">Revolutionary Thinking 2014-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Go-The-Distance-APLQuest-2014-8.html">Go The Distance 2014-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Going-Ballistic-APLQuest-2014-9.html">Going Ballistic 2014-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sales-Are-Up-APLQuest-2014-10.html">Sales Are Up 2014-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2015/index.html">APL Quest 2015</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Nag-A-Ram-APLQuest-2015-1.html">APL Quest: Anagrams Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Longest-Streak-APLQuest-2015-2.html">APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Farey-Tales-APLQuest-2015-3.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Progessive-Dyadic-Iota-APLQuest-2015-4.html">APL Quest Cap Wiki: Progressive Dyadic Iota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.html">APL Quest: Standard Deviation Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.html">APL Quest: Problem Six Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Justin-Upper-Case-APLQuest-2015-7.html">APL Quest: Problem 7 from the 2015 APL Problem Solver Competition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html">APL Quest: Swapping Interior Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Blazing-A-Trail-APLQuest-2015-10.html">API Quest: Generating a Centered Pascal’s Triangle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2016/index.html">APL Quest 2016</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mean-APLQuest-2016-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Median-APLQuest-2016-2.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mode-APLQuest-2016-3.html">Welcome to APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.html">Welcome to the Appeal Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Shorter-Onestothe-Front-APLQuest-2016-6.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/3-sand-5-s-APLQuest-2016-7.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Separating-Outthe-Negative-APLQuest-2016-8.html">APL Quest: 8th Quest Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Delimited-Text-APLQuest-2016-9.html">APL Quest: Delimiter Splitting Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Order-Total-APLQuest-2016-10.html">Welcome to the APL Quest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2017/index.html">APL Quest 2017</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2017/What-an-Odd-Bunch-APLQuest-2017-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Good-Evening-APLQuest-2017-2.html">Ensure Odd Numbers Become Even Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Miss-Quoted-APLQuest-2017-3.html">Removing Text Between Double Quotes Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Slices-of-Pies-APLQuest-2017-4.html">Computing Areas of Circle Sectors Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/DNA-APLQuest-2017-5.html">Checking Character Vectors for Valid Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/k-mers-APLQuest-2017-6.html">Chopping Text into Sequences of a Given Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Counting-DNANucleotides-APLQuest-2017-7.html">Counting Letters in a String: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Be-the-First-1-APLQuest-2017-8.html">Understanding Boolean Vector Processing in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Double-Trouble-APLQuest-2017-9.html">Finding Locations of Identical Characters in Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Squaring-Off-APLQuest-2017-10.html">Fitting Elements into a Square Array</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2018/index.html">APL Quest 2018</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Oh-Say-Can-You-See-APLQuest-2018-1.html">Counting Visible Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Number-Splitting-APLQuest-2018-2.html">Splitting Numbers into Integer and Fractional Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Rolling-Along-APLQuest-2018-3.html">Simulating Dice Rolls and Analyzing Outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-APLQuest-2018-4.html">Converting Gregorian Year Numbers to Chinese Zodiac Animals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-Revisited-APLQuest-2018-5.html">Computing Zodiac Signs from Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Angle-APLQuest-2018-6.html">A Simple Test for XML Validity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Unconditionally-Shifty-APLQuest-2018-7.html">Shifting Boolean Data: An Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Makinga-Good-Argument-APLQuest-2018-8.html">Validating Dyadic Transpose Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Earlier-Later-or-the-Same-APLQuest-2018-9.html">Comparing Dates in APL: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Anagrammatically-Correct-APLQuest-2018-10.html">Comparing Two Character Vectors: An Anagram Checker</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2019/index.html">APL Quest 2019</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Chunky-Monkey-APLQuest-2019-1.html">Chunking a List into Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Makingthe-Grade-APLQuest-2019-2.html">Converting Scores into Letter Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Grade-Distribution-APLQuest-2019-3.html">Compiling Simple Statistics on Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Knight-Moves-APLQuest-2019-4.html">Understanding the Movement of a Chess Knight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Doubling-Up-APLQuest-2019-5.html">Checking for Consecutive Identical Letters in Words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Telephone-Names-APLQuest-2019-6.html">Translating Telephone Numbers from Digits and Letters to Plain Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/In-the-Center-of-it-All-APLQuest-2019-7.html">Centering Words in a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Goingthe-Distance-APLQuest-2019-8.html">Computing the Distance Around a Path Defined by Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Area-Code-Gauss-APLQuest-2019-9.html">Calculating the Area of a Polygon Using the Shoelace Formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Odds-Evens-APLQuest-2019-10.html">Splitting a List of Words by Length</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2020/index.html">APL Quest 2020</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Lets-Split-APLQuest-2020-1.html">Understanding Vector Partitioning in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Character-Building-APLQuest-2020-2.html">Understanding Byte Sequences and UTF-8 Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Excel-lent-Columns-APLQuest-2020-3.html">Understanding Column Label Conversion in Spreadsheet Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Takea-Leap-APLQuest-2020-4.html">Understanding Leap Years: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Steppinginthe-Proper-Direction-APLQuest-2020-5.html">Generating Inclusive Integer Ranges in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Movetothe-Front-APLQuest-2020-6.html">Moving Elements in a Numeric Vector to the Front in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/See-Youina-Bit-APLQuest-2020-7.html">Checking Bit States in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Zigzag-Numbers-APLQuest-2020-8.html">Analyzing Alternating Digit Growth in Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Riseand-Fall-APLQuest-2020-9.html">Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Stacking-It-Up-APLQuest-2020-10.html">Emulating APL Array Printing Behavior</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2021/index.html">APL Quest 2021</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Are-You-a--Bacteria-APLQuest-2021-1.html">Calculating Percentage of Characters in a DNA String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Index-Of-Modified-APLQuest-2021-2.html">Creating a Cover for the Dyadic Iota in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Multiplicity-APLQuest-2021-3.html">Grouping Integers by Divisibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Square-Peg-Round-Hole-APLQuest-2021-4.html">Finding the Difference in Area Between an Inscribed Square and Its Circumscribing Circle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Rect-ify-APLQuest-2021-5.html">Finding Rectangle Dimensions with Given Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Fischer-Random-Chess-APLQuest-2021-6.html">Chess Setup Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Can-You-Feelthe-Magic-APLQuest-2021-7.html">Checking for Magic Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Timeto-Makea-Difference-APLQuest-2021-8.html">Calculating Absolute Time Difference in Minutes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Inthe-Long-Run-APLQuest-2021-9.html">Finding the Longest Consecutive Sequence in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Onthe-Right-Side-APLQuest-2021-10.html">Justified Text Transformation in APL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2022/index.html">APL Quest 2022</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Counting-DNA-Nucleotides-APLQuest-2022-1.html">Counting DNA Letters in a Character Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Attackofthe-Mutations-APLQuest-2022-2.html">Comparing DNA Strings: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Uniquely-Qualified-APLQuest-2022-3.html">Finding the Symmetric Difference Between Two Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Inthe-Long-One-APLQuest-2022-4.html">Finding the Longest Run of Ones in a Boolean Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Stairwayto-Heaven-APLQuest-2022-5.html">Building a Staircase in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Pyramid-Scheme-APLQuest-2022-6.html">Constructing Concentric Rings of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Just-Golfing-Around-APLQuest-2022-7.html">Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Lets-Split-APLQuest-2022-8.html">Splitting Text in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html">Calculating the Window Average of a List of Numbers in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Separation-Anxiety-APLQuest-2022-10.html">Inserting Separators in Large Integers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2023/index.html">APL Quest 2023</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Elimination-Sort-APLQuest-2023-1.html">Removing Non-Decreasing Elements from a List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Put-It-In-Reverse-APLQuest-2023-2.html">Finding End Points of One Array in Another</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Caesar-Salad-APLQuest-2023-3.html">Implementing a Simple Caesar Cipher for Uppercase Characters and Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Like-a-Version-APLQuest-2023-4.html">Comparing Version Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Risky-Business-APLQuest-2023-5.html">Understanding Dice Mechanics in Risk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Key-Value-Pairs-APLQuest-2023-6.html">Parsing Key-Value Pairs into a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Lets-Be-Rational-APLQuest-2023-7.html">Finding a Reduced Fraction for a Given Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Critical-Thinking-APLQuest-2023-8.html">Computing the Next Double Critical Day</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Flipping-Pairs-APLQuest-2023-9.html">Interchanging Adjacent Elements in a Multi-Dimensional Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Partition-witha-Twist-APLQuest-2023-10.html">APL Quest: Splitting Text on Spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dyalog/index.html">Jupyter notebooks for Dyalog APL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/APL-Expressions.html">APL Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Arithmetic-Functions.html">Arithmetic Fuctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Boolean-Functions-and-Boolean-Algebra.html">Boolean functions</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Boolean-Scans-and-Reductions.html">Boolean Scans and Reductions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Calculus.html">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Comparison-Functions.html">Comparison functions <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">≤</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> <code class="docutils literal notranslate"><span class="pre">≥</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">≠</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Grading-and-Sorting.html">Grading and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/hashtables.html">Hash tables in Dyalog APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Justifying-Text.html">Justifying Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Linear-Fitting.html">Linear Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Lookup-Without-Replacement.html">Lookup without Replacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Maths-versus-APL.html">Maths versus APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Modifying-Rank-and-Depth.html">Modifying rank and depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v14.html">Tally <code class="docutils literal notranslate"><span class="pre">≢</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v15.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪/</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v16.html">Monadic function <code class="docutils literal notranslate"><span class="pre">⍸</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v17.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Plotting-with-SharpPlot.html">Plotting with SharpPlot</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Random-Numbers.html">Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Reduce-and-Scan.html">Reduce and Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Sudoku-Solver.html">Sodoku Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Tacit-Techniques.html">Tacit Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Using-the-TryAPL-Tutorials.html">TryAPL tutorial system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Your-First-Mandelbrot-Set.html">Mandelbrot Set</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2014/How-Tweet-It-Is-APLQuest-2014-2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>How Tweet It Is 2014-2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-data">Test Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-a-cut-method">Solution A: Cut Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-d-drop-method">Solution D: Drop Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-r-reduce-method">Solution R: Reduce Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-s-stencil-method">Solution S: Stencil Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-punctuation">Handling Punctuation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expression-solutions">Regular Expression Solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-comparison">Performance Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs">Glyphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript:</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="how-tweet-it-is-2014-2">
+<h1><a class="reference external" href="https://apl.quest/psets/2014.html?goto=P2_How_Tweet_It_Is">How Tweet It Is 2014-2</a><a class="headerlink" href="#how-tweet-it-is-2014-2" title="Link to this heading">#</a></h1>
+<p><strong>Problem:</strong> Twitter(x) messages have a 140 character limit; what if the limit was even shorter? One way to shorten the message yet retain most readability is to remove interior vowels from its words. Write a dfn which takes a character vector and removes the interior vowels from each word.</p>
+<p><strong>Video:</strong> <a class="reference external" href="https://www.youtube.com/watch?v=3X3l76njwfs">https://www.youtube.com/watch?v=3X3l76njwfs</a></p>
+<p><strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2014/2.apl">abrudz/apl_quest</a></p>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<p>Let’s break down our approach to tackling this problem:</p>
+<ol class="arabic simple">
+<li><p><strong>Identifying Spaces and Non-Spaces</strong>: We begin by identifying spaces and non-space characters in our text. This identification allows us to partition the text effectively.</p></li>
+<li><p><strong>Partitioning the Text</strong>: Using a mask that corresponds to runs of ones (letters) and zeros (non-letters), we can use a <a class="reference external" href="https://aplwiki.com/wiki/Partitioned_Enclose">partitioned enclose</a> function that combines runs of letters into single elements while discarding anything represented by a zero.</p></li>
+<li><p><strong>Processing Each Word</strong>: Since we need to handle words in a <a class="reference external" href="https://aplwiki.com/wiki/Case_insensitive">case-insensitive</a> manner, we convert our text to uppercase. We then ascertain which characters are vowels, accounting for their positions within words.</p></li>
+<li><p><strong>Creating the Vowel Mask</strong>: Each word has its own mask to identify vowels. However, we must ensure that any vowel at the end of a word is not mistakenly removed.</p></li>
+<li><p><strong>Finalizing the Compression</strong>: After creating a mask, we determine which characters to keep and which to remove. By applying a <a class="reference external" href="https://aplwiki.com/wiki/Compression">compression</a> technique, we join the words back together, ensuring to eliminate leading spaces.</p></li>
+</ol>
+</section>
+<section id="test-data">
+<h2>Test Data<a class="headerlink" href="#test-data" title="Link to this heading">#</a></h2>
+<p>Let’s start with some simple test data:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="kd">←</span><span class="s1">&#39;How are you&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="solution-a-cut-method">
+<h2>Solution A: Cut Method<a class="headerlink" href="#solution-a-cut-method" title="Link to this heading">#</a></h2>
+<p>This method splits the text into words, processes each word separately, and then rejoins them.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="kd">←</span><span class="kt">{</span><span class="m">1</span><span class="o">↓∊</span><span class="kt">{</span><span class="s1">&#39; &#39;</span><span class="o">,</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">1</span><span class="na">@</span><span class="m">1</span><span class="p">(</span><span class="o">≢</span><span class="bp">⍵</span><span class="p">)</span><span class="o">~</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">∊</span><span class="na">⍨</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">¨</span><span class="bp">⍵</span><span class="o">⊆</span><span class="na">⍨</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Detailed Explanation:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵⊆⍨'</span> <span class="pre">'≠⍵</span></code>: Split the input into words based on spaces using <a class="reference external" href="https://aplwiki.com/wiki/Enclose">enclose</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{...}¨</span></code>: Apply the following function to <a class="reference external" href="https://aplwiki.com/wiki/Each">each</a> word:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1⎕C⍵</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Uppercase">Uppercase</a> the word.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'AEIOU'∊⍨</span></code>: Check which characters are vowels using <a class="reference external" href="https://aplwiki.com/wiki/Membership">membership</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1&#64;1(≢⍵)~</span></code>: Create a mask with 1s at the start and end, 0s for vowels elsewhere using <a class="reference external" href="https://aplwiki.com/wiki/At">at</a> and <a class="reference external" href="https://aplwiki.com/wiki/Tally">tally</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code>: Use this mask to filter the original word with <a class="reference external" href="https://aplwiki.com/wiki/Replicate">replicate</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">',...</span></code>: Add a space before each processed word.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">∊</span></code>: Join all processed words using <a class="reference external" href="https://aplwiki.com/wiki/Enlist">enlist</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1↓</span></code>: Remove the leading space using <a class="reference external" href="https://aplwiki.com/wiki/Drop">drop</a>.</p></li>
+</ol>
+<p>This method is intuitive but less performant due to creating a nested array.</p>
+</section>
+<section id="solution-d-drop-method">
+<h2>Solution D: Drop Method<a class="headerlink" href="#solution-d-drop-method" title="Link to this heading">#</a></h2>
+<p>This method processes the entire text at once, using array operations to identify interior vowels.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">D</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍲</span><span class="m">0</span><span class="o">,</span><span class="m">¯1</span><span class="o">↓</span><span class="s1">&#39; &#39;</span><span class="p">(</span><span class="o">∧</span><span class="na">⌿</span><span class="o">≠</span><span class="p">)</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="o">↓</span><span class="na">⍤</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="o">⊢</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Detailed Explanation:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1⎕C⍵</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Uppercase">Uppercase</a> the input.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">2↓⍤0</span> <span class="pre">1⊢</span></code>: Create a matrix where each row is a triplet of adjacent characters using <a class="reference external" href="https://aplwiki.com/wiki/Drop">drop</a> and <a class="reference external" href="https://aplwiki.com/wiki/Rank">rank</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'(∧⌿≠)</span></code>: Check if all characters in each triplet are non-spaces using <a class="reference external" href="https://aplwiki.com/wiki/Not_Equal">not equal</a> and <a class="reference external" href="https://aplwiki.com/wiki/Reduce">reduce</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0,¯1↓</span></code>: Add a 0 at the start and remove the last element to align with original text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">∊∘'AEIOU'⍲</span></code>: Combine with a check for vowels using <a class="reference external" href="https://aplwiki.com/wiki/Membership">membership</a> and <a class="reference external" href="https://aplwiki.com/wiki/Nand">nand</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code>: Use this mask to filter the original text with <a class="reference external" href="https://aplwiki.com/wiki/Replicate">replicate</a>.</p></li>
+</ol>
+<p>This method is highly efficient, processing the entire text at once without splitting into words.</p>
+</section>
+<section id="solution-r-reduce-method">
+<h2>Solution R: Reduce Method<a class="headerlink" href="#solution-r-reduce-method" title="Link to this heading">#</a></h2>
+<p>This method uses a sliding window approach with reduction to identify interior letters.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">R</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍲</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="na">⍨</span><span class="s1">&#39; &#39;</span><span class="p">(</span><span class="m">3</span><span class="o">∧</span><span class="na">/</span><span class="o">≠</span><span class="p">)</span><span class="o">⊢</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Detailed Explanation:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1⎕C⍵</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Uppercase">Uppercase</a> the input.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'(3∧/≠)⊢</span></code>: Use a sliding window of size 3 to check for non-spaces using <a class="reference external" href="https://aplwiki.com/wiki/Windowed_Reduction">windowed reduction</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0,0,⍨</span></code>: Add 0s at the start and end to align with original text using <a class="reference external" href="https://aplwiki.com/wiki/Catenate">catenate</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">∊∘'AEIOU'⍲</span></code>: Combine with a check for vowels using <a class="reference external" href="https://aplwiki.com/wiki/Membership">membership</a> and <a class="reference external" href="https://aplwiki.com/wiki/Nand">nand</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code>: Use this mask to filter the original text with <a class="reference external" href="https://aplwiki.com/wiki/Replicate">replicate</a>.</p></li>
+</ol>
+<p>This method uses reduction techniques to streamline processing, offering excellent performance.</p>
+</section>
+<section id="solution-s-stencil-method">
+<h2>Solution S: Stencil Method<a class="headerlink" href="#solution-s-stencil-method" title="Link to this heading">#</a></h2>
+<p>This method uses the <a class="reference external" href="https://aplwiki.com/wiki/Stencil">stencil</a> operator to create a sliding window.</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">S</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍲</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">(</span><span class="o">∧</span><span class="na">/</span><span class="o">≠</span><span class="p">)</span><span class="o">⊢</span><span class="p">)</span><span class="na">⌺</span><span class="m">3</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Detailed Explanation:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1⎕C⍵</span></code>: <a class="reference external" href="https://aplwiki.com/wiki/Uppercase">Uppercase</a> the input.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">('</span> <span class="pre">'(∧/≠)⊢)⌺3</span></code>: Use a stencil of size 3 to check for non-spaces.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">∊∘'AEIOU'⍲</span></code>: Combine with a check for vowels using <a class="reference external" href="https://aplwiki.com/wiki/Membership">membership</a> and <a class="reference external" href="https://aplwiki.com/wiki/Nand">nand</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code>: Use this mask to filter the original text with <a class="reference external" href="https://aplwiki.com/wiki/Replicate">replicate</a>.</p></li>
+</ol>
+<p>The stencil approach offers competitive results but can be slower than other methods due to complex operand handling.</p>
+</section>
+<section id="handling-punctuation">
+<h2>Handling Punctuation<a class="headerlink" href="#handling-punctuation" title="Link to this heading">#</a></h2>
+<p>After the initial implementations, we faced challenges with punctuation, specifically letters adjacent to non-space characters, which were erroneously marked for removal. To handle punctuation correctly, we need to modify our solutions to check for letters instead of non-spaces:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">D</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍲</span><span class="m">0</span><span class="o">,</span><span class="m">¯1</span><span class="o">↓</span><span class="nf">⎕A</span><span class="p">(</span><span class="o">∧</span><span class="na">⌿</span><span class="o">∊</span><span class="p">)</span><span class="na">⍨</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="o">↓</span><span class="na">⍤</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="o">⊢</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">R</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍲</span><span class="m">0</span><span class="o">,</span><span class="m">0</span><span class="o">,</span><span class="na">⍨</span><span class="nf">⎕A</span><span class="p">(</span><span class="m">3</span><span class="o">∧</span><span class="na">/</span><span class="o">∊</span><span class="p">)</span><span class="na">⍨</span><span class="o">⊢</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">S</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="o">∊</span><span class="na">∘</span><span class="s1">&#39;AEIOU&#39;</span><span class="o">⍲</span><span class="nf">⎕A</span><span class="p">(</span><span class="o">∧</span><span class="na">/</span><span class="o">∊</span><span class="p">)</span><span class="na">⍨</span><span class="kt">{</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⌺</span><span class="m">3</span><span class="p">)</span><span class="m">1</span><span class="nf">⎕C</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>These modifications ensure that only alphabetical characters are considered as neighbors, resolving the issue with punctuation.</p>
+</section>
+<section id="regular-expression-solutions">
+<h2>Regular Expression Solutions<a class="headerlink" href="#regular-expression-solutions" title="Link to this heading">#</a></h2>
+<p>While not as performant as the APL array solutions for larger inputs, <a class="reference external" href="https://aplwiki.com/wiki/Regular_expression">regular expressions</a> can provide a concise way to solve this problem, especially for smaller datasets or more complex pattern matching scenarios:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="kd">←</span><span class="s1">&#39;(?&lt;=\w)[aeiou](?=\w)&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&#39;</span><span class="na">⍠</span><span class="m">1</span><span class="w">     </span><span class="c1">⍝ look-Arounds</span>
+<span class="nv">B</span><span class="kd">←</span><span class="s1">&#39;\b\w|\w\b&#39;</span><span class="w"> </span><span class="s1">&#39;[aeiou]&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&amp;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="na">⍠</span><span class="m">1</span><span class="w">  </span><span class="c1">⍝ word-Boundaries</span>
+</pre></div>
+</div>
+<p>Explanation for A (look-Arounds):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(?&lt;=\w)</span></code>: Positive lookbehind for a word character.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[aeiou]</span></code>: Match any vowel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(?=\w)</span></code>: Positive lookahead for a word character.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕R''</span></code>: Replace matches with an empty string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍠1</span></code>: Case-insensitive flag.</p></li>
+</ul>
+<p>Explanation for B (word-Boundaries):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">\b\w|\w\b</span></code>: Match a word character at the start or end of a word.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[aeiou]</span></code>: Match any vowel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕R'&amp;'</span> <span class="pre">''</span></code>: Replace boundary matches with themselves, and other vowels with an empty string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍠1</span></code>: Case-insensitive flag.</p></li>
+</ul>
+</section>
+<section id="performance-comparison">
+<h2>Performance Comparison<a class="headerlink" href="#performance-comparison" title="Link to this heading">#</a></h2>
+<p>To compare the <a class="reference external" href="https://aplwiki.com/wiki/Performance">performance</a> of these solutions, we can use the <code class="docutils literal notranslate"><span class="pre">cmpx</span></code> utility from the <a class="reference external" href="https://aplwiki.com/wiki/Dfns_workspace">dfns workspace</a>:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;cmpx&#39;</span><span class="w"> </span><span class="s1">&#39;dxb&#39;</span><span class="nf">⎕CY</span><span class="s1">&#39;dfns&#39;</span>
+<span class="o">≢</span><span class="nv">t3</span><span class="kd">←</span><span class="nv">dxb</span><span class="kt">{</span><span class="bp">⍵</span><span class="sr">[</span><span class="o">?</span><span class="m">1e3</span><span class="o">⍴≢</span><span class="bp">⍵</span><span class="sr">]</span><span class="kt">}</span><span class="m">65</span><span class="o">↑</span><span class="nf">⎕A</span><span class="o">,</span><span class="nf">⎕C⎕A</span><span class="o">,</span><span class="s1">&#39;,.?!&#39;</span>
+<span class="nv">cmpx</span><span class="s1">&#39;CDRSAB&#39;</span><span class="o">,</span><span class="na">¨</span><span class="o">⊂</span><span class="s1">&#39; t3&#39;</span>
+</pre></div>
+</div>
+<p>This code:</p>
+<ol class="arabic simple">
+<li><p>Imports the <code class="docutils literal notranslate"><span class="pre">cmpx</span></code> and <code class="docutils literal notranslate"><span class="pre">dxb</span></code> functions from the <code class="docutils literal notranslate"><span class="pre">dfns</span></code> workspace.</p></li>
+<li><p>Generates a test string <code class="docutils literal notranslate"><span class="pre">t3</span></code> of about 1000 characters, including uppercase and lowercase letters, and some punctuation.</p></li>
+<li><p>Uses <code class="docutils literal notranslate"><span class="pre">cmpx</span></code> to compare the execution time of all our solutions (Cut, Drop, Reduce, Stencil, and both Regex approaches).</p></li>
+</ol>
+<p>This comparison allows us to evaluate the efficiency of different approaches to solving the vowel removal problem in APL.</p>
+</section>
+<section id="glyphs">
+<h2>Glyphs<a class="headerlink" href="#glyphs" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Enclose">Enclose</a> <code class="docutils literal notranslate"><span class="pre">⊆</span></code> - creates a nested array from a simple array</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Not_Equal">Not Equal</a> <code class="docutils literal notranslate"><span class="pre">≠</span></code> - compares two arrays element-wise for inequality</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Uppercase">Uppercase</a> <code class="docutils literal notranslate"><span class="pre">⎕C</span></code> - converts characters to uppercase</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Membership">Membership</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> - tests if elements are members of a set</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/At">At</a> <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> - modifies specific elements of an array</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tally">Tally</a> <code class="docutils literal notranslate"><span class="pre">≢</span></code> - returns the number of major cells in an array</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reverse_First">Reverse First</a> <code class="docutils literal notranslate"><span class="pre">⊖</span></code> - reverses the first dimension of an array</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Replicate">Replicate</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> - selects or repeats array elements</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Enlist">Enlist</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> - flattens a nested array into a simple vector</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Drop">Drop</a> <code class="docutils literal notranslate"><span class="pre">↓</span></code> - removes elements from the beginning or end of an array</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Take">Take</a> <code class="docutils literal notranslate"><span class="pre">↑</span></code> - selects a specified number of elements from an array</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reshape">Reshape</a> <code class="docutils literal notranslate"><span class="pre">⍴</span></code> - creates an array with a specified shape</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduce</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> - applies a function between all elements of an array</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Nand">Nand</a> <code class="docutils literal notranslate"><span class="pre">⍲</span></code> - performs a logical NAND operation</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Catenate">Catenate</a> <code class="docutils literal notranslate"><span class="pre">,</span></code> - joins arrays along a specified axis</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Rank">Rank</a> <code class="docutils literal notranslate"><span class="pre">⍤</span></code> - applies a function to specific ranks of an array</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Stencil">Stencil</a> <code class="docutils literal notranslate"><span class="pre">⌺</span></code> - applies a function to sliding windows of an array</p></li>
+</ul>
+</section>
+<section id="concepts-used">
+<h2>Concepts Used<a class="headerlink" href="#concepts-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Partitioned_Enclose">Partitioned Enclose</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Each">Each</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Compression">Compression</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Windowed_Reduction">Windowed Reduction</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Stencil">Stencil</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Regular_expression">Regular Expressions</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Performance">Performance Comparison</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfns_workspace">Dfns Workspace</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Array_programming">Array Operations</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Text_processing">Text Manipulation</a></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Case_insensitive">Case Insensitivity</a></p></li>
+</ul>
+</section>
+<section id="transcript">
+<h2>Transcript:<a class="headerlink" href="#transcript" title="Link to this heading">#</a></h2>
+<p>Hello and welcome to the APL Quest. Today’s quest is the second problem from the 2014 round of the APL Problem Solver Competition. We’re given a text and have to find the words in that text and remove any vowels from the words, except if the vowel begins the word or the vowel ends the word. Let’s get started with some test data.</p>
+<p>Okay, we can identify where we have spaces and non-spaces in our text. Then we can use this to partition the text because partition will take elements (letters here) that correspond to runs of ones and group them together in a single element. Any letter or character that corresponds to a zero will be discarded, and at this point, we’ll begin a new segment.</p>
+<p>So, we partition using this mask. Now it’s a question of processing each word separately because we need to be case insensitive. We have to handle all kinds of vowels in uppercase and lowercase. We can start by uppercasing our words, and we can then find out which letters are vowels. This gives us one mask per word.</p>
+<p>There’s a problem, however. You can see that in the third word, the last letter is marked as a vowel, and we really don’t want to consider the vowel that can be removed. Also, our masks are inverses of what we actually want since we’re going to use compress to remove vowels. Then we should have zeros for the characters we want to remove and one for those we want to keep. That part is super easy to fix; we just negate it.</p>
+<p>Then we need to take care of the issue of putting a one always at the front and at the end. Well, that we can do. We can amend this vector with one at position one and also at the position of the length of the word. Now we’re ready to do the compression. Looks good, and we just need to join things together with spaces.</p>
+<p>Since we’re already processing each word, we can just stick a space in front of each word, enlist the whole thing, and remove the leading space. This solution is nice in the sense that it expresses APL very much how we think about the problem. Let’s call it “c” for cut.</p>
+<p>There are other ways to address the problem, however, which avoid splitting up the text and processing each word one at a time. Rather, the ideal when doing array-based programming is to process the entire array in one go. Let’s see how we can do that.</p>
+<p>This time we’re going to start with uppercasing everything, and then we need to match up the previous letter and the next letter with the middle letter in order to identify whether or not we are at a word and word boundary. Of course, the first letter doesn’t have a left neighbor, but we could possibly supply that.</p>
+<p>Now, in order to match up the left neighbor, the letter itself, and the right neighbor, we can drop. So, here’s the left neighbor. The left neighbor of the “h” in “how” is that space. We drop one, we get the “h” itself, and if we drop two, then we get the neighbor on the right. We want to drop all three possibilities: zero, one, and two. And we want this dropping to be done on the entire vector.</p>
+<p>So, we can say we want on and we want to drop using rank 0 every single number scalar from the left, and we want 1 because we want to treat the entire vector on the right. Now we can compare these this whole matrix to spaces, for example, and like this, we can put it inside the parenthesis. And we know that a letter is internal if all these three—the left neighbor, this letter, and the next letter—all are none spaces. So, and we can combine this not equal with a vertical and reduction.</p>
+<p>The only problem we have now is that, and since we added a character, we have one character too many. And that we used this to push things to the right, and when we didn’t drop enough, then one character from the end got pushed too far. We can see this above here. The last character we have is the “u,” and its left neighbor and its right neighbor and here is another space that’s been added which we don’t actually want. We can fix this, however, just by dropping the last element.</p>
+<p>Another way we could do it is by not adding the space on the left because that will just give us all the information for all the characters except the first one. We know that the first character is not one that we should consider an interior character because it’s right next to the beginning. So, we can just add a zero on the left, and that will give us the same result exactly.</p>
+<p>Now, the only thing that remains is to check if and the these the letters are also vowels. So, we can do this by simply saying member of AEIOU the vowels. That gives us this mask, and so these two masks are the ones we’re going to combine. If a letter is both interior and it’s a vowel, then that’s a letter that we can remove. So, let’s combine the two parts, and this points out which letters we have to remove. But again, we want to use compress, so we want to mark instead the letters that we want to keep. We could negate it, but we can also just combine the negation with and into an end.</p>
+<p>Now we are ready to do the compression. That works very nicely. Let’s call this one “d” for drop because we’re using drop in various places. We talk about these neighbors, and we can look at these triplets another way to do this is by using nys reduce. So, let’s start over with our text and uppercasing it. We can and we can look at triplets. Initially, we can try just concatenating them together. So, these are the triplets. But instead of applying and this invoice reduce on the letters themselves, let’s do it on the boolean mask of whether there are none spaces. And now we just need to reduce each one of these with an end reduction just like we did before.</p>
+<p>We don’t need to do this outside of the nys reduction because analyze reduction is indeed an introduction on each sliding window of the size three in our case. And that gives us the mask for which letters are interior letters, which means we can just combine all of this with um our way of finding the um the vowels in exactly the same way. Oops, oh yeah, of course. Since we have sliding windows that don’t um that begin at the very left edge and we have sliding window size three, that means that we don’t have a corresponding element for the very leftmost and very rightmost letters. But we know that those are boundary letters, and so we can just supply those.</p>
+<p>That gives us our mask, and we’re ready to do the compression just like we did before. Let’s call this one “r” for reduction and voice reduction. Another way to look at neighborhoods is using stencil. So, let’s try this again. Uppercasing that, and this time we’re going to use stencil. And stencil with a window size of three applies its operand on each sliding window. At the edges, if necessary, it pads, and it is necessary in our case. We want window sizes of three, and every element gets a chance to be the center of a neighborhood of size three. Stencil with pad with appropriate padding, which for text is spaces, and that’s great. That’s exactly what we want.</p>
+<p>What operand are we going to give to stencil? We’re not interested in the left argument to the operand, which is the padding information. We just want the right argument, and we again, we want to know where it is all true that the letters are different from space. That gives us our mask including the zeros. So, this is exactly what we had before with the end wise reduction, and we can just copy the rest of our code in. This is our stencil “s” function.</p>
+<p>Now it will be interesting to compare the performance of these, wouldn’t it? Let’s do that. Um, but for our test case is tiny, we also need to generate some larger test data. So, now I’m going to copy in the cmpx utility, which measures performance, and also for convenience, I’ll have the delete extraneous blanks in order to generate our test data. Copy those from the decent workspace. Okay, for our test data, and let’s have some uppercase characters and some lowercase characters. And then we need to have some spaces as well and in a nice proportion. I’d say if we take about 60 and overtake then we get and a bunch of spaces at the end. Then then let’s choose some random ones from this. So, random and we’ll take a thousand of those from all of them the length of that.</p>
+<p>So, this gives us a bunch of letters. If we just take the first hundred of those to have a look at what they could look like, we can see here at the end we have some some double spaces. So, that’s why we need to apply delete extraneous blanks. And then that won’t happen no more double blinks. Okay, then we’re ready to assign this. It’s not even though I asked for a thousand, it’s of course not exactly going to be a thousand because we’re deleting some spaces here and there, but it’s close enough for purposes.</p>
+<p>And let’s generate some APL expressions that we’re going to compare the performance of. And we had “c” for the cut method and “d” for the drop. We had “r” for reduce and “s” for stencil. Each one of those is going to become called on the entirety of this test data here. So, these are our three APL expressions, and now we’re running the timings on those. See what that looks like. All right, well, that’s pretty significant differences we’ve got there. And the cut method, which is our baseline, is not very good compared to uh to using drop and reduce. That’s because uh draven uses are entirely flat uh solutions, whereas uh when we cut into individual words, then we get a pointer array and one pointer pro word, and that’s going to be very expensive to traverse. So, that one’s basically out. There’s nothing we can do to fix that.</p>
+<p>Stencil, that doesn’t look good at all. And the reason is that we gave a rather complex operand to stencil, and there are just a few common patterns that when addressed when expressed as defense have been optimized very heavily, and they will give us way better performance. So, let’s see if we can use one of those instead. So, I know that one thing we can do with stencil that’s super fast is just getting uh getting the right argument. Now, since we have neighborhoods of three and from a vector, that means every such neighborhood is a vector in itself. And stencil will collect them into an array where the major cells are these vectors. So, an array that consists of vectors is a matrix. We’ll get one neighborhood per row, and all we need to do now um is the exact same thing here. We’re just comparing two spaces and then we are reducing across the rows. So, all this should just work in exactly the same way.</p>
+<p>And let’s try it on our small test case. Oops, yeah, I made a mistake here. I am missing a space. Nope, not necessarily. I made, I haven’t parenthesis that could be missing or we can just remove this parenthesis over here. That’s why it was read before. Okay, let’s try it again. There we go now it works. Right. So, and let’s do this comparison again with the new updated stencil version. But this time we’re going to skip the one that that cuts using petition because that’s hopeless. Stencil is still the slowest of the string, but uh it’s not bad right. They’re all very similar to each other, and if something is convenient to express using stencil, then by all means, it can work very nicely. And then you don’t have to worry about how much padding you need for various sizes, which you didn’t need to worry about for the anyways reduce, but there’s another problem.</p>
+<p>And that is let’s update our uh our small test case with some punctuation. The problem here is with the final letter. Since we are detecting whether the characters that are non-spaces then question mark is a non-space and u will be considered an internal letter. So, for example, using this “s,” we can see that “o” and “u” get removed, which is of course wrong. So, how can we fix this? Well, here are our definitions. The problem is that we are using the property of being a non-space to identify which characters are eligible to be uh be removed and which ones are have non-space neighbors. I really want to turn it upside down. We want in order for a character to be considered an interior letter, it’s it’s the determining factor there is that its neighbors are also letters, not just non-space characters, but letters. So, we just need to turn things around a little bit.</p>
+<p>For the dropping method, the only thing that we need to do is to check if and characters are in the set of uppercase letters and membership goes the other way around. So, we can swap that. And if they are letters, all of them, then and we have an interior letter. And actually, the exact same thing applies to all of these solutions. So here, with an invoice reduce, instead of checking whether we have taken whether we have none letters, we just look whether or not they are members in uppercase alphabet. And so too with stencil. Instead of checking whether or not and we have none letters, we just check whether or not they are members of topics alphabet.</p>
+<p>And now we can generate new test data. So, this time we’re going to have uppercase letters and lowercase letters and also some punctuation. Let’s say 65 overtaking that to get some some spaces there. And then we just use the same formula as before. We want random about a thousand of the length of the argument. And this time we don’t need to remove extra blanks. Right. The comparison we’re going to do is exactly the same as before. And the performance is very similar to what we had before, but this time we are correctly handling all of these. So, we can see it for example with the dropping on “t” and reduce on “t” and stencil and “t.” You can see that the “u” remains right there. So, these are good solutions, APL solutions. There’s another approach, though, and sometimes it’s more convenient, and that is to use regular expressions.</p>
+<p>And we found two interesting ways of doing this using regular expressions. What we can do is we can we want to look for some characters and then we want to remove them, and we want to do so case insensitively. The letters that we want to remove are the vowels, but we don’t want to remove all the vowels. We want to make some assertions about these vowels. What we want to assert is that on the left we have a word character. If there’s not a word character on the left, then we’re not interested in this vowel. That also means is the first character in this in the input, then we’re not interested in it. We also want to to make sure that on the right we have a word character. If it’s the last character in the whole input, then there are no characters to the right, and we’re also not interested. It’s important to note that these look arounds or look behind look ahead are not part of what’s being matched. They’re just something that’s being checked when we try to match them. So, that works as intended.</p>
+<p>It can be hard to think about these uh assertions. I personally find it easier to think about things in a different way and that’s with what you could call exception patterns to detect things and let them go through. So again, we we do want all the vowels and we want them removed, but we want to preserve some. Which ones are that we want to preserve? We want to preserve any any letter that is preceded by a word boundary. So, that means it’s on the left edge of a word or at the right edge of a word. So, those will replace with themselves, and any vowel that remains after that that hasn’t been consumed by the first pattern we’re going to replace with nothing. So, let’s call this one “b” for word boundaries and the one we had before we’ll call it “a” for look around. And then we can compare the performance of these.</p>
+<p>So now we have a drop, we have reduce, we have stencil, and then we have look arounds and word boundaries. Each one we’re going to run on the entire expression of an entire argument of “t3.” And we’ll we can oh we didn’t get the exact same result uh why is that? This is look ahead. Oh well, that’s interesting. This works well. Let’s do some debugging and see what uh what’s happening here. We can start with some of our string. So, if you take a hundred from “t3” and then we can oh so we can even do it like this. We can say is “d” matching “a” for a hundred of “t3”? Nope, is it so for 50 of “t3”? How about for 25? Yes. 25 no okay so now we can look at 25 take “t3” and see what is it that’s uh oh this is at the very first space at the very first space so “d” removes the internal vowels like this “o” for example and “a” we removed one more thing than “d” where they different oh did I simply forget a an “i” oh “d” didn’t remove the “i” that’s interesting. This “i” doesn’t get removed but we clearly have an “i” here removes it uppercase “i” gets removed so what’s going on here why is “d” not removing this oh I see it’s because I’ve did I put in digits by mistake in our test test data that’s what it is oh yes I’d put in a one over here that should have been an exclamation point so much for that there was some troubleshooting right there.</p>
+<p>Let’s try the performance again but it shouldn’t really make a big big difference in the results that we get. There we go now we can see it finally uh so the performance using regular expressions is not good compared to the APL solutions and with multiple patterns it’s even worse than with a single pattern with with look around but hey sometimes regex is the way to go especially if the smaller amount of data or it’s something that’s very complex to express or it’s something you just need a one-off and not running times then it could be quite fine but we should definitely prefer an array oriented solution if at all possible. Thank you so much for watching.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2014"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="It-Is-All-Right-APLQuest-2014-1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">It Is All Right 2014-1</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Tell-a-Fib-APLQuest-2014-3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tell A Fib 2014-3</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-data">Test Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-a-cut-method">Solution A: Cut Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-d-drop-method">Solution D: Drop Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-r-reduce-method">Solution R: Reduce Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solution-s-stencil-method">Solution S: Stencil Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-punctuation">Handling Punctuation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expression-solutions">Regular Expression Solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-comparison">Performance Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs">Glyphs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript:</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

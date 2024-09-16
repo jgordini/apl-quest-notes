@@ -1,0 +1,1028 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Space The Final Frontier 2014-4 &#8212; APL Quest Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=ae78d91f" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'apl-quest/2014/Space-The-Final-Frontier-APLQuest-2014-4';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Mirror Mirror 2014-5" href="Mirror-Mirror-APLQuest-2014-5.html" />
+    <link rel="prev" title="Tell A Fib 2014-3" href="Tell-a-Fib-APLQuest-2014-3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">APL Quest Problems by Year</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2013/index.html">APL Quest 2013</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Seemsa-Bit-Odd-To-Me-APLQuest-2013-1.html">Seems a Bit Odd To Me 2013-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Making-The-Grade-APLQuest-2013-2.html">Making the Grade 2013-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/What-Is-Ina-Word-APLQuest-2013-3.html">What’s in a Word 2013-3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Keeping-Things-In-Balance-APLQuest-2013-4.html">Keeping Things In Balance 2013-4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Identity-Crisis-APLQuest-2013-5.html">Identity Crisis 2013-5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Home-On-The-Range-APLQuest-2013-6.html">Home on the range 2013-6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Float-Your-Boat-APLQuest-2013-7.html">Float your Boat 2013-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Go-Forth-And-Multiply-APLQuest-2013-8.html">Go forth and Multiply 2013-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/It-Isa-Moving-Experience-APLQuest-2013-9.html">It’s a moving experience 2013-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2013/Solution-Salvation-APLQuest-2013-10.html">Solution Salvation 2013-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">APL Quest 2014</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="It-Is-All-Right-APLQuest-2014-1.html">It Is All Right 2014-1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="How-Tweet-It-Is-APLQuest-2014-2.html">How Tweet It Is 2014-2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Tell-a-Fib-APLQuest-2014-3.html">Tell A Fib 2014-3</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Space The Final Frontier 2014-4</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Mirror-Mirror-APLQuest-2014-5.html">Mirror Mirror 2014-5</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="Revolutionary-Thinking-APLQuest-2014-7.html">Revolutionary Thinking 2014-7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Go-The-Distance-APLQuest-2014-8.html">Go The Distance 2014-8</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Going-Ballistic-APLQuest-2014-9.html">Going Ballistic 2014-9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sales-Are-Up-APLQuest-2014-10.html">Sales Are Up 2014-10</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2015/index.html">APL Quest 2015</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Nag-A-Ram-APLQuest-2015-1.html">APL Quest: Anagrams Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Longest-Streak-APLQuest-2015-2.html">APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Farey-Tales-APLQuest-2015-3.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Progessive-Dyadic-Iota-APLQuest-2015-4.html">APL Quest Cap Wiki: Progressive Dyadic Iota</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hes-So-Mean-He-Has-No-Standard-Deviation-APLQuest-2015-5.html">APL Quest: Standard Deviation Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Hey-Thisis-My-Space-APLQuest-2015-6-EXTENDED.html">APL Quest: Problem Six Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Justin-Upper-Case-APLQuest-2015-7.html">APL Quest: Problem 7 from the 2015 APL Problem Solver Competition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Id-Like-Mine-Scrambled-Please-APLQuest-2015-9.html">APL Quest: Swapping Interior Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2015/Blazing-A-Trail-APLQuest-2015-10.html">API Quest: Generating a Centered Pascal’s Triangle</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2016/index.html">APL Quest 2016</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mean-APLQuest-2016-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Median-APLQuest-2016-2.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Statistics-Mode-APLQuest-2016-3.html">Welcome to APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Youre-Unique-Just-Like-Everyone-Else-APLQuest-2016-5.html">Welcome to the Appeal Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Shorter-Onestothe-Front-APLQuest-2016-6.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/3-sand-5-s-APLQuest-2016-7.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Separating-Outthe-Negative-APLQuest-2016-8.html">APL Quest: 8th Quest Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Delimited-Text-APLQuest-2016-9.html">APL Quest: Delimiter Splitting Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2016/Order-Total-APLQuest-2016-10.html">Welcome to the APL Quest</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2017/index.html">APL Quest 2017</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2017/What-an-Odd-Bunch-APLQuest-2017-1.html">Welcome to the APL Quest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Good-Evening-APLQuest-2017-2.html">Ensure Odd Numbers Become Even Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Miss-Quoted-APLQuest-2017-3.html">Removing Text Between Double Quotes Using Regular Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Slices-of-Pies-APLQuest-2017-4.html">Computing Areas of Circle Sectors Using APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/DNA-APLQuest-2017-5.html">Checking Character Vectors for Valid Letters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/k-mers-APLQuest-2017-6.html">Chopping Text into Sequences of a Given Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Counting-DNANucleotides-APLQuest-2017-7.html">Counting Letters in a String: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Be-the-First-1-APLQuest-2017-8.html">Understanding Boolean Vector Processing in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Double-Trouble-APLQuest-2017-9.html">Finding Locations of Identical Characters in Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2017/Squaring-Off-APLQuest-2017-10.html">Fitting Elements into a Square Array</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2018/index.html">APL Quest 2018</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Oh-Say-Can-You-See-APLQuest-2018-1.html">Counting Visible Buildings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Number-Splitting-APLQuest-2018-2.html">Splitting Numbers into Integer and Fractional Parts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Rolling-Along-APLQuest-2018-3.html">Simulating Dice Rolls and Analyzing Outcomes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-APLQuest-2018-4.html">Converting Gregorian Year Numbers to Chinese Zodiac Animals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Sign-Revisited-APLQuest-2018-5.html">Computing Zodiac Signs from Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Whats-Your-Angle-APLQuest-2018-6.html">A Simple Test for XML Validity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Unconditionally-Shifty-APLQuest-2018-7.html">Shifting Boolean Data: An Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Makinga-Good-Argument-APLQuest-2018-8.html">Validating Dyadic Transpose Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Earlier-Later-or-the-Same-APLQuest-2018-9.html">Comparing Dates in APL: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2018/Anagrammatically-Correct-APLQuest-2018-10.html">Comparing Two Character Vectors: An Anagram Checker</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2019/index.html">APL Quest 2019</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Chunky-Monkey-APLQuest-2019-1.html">Chunking a List into Segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Makingthe-Grade-APLQuest-2019-2.html">Converting Scores into Letter Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Grade-Distribution-APLQuest-2019-3.html">Compiling Simple Statistics on Grades</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Knight-Moves-APLQuest-2019-4.html">Understanding the Movement of a Chess Knight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Doubling-Up-APLQuest-2019-5.html">Checking for Consecutive Identical Letters in Words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Telephone-Names-APLQuest-2019-6.html">Translating Telephone Numbers from Digits and Letters to Plain Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/In-the-Center-of-it-All-APLQuest-2019-7.html">Centering Words in a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Goingthe-Distance-APLQuest-2019-8.html">Computing the Distance Around a Path Defined by Points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Area-Code-Gauss-APLQuest-2019-9.html">Calculating the Area of a Polygon Using the Shoelace Formula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2019/Odds-Evens-APLQuest-2019-10.html">Splitting a List of Words by Length</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2020/index.html">APL Quest 2020</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Lets-Split-APLQuest-2020-1.html">Understanding Vector Partitioning in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Character-Building-APLQuest-2020-2.html">Understanding Byte Sequences and UTF-8 Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Excel-lent-Columns-APLQuest-2020-3.html">Understanding Column Label Conversion in Spreadsheet Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Takea-Leap-APLQuest-2020-4.html">Understanding Leap Years: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Steppinginthe-Proper-Direction-APLQuest-2020-5.html">Generating Inclusive Integer Ranges in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Movetothe-Front-APLQuest-2020-6.html">Moving Elements in a Numeric Vector to the Front in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/See-Youina-Bit-APLQuest-2020-7.html">Checking Bit States in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Zigzag-Numbers-APLQuest-2020-8.html">Analyzing Alternating Digit Growth in Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Riseand-Fall-APLQuest-2020-9.html">Analyzing Non-Decreasing and Non-Increasing Patterns in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2020/Stacking-It-Up-APLQuest-2020-10.html">Emulating APL Array Printing Behavior</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2021/index.html">APL Quest 2021</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Are-You-a--Bacteria-APLQuest-2021-1.html">Calculating Percentage of Characters in a DNA String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Index-Of-Modified-APLQuest-2021-2.html">Creating a Cover for the Dyadic Iota in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Multiplicity-APLQuest-2021-3.html">Grouping Integers by Divisibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Square-Peg-Round-Hole-APLQuest-2021-4.html">Finding the Difference in Area Between an Inscribed Square and Its Circumscribing Circle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Rect-ify-APLQuest-2021-5.html">Finding Rectangle Dimensions with Given Area</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Fischer-Random-Chess-APLQuest-2021-6.html">Chess Setup Challenge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Can-You-Feelthe-Magic-APLQuest-2021-7.html">Checking for Magic Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Timeto-Makea-Difference-APLQuest-2021-8.html">Calculating Absolute Time Difference in Minutes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Inthe-Long-Run-APLQuest-2021-9.html">Finding the Longest Consecutive Sequence in a List of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2021/Onthe-Right-Side-APLQuest-2021-10.html">Justified Text Transformation in APL</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2022/index.html">APL Quest 2022</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Counting-DNA-Nucleotides-APLQuest-2022-1.html">Counting DNA Letters in a Character Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Attackofthe-Mutations-APLQuest-2022-2.html">Comparing DNA Strings: A Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Uniquely-Qualified-APLQuest-2022-3.html">Finding the Symmetric Difference Between Two Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Inthe-Long-One-APLQuest-2022-4.html">Finding the Longest Run of Ones in a Boolean Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Stairwayto-Heaven-APLQuest-2022-5.html">Building a Staircase in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Pyramid-Scheme-APLQuest-2022-6.html">Constructing Concentric Rings of Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Just-Golfing-Around-APLQuest-2022-7.html">Analyzing Golf Scores: Rank Calculation with Average Position for Tied Scores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Lets-Split-APLQuest-2022-8.html">Splitting Text in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/An-Average-Windowora-Windowed-Average-APLQuest-2022-9.html">Calculating the Window Average of a List of Numbers in APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2022/Separation-Anxiety-APLQuest-2022-10.html">Inserting Separators in Large Integers</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2023/index.html">APL Quest 2023</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Elimination-Sort-APLQuest-2023-1.html">Removing Non-Decreasing Elements from a List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Put-It-In-Reverse-APLQuest-2023-2.html">Finding End Points of One Array in Another</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Caesar-Salad-APLQuest-2023-3.html">Implementing a Simple Caesar Cipher for Uppercase Characters and Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Like-a-Version-APLQuest-2023-4.html">Comparing Version Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Risky-Business-APLQuest-2023-5.html">Understanding Dice Mechanics in Risk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Key-Value-Pairs-APLQuest-2023-6.html">Parsing Key-Value Pairs into a Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Lets-Be-Rational-APLQuest-2023-7.html">Finding a Reduced Fraction for a Given Number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Critical-Thinking-APLQuest-2023-8.html">Computing the Next Double Critical Day</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Flipping-Pairs-APLQuest-2023-9.html">Interchanging Adjacent Elements in a Multi-Dimensional Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2023/Partition-witha-Twist-APLQuest-2023-10.html">APL Quest: Splitting Text on Spaces</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dyalog/index.html">Jupyter notebooks for Dyalog APL</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/APL-Expressions.html">APL Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Arithmetic-Functions.html">Arithmetic Fuctions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Arrays.html">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Boolean-Functions-and-Boolean-Algebra.html">Boolean functions</a></li>
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Boolean-Scans-and-Reductions.html">Boolean Scans and Reductions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Calculus.html">Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Comparison-Functions.html">Comparison functions <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> <code class="docutils literal notranslate"><span class="pre">≤</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> <code class="docutils literal notranslate"><span class="pre">≥</span></code> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">≠</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Grading-and-Sorting.html">Grading and Sorting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/hashtables.html">Hash tables in Dyalog APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Justifying-Text.html">Justifying Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Linear-Fitting.html">Linear Fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Lookup-Without-Replacement.html">Lookup without Replacement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Maths-versus-APL.html">Maths versus APL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Modifying-Rank-and-Depth.html">Modifying rank and depth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v14.html">Tally <code class="docutils literal notranslate"><span class="pre">≢</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v15.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪/</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v16.html">Monadic function <code class="docutils literal notranslate"><span class="pre">⍸</span></code></a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/New-in-v17.html">Monadic function <code class="docutils literal notranslate"><span class="pre">∪</span></code></a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Plotting-with-SharpPlot.html">Plotting with SharpPlot</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Random-Numbers.html">Random Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Reduce-and-Scan.html">Reduce and Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Sudoku-Solver.html">Sodoku Solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Tacit-Techniques.html">Tacit Techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Using-the-TryAPL-Tutorials.html">TryAPL tutorial system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dyalog/Your-First-Mandelbrot-Set.html">Mandelbrot Set</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/apl-quest/2014/Space-The-Final-Frontier-APLQuest-2014-4.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Space The Final Frontier 2014-4</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Space The Final Frontier 2014-4</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-comparing-adjacent-characters">Method 1: Comparing Adjacent Characters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-cyclic-rotation">Method 2: Cyclic Rotation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-regular-expressions">Method 3: Regular Expressions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-4-split-and-join">Method 4: Split and Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-5-using-find">Method 5: Using Find (⍷)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-comparison">Final Comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key takeaways:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions">Regular Expressions:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="space-the-final-frontier-2014-4">
+<h1><a class="reference external" href="https://apl.quest/psets/2014.html?goto=P4_Space_The_Final_Frontier">Space The Final Frontier 2014-4</a><a class="headerlink" href="#space-the-final-frontier-2014-4" title="Link to this heading">#</a></h1>
+<p><strong>Problem:</strong> Write a dfn that removes extraneous (leading, trailing, and multiple) spaces from a character vector.</p>
+<p><strong>Video:</strong> <a class="reference external" href="https://www.youtube.com/watch?v=aqfhItFpO2I">https://www.youtube.com/watch?v=aqfhItFpO2I</a></p>
+<p><strong>Code:</strong> <a class="github reference external" href="https://github.com/abrudz/apl_quest/blob/main/2014/4.apl">abrudz/apl_quest</a></p>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<p>First, let’s set up our test data and performance measurement tool:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">t</span><span class="kd">←</span><span class="na">∘.</span><span class="kt">{</span><span class="bp">⍺</span><span class="o">,</span><span class="p">(</span><span class="m">40</span><span class="o">↑</span><span class="nf">⎕A</span><span class="p">)</span><span class="sr">[</span><span class="o">?</span><span class="m">1</span><span class="o">,</span><span class="m">1</span><span class="o">,</span><span class="na">⍨</span><span class="m">1e3</span><span class="o">⍴</span><span class="m">40</span><span class="sr">]</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">⍨</span><span class="m">0</span><span class="w"> </span><span class="m">7</span><span class="o">↑</span><span class="na">¨</span><span class="s1">&#39; &#39;</span>
+<span class="p">)</span><span class="nv">copy</span><span class="w"> </span><span class="nv">dfns</span><span class="w"> </span><span class="nv">cmpx</span>
+</pre></div>
+</div>
+<p>This creates a test vector <code class="docutils literal notranslate"><span class="pre">t</span></code> with random characters and spaces, and imports the <code class="docutils literal notranslate"><span class="pre">cmpx</span></code> function for performance comparison.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h2>
+<section id="method-1-comparing-adjacent-characters">
+<h3>Method 1: Comparing Adjacent Characters<a class="headerlink" href="#method-1-comparing-adjacent-characters" title="Link to this heading">#</a></h3>
+<p>Our first approach compares adjacent characters:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="kd">←</span><span class="kt">{</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">=⊃</span><span class="bp">⍵</span><span class="p">)</span><span class="o">↓</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">2</span><span class="o">∨</span><span class="na">/</span><span class="m">0</span><span class="o">,</span><span class="na">⍨</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">B</span><span class="kd">←</span><span class="s1">&#39; &#39;</span><span class="na">∘</span><span class="p">(</span><span class="o">=</span><span class="na">∘</span><span class="o">⊃↓⊢⊢</span><span class="na">⍤/⍨</span><span class="m">2</span><span class="o">∨</span><span class="na">/</span><span class="m">0</span><span class="o">,</span><span class="na">⍨</span><span class="o">≠</span><span class="p">)</span><span class="w">  </span><span class="c1">⍝ tacit generalisation</span>
+</pre></div>
+</div>
+<p>Function <code class="docutils literal notranslate"><span class="pre">A</span></code> works as follows:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'≠⍵</span></code> creates a boolean mask where non-spaces are 1 and spaces are 0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0,⍨</span></code> prepends a 0 to this mask.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2∨/</span></code> performs a sliding OR operation with window size 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> uses this mask to filter the input.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">('</span> <span class="pre">'=⊃⍵)↓</span></code> drops leading spaces if present.</p></li>
+</ol>
+<p>Function <code class="docutils literal notranslate"><span class="pre">B</span></code> is a tacit (point-free) generalization of <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+<p>Let’s compare their performance:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;A¨t&#39;</span><span class="w"> </span><span class="s1">&#39;B¨t&#39;</span>
+<span class="c1">⍝  A¨t → 5.6E¯6 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕         </span>
+<span class="c1">⍝  B¨t → 7.1E¯6 | +27% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕</span>
+</pre></div>
+</div>
+</section>
+<section id="method-2-cyclic-rotation">
+<h3>Method 2: Cyclic Rotation<a class="headerlink" href="#method-2-cyclic-rotation" title="Link to this heading">#</a></h3>
+<p>Next, we explore methods using cyclic rotation:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">C</span><span class="kd">←</span><span class="s1">&#39; &#39;</span><span class="na">∘</span><span class="p">(</span><span class="m">1</span><span class="o">↓,⊢</span><span class="na">⍤/⍨</span><span class="m">1</span><span class="p">(</span><span class="o">⊢∨⌽</span><span class="p">)</span><span class="m">0</span><span class="o">,≠</span><span class="p">)</span>
+<span class="nv">D</span><span class="kd">←</span><span class="s1">&#39; &#39;</span><span class="na">∘</span><span class="p">(</span><span class="o">=</span><span class="na">∘</span><span class="o">⊃↓⊢⊢</span><span class="na">⍤/⍨</span><span class="m">1</span><span class="o">↓</span><span class="m">1</span><span class="p">(</span><span class="o">⊢∨⌽</span><span class="p">)</span><span class="m">0</span><span class="o">,≠</span><span class="p">)</span><span class="w">  </span><span class="c1">⍝ conditionally remove instead of</span>
+<span class="nv">E</span><span class="kd">←</span><span class="s1">&#39; &#39;</span><span class="na">∘</span><span class="kt">{</span><span class="m">1</span><span class="o">↓</span><span class="p">(</span><span class="nv">m</span><span class="o">∨</span><span class="m">1</span><span class="o">⌽</span><span class="nv">m</span><span class="kd">←</span><span class="m">0</span><span class="o">,</span><span class="bp">⍺</span><span class="o">≠</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="bp">⍺</span><span class="o">,</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">F</span><span class="kd">←</span><span class="s1">&#39; &#39;</span><span class="na">∘</span><span class="kt">{</span><span class="m">¯1</span><span class="o">↓</span><span class="p">(</span><span class="nv">m</span><span class="o">∨</span><span class="m">¯1</span><span class="o">⌽</span><span class="nv">m</span><span class="kd">←</span><span class="m">0</span><span class="o">,</span><span class="na">⍨</span><span class="bp">⍺</span><span class="o">≠</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="bp">⍵</span><span class="o">,</span><span class="bp">⍺</span><span class="kt">}</span><span class="w"> </span><span class="c1">⍝ appending is faster than prepending</span>
+<span class="nv">G</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">¯1</span><span class="o">↓</span><span class="p">(</span><span class="o">∨</span><span class="na">\</span><span class="o">∧⊢∨</span><span class="m">1</span><span class="o">⌽⊢</span><span class="p">)</span><span class="m">0</span><span class="o">,</span><span class="na">⍨</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">H</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="kt">{</span><span class="o">⌽∨</span><span class="na">\</span><span class="o">⌽</span><span class="bp">⍵</span><span class="kt">}</span><span class="o">∧∨</span><span class="na">\</span><span class="o">∧⊢∨</span><span class="m">1</span><span class="o">⌽⊢</span><span class="p">)</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">I</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="nv">m</span><span class="o">∨</span><span class="m">1</span><span class="o">⌽</span><span class="nv">m</span><span class="o">&gt;&lt;</span><span class="na">\</span><span class="nv">m</span><span class="kd">←</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Let’s break down function <code class="docutils literal notranslate"><span class="pre">I</span></code> as an example:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">m←'</span> <span class="pre">'≠⍵</span></code> creates a boolean mask where non-spaces are 1 and spaces are 0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;\m</span></code> performs a running “less than” scan, which effectively marks the first occurrence of each non-space.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m&gt;</span></code> compares the original mask with the result of step 2, identifying spaces that come after a non-space.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1⌽</span></code> rotates the result one step to the right, effectively checking if a space is followed by a non-space.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m∨</span></code> combines the results, keeping both non-spaces and single spaces between words.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> uses the final mask to filter the input.</p></li>
+</ol>
+<p>Let’s compare their performance:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="nv">iotag</span><span class="s1">&#39;I&#39;</span><span class="p">)</span><span class="o">,</span><span class="na">¨</span><span class="o">⊂</span><span class="s1">&#39;¨t&#39;</span>
+<span class="c1">⍝  C¨t → 7.5E¯6 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕              </span>
+<span class="c1">⍝  D¨t → 9.0E¯6 | +19% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕         </span>
+<span class="c1">⍝  E¨t → 7.9E¯6 |  +4% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕             </span>
+<span class="c1">⍝  F¨t → 7.3E¯6 |  -4% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕               </span>
+<span class="c1">⍝  G¨t → 8.7E¯6 | +15% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕          </span>
+<span class="c1">⍝  H¨t → 1.2E¯5 | +54% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕</span>
+<span class="c1">⍝  I¨t → 6.0E¯6 | -20% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                   </span>
+</pre></div>
+</div>
+</section>
+<section id="method-3-regular-expressions">
+<h3>Method 3: Regular Expressions<a class="headerlink" href="#method-3-regular-expressions" title="Link to this heading">#</a></h3>
+<p>Now, let’s explore solutions using regular expressions:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">J</span><span class="kd">←</span><span class="s1">&#39;^ *| *$&#39;</span><span class="w"> </span><span class="s1">&#39; +&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="w">         </span><span class="c1">⍝ treat leading/trailing separately from multiple</span>
+<span class="nv">K</span><span class="kd">←</span><span class="s1">&#39;^ +| +$| +(?= )&#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&#39;</span><span class="w">          </span><span class="c1">⍝ specify all to be removed using</span>
+<span class="nv">L</span><span class="kd">←</span><span class="s1">&#39;[^ ] (?=.*[^ ])&#39;</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="nf">⎕R</span><span class="s1">&#39;&amp;&#39;</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w">  </span><span class="c1">⍝ exempt spaces to be kept, removing all other</span>
+</pre></div>
+</div>
+<p>Let’s break down function <code class="docutils literal notranslate"><span class="pre">K</span></code>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">^</span> <span class="pre">+</span></code> matches one or more spaces at the beginning of the string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">|</span> <span class="pre">+$</span></code> matches one or more spaces at the end of the string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">|</span> <span class="pre">+(?=</span> <span class="pre">)</span></code> matches one or more spaces followed by another space (using positive lookahead).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⎕R''</span></code> replaces all matched patterns with an empty string.</p></li>
+</ol>
+<p>Let’s compare their performance:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span><span class="s1">&#39;J¨t&#39;</span><span class="w"> </span><span class="s1">&#39;K¨t&#39;</span><span class="w"> </span><span class="s1">&#39;L¨t&#39;</span>
+<span class="c1">⍝  J¨t → 5.5E¯4 |    0% ⎕⎕⎕⎕⎕⎕⎕                                 </span>
+<span class="c1">⍝  K¨t → 4.8E¯4 |  -14% ⎕⎕⎕⎕⎕⎕                                  </span>
+<span class="c1">⍝  L¨t → 3.1E¯3 | +459% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕</span>
+</pre></div>
+</div>
+</section>
+<section id="method-4-split-and-join">
+<h3>Method 4: Split and Join<a class="headerlink" href="#method-4-split-and-join" title="Link to this heading">#</a></h3>
+<p>Next, we’ll look at solutions that split the string and then join it back:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">M</span><span class="kd">←</span><span class="kt">{</span><span class="o">⊃</span><span class="p">(</span><span class="o">⊣,</span><span class="s1">&#39; &#39;</span><span class="o">,⊢</span><span class="p">)</span><span class="na">/</span><span class="bp">⍵</span><span class="o">⊆</span><span class="na">⍨</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">  </span><span class="c1">⍝ fails on &#39;&#39;</span>
+<span class="nv">N</span><span class="kd">←</span><span class="kt">{</span><span class="m">¯1</span><span class="o">↓∊,</span><span class="na">∘</span><span class="s1">&#39; &#39;</span><span class="na">¨</span><span class="bp">⍵</span><span class="o">⊆</span><span class="na">⍨</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">   </span><span class="c1">⍝ fix that</span>
+<span class="nv">O</span><span class="kd">←</span><span class="s1">&#39; &#39;</span><span class="na">∘</span><span class="kt">{</span><span class="m">¯1</span><span class="o">↓∊,</span><span class="na">∘</span><span class="bp">⍺</span><span class="na">¨</span><span class="bp">⍵</span><span class="o">⊆</span><span class="na">⍨</span><span class="bp">⍺</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span><span class="w">   </span><span class="c1">⍝ generalisation</span>
+<span class="nv">P</span><span class="kd">←</span><span class="m">¯1</span><span class="o">↓</span><span class="s1">&#39; &#39;</span><span class="na">∘</span><span class="p">(</span><span class="o">∊⊣,</span><span class="na">¨⍨</span><span class="o">≠⊆⊢</span><span class="p">)</span><span class="w">      </span><span class="c1">⍝ tacit form</span>
+</pre></div>
+</div>
+<p>Let’s break down function <code class="docutils literal notranslate"><span class="pre">N</span></code>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'≠⍵</span></code> creates a boolean mask where non-spaces are 1 and spaces are 0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵⊆⍨</span></code> splits the input into subarrays based on the mask (effectively splitting on spaces).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">,∘'</span> <span class="pre">'¨</span></code> appends a space to each subarray.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">∊</span></code> enlist (flatten) the result into a single array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">¯1↓</span></code> removes the last element (extra space at the end).</p></li>
+</ol>
+<p>Let’s compare their performance:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span><span class="p">(</span><span class="s1">&#39;M&#39;</span><span class="nv">iotag</span><span class="s1">&#39;P&#39;</span><span class="p">)</span><span class="o">,</span><span class="na">¨</span><span class="o">⊂</span><span class="s1">&#39;¨t&#39;</span>
+<span class="c1">⍝  M¨t → 6.7E¯4 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕</span>
+<span class="c1">⍝  N¨t → 2.8E¯4 | -58% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                       </span>
+<span class="c1">⍝  O¨t → 2.7E¯4 | -61% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                        </span>
+<span class="c1">⍝  P¨t → 2.3E¯4 | -65% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                          </span>
+</pre></div>
+</div>
+</section>
+<section id="method-5-using-find">
+<h3>Method 5: Using Find (⍷)<a class="headerlink" href="#method-5-using-find" title="Link to this heading">#</a></h3>
+<p>Lastly, we’ll explore solutions using the find (<code class="docutils literal notranslate"><span class="pre">⍷</span></code>) primitive:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">Q</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="p">(</span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="na">∘</span><span class="o">⍷&lt;∨</span><span class="na">\</span><span class="o">∧</span><span class="na">∘</span><span class="o">⌽∨</span><span class="na">\∘</span><span class="o">⌽</span><span class="p">)</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span>
+<span class="nv">R</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="o">~</span><span class="s1">&#39;  &#39;</span><span class="o">⍷</span><span class="bp">⍵</span><span class="kt">}{</span><span class="p">(</span><span class="o">∨</span><span class="na">\</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="p">)</span><span class="na">/</span><span class="bp">⍵</span><span class="kt">}</span><span class="na">∘</span><span class="o">⌽</span><span class="na">⍣</span><span class="m">2</span><span class="w">  </span><span class="c1">⍝ use idiom twice</span>
+<span class="nv">S</span><span class="kd">←</span><span class="kt">{</span><span class="p">(</span><span class="kt">{</span><span class="o">-</span><span class="w"> </span><span class="o">⊃⌽</span><span class="bp">⍵</span><span class="kt">}</span><span class="o">↓</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="na">∘</span><span class="o">⍷⍱∧</span><span class="na">\</span><span class="p">)</span><span class="s1">&#39; &#39;</span><span class="o">=</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<p>Let’s break down function <code class="docutils literal notranslate"><span class="pre">R</span></code>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{(∨\'</span> <span class="pre">'≠⍵)/⍵}</span></code> removes leading spaces using the idiom.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">∘⌽⍣2</span></code> applies the previous step twice, effectively removing both leading and trailing spaces.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{⍵/⍨~'</span>&#160; <span class="pre">'⍷⍵}</span></code> removes multiple spaces by filtering out where two consecutive spaces are found.</p></li>
+</ol>
+<p>Let’s compare their performance:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span><span class="s1">&#39;Q¨t&#39;</span><span class="w"> </span><span class="s1">&#39;R¨t&#39;</span><span class="w"> </span><span class="s1">&#39;S¨t&#39;</span>
+<span class="c1">⍝  Q¨t → 8.5E¯5 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕</span>
+<span class="c1">⍝  R¨t → 2.3E¯5 | -73% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                             </span>
+<span class="c1">⍝  S¨t → 8.5E¯5 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕</span>
+</pre></div>
+</div>
+</section>
+<section id="final-comparison">
+<h3>Final Comparison<a class="headerlink" href="#final-comparison" title="Link to this heading">#</a></h3>
+<p>Now, let’s compare the best performers from each group</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;AIKPR&#39;</span><span class="o">,</span><span class="na">¨</span><span class="o">⊂</span><span class="s1">&#39;¨t&#39;</span>
+<span class="c1">⍝  A¨t → 6.1E¯6 |     0%                                         </span>
+<span class="c1">⍝  I¨t → 6.0E¯6 |    -2%                                         </span>
+<span class="c1">⍝  K¨t → 5.0E¯4 | +8052% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕</span>
+<span class="c1">⍝  P¨t → 2.4E¯4 | +3754% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕                     </span>
+<span class="c1">⍝  R¨t → 2.1E¯5 |  +248% ⎕⎕                                      </span>
+</pre></div>
+</div>
+<p>From this comparison, we can see that functions <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">I</span></code> are significantly faster than the others, with <code class="docutils literal notranslate"><span class="pre">A</span></code> being slightly faster than <code class="docutils literal notranslate"><span class="pre">I</span></code>. Let’s compare these two directly:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">cmpx</span><span class="w"> </span><span class="s1">&#39;AI&#39;</span><span class="o">,</span><span class="na">¨</span><span class="o">⊂</span><span class="s1">&#39;¨t&#39;</span>
+<span class="c1">⍝  A¨t → 5.5E¯6 |   0% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕      </span>
+<span class="c1">⍝  I¨t → 6.5E¯6 | +17% ⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕⎕</span>
+</pre></div>
+</div>
+<p>Let’s break down these two functions for a final comparison:</p>
+<p>Function <code class="docutils literal notranslate"><span class="pre">A</span></code>:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">A</span><span class="kd">←</span><span class="kt">{</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">=⊃</span><span class="bp">⍵</span><span class="p">)</span><span class="o">↓</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="m">2</span><span class="o">∨</span><span class="na">/</span><span class="m">0</span><span class="o">,</span><span class="na">⍨</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'≠⍵</span></code> creates a boolean mask where non-spaces are 1 and spaces are 0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0,⍨</span></code> prepends a 0 to this mask.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2∨/</span></code> performs a sliding OR operation with window size 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> uses this mask to filter the input.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">('</span> <span class="pre">'=⊃⍵)↓</span></code> drops leading spaces if present.</p></li>
+</ol>
+<p>Function <code class="docutils literal notranslate"><span class="pre">I</span></code>:</p>
+<div class="highlight-apl notranslate"><div class="highlight"><pre><span></span><span class="nv">I</span><span class="kd">←</span><span class="kt">{</span><span class="bp">⍵</span><span class="na">/⍨</span><span class="nv">m</span><span class="o">∨</span><span class="m">1</span><span class="o">⌽</span><span class="nv">m</span><span class="o">&gt;&lt;</span><span class="na">\</span><span class="nv">m</span><span class="kd">←</span><span class="s1">&#39; &#39;</span><span class="o">≠</span><span class="bp">⍵</span><span class="kt">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">m←'</span> <span class="pre">'≠⍵</span></code> creates a boolean mask where non-spaces are 1 and spaces are 0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;\m</span></code> performs a running “less than” scan, which effectively marks the first occurrence of each non-space.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m&gt;</span></code> compares the original mask with the result of step 2, identifying spaces that come after a non-space.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1⌽</span></code> rotates the result one step to the right, effectively checking if a space is followed by a non-space.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">m∨</span></code> combines the results, keeping both non-spaces and single spaces between words.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code> uses the final mask to filter the input.</p></li>
+</ol>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<p>After comparing various methods for removing extraneous spaces in APL, we can draw the following conclusions:</p>
+<ol class="arabic simple">
+<li><p>The fastest method is <code class="docutils literal notranslate"><span class="pre">A</span></code>, which uses adjacent character comparison and is slightly more efficient than <code class="docutils literal notranslate"><span class="pre">I</span></code>.</p></li>
+<li><p>The second fastest method is <code class="docutils literal notranslate"><span class="pre">I</span></code>, which uses cyclic rotation and exclusive-or operations.</p></li>
+<li><p>Regular expression methods (<code class="docutils literal notranslate"><span class="pre">J</span></code>, <code class="docutils literal notranslate"><span class="pre">K</span></code>, <code class="docutils literal notranslate"><span class="pre">L</span></code>) are significantly slower than other approaches, with <code class="docutils literal notranslate"><span class="pre">K</span></code> being the fastest among them.</p></li>
+<li><p>Split-and-join methods (<code class="docutils literal notranslate"><span class="pre">M</span></code>, <code class="docutils literal notranslate"><span class="pre">N</span></code>, <code class="docutils literal notranslate"><span class="pre">O</span></code>, <code class="docutils literal notranslate"><span class="pre">P</span></code>) perform better than regex but are still slower than the top performers, with <code class="docutils literal notranslate"><span class="pre">P</span></code> being the fastest in this category.</p></li>
+<li><p>The find (<code class="docutils literal notranslate"><span class="pre">⍷</span></code>) based methods (<code class="docutils literal notranslate"><span class="pre">Q</span></code>, <code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">S</span></code>) show mixed results, with <code class="docutils literal notranslate"><span class="pre">R</span></code> performing well but still not matching the top two.</p></li>
+</ol>
+<section id="key-takeaways">
+<h3>Key takeaways:<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Simple, primitive-based operations tend to outperform more complex approaches like regex.</p></li>
+<li><p>Careful use of boolean operations and array manipulations can lead to highly efficient solutions.</p></li>
+<li><p>While tacit (point-free) expressions can be elegant, they may introduce slight performance overhead.</p></li>
+</ol>
+<p>It’s worth noting that while performance is crucial, code readability and maintainability are also important factors to consider. The fastest solution might not always be the best choice if it sacrifices clarity or makes the code harder to understand and maintain.</p>
+<p>In practice, the choice of method may depend on various factors such as:</p>
+<ul class="simple">
+<li><p>The specific use case and typical input characteristics</p></li>
+<li><p>Performance requirements</p></li>
+<li><p>Code maintainability needs</p></li>
+<li><p>Integration with existing systems</p></li>
+</ul>
+<p>For most general purposes, function <code class="docutils literal notranslate"><span class="pre">A</span></code> provides an excellent balance of performance and readability. However, if you need a more flexible solution that can handle different separator characters, function <code class="docutils literal notranslate"><span class="pre">I</span></code> or one of the generalizable methods might be more appropriate.</p>
+</section>
+</section>
+<section id="glyphs-used">
+<h2>Glyphs Used:<a class="headerlink" href="#glyphs-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Replicate">Compress</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> - Used for filtering in <code class="docutils literal notranslate"><span class="pre">⍵/⍨</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Rotate">Rotate</a> <code class="docutils literal notranslate"><span class="pre">⌽</span></code> - Used in cyclic rotation methods</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduce</a> <code class="docutils literal notranslate"><span class="pre">/</span></code> - Used in <code class="docutils literal notranslate"><span class="pre">2∨/</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Scan">Scan</a> <code class="docutils literal notranslate"><span class="pre">\</span></code> - Used in <code class="docutils literal notranslate"><span class="pre">&lt;\</span></code> and <code class="docutils literal notranslate"><span class="pre">∨\</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Commute">Commute</a> <code class="docutils literal notranslate"><span class="pre">⍨</span></code> - Used in <code class="docutils literal notranslate"><span class="pre">0,⍨</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Or">Or</a> <code class="docutils literal notranslate"><span class="pre">∨</span></code> - Used in boolean operations</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Less_than">Less Than</a> <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> - Used in <code class="docutils literal notranslate"><span class="pre">&lt;\</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Not_equal">Not Equal</a> <code class="docutils literal notranslate"><span class="pre">≠</span></code> - Used in <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'≠⍵</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Enclose">Enclose</a> <code class="docutils literal notranslate"><span class="pre">⊂</span></code> - Used in <code class="docutils literal notranslate"><span class="pre">⊂'¨t'</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/First">First</a> <code class="docutils literal notranslate"><span class="pre">⊃</span></code> - Used in <code class="docutils literal notranslate"><span class="pre">('</span> <span class="pre">'=⊃⍵)</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Drop">Drop</a> <code class="docutils literal notranslate"><span class="pre">↓</span></code> - Used in <code class="docutils literal notranslate"><span class="pre">('</span> <span class="pre">'=⊃⍵)↓</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Xor">Exclusive Or</a> <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> - Used in <code class="docutils literal notranslate"><span class="pre">&gt;&lt;\</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Enlist">Enlist</a> <code class="docutils literal notranslate"><span class="pre">∊</span></code> - Used in split-and-join methods</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Partition">Partition</a> <code class="docutils literal notranslate"><span class="pre">⊆</span></code> - Used in split-and-join methods</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Find">Find</a> <code class="docutils literal notranslate"><span class="pre">⍷</span></code> - Used in find-based methods</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Power">Power</a> <code class="docutils literal notranslate"><span class="pre">⍣</span></code> - Used in <code class="docutils literal notranslate"><span class="pre">∘⌽⍣2</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Bind">Bind</a> <code class="docutils literal notranslate"><span class="pre">∘</span></code> - Used in various tacit expressions</p></li>
+</ul>
+</section>
+<section id="concepts-used">
+<h2>Concepts Used:<a class="headerlink" href="#concepts-used" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfn">Dfn</a> - Used for defining most functions</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Tacit_programming">Tacit Programming</a> - Used in function <code class="docutils literal notranslate"><span class="pre">B</span></code> and others</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Boolean">Boolean Mask</a> - Used extensively for filtering</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Idiom">Idioms</a> - Used in function <code class="docutils literal notranslate"><span class="pre">R</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Each">Each</a> - Used in performance testing with <code class="docutils literal notranslate"><span class="pre">¨</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Outer_product">Outer Product</a> - Used in test data generation <code class="docutils literal notranslate"><span class="pre">∘.</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Train#3-trains">Fork</a> - Used in some tacit expressions</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Performance">Performance Optimization</a> - The main focus of the article</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Comparison_function">Comparison</a> - Used in boolean operations</p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Reduce">Reduction</a> - Used in <code class="docutils literal notranslate"><span class="pre">2∨/</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Scan">Scan</a> - Used in <code class="docutils literal notranslate"><span class="pre">&lt;\</span></code> and <code class="docutils literal notranslate"><span class="pre">∨\</span></code></p></li>
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Dfns_workspace">Dfns Workspace</a> - Used for <code class="docutils literal notranslate"><span class="pre">cmpx</span></code> function</p></li>
+</ul>
+</section>
+<section id="regular-expressions">
+<h2>Regular Expressions:<a class="headerlink" href="#regular-expressions" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aplwiki.com/wiki/Replace">Replace</a> <code class="docutils literal notranslate"><span class="pre">⎕R</span></code> - Used in regex-based methods</p></li>
+<li><p>Patterns used:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">^</span> <span class="pre">*</span></code> - Matches leading spaces</p></li>
+<li><p><code class="docutils literal notranslate"> <span class="pre">*$</span></code> - Matches trailing spaces</p></li>
+<li><p><code class="docutils literal notranslate"> <span class="pre">+</span></code> - Matches one or more spaces</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(?=</span> <span class="pre">)</span></code> - Positive lookahead for a space</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[^</span> <span class="pre">]</span></code> - Matches any non-space character</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(?=.*[^</span> <span class="pre">])</span></code> - Positive lookahead for a non-space character</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="transcript">
+<h1>Transcript<a class="headerlink" href="#transcript" title="Link to this heading">#</a></h1>
+<p>Welcome to the APL Quest. See the APL Wiki for details. Today’s quest is the fourth from the 2014 edition of the APL Problem Solving Competition. The idea is that we’re given a text and it may have spacing that we don’t want, and we want to normalize this in the sense that any trailing spaces at the end of the text are removed, any leading spaces at the beginning of the text are removed, and also if any words are separated by more than one space, they will be compacted down to be a single space.</p>
+<p>Let’s start with a sample. The basic thing that we want to do here is we want to compare adjacent spaces in order to remove those extra spaces in the middle. Then we need to take care of the spaces at the very end because they might not be adjacent to another space. If there’s just one space, or rather if we don’t do anything but remove adjacent spaces, then we also reduce the leading and trailing spaces into a single space.</p>
+<p>Let’s get started. The first thing we want to find out is where our non-spaces are, and we want to make sure to catch also the spaces at the end. We want to make sure that as if the last space is also adjacent to another space, and so that would be an extra zero at the end. Now we can do an adjacent pairwise reduce and we want to see if any of those are non-spaces. A space that’s next to a non-space is something we’d want to keep. That gives us this. We can see that we start off with a couple of two spaces and then we have a space which is adjacent to the ‘t’ in ‘this’, and then we have the four letters of ‘this’, and then the first space and there is some ‘a’, and then we have the ‘um’, and then we continue on with ‘and’. We can see that we have ones for non-spaces and also for the single spaces between the words. Then we have the trailing spaces.</p>
+<p>Okay, now we can use this to filter the text, and that almost solves the problem. Now there are no spaces here at the end because we made sure to add that extra zero at the end, but there is a problem of a leading space. We can drop this conditionally if we know that the text begins with a single space and with one or more spaces that means we also have to drop one more space that otherwise wasn’t caught. We can easily check that if a space is equal to the first of the argument text, then we drop it. This would give one if it is. We could also invert it here just by negating the vector credit here, but this is very little work to do. The only real work that we have here is dropping that leading space because that would mean rewriting everything in memory. That solves the problem. Let’s give this the name ‘a’ because we’re going to have a lot of different solutions here.</p>
+<p>Okay, and let’s then for our next solution take this and generalize it. I mean, and while we’re making it also test it just to see some possibilities. What do you mean by generalize? It is that instead of taking space as this element that needs to be removed from the beginning at the end and deduplicate it in the middle, we’re going to allow you to specify that character as a left argument and then we can bind space as the left argument in order to make it do our specific task. To make this tested is actually quite simple because we’re going to put out the space as a left argument and that means that this different from is just going to be a different from like this, and then we have to, of course, this is becoming a test function, another defense, and the rest of this will just work.</p>
+<p>This is a dyadic function here, the static function here. There’s one problem: replicate or compress here doesn’t behave like a function when it is next to another function and the right tack here, but we can fix that with a right tack top. Then here we have the left argument and the right argument, and that means that we essentially have it equal except we want to pre-process the right argument of equal with a first and we can write that just with a beside the composition. So that’s what the entire thing comes out to here. We can try it with our sample text, and that means we can give this a name and just remember to either bind a left argument here or we could have put a right tack on the right to make it a fork. It’ll be interesting maybe to see which one is faster of these two. So let’s try that and at the same time let’s also generate some test data.</p>
+<p>Test data is going to be a bit interesting because we want to try all the different cases that may be with so there’ll always be some internal duplicator spaces, but we also want some with some leading spaces and some with some trailing spaces and all the combinations of that. So how might we do that? Well, and there are different ways we can do it, but let’s start by generating some spaces. So we want no spaces and yes spaces, and we can’t actually see those, but we can, it helps maybe to do it like this right. So we got no spaces and yes spaces. Then we want all the combinations of that, so that be an outer product of all of those, and it’s still not really going to be very visible here, but now we’re going to use these as prefixes and suffixes. So on the left, we have the prefixes, and on the right, we have the suffixes, and then we’re going to have some garbled text in the middle. Let’s take 4D overtake on the alphabet that gives us the alphabet with a bunch of spaces at the end, and then we just want some random numbers there. Let’s say just for now for the display we’re taking 20 reshape 40. Yeah, not again not very visible. This helps a little bit actually. We should probably use display as to see it entirely. So here we can see yeah, it goes over the edge of the screen, but we can see that we have added spaces in the beginning and the end. The problem is that our randomness here it caused us to have some space in the beginning that we didn’t want to.</p>
+<p>So how can we make sure that we have a non-space in the beginning and the end? Well, we can just stick an ‘a’ at the beginning and the end right there. Actually, let’s turn rows on as well so that we don’t so we don’t run over the edge of the screen and maybe make these a little bit shorter also so we can see it there we go. So now we have our test data. We have one that doesn’t have any spaces beginning in the end and one and then we have one that has only beginning one at the end one at the beginning and the end, and we can see we’re getting some internal space here of course. In the first three cases, there are no multiple internal spaces because they’re very very short, but we’re going to generate a giant test data so that’s not a problem. It’ll definitely be multiple internal spaces so that’s it. So then we’re going to test things when for speed comparison then we’ll be testing it all four of these. I’m copying in the performance comparison from the defense workspace, and then we can run cmpx a on each of these four cases and b on each of these four cases, and we can see the a is somewhat faster. So maybe it wasn’t so good to try to test it after all.</p>
+<p>Okay, another whole different way of doing this instead of using this adjacent with the difference from from a space we could also rotate things around and that gives us so if we compare the ebola vector with it it’s rotated by one step that also gives us this adjacency but it at the same time allows us to rotate cyclically and that lets us get rid of of having to deal with it with the edges so especially.</p>
+<p>So we can try this. Let’s take our our sample here and we start off with the exact same way. Actually, we can we can start even making it general so let’s just put it outside so this gives us our vector of none spaces and we have the same thing with adding one at the edge. Now the important thing that we’re going to do next is we when we rotate this and one step here then because we’ve added a zero at the beginning we know that when we rotate it one step to the end we are now getting a zero at the end instead. So if we now take these two together so we want the one rotate and also the original and we can write that.</p>
+<p>Let’s actually begin with well so we want to combine combine these two but let’s just stack them on top of each other first. We can do that with mix up top comma over in close we can see these are the two that we’re going to combine. So now what we want to do is we want where to preserve anything that is true in either one or the other so either it is a non-space or it is an adjacent to a non-space so these are the ones we want to want to keep and then we just need to to do the same thing as before and remember to stick an attack on top of that of that slash. Now there’s one problem here that we’ve added one element and that means that what we can’t just do is compress because it will be a length there we want to take the not the right argument but rather the concatenation of the space and the right argument and that gives us this and because we’ve added a space on the left then we need to drop that and we can do that like this. Okay, let’s give this a name this is going to be c. Don’t forget to bind the argument here to the function so that’s one way of doing it cyclically but there are other ways that we could do it.</p>
+<p>Let’s look at this again. So we can we can optimize the performance here. There’s a problem that we are concatenating and with a big argument on the right it’s going to be expensive having to write over the data in memory all again and we could possibly save ourselves and some of this work by working on the on the boolean vector over here removing one element from from that and instead then we don’t need to concatenate we can just take that right argument and like this only problem is then we’re back to and so that’s we are back to another problem that we get that space at the beginning if it’s not then we don’t get a space because now we’re not considering the spaceness or not spaceness of the of the first element in anymore and the way we can we can fix that is much like we did we did before namely that if space the left recommend is equal to the first element of the argument then we drop from there so that then this works and let’s give that the name and d. Okay, but there are plenty of ways to do this we can also start by the concatenation and and go with that.</p>
+<p>So let’s start by having this the left argument here this the space and then concatenate it in the beginning of the right argument the main argument that we’re working on and then we’re going to generate a vector the compression vector for this entire thing so we can we can start by saying there we which they’re different and then adding a zero on the front like we’re doing before we could say give that a name for a mask and then rotate it and then use or that so this is this would be just a different it’s it’s an explicit version of what we’ve done before this is of c and then we’re doing it doing one drop and on that so things look a little bit different when we can assign temporary variables like this okay this is e and now again we have a problem that we’re concatenating on the left and we know that that’s potentially slow canceling on the right when the interpreter will reserve additional space for the array to grow and then it can just write into that space so that’s going to be much cheaper than rewriting the whole thing so how can we reformulate this to concatenate on the right instead so we’re concatenating here on the right on the space on the right and then that just means that we have to move our corresponding zero over on the right as well and that and then similarly we have to rotate the other direction and then dropping from the opposite direction and then no more spaces here at the end so that potentially should be faster f should be faster than than e.</p>
+<p>Okay, there are even more ways we can play. We’ve got plenty of ways to write this, so let’s start off with our normal comparison. Now we’re adding that spaces as always, so it’s a space indicator in our boolean vector: zero. Then we’re going to process that in much the same way as we’ve done before. We are rotating it one step and then doing an OR with itself. So far so good, that’s the same as what we’ve been doing before. We’re just writing it inline here rather than taking the one outside.</p>
+<p>The trick I want to get here is this gives us this, then we also want to make sure to not catch anything at the beginning. So if we start here with “Well, I’m going to explain this. This is a test,” these are all fine, but if we have one space here, that’s not right because it’s adjacent to a non-space. We want to get rid of that. If we have more spaces, then we start detecting that it’s a space addition to another space. That’s not okay.</p>
+<p>The cheap way of fixing this is by saying that any space, any character that appears before the first non-space, shouldn’t be regarded at all. Of course, any character before the first non-space is going to be a space. We can do that by taking the running OR. Because we have our comparison vector here are the num spaces, that means we start with zeros for all the spaces and then we get a one.</p>
+<p>This means as soon as we hit the first one going from the left, any character after that will also have a one. Similarly, any character up to the first one has a zero. This is a strict condition. We can then take that and put it up here that we only want the ones here, but we have this problem here with this one if it’s also true that it comes after the first one.</p>
+<p>Now this gives us a good mask that we can work on, and then we just use this to filter our argument. We can try that with s we had before. What am I doing wrong here? Oh yeah, of course, we have to drop the zero from the end after we’re done with our logic. Here we go.</p>
+<p>We could also use this kind of method of this cumulative OR or scan to spell out all our conditions. Starting with that same vector here, let’s spell out our conditions, and then we don’t need to worry about this cyclical thing. The way we’re going to spell it out is again we’re saying that it is the adjacency to a non-space. So it has to be a non-space or adjacent to a non-space, and it also has to come after the first non-space, and it also has to come before the last non-space.</p>
+<p>The last non-space we can write as a little defend itself. We reverse the argument and then we do our AND OR scan and then reverse it back again. So here we’ve just spelled out the conditions for keeping a character: it is adjacent to a non-space or it’s a non-space, and it comes after the first one, and it comes before the last one.</p>
+<p>One final way that we can potentially use this is if we take the non-spaces as always, and then we let’s give that a name: the mask. Then we use the less than scan. It’s a bit of a tricky one. You kind of have to know this, but what it does is it turns off all ones that appear after the first one.</p>
+<p>Let’s say we have the mask like this. Here’s our mask, and we can see that it leaves only a one at the first one, and all other ones in this whole vector are turned off. That’s what we’re doing now. Then we can specify that for something to be preserved, it has to be a non-space and it’s not only. So we could write an AND NOT like this, but AND NOT is only true if this is one and this over here is zero. For boolean, that just means that it is strictly greater than.</p>
+<p>Effectively what happens here is it’s exactly the same vector as before, the different from space vector, except that we have forced the first one that’s there to become a zero. Now we can use this to cyclically rotate, and that is safe because we know that the first element cannot be a one. That means that when we rotate it one step, we for sure get a zero added at the end. Then we can compare that with our mask.</p>
+<p>So it has to be a non-space or adjacent to a non-space as before, but adjacent to does not wrap around. It looks much like what we had before, but we don’t have the problem of wrapping around and messing with the training ones. We’re wrapping a zero around there, and then we can use that to filter it over here. Even if we use something that doesn’t have spaces at the end, it doesn’t matter. They are still adjacent to the non-space that’s being rotated one step to the left. We’re not nulling that out.</p>
+<p>Now for comparison of all these different ways of using the cyclic rotation, that were all the letters from c to i, let’s instead of having to spell those out, use another utility from the defense workspace. It’s the generalized iota, and not only does it handle non-numeric data, it also handles a start point and an endpoint rather than starting always at one or zero if you’re using code i zero.</p>
+<p>That means that we can write, for example, k to iota g w. We get all the letters from k to j w inclusive, and that means that we can say we want letters from c. We would say iota g, and we want them all the ones to i. Then we want each one of them concatenated to an each and the t. That gives us all our expressions that we want to run.</p>
+<p>Then we can run cmpx on that, and it’s pretty clear that our last one here, the clever one that avoids the problem of rotating the wrong data around, is the fastest one. Good to know.</p>
+<p>Hey, how about regex? We can pretty much guess that it’s going to be slow, but there are different ways of doing it. They’re interesting to see how we could do that.</p>
+<p>For a regular solution, one way we can do it is by defining exactly which spaces to remove and which spaces to condense. The ones that need to be removed are at the beginning of our text (any number of spaces) or any number of spaces at the end of the text. The only thing that leaves us is getting rid of the multiple internal spaces.</p>
+<p>Now we can say once all of those are gone, then we also want to remove any run of spaces with a single space. We could also say any space followed by any number of spaces, but it’s probably not going to make a big difference. That solves the problem. Let’s call that j.</p>
+<p>Another way we could do it is using a single pattern just to specify all the spaces that need to be removed. This just moves all of them, replaces with nothing. But what exactly is a space that we want to remove? Well, we can start off like we did before: any number of spaces at the beginning or any number of spaces at the end.</p>
+<p>But there’s one more possibility: the internal spaces that are redundant. What does it mean that they’re redundant? It means that they’re adjacent to another space, just like we’ve been using pure APL to do before. So we have a space, and then we want to look ahead and see that there’s another space. If there is another space coming up but not included in this match, then we should remove that space. That just leaves the last space in every group of spaces. This solves our problem as well.</p>
+<p>Finally, we can make a solution where we start off by protecting certain things. I call it like an exception pattern solution. We replace them with themselves, and then anything that’s left over using a different pattern is then changed.</p>
+<p>What we want to keep are spaces that are in between two non-spaces. How can we do that? Well, we could use a look behind and look ahead. So if we have a non-space followed by a space followed by an upcoming (that’s a look ahead) any number of characters. The problem here is that this could be the last character, the last letter in our text, and it will be followed by a space. Then we say any number of characters that come after that, and that will also match that there should be a space at the very end, but we don’t want to keep that.</p>
+<p>We need to make sure that something follows after, and we can’t consume a non-space because then we might have non-space space non-space space, and we need that middle non-space to be used to justify both of the spaces that are adjacent to it. But what we can say is that it follows any number of characters (look ahead), and then there is something somewhere after that which is also a non-space. Those are the spaces we want to preserve. Any other space we want to remove.</p>
+<p>Let’s try this out. We could also say that we want any space, any number of spaces followed by any non-space, but that would only preserve those places that are just a single space. We don’t want that. We want to preserve one of each of the spaces that are in sequences of spaces as well.</p>
+<p>So this is another way of doing it with regex. Three different ways of doing it:</p>
+<ol class="arabic simple">
+<li><p>The first one was to do two different patterns to do the two transformations: leading/trailing and then separately treat multiple spaces and make them one.</p></li>
+<li><p>The one where we are specifying exactly which spaces to be removed using an OR and three different patterns.</p></li>
+<li><p>This one where we are accepting the spaces that we want to keep and then removing all other spaces.</p></li>
+</ol>
+<p>Let’s try that. We want j each of k a h of t and k each of t and l each of t. Three different ways of doing regex to see which one is faster in our case. Well, pretty clear that using the two transformations would be faster in our case. This might not be true in every case.</p>
+<p>Now here’s a fun thing. Because our problem is very specific - we’re only dealing with spaces and non-spaces, and we want to get rid of any runs of spaces other than them being a single space inserted there - we can use a little trick. That is using the classic way of splitting on spaces or on any other character really.</p>
+<p>We partition by where we have non-spaces. Because non-spaces are indicated by zeros and any element that corresponds to zero is removed when we’re using partition, that means that all the spaces are removed: leading, trailing, all the internal ones. Now we remove too much because we want to have exactly one space between each word, but that’s not so bad because what we can do then is join on spaces.</p>
+<p>We could write that as the left argument followed by space followed by the right argument, but this will fail if we have an empty vector. That will attempt to need the identity element for this function, for which there isn’t one. Firstly, APL can’t figure it out for non-primitive functions, but secondly, there is no argument you can give to this on one side so that we preserve the argument from the other side because it always adds a single space.</p>
+<p>Instead, what we can do is just add a space to each one. We know that it’s probably faster to add things on the right, so instead of just doing space concatenated to each one, we’ll bind the space on the right side of concatenation. This just adds a trailing space to each one. We could also use commute for this, but this will work.</p>
+<p>Now we just need to flatten it all down, and then we have a trailing space that comes out here. We just need to drop the last one because we’ve added a space to each one. That gives us our results right there.</p>
+<p>This is one way to split and join. I didn’t give a name to this one. This should be good. While it’s not really valid, it’ll be interesting to see if there’s a difference in speed as well between join on spaces and add a space to each one and then flatten it all out and removing one. We can still compare them even if we know that it’s not really valid.</p>
+<p>Let’s try to generalize this a little bit. That’s really trivial if we take this one, then we can just use the left argument here and a left argument here. That would be a generalization of it just to show how we can do that. This is actually a kind of useful thing to be able to bind an argument with a function. It’s just what I want to demonstrate.</p>
+<p>But this form also has an additional benefit in that it is extremely amenable to becoming tested. How might we write this as a tested form? Well, this is just application between the arguments, and this is the right argument. So we could write this as a right tack here, but since we’re just flipping the arguments of the partition and we have a single primitive over here, then there’s no point in writing it like that.</p>
+<p>So we can just flip them around. We can write that in the proper order. Now we want to add the left argument concatenated on each but flipped around. Then we flatten this, and then we need to change our braces to parentheses. We could combine this because this is a monadic function, so we’re just pre-pressing the right argument to the negative one. But instead of that, we can actually just let it be on the top. I find it on the top here.</p>
+<p>So we have this fork here which has a fork right argument, a right tine, and then a single function. That’s on the top, and then we can just state the negative one drop outside as well. It saves us from this somewhat awkward composition of it. We can try this, and this works as well in a test form.</p>
+<p>These were all based on splitting and joining. Let’s compare them with each other. So let’s do this was m g p and each one is with an enclosed and each of t. These are all the split and join. They’re probably not going to be fast, but we can still compare them with each other.</p>
+<p>Now the matches are there, and now you can see that the first one was very slow. That’s the one that’s doing the reduction, and it wasn’t completely right anyway because it couldn’t handle the empty argument. So that’s good, and the other ones are much faster than that.</p>
+<p>Finally, a function that’s often overlooked is the find function. The find function indicates the beginning of any subarray in an array. We’ve got our s here, and then we can say we want to find places where we have doubled spaces. We can see that we have three spaces at the beginning, and that means there are two instances of double spaces here. There’s a double space over here, and then there are all the trailing spaces that cause double spaces at the end.</p>
+<p>We can use this. Let’s start off with something that just like we’ve been doing before, different from space, and then we’re going to do something like that. Here when we have different space, we want to look at places where we got zero zero. This corresponds to what we’re doing over here. We just do it using it on the boolean instead of using it directly on our text.</p>
+<p>Now we’ll come back to this. Let’s just do the basic thing first, which is going to be that we want to make sure that we… This thing will take care of the double spaces eventually. We can see that already here. If we negate this, then that indicates all the places except for a space that is followed by another space, which are the redundant spaces. If we use this already to compress here, that gets rid of our double spaces but doesn’t get rid of our leading and trailing spaces other than compressing them down to become single spaces.</p>
+<p>But we can fix this. Leading and trailing spaces we can get rid of by the same method we did before with the scan. We want to find anything that follows the first one but not anything before that, and anything that comes before the last one. We can do this reversal, and then we do an OR on that, and then we do reversal again. That gives us a mask indicating ones all the way up to the very last one. That takes care of all the trailing spaces.</p>
+<p>Then we can combine it with a regular OR scan. We want both of these to be true. It has to be true: this after the first one and before the last one. We need to bind these together as well because this is a monadic, so we need to pre-use. We do that by pre-processing the right argument to AND. That gives us the internals there.</p>
+<p>Then the only thing we want to also be true is that it isn’t a space which is followed by another space. We forgot to bind by the argument to that. This is wrong anyway because we want this to be false. It has to be not a space that’s next to another space, and this has to be true. It has to be in the internal part. So it’s like the AND NOT but backwards. This has to be on the right, has to be greater than what’s on the left, and that gives us our mask. Then we can use that to filter the argument, and that gives us our result. We call that q.</p>
+<p>Another idea we can use now that we know how to take care of duplicate spaces: we are free to explore other ways of getting rid of leading and trailing spaces. Now there’s this thing called idiom recognition where certain phrases are not actually taken at face value but are interpreted as a single kind of token. The interpreter internally uses a very fast algorithm for doing the same work that this function would have done.</p>
+<p>One of them is actually exactly this to remove spaces. Apparently, that’s something APLers do a lot, and they want to run fast. If we type this up, notice that it turned a different color here. That is indicating that this is an idiom and therefore going to run very fast. The problem is, of course, this only removes leading spaces. This is exactly that mask on the leading non-spaces.</p>
+<p>We also want to do it from the reverse, but we can do that simply by reversing our argument and then applying this, which removes leading spaces, and then reversing it again back to how it was before and removing the leave space. This whole thing just has to run twice.</p>
+<p>Once that’s done, we can try this on our sample. This gets rid of all leading and trailing spaces. Then we can apply atop that this exact method that we had before. We want the argument where it is not true that we have adjacent a space that’s adjacent to another space on its right. That gets rid of that. This may be fast because we’re using this idiom for the leading and trailing spaces, even though we’re using find for the middle spaces that need to be removed. Let’s call this r.</p>
+<p>Finally, let’s try to use a bit of work with find straight on the bit mask in a bit different way. What we’re going to do here is we’re going to start, for once, with things that are spaces. This is exactly the opposite of what we did before. But the good thing about it is that we can then do an AND scan. That gives us all the leading spaces, and then we can do the one-one find that gives us all the duplicated spaces. We don’t want any of those.</p>
+<p>So neither this nor that. We can try this. In fact, let’s put it in here. That’s what we’re going to do. All the leading spaces were removed, and now we only have trailing spaces. It’s a little bit hard to see that we’ve got trailing spaces here, but if we use display, then we can see that we’ve got a trailing space.</p>
+<p>There’ll only ever be one trailing space because we’ve reduced any runs of spaces to a single space. That means that the only thing we need to do is remove a trailing element, which is a very fast operation if the last character of our input is a space.</p>
+<p>How can we find the last character of the input? Well, if we reverse it and then take the first, that’s the last. Then we need to drop one if that’s true. Since it’s from the end, we can do negate on top of that. This might be a bit faster if we allow the interpreter to use its idiom like this, but we can’t do that when it’s tested. So let’s just write it like this instead.</p>
+<p>Now it should be able to recognize it as an idiom. It’s interesting it’s really not written. Yeah, it thinks it’s not an idiom when there’s an adjacent space. It seems like a bug in the syntax color.</p>
+<p>Okay, so this finds the trailing space. If we have the last element being in this vector indicating where there are spaces, then we negate that. If it’s zero, it just stays zero, and then we drop that many elements on the right. That should work. We can try to display here. We can see that there are no spaces at the end, and we’ll call this s.</p>
+<p>Then we are ready to test our find-based methods. So this is cmpx, and we’ve got qh on t and rh on t and sh on t. We can see that r is by far the fastest one of these. Which one was r? That was the one where we were using the idioms to remove leading and trailing spaces. So that’s interesting to know.</p>
+<p>So in each category, we found out which one was the fastest one. If I recall correctly, those were:</p>
+<ul class="simple">
+<li><p>a from the category of adjacent characters</p></li>
+<li><p>i from the cyclical rotation</p></li>
+<li><p>k from the regex</p></li>
+<li><p>p from where we’re splitting and joining</p></li>
+<li><p>and now we had r here where we are using find</p></li>
+</ul>
+<p>So that’s these. We’ll take these and compare them to each other. That shows us that a and i are fastest, but they’re so close to each other that it’s kind of hard to decide when it’s being drowned out by other things. So let’s try to just do these two, and it turns out that our very first solution is actually the fastest one.</p>
+<p>Very nice. Thank you so much for watching.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./apl-quest/2014"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Tell-a-Fib-APLQuest-2014-3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tell A Fib 2014-3</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Mirror-Mirror-APLQuest-2014-5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Mirror Mirror 2014-5</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Space The Final Frontier 2014-4</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-comparing-adjacent-characters">Method 1: Comparing Adjacent Characters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-cyclic-rotation">Method 2: Cyclic Rotation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-regular-expressions">Method 3: Regular Expressions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-4-split-and-join">Method 4: Split and Join</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-5-using-find">Method 5: Using Find (⍷)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-comparison">Final Comparison</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key takeaways:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glyphs-used">Glyphs Used:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concepts-used">Concepts Used:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regular-expressions">Regular Expressions:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#transcript">Transcript</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By jgordini
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
