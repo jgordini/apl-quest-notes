@@ -1,5 +1,5 @@
 
-# APL Quest: Analyzing the Largest Percentage Increase
+# Sales Are Up 2014-10
 
 Hello and welcome to this APL Quest. Today’s quest focuses on the 10th and last problem from the 2014 round of the APL Problem Solving Competition.
 

@@ -300,3 +300,109 @@ BetterJust text
 ```
 
 This APL implementation demonstrates the language's power in handling complex text operations with concise, array-oriented code. The `BetterJust` function efficiently justifies text while intelligently handling various edge cases.
+
+## Common Use Cases
+
+**Using first and reduction:**
+
+```
+∧/⊣=⊢
+```
+
+This checks if all elements are equal to the first element.
+
+**Using unique and tally:**
+
+```
+1≥≢∪
+```
+
+This checks if the count of unique elements is 1 or less.
+
+**Using 2-wise reduction:**
+
+```
+∧/2=⍨
+```
+
+This checks if each pair of adjacent elements is equal.
+
+**Using min and max:**
+
+```
+⌊/=⌈/
+```
+
+This checks if the minimum and maximum elements are equal.
+
+**Using key:**
+
+```
+1≥≢⊣⌸
+```
+
+This uses the key operator to get unique elements and checks their count.
+
+
+
+# 10 Tacit Examples of Boolean Masking and Filtering in APL
+
+## Example 1: Filter positive numbers
+(0∘<⊢)
+
+Usage: (0∘<⊢) ¯2 ¯1 0 1 2
+Result: 1 2
+
+## Example 2: Filter even numbers
+(0=2|⊢)
+
+Usage: (0=2|⊢) 1 2 3 4 5
+Result: 2 4
+
+## Example 3: Filter uppercase letters
+(⊢=⎕A∘⍳⍨)
+
+Usage: (⊢=⎕A∘⍳⍨) 'aBcDeF'
+Result: BDF
+
+## Example 4: Filter elements equal to their indices
+(⊢=⍳∘≢)
+
+Usage: (⊢=⍳∘≢) 3 2 3 4 1
+Result: 3 4
+
+## Example 5: Filter prime numbers
+(2=+/0=⊢∘.|⍨⍳)
+
+Usage: (2=+/0=⊢∘.|⍨⍳) 1 2 3 4 5 6 7 8 9
+Result: 2 3 5 7
+
+## Example 6: Filter elements greater than the average
+(⊢>+/÷≢)
+
+Usage: (⊢>+/÷≢) 1 2 3 4 5
+Result: 4 5
+
+## Example 7: Filter elements that appear only once
+(1=+/∘.=⊢)
+
+Usage: (1=+/∘.=⊢) 1 2 2 3 3 3 4
+Result: 1 4
+
+## Example 8: Filter elements within one standard deviation of the mean
+(|∘(-+/÷≢)≤(+/(⊢-+/÷≢)*2÷≢)*0.5)
+
+Usage: (|∘(-+/÷≢)≤(+/(⊢-+/÷≢)*2÷≢)*0.5) 1 2 3 4 5 6 7 8 9
+Result: 3 4 5 6 7 (may vary depending on the exact implementation of standard deviation)
+
+## Example 9: Filter elements that are perfect squares
+(⊢=⌊*∘0.5)
+
+Usage: (⊢=⌊*∘0.5) 1 2 3 4 5 6 7 8 9
+Result: 1 4 9
+
+## Example 10: Filter elements that are palindromes (when converted to strings)
+(⊢≡⌽∘⍕)
+
+Usage: (⊢≡⌽∘⍕) 1 22 123 454 1221 12345
+Result: 1 22 454 1221
